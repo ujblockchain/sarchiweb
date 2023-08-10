@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     # third party apps
     'axes',
     'corsheaders',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -222,3 +223,9 @@ AXES_ENABLE_ACCESS_FAILURE_LOG = config('AXES_ENABLE_ACCESS_FAILURE_LOG', cast=b
 AXES_RESET_ON_SUCCESS = config('AXES_RESET_ON_SUCCESS', cast=bool)
 # lock user using ip address, username and user agent
 AXES_LOCKOUT_PARAMETERS = config('AXES_LOCKOUT_PARAMETERS', cast=Csv())
+
+
+# captcha settings
+RECAPTCHA_PUBLIC_KEY = config('RECAPTCHA_PUBLIC_KEY')
+RECAPTCHA_PRIVATE_KEY = config('RECAPTCHA_PRIVATE_KEY')
+RECAPTCHA_REQUIRED_SCORE = config('RECAPTCHA_REQUIRED_SCORE', cast=float)
