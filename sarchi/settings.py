@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'captcha',
     'reversion',
+    'reversion_compare',
     # app
     'pages.apps.PagesConfig',
 ]
@@ -240,6 +241,15 @@ AXES_LOCKOUT_PARAMETERS = config('AXES_LOCKOUT_PARAMETERS', cast=Csv())
 RECAPTCHA_PUBLIC_KEY = config('RECAPTCHA_PUBLIC_KEY')
 RECAPTCHA_PRIVATE_KEY = config('RECAPTCHA_PRIVATE_KEY')
 RECAPTCHA_REQUIRED_SCORE = config('RECAPTCHA_REQUIRED_SCORE', cast=float)
+
+
+# Add reversion settings
+## add admin interface
+ADD_REVERSION_ADMIN = True
+## compare by id
+REVERSION_COMPARE_FOREIGN_OBJECTS_AS_ID = False
+## ignore not registered in comparison
+REVERSION_COMPARE_IGNORE_NOT_REGISTERED = False
 
 
 # import jazzmin settings
