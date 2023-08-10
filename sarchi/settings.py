@@ -40,6 +40,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    # Remote Address Middleware
+    'sarchi.middleware.remoteAddr.RemoteAddrMiddleware',
 ]
 
 ROOT_URLCONF = "sarchi.urls"
