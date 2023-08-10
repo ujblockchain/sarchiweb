@@ -115,11 +115,11 @@ li.breadcrumb-item a {
 
 /* model navigation */
 .accent-primary .btn-link, .accent-primary .nav-tabs .nav-link, .accent-primary a:not(.dropdown-item):not(.btn-app):not(.nav-link):not(.brand-link):not(.page-link):not(.btn) {
-    color: wheat;
+    color: grey;
 }
 
 .accent-primary .btn-link:hover, .accent-primary .nav-tabs .nav-link:hover, .accent-primary a:not(.dropdown-item):not(.btn-app):not(.nav-link):not(.brand-link):not(.page-link):not(.btn):hover {
-    color: rosybrown;
+    color: wheat;
 }
 
 .dark-mode .custom-file-label, .dark-mode .custom-file-label::after, .dark-mode .form-control:not(.form-control-navbar):not(.form-control-sidebar):not(.is-invalid):not(:focus):hover {
@@ -166,7 +166,7 @@ input.btn.btn-outline-info.form-control:hover{
 }
 
 .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable{
-    color: rosybrown !important;
+    color: wheat !important;
 }
 
 .select2-container--default .select2-results__option--selected {
