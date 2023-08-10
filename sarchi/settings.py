@@ -34,6 +34,8 @@ INSTALLED_APPS = [
     'axes',
     'corsheaders',
     'captcha',
+    # app
+    'pages.apps.PagesConfig',
 ]
 
 MIDDLEWARE = [
