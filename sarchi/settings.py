@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 from decouple import config, Csv
+import jinja2
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -44,6 +45,18 @@ MIDDLEWARE = [
 ROOT_URLCONF = "sarchi.urls"
 
 TEMPLATES = [
+    {
+        # Jinja2 template setup
+        'BACKEND': 'django.template.backends.jinja2.Jinja2',
+        'DIRS': [os.path.join(BASE_DIR, 'jinja2')],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'autoescape': False,
+            'context_processors': [
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [],
