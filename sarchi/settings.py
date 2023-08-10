@@ -52,6 +52,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'autoescape': False,
+            'environment': 'sarchi.jinja.env.JinjaEnvironment',
             'extensions': [
                 'jinja2.ext.loopcontrols',
                 'jinja2.ext.do',
