@@ -208,9 +208,9 @@ CORS_ALLOWED_ORIGINS = [
 # Axes Settings
 SILENCED_SYSTEM_CHECKS = config('SILENCED_SYSTEM_CHECKS', cast=Csv())
 # Number of failed login before block
-AXES_FAILURE_LIMIT = config('AXES_FAILURE_LIMIT')
+AXES_FAILURE_LIMIT = config('AXES_FAILURE_LIMIT', cast=int)
 # Time to wait after lockout(hrs)
-AXES_COOLOFF_TIME = config('AXES_COOLOFF_TIME')
+AXES_COOLOFF_TIME = config('AXES_COOLOFF_TIME', cast=int)
 # Enable security lockout only for admin site
 AXES_ONLY_ADMIN_SITE = config('AXES_ONLY_ADMIN_SITE', cast=bool)
 # lockout template
