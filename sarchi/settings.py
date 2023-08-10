@@ -239,3 +239,7 @@ AXES_LOCKOUT_PARAMETERS = config('AXES_LOCKOUT_PARAMETERS', cast=Csv())
 RECAPTCHA_PUBLIC_KEY = config('RECAPTCHA_PUBLIC_KEY')
 RECAPTCHA_PRIVATE_KEY = config('RECAPTCHA_PRIVATE_KEY')
 RECAPTCHA_REQUIRED_SCORE = config('RECAPTCHA_REQUIRED_SCORE', cast=float)
+
+
+# import jazzmin settings
+from .configuration.admin.jazzdmin import *
