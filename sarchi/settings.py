@@ -150,7 +150,7 @@ STATIC_URL = "/static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-# Security Settings In Production Environment
+# Email and Security Settings In Production Environment
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 if DEBUG == False:
     # security settings
@@ -163,6 +163,16 @@ if DEBUG == False:
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
 
+    # email settings
+    EMAIL_BACKEND = config('EMAIL_BACKEND')
+    EMAIL_PORT = config('EMAIL_PORT')
+    EMAIL_HOST = config('EMAIL_HOST')
+    EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+    DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
+    SERVER_EMAIL = config('SERVER_EMAIL')
+    EMAIL_SUBJECT_PREFIX = config('EMAIL_SUBJECT_PREFIX')
+    EMAIL_USE_TSL = config('EMAIL_USE_TSL')
 
 # Axes Settings
 SILENCED_SYSTEM_CHECKS = config('SILENCED_SYSTEM_CHECKS', cast=Csv())
