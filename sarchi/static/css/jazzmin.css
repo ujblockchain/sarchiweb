@@ -1,0 +1,200 @@
+/* general styling */
+.login-logo h1 img {
+    width: 30%;
+}
+
+.elevation-3 {
+    box-shadow: none !important;
+}
+
+.brand-link .brand-image{
+    float: unset !important;
+}
+
+
+span.brand-text.font-weight-light{
+    display: none;
+}
+
+.actions label {
+    display: block;
+    float: left;
+    margin: 0 20px;
+}
+
+#changelist .changelist-form-container {
+    flex: 1 1 auto;
+    min-width: 160% !important;
+}
+
+#changelist-filter li.selected a {
+    background: gray !important;
+}
+
+#changelist-filter h3 {
+    background-color: #343a40 !important;
+    border-color: #4b545c !important;
+}
+
+.object-tools li {
+    background-color: #343a40 !important;
+    border-color: #4b545c !important;
+    color: aliceblue !important;
+}
+
+#changelist-filter h2 {
+    background: #4b545c !important;
+    font-size: 18px;
+}
+
+ul.object-tools li a {
+    font-size: 17px;
+    padding: 25px;
+    margin: 10px 0 !important;
+    color: white!important;
+}
+
+#toolbar #searchbar {
+    height: 30px !important;
+    padding: 2px 15px !important;
+}
+
+#toolbar form input[type="submit"] {
+    padding: 5px 8px !important;
+}
+
+.dark-mode select {
+    height: 260px !important;
+}
+
+.related-widget-wrapper select {
+    color: black !important;
+}
+
+.submit-row input.default {
+    border: 1px solid #6c757d;
+    background-color: #343a40;
+    color: #fff;
+}
+
+
+.col-12.col-md-auto.d-flex.align-items-center.justify-content-end.page-actions li {
+    color: #fff;
+    background-color: #839496;
+    border-color: #6c757d;
+    box-shadow: none;
+    padding: 3px;
+    width: 300px;
+    font-weight: 400;
+    border-radius: 4px;
+}
+
+.col-12.col-md-auto.d-flex.align-items-center.justify-content-end.page-actions li a {
+    color: #fff !important;
+}
+
+.col-12.col-md-auto.d-flex.align-items-center.justify-content-end.page-actions li:hover {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.col-12.col-md-auto.d-flex.align-items-center.justify-content-end.page-actions li:active {
+    background-color: #545b62;
+    border-color: #4e555b;
+}
+
+.col-12.col-md-auto.d-flex.align-items-center.justify-content-end.page-actions li a:hover {
+    text-decoration: none !important;
+}
+
+/* breadcrumb */
+li.breadcrumb-item a {
+    color: wheat !important;
+}
+
+
+/* model navigation */
+.accent-primary .btn-link, .accent-primary .nav-tabs .nav-link, .accent-primary a:not(.dropdown-item):not(.btn-app):not(.nav-link):not(.brand-link):not(.page-link):not(.btn) {
+    color: wheat;
+}
+
+.accent-primary .btn-link:hover, .accent-primary .nav-tabs .nav-link:hover, .accent-primary a:not(.dropdown-item):not(.btn-app):not(.nav-link):not(.brand-link):not(.page-link):not(.btn):hover {
+    color: rosybrown;
+}
+
+.dark-mode .custom-file-label, .dark-mode .custom-file-label::after, .dark-mode .form-control:not(.form-control-navbar):not(.form-control-sidebar):not(.is-invalid):not(:focus):hover {
+    color: rosybrown;
+}
+
+
+/* model action buttons */
+
+input.btn.btn-outline-success.form-control:hover {
+    border-color: #00bc8c !important;
+}
+
+a.btn.btn-outline-danger.form-control:hover{
+    border-color:#e74c3c !important;
+}
+
+input.btn.btn-outline-info.form-control:hover{
+    border-color: #3498db !important;
+}
+
+input.btn.btn-outline-info.form-control:hover{
+    border-color: #3498db !important;
+}
+
+.dark-mode .btn-secondary:hover {
+    border-color: wheat;
+}
+
+/* top navigation */
+.navbar-dark .navbar-nav .nav-link {
+    color: wheat;
+}
+
+/* brand text */
+.brand-text{
+    display: none !important;
+}
+
+
+/* drop down styling */
+.select2-container--default .select2-results__option {
+    color: wheat;
+}
+
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable{
+    color: rosybrown !important;
+}
+
+.select2-container--default .select2-results__option--selected {
+    background-color: dimgrey !important;
+}
+
+/* admin side bar icon */
+i.nav-icon {
+    color: wheat;
+}
+
+/* admin side bar text */
+li.nav-header{
+    color: rosybrown !important;
+}
+
+/* admin footer text */
+.main-footer strong {
+    color: wheat;
+}
+
+/* admin user profile icon */
+.user-profile {
+    border-radius: 60%;
+    border: 3px solid wheat;
+}
+
+/* cancel btn styling */
+.dark-mode .custom-file-label, .dark-mode .custom-file-label::after, .dark-mode .form-control:not(.form-control-navbar):not(.form-control-sidebar):not(.is-invalid):not(:focus):hover {
+    color:cornsilk;
+}
