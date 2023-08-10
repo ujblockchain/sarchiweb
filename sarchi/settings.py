@@ -30,6 +30,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # third party apps
+    'axes',
 ]
 
 MIDDLEWARE = [
@@ -44,6 +46,8 @@ MIDDLEWARE = [
     'sarchi.middleware.remoteAddr.RemoteAddrMiddleware',
     # Current User Middleware
     'sarchi.middleware.current_request.RequestMiddleware',
+    # AxesMiddleware should be the last middleware in the MIDDLEWARE list.
+    'axes.middleware.AxesMiddleware',
 ]
 
 ROOT_URLCONF = "sarchi.urls"
@@ -129,6 +133,13 @@ USE_L10N = True
 
 USE_TZ = True
 
+AUTHENTICATION_BACKENDS = [
+    # AxesStandaloneBackend should be the first backend in the AUTHENTICATION_BACKENDS list.
+    'axes.backends.AxesStandaloneBackend',
+    # Django ModelBackend is the default authentication backend.
+    'django.contrib.auth.backends.ModelBackend',
+]
+
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = "/static/"
@@ -151,3 +162,30 @@ if DEBUG == False:
     SECURE_CONTENT_TYPE_NOSNIFF = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
+
+
+# Axes Settings
+SILENCED_SYSTEM_CHECKS = config('SILENCED_SYSTEM_CHECKS', cast=Csv())
+# Number of failed login before block
+AXES_FAILURE_LIMIT = config("AXES_FAILURE_LIMIT")
+# Time to wait after lockout(hrs)
+AXES_COOLOFF_TIME = config("AXES_COOLOFF_TIME")
+# Enable security lockout only for admin site
+AXES_ONLY_ADMIN_SITE = config('AXES_ONLY_ADMIN_SITE', cast=bool)
+# lockout template
+AXES_LOCKOUT_TEMPLATE = config("AXES_LOCKOUT_TEMPLATE")
+# Lockout url path
+AXES_LOCKOUT_URL = config("AXES_LOCKOUT_URL")
+# Form field that contains your users usernames.
+AXES_USERNAME_FORM_FIELD = config("AXES_USERNAME_FORM_FIELD")
+# Reset after success login
+AXES_RESET_ON_SUCCESS = config('AXES_RESET_ON_SUCCESS', cast=bool)
+# Whitelist local host
+AXES_NEVER_LOCKOUT_WHITELIST = config('AXES_NEVER_LOCKOUT_WHITELIST', cast=bool)
+AXES_IP_WHITELIST = config('AXES_IP_WHITELIST', cast=Csv())
+# Enable writing login failure logs to database
+AXES_ENABLE_ACCESS_FAILURE_LOG = config('AXES_ENABLE_ACCESS_FAILURE_LOG', cast=bool)
+# Successful login will reset the number of failed logins
+AXES_RESET_ON_SUCCESS = config('AXES_RESET_ON_SUCCESS', cast=bool)
+# lock user using ip address, username and user agent
+AXES_LOCKOUT_PARAMETERS = config('AXES_LOCKOUT_PARAMETERS', cast=Csv())
