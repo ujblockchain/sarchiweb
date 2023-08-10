@@ -52,6 +52,11 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'autoescape': False,
+            'extensions': [
+                'jinja2.ext.loopcontrols',
+                'jinja2.ext.do',
+                'jdj_tags.extensions.DjangoCompat',
+            ],
             'context_processors': [
                 'django.contrib.messages.context_processors.messages',
             ],
