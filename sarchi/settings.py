@@ -32,11 +32,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # third party apps
     'axes',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -186,6 +188,11 @@ if DEBUG == False:
     SERVER_EMAIL = config('SERVER_EMAIL')
     EMAIL_SUBJECT_PREFIX = config('EMAIL_SUBJECT_PREFIX')
     EMAIL_USE_TSL = config('EMAIL_USE_TSL')
+
+# Cors settings
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8000",
+]
 
 # Axes Settings
 SILENCED_SYSTEM_CHECKS = config('SILENCED_SYSTEM_CHECKS', cast=Csv())
