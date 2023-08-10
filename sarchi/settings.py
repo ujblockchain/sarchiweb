@@ -89,6 +89,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'sarchi.wsgi.application'
 
+# Set Django Extension nd Debug Toolbar for development environment
+if DEBUG:
+    # update installed apps
+    local_env_apps = ['django_extensions', 'debug_toolbar']
+    for i in range(len(local_env_apps)):
+        INSTALLED_APPS.insert(31 + i, local_env_apps[i])
+
+    # update middleware with debug tool bar
+    MIDDLEWARE.insert(7, 'debug_toolbar.middleware.DebugToolbarMiddleware')
+
+    # set internal ips
+    INTERNAL_IPS = ['127.0.0.1']
+
+
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
