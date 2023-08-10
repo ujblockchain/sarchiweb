@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'axes',
     'corsheaders',
     'captcha',
+    'reversion',
     # app
     'pages.apps.PagesConfig',
 ]
