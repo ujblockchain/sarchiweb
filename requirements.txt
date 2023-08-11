@@ -1,5 +1,5 @@
 coverage==7.2.7
-Django==3.2.20
+Django==4.2.4
 django-autoslug==1.9.9
 django-axes==6.1.0
 django-cleanup==8.0.0
