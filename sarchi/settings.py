@@ -75,7 +75,7 @@ TEMPLATES = [
             'extensions': [
                 'jinja2.ext.loopcontrols',
                 'jinja2.ext.do',
-                'jdj_tags.extensions.DjangoCompat',
+                'sarchi.jinja.extensions.DjangoNow',
             ],
             'context_processors': [
                 'django.contrib.messages.context_processors.messages',
