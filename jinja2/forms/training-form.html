@@ -1,0 +1,119 @@
+{# extend template #}
+{% extends 'base.html' %}
+
+{# extra css style #}
+{% block extraStyle %} 
+    <style>
+        .form-select:focus {
+            border-color: rgba(255, 255, 255, 0.05);
+            outline: none;
+            box-shadow: none;
+        }
+
+        select>option {
+            background: rgba(255, 255, 255, 0.05) !important;
+            color: #61757a !important;
+        }
+    </style>
+{% end extraStyle %} 
+
+{# override header intro #}
+{% block headIntro %}
+    <section class="simple-head" data-stellar-background-ratio="0.5">
+        <!-- Particles -->
+        <div id="particles-js"></div>
+        <div class="position-center-center">
+            <div class="container text-center">
+                <h1>UJ Blockchain Bootcamp</h1>
+                <p>Learn Blockchain and build an amazing Decentralize Application. Learn from scratch as We take you
+                    from the basics to creating your own application, made by you and for you. Learn about
+                    framework, server deployment, tokens, NFT, the list goes on. Take the first step to this amazing journey by signing up today.</p>
+                <a href="#bootcamp" class="btn">Signup For Bootcamp</a> <a href="#." class="btn btn-inverse">Learn More About Us</a>
+            </div>
+        </div>
+    </section>
+{% endblock headIntro %}
+
+
+{# override content block #}
+{% block content %}
+    <!-- Content -->
+    <div id="content">
+        <section id="bootcamp" class="distri drk padding-top-150 padding-bottom-150">
+            <div class="container">
+
+                <div class="contact">
+                    <h6>Signup For Blockchain Bootcamp Training(September 20th - 23th)</h6>
+                    <!-- Success Msg -->
+                    <div id="contact_message" class="success-msg"> <i class="fa fa-paper-plane-o"></i>Thank You.
+                        Your
+                        Message has been Submitted</div>
+
+                    <!-- FORM -->
+                    <form role="form" id="contact_form" class="contact-form" method="post" onSubmit="return false">
+                        <ul class="row nolist-style">
+                            <li class="col-sm-4">
+                                <label>
+                                    <input type="text" class="form-control" name="first_name" id="first_name"
+                                        placeholder="First Name">
+                                </label>
+                            </li>
+                            <li class="col-sm-4">
+                                <label>
+                                    <input type="text" class="form-control" name="last_name" id="last_name"
+                                        placeholder="Last Name">
+                                </label>
+                            </li>
+                            <li class="col-sm-4">
+                                <label>
+                                    <input type="email" class="form-control" name="email" id="email"
+                                        placeholder="email">
+                                </label>
+                            </li>
+
+                            <li class="col-sm-4">
+                                <label>
+                                    <input type="text" class="form-control" name="faculty" id="faculty"
+                                        placeholder="Faculty">
+                                </label>
+                            </li>
+                            <li class="col-sm-4">
+                                <label>
+                                    <input type="text" class="form-control" name="department" id="department"
+                                        placeholder="Department">
+                                </label>
+                            </li>
+                            <li class="col-sm-4">
+                                <label>
+                                    <select class="form-select" aria-label="Default select example"
+                                        style="background-color: rgba(255,255,255,0.05); height: 48px; color: #61757a;">
+                                        <option selected>Select Your Level</option>
+                                        <option value="1">Undergrad</option>
+                                        <option value="2">Post Graduate</option>
+                                        <option value="3">Honors</option>
+                                        <option value="3">Diploma</option>
+                                        <option value="3">Higher Certificate</option>
+                                    </select>
+                                </label>
+                            </li>
+                            <li class="col-sm-12">
+                                <label>
+                                    <textarea class="form-control" name="expectation" id="Expectation" rows="5"
+                                        placeholder="Message"></textarea>
+                                </label>
+                            </li>
+                            <li class="col-sm-12 text-left">
+                                <button type="submit" class="btn btn-inverse" value="submit" id="btn_submit"
+                                    onClick="proceed();">SUBMIT</button>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Join our community -->
+        {% include "partials/pages/__community.html" %}
+    </div>
+{% endblock content %}

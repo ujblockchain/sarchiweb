@@ -1,0 +1,89 @@
+<footer id="contact">
+  <div class="container">
+    <div class="parthner">
+      <h6>Partnered with Innovative Globally</h6>
+      <ul>
+        <li>
+          <a href="#."><img src="{{ static('images/c-mg-1.png') }}" alt="" /></a>
+        </li>
+        <li>
+          <a href="#."><img src="{{ static('images/c-mg-2.png') }}" alt="" /></a>
+        </li>
+        <li>
+          <a href="#."><img src="{{ static('images/c-mg-3.png') }}" alt="" /></a>
+        </li>
+        <li>
+          <a href="#."><img src="{{ static('images/c-mg-1.png') }}" alt="" /></a>
+        </li>
+        <li>
+          <a href="#."><img src="{{ static('images/c-mg-2.png') }}" alt="" /></a>
+        </li>
+        <li>
+          <a href="#."><img src="{{ static('images/c-mg-3.png') }}" alt="" /></a>
+        </li>
+        <li>
+          <a href="#."><img src="{{ static('images/c-mg-1.png') }}" alt="" /></a>
+        </li>
+        <li>
+          <a href="#."><img src="{{ static('images/c-mg-2.png') }}" alt="" /></a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Contact Us -->
+    <div class="contact">
+      <h6>Get In Touch With us</h6>
+      <!-- Success Msg -->
+      <div id="contact_message" class="success-msg">
+        <i class="fa fa-paper-plane-o"></i>Thank You. Your Message has been
+        Submitted
+      </div>
+
+      <!-- FORM -->
+      <form role="form" id="contact_form" class="contact-form" method="post" onSubmit="return false">
+        <ul class="row nolist-style">
+          <li class="col-sm-4">
+            <label>
+              <input type="text" class="form-control" name="name" id="name" placeholder="Name" />
+            </label>
+          </li>
+          <li class="col-sm-4">
+            <label>
+              <input type="text" class="form-control" name="email" id="email" placeholder="Email" />
+            </label>
+          </li>
+          <li class="col-sm-4">
+            <label>
+              <input type="text" class="form-control" name="company" id="company" placeholder="Phone" />
+            </label>
+          </li>
+          <li class="col-sm-12">
+            <label>
+              <textarea class="form-control" name="message" id="message" rows="5" placeholder="Message"></textarea>
+            </label>
+          </li>
+          <li class="col-sm-12 text-left">
+            <button type="submit" class="btn btn-inverse" value="submit" id="btn_submit" onClick="proceed();">
+              SUBMIT
+            </button>
+          </li>
+        </ul>
+      </form>
+    </div>
+  </div>
+
+  <!-- Rights -->
+  <div class="rights">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <p>© {{year}} UJ Blockchain - SA-Swiss Bilateral Blockchain Research. All Rights Reserved.</p>
+        </div>
+        <div class="col-md-6 text-right">
+          <a href="#.">Faqs </a> <a href="#.">About UJBlockchain</a>
+          <a href="#.">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
