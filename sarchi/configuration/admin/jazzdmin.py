@@ -3,27 +3,27 @@ from django.conf import settings
 
 JAZZMIN_SETTINGS = {
     # title of the window (Will default to current_admin_site.site_title if absent or None)
-    'site_title': 'Sarchi UJ Admin',
+    'site_title': 'UJ Blockchain Admin',
     # Title on the login screen (19 chars max) (defaults to current_admin_site.site_header if absent or None)
-    'site_header': 'Sarchi UJ',
+    'site_header': 'UJ Blockchain',
     # Title on the brand (19 chars max) (defaults to current_admin_site.site_header if absent or None)
-    'site_brand': 'Sarchi UJ',
+    'site_brand': 'UJ Blockchain',
     # Logo to use for your site, must be present in static files, used for brand on top left
-    'site_logo': '...',
+    'site_logo': 'images/logo.png',
     # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
-    'login_logo': '...',
+    'login_logo': 'images/logo.png',
     # Logo to use for login form in dark themes (defaults to login_logo)
-    'login_logo_dark': '...',
+    'login_logo_dark': 'images/logo.png',
     # CSS classes that are applied to the logo above
     'site_logo_classes': 'img',
     # Relative path to a favicon for your site, will default to site_logo if absent (ideally 32x32 px)
-    'site_icon': '...',
+    'site_icon': 'favicon/favicon.ico',
     # Welcome text on the login screen
-    'welcome_sign': 'Welcome to Sarchi UJ',
+    'welcome_sign': 'Welcome to UJ Blockchain',
     # Copyright on the footer
-    'copyright': 'Sarchi UJ',
+    'copyright': 'UJ Blockchain',
     # The model admin to search from the search bar, search bar omitted if excluded
-    'search_model': ['...'],
+    #'search_model': ['...'],
     # Field name on user model that contains avatar ImageField/URLField/Charfield or a callable that receives the user
     'user_avatar': None,
     ############################################################
@@ -36,8 +36,8 @@ JAZZMIN_SETTINGS = {
         # external url that opens in a new window (Permissions can be added)
         {'name': 'View Site', 'url': '/', 'new_window': False},
         {'model': 'auth.User'},
-        {'model': '...'},
-        {'model': '...'},
+        # {'model': '...'},
+        # {'model': '...'},
     ],
     ######################################################
     # User Menu #
@@ -58,7 +58,7 @@ JAZZMIN_SETTINGS = {
     # Hide these models when generating side menu (e.g auth.user)
     'hide_models': [],
     # List of apps (and/or models) to base side menu ordering off of (does not need to contain all apps/models)
-    'order_with_respect_to': ['auth', '...', '...'],
+    # 'order_with_respect_to': ['auth', '...', '...'],
     # Custom links to append to app groups, keyed on app name
     'custom_links': {},
     # Custom icons for side menu apps/models See https://fontawesome.com/icons?d=gallery&m=free&v=5.0.0,5.0.1,5.0.10,5.0.11,5.0.12,5.0.13,5.0.2,5.0.3,5.0.4,5.0.5,5.0.6,5.0.7,5.0.8,5.0.9,5.1.0,5.1.1,5.2.0,5.3.0,5.3.1,5.4.0,5.4.1,5.4.2,5.13.0,5.12.0,5.11.2,5.11.1,5.10.0,5.9.0,5.8.2,5.8.1,5.7.2,5.7.1,5.7.0,5.6.3,5.5.0,5.4.2
@@ -67,6 +67,11 @@ JAZZMIN_SETTINGS = {
         'auth': 'fas fa-users-cog',
         'auth.user': 'fas fa-user',
         'auth.Group': 'fas fa-users',
+        'axes.accessattempt': 'fas fa-door-open',
+        'axes.accessfailurelog': 'fas fa-bomb',
+        'axes.accesslog': 'fas fa-fingerprint',
+        'reversion.revision': 'fas fa-feather-alt',
+        'reversion.version': 'fas fa-code-branch',
     },
     # Icons that are used when one is not manually specified
     'default_icon_parents': 'fas fa-chevron-circle-right',
@@ -80,7 +85,7 @@ JAZZMIN_SETTINGS = {
     # UI Tweaks #
     ######################################################
     # Relative paths to custom CSS/JS scripts (must be present in static files)
-    'custom_css': '...',
+    'custom_css': '/css/jazzmin.css',
     'custom_js': None,
     # Whether to show the UI customized on the sidebar
     'show_ui_builder': False,
