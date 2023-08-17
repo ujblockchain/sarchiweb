@@ -1,0 +1,68 @@
+{# load static #} {% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="University of Johannesburg Blockchain steams from the South Africa-Switzerland Bilateral Research Chair in Blockchain Technology which aims to explore blockchain integrations with real-world applications and development." />
+    <meta name="keywords"
+      content="UJ,University of Johannesburg,Johannesburg,Blockchain,Distributed Ledger Technology,DLT,Token Service,Consensus,Smart Contract,Smart Contracts,Smart,Contracts,Council,Governance,Decentralization,Distributed,Ledger,Technology,Distributed Ledgers,Distributed Ledger, Prof Nnamdi Nwulu, Nnamdi Nwulu, Dr Tebello Ntsiki Don Mathaba, Tebello Ntsiki Don Mathaba">
+    <meta name="author" content="UJ Blockchain" />
+  
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+    <link rel=" icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+    <link rel=" icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+    <link rel=" manifest" href="{% static 'favicon/site.webmanifest' %}">
+    <link rel=" mask-icon" href="{% static 'favicon/safari-pinned-tab.svg' %}" color=" #858585">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+
+    <title>UJ Blockchain - SA-Swiss Bilateral Blockchain Research Chair</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link href="{% static 'css/main.css" rel="stylesheet' %}" />
+    <link href="{% static 'css/style.css" rel="stylesheet' %}" />
+    <link href="{% static 'css/responsive.css" rel="stylesheet' %}" />
+    <link href="{% static 'fonts/flaticon.css" rel="stylesheet' %}" />
+    <link href="{% static 'css/ionicons.min.css" rel="stylesheet' %}" />
+
+    <!-- JavaScripts -->
+    <script src="{% static 'js/modernizr.js' %}"></script>
+
+    <!-- Online Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Merriweather:300,400,700,900|Montserrat:300,400,500,600,700,800"
+      rel="stylesheet"
+    />
+    <link
+      href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"
+      rel="stylesheet"
+    />
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+  </head>
+  <body>
+    <!-- Wrap -->
+    {% block errorContent %}{% endblock errorContent %}
+
+    <!-- Script -->
+    <script src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+    <script src="{% static 'js/particles.min.js' %}"></script>
+    <script src="{% static 'js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'js/jquery.sticky.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+  </body>
+</html>

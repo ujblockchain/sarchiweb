@@ -1,0 +1,27 @@
+{# extend template #}
+{% extends 'secondary-base.html' %}
+
+{% block errorContent %}
+  <!-- Wrap -->
+  <div id="wrap">
+    <!-- header -->
+    {% include "seconday-partials/__header.html" %}
+
+    <!-- HOME MAIN  -->
+    <section class="simple-head" data-stellar-background-ratio="0.5" id="hme">
+      <!-- Particles -->
+      <div id="particles-js"></div>
+      <div class="position-center-center">
+        <div class="container text-center">
+          <h1>Page Not Found</h1>
+          <p>
+            The page you tried to access could not be found. It might have been
+            renamed, removed or does not exist.
+          </p>
+          <a href="/" class="btn">Home</a>
+          <a href="/" class="btn btn-inverse">View White Paper</a>
+        </div>
+      </div>
+    </section>
+  </div>
+{% endblock errorContent %}

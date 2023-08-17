@@ -1,0 +1,27 @@
+{# extend template #}
+{% extends 'secondary-base.html' %}
+
+{% block errorContent %}
+  <!-- Wrap -->
+  <div id="wrap">
+    <!-- header -->
+    {% include "seconday-partials/__header.html" %}
+
+    <!-- HOME MAIN  -->
+    <section class="simple-head" data-stellar-background-ratio="0.5" id="hme">
+      <!-- Particles -->
+      <div id="particles-js"></div>
+      <div class="position-center-center">
+        <div class="container text-center">
+          <h1>Server Error</h1>
+          <p>
+            Oops Something went wrong. Try refreshing this page; if it persist,
+            feel free to contact us at support@sarchiuj.uj.ac.za if it persist.
+          </p>
+          <a href="#." class="btn">Join Us</a>
+          <a href="#." class="btn btn-inverse">View White Paper</a>
+        </div>
+      </div>
+    </section>
+  </div>
+{% endblock errorContent %}
