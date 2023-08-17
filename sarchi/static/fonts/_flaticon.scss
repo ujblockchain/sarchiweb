@@ -1,0 +1,91 @@
+    /*
+    Flaticon icon font: Flaticon
+    Creation date: 13/03/2018 14:27
+    */
+
+    @font-face {
+  font-family: "Flaticon";
+  src: url("./Flaticon.eot");
+  src: url("./Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("./Flaticon.woff") format("woff"),
+       url("./Flaticon.ttf") format("truetype"),
+       url("./Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("./Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+    .fi:before{
+        display: inline-block;
+  font-family: "Flaticon";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+    }
+
+    .flaticon-team:before { content: "\f100"; }
+.flaticon-building:before { content: "\f101"; }
+.flaticon-refresh-left-arrow:before { content: "\f102"; }
+.flaticon-rotate:before { content: "\f103"; }
+.flaticon-bitcoin-logo:before { content: "\f104"; }
+.flaticon-smartphone:before { content: "\f105"; }
+.flaticon-payment-method:before { content: "\f106"; }
+.flaticon-money-4:before { content: "\f107"; }
+.flaticon-money-3:before { content: "\f108"; }
+.flaticon-credit-card:before { content: "\f109"; }
+.flaticon-credit-cards-payment:before { content: "\f10a"; }
+.flaticon-money-2:before { content: "\f10b"; }
+.flaticon-money-1:before { content: "\f10c"; }
+.flaticon-dollar:before { content: "\f10d"; }
+.flaticon-coin:before { content: "\f10e"; }
+.flaticon-profits:before { content: "\f10f"; }
+.flaticon-wallet-1:before { content: "\f110"; }
+.flaticon-wallet:before { content: "\f111"; }
+.flaticon-money:before { content: "\f112"; }
+.flaticon-bars:before { content: "\f113"; }
+.flaticon-secure-shield:before { content: "\f114"; }
+.flaticon-flat-world-map:before { content: "\f115"; }
+.flaticon-world-map:before { content: "\f116"; }
+.flaticon-worldwide:before { content: "\f117"; }
+.flaticon-globe:before { content: "\f118"; }
+.flaticon-india:before { content: "\f119"; }
+    
+    $font-Flaticon-team: "\f100";
+    $font-Flaticon-building: "\f101";
+    $font-Flaticon-refresh-left-arrow: "\f102";
+    $font-Flaticon-rotate: "\f103";
+    $font-Flaticon-bitcoin-logo: "\f104";
+    $font-Flaticon-smartphone: "\f105";
+    $font-Flaticon-payment-method: "\f106";
+    $font-Flaticon-money-4: "\f107";
+    $font-Flaticon-money-3: "\f108";
+    $font-Flaticon-credit-card: "\f109";
+    $font-Flaticon-credit-cards-payment: "\f10a";
+    $font-Flaticon-money-2: "\f10b";
+    $font-Flaticon-money-1: "\f10c";
+    $font-Flaticon-dollar: "\f10d";
+    $font-Flaticon-coin: "\f10e";
+    $font-Flaticon-profits: "\f10f";
+    $font-Flaticon-wallet-1: "\f110";
+    $font-Flaticon-wallet: "\f111";
+    $font-Flaticon-money: "\f112";
+    $font-Flaticon-bars: "\f113";
+    $font-Flaticon-secure-shield: "\f114";
+    $font-Flaticon-flat-world-map: "\f115";
+    $font-Flaticon-world-map: "\f116";
+    $font-Flaticon-worldwide: "\f117";
+    $font-Flaticon-globe: "\f118";
+    $font-Flaticon-india: "\f119";

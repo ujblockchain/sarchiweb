@@ -1,0 +1,55 @@
+	/*
+  	Flaticon icon font: Flaticon
+  	Creation date: 13/03/2018 14:27
+  	*/
+
+@font-face {
+  font-family: "Flaticon";
+  src: url("./Flaticon.eot");
+  src: url("./Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("./Flaticon.woff") format("woff"),
+       url("./Flaticon.ttf") format("truetype"),
+       url("./Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("./Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+  font-family: Flaticon;
+font-style: normal;
+}
+
+.flaticon-team:before { content: "\f100"; }
+.flaticon-building:before { content: "\f101"; }
+.flaticon-refresh-left-arrow:before { content: "\f102"; }
+.flaticon-rotate:before { content: "\f103"; }
+.flaticon-bitcoin-logo:before { content: "\f104"; }
+.flaticon-smartphone:before { content: "\f105"; }
+.flaticon-payment-method:before { content: "\f106"; }
+.flaticon-money-4:before { content: "\f107"; }
+.flaticon-money-3:before { content: "\f108"; }
+.flaticon-credit-card:before { content: "\f109"; }
+.flaticon-credit-cards-payment:before { content: "\f10a"; }
+.flaticon-money-2:before { content: "\f10b"; }
+.flaticon-money-1:before { content: "\f10c"; }
+.flaticon-dollar:before { content: "\f10d"; }
+.flaticon-coin:before { content: "\f10e"; }
+.flaticon-profits:before { content: "\f10f"; }
+.flaticon-wallet-1:before { content: "\f110"; }
+.flaticon-wallet:before { content: "\f111"; }
+.flaticon-money:before { content: "\f112"; }
+.flaticon-bars:before { content: "\f113"; }
+.flaticon-secure-shield:before { content: "\f114"; }
+.flaticon-flat-world-map:before { content: "\f115"; }
+.flaticon-world-map:before { content: "\f116"; }
+.flaticon-worldwide:before { content: "\f117"; }
+.flaticon-globe:before { content: "\f118"; }
+.flaticon-india:before { content: "\f119"; }
