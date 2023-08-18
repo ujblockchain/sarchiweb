@@ -4,7 +4,10 @@ from django.conf.urls.static import static
 from django.urls import path, include
 
 urlpatterns = [
+    # admin path
     path(f'{settings.ADMIN_PATH}/', admin.site.urls),
+    # apps path
+    path('', include('pages.urls')),
 ]
 
 
