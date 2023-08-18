@@ -48,7 +48,7 @@
   <![endif]-->
 
   {# external styles from pages #}
-  {% block extraStyle %} {% end extraStyle %}
+  {% block extraStyle %} {% endblock extraStyle %}
 </head>
 
 <body>
@@ -68,6 +68,7 @@
     <!-- Content -->
     {% block content %}{% endblock content %}
 
+    {% set year=1234 %}
     <!-- Footer -->
     {% block footer %}
     {% include "partials/__footer.html" %}
