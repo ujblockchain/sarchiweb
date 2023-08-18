@@ -23,6 +23,10 @@
 
       <!-- FORM -->
       <form role="form" id="contact_form" class="contact-form" method="post" onSubmit="return false">
+
+        {# csrf token #}
+        {{ csrf_input }}
+        
         <ul class="row nolist-style">
           <li class="col-sm-4">
             <label>
