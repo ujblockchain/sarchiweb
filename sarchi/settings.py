@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'reversion_compare',
     # app
     'pages.apps.PagesConfig',
+    'contact.apps.ContactConfig',
 ]
 
 MIDDLEWARE = [
