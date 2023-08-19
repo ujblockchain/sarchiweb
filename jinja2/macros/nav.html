@@ -1,0 +1,31 @@
+{# handles all nav macros #}
+
+{# handles nav display  #}
+{% macro navPathDisplay() %}
+    <header class="sticky">
+        <div class="container">
+        <!-- Logo -->
+        <div class="logo">
+            <a href="{{ url('home') }}"><img class="img-responsive" src="{{ static ('images/logo.png') }}" alt="logo" /></a>
+        </div>
+        <nav class="navbar ownmenu navbar-expand-lg">
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="nav">
+                <li class="scroll active"><a href="#hme">Home</a></li>
+                <li class="scroll"><a href="/#about">About </a></li>
+                <li class="scroll"><a href="/#project">Project</a></li>
+                <li class="scroll"><a href="/#activity">Activity</a></li>
+                <li class="scroll"><a href="/#roadmap">Road Map</a></li>
+                <li class="scroll"><a href="/#team">Team</a></li>
+                <li class="scroll"><a href="/#contact">Contact</a></li>
+            </ul>
+            </div>
+        </nav>
+        </div>
+        <div class="clearfix"></div>
+    </header>
+{% endmacro %}
