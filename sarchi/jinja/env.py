@@ -1,7 +1,7 @@
 from django.urls import reverse
 from django.contrib.staticfiles.storage import staticfiles_storage
 from jinja2 import Environment
-from .filters import dateformat
+from .filters import dateformat, dict_string
 
 
 def JinjaEnvironment(**options):
@@ -17,6 +17,7 @@ def JinjaEnvironment(**options):
     env.filters.update(
         {
             'dateformat': dateformat,
+            'dictstring': dict_string,
         }
     )
 
