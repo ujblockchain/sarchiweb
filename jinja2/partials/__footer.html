@@ -1,3 +1,5 @@
+{% import "macros/form.html" as formMessage %}
+
 <footer id="contact">
   <div class="container">
     <div class="parthner">
@@ -7,7 +9,7 @@
           <a href="#."><img src="{{ static('images/UJ.png') }}" alt="University of Johannesburg" /></a>
         </li>
         <li>
-          <a href="#."><img src="{{ static('images/HSLU.jpg') }}" alt="" /></a>
+          <a href="#."><img src="{{ static('images/HSLU.jpg') }}" alt="Lucerne University of Applied Sciences and Arts" /></a>
         </li>
       </ul>
     </div>
@@ -15,11 +17,22 @@
     <!-- Contact Us -->
     <div class="contact">
       <h6>Get In Touch With us</h6>
-      <!-- Success Msg -->
-      <div id="contact_message" class="success-msg">
-        <i class="fa fa-paper-plane-o"></i>Thank You. Your Message has been
-        Submitted
-      </div>
+      <!-- Form  Msg -->
+      {% for message in messages if messages %}
+        {# display form #}
+        <div id="contact_message" class="success-msg" style="display: inline-block;">
+          {# icon color check#}
+          {% if message.level_tag == 'success' %}
+            <i class="fa fa-paper-plane-o" style="border: 1px solid #ABD0A8;"></i>
+            {# display message #}
+            {{message.message}}
+          {% else %}
+            <i class="fa fa-paper-plane-o" style="border: 1px solid #ef9a9a;"></i>
+            {# display error message #}
+            {{formMessage.generalErrorDisplay(messages, "msg") }}
+          {% endif %}
+        </div>
+      {% endfor %}
 
       <!-- FORM -->
       <form role="form" id="contact_form" class="contact-form" method="post" action="{{ url('contact') }}">
@@ -31,21 +44,25 @@
           <li class="col-sm-4">
             <label>
               {{form.name}}
+              {{formMessage.errorDisplay(messages, "form", "name") }}
             </label>
           </li>
           <li class="col-sm-4">
             <label>
               {{form.email}}
+              {{formMessage.errorDisplay(messages, "form", "email") }}
             </label>
           </li>
           <li class="col-sm-4">
             <label>
               {{form.phone}}
+              {{formMessage.errorDisplay(messages, "form", "phone") }}
             </label>
           </li>
           <li class="col-sm-12">
             <label>
               <textarea class="form-control" name="message" id="message" rows="5" placeholder="Message"></textarea>
+              {{formMessage.errorDisplay(messages, "form", "message") }}
             </label>
           </li>
           <li>
