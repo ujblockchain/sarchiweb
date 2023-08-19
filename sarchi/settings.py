@@ -40,8 +40,9 @@ INSTALLED_APPS = [
     'reversion',
     'reversion_compare',
     # app
-    'pages.apps.PagesConfig',
+    'bootcamps.apps.BootcampsConfig',
     'contact.apps.ContactConfig',
+    'pages.apps.PagesConfig',
 ]
 
 MIDDLEWARE = [
