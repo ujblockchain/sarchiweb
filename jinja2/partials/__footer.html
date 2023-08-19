@@ -22,7 +22,7 @@
       </div>
 
       <!-- FORM -->
-      <form role="form" id="contact_form" class="contact-form" method="post" onSubmit="return false">
+      <form role="form" id="contact_form" class="contact-form" method="post" action="{{ url('contact') }}">
 
         {# csrf token #}
         {{ csrf_input }}
@@ -30,22 +30,27 @@
         <ul class="row nolist-style">
           <li class="col-sm-4">
             <label>
-              <input type="text" class="form-control" name="name" id="name" placeholder="Name" />
+              {{form.name}}
             </label>
           </li>
           <li class="col-sm-4">
             <label>
-              <input type="text" class="form-control" name="email" id="email" placeholder="Email" />
+              {{form.email}}
             </label>
           </li>
           <li class="col-sm-4">
             <label>
-              <input type="text" class="form-control" name="company" id="company" placeholder="Phone" />
+              {{form.phone}}
             </label>
           </li>
           <li class="col-sm-12">
             <label>
               <textarea class="form-control" name="message" id="message" rows="5" placeholder="Message"></textarea>
+            </label>
+          </li>
+          <li>
+            <label>
+              {{form.captcha}}
             </label>
           </li>
           <li class="col-sm-12 text-left">
