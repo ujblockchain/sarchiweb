@@ -73,6 +73,7 @@ JAZZMIN_SETTINGS = {
         'reversion.revision': 'fas fa-feather-alt',
         'reversion.version': 'fas fa-code-branch',
         'bootcamps.bootcampfirst': 'fas fa-chalkboard-teacher',
+        'contact.usercontact':'fas fa-id-badge'
     },
     # Icons that are used when one is not manually specified
     'default_icon_parents': 'fas fa-chevron-circle-right',
