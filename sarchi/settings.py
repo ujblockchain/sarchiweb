@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     # third party apps by location
     'import_export',
-
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [
