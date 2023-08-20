@@ -75,9 +75,6 @@ dormElement.submitBtn.addEventListener('click', (e) => {
                     //ensure error display is none
                     field.style.display = 'none';
 
-                    // remove error border
-                    field.previousElementSibling.style.border = 'none';
-
                     //reset all input error
                     let inputs = document.querySelectorAll('input')
                     Array.from(inputs).forEach((input) => {
