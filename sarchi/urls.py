@@ -8,7 +8,8 @@ urlpatterns = [
     path(f'{settings.ADMIN_PATH}/', admin.site.urls),
     # apps path
     path('', include('pages.urls')),
-    path('bootcamp', include('bootcamps.urls')),
+    path('account/', include('account.urls')),
+    path('bootcamp/', include('bootcamps.urls')),
     path('contact', include('contact.urls')),
 ]
 
