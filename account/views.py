@@ -28,3 +28,7 @@ def revisiondelete(request):
         messages.add_message(request, messages.SUCCESS, 'Revision(s) deleted successfully')
         # redirect to previous page
         return redirect(path)
+
+
+class AccountLockout(TemplateView):
+    template_name = "account/lockout.html"
