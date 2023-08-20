@@ -14,8 +14,12 @@
             background: rgba(255, 255, 255, 0.05) !important;
             color: #61757a !important;
         }
+
+        select#id_level {
+            height: 49px;
+        }
     </style>
-{% end extraStyle %} 
+{% endblock extraStyle %} 
 
 {# override header intro #}
 {% block headIntro %}
@@ -28,7 +32,7 @@
                 <p>Learn Blockchain and build an amazing Decentralize Application. Learn from scratch as We take you
                     from the basics to creating your own application, made by you and for you. Learn about
                     framework, server deployment, tokens, NFT, the list goes on. Take the first step to this amazing journey by signing up today.</p>
-                <a href="#bootcamp" class="btn">Signup For Bootcamp</a> <a href="#." class="btn btn-inverse">Learn More About Us</a>
+                <a href="#bootcamp" class="btn">Signup For Bootcamp</a> <a href="/#about" class="btn btn-inverse">Learn More About Us</a>
             </div>
         </div>
     </section>
@@ -47,64 +51,61 @@
                     <!-- Success Msg -->
                     <div id="contact_message" class="success-msg"> <i class="fa fa-paper-plane-o"></i>Thank You.
                         Your
-                        Message has been Submitted</div>
+                        Application has been Submitted</div>
 
                     <!-- FORM -->
-                    <form role="form" id="contact_form" class="contact-form" method="post" onSubmit="return false">
+                    <form role="form" id="contact_form" class="contact-form">
+
+                        {# csrf #}
+                        {{ csrf_input }}
+
                         <ul class="row nolist-style">
                             <li class="col-sm-4">
                                 <label>
-                                    <input type="text" class="form-control" name="first_name" id="first_name"
-                                        placeholder="First Name">
+                                    {{training_form.first_name}}
+                                    <p id="error-first_name" class="error-info" style="color: #ef9a9a; text-transform: capitalize; display: none;"></p>
+
                                 </label>
                             </li>
                             <li class="col-sm-4">
                                 <label>
-                                    <input type="text" class="form-control" name="last_name" id="last_name"
-                                        placeholder="Last Name">
+                                    {{training_form.last_name}}
+                                    <p id="error-last_name" class="error-info" style="color: #ef9a9a; text-transform: capitalize; display: none;"></p>
                                 </label>
                             </li>
                             <li class="col-sm-4">
                                 <label>
-                                    <input type="email" class="form-control" name="email" id="email"
-                                        placeholder="email">
+                                    {{training_form.email}}
+                                    <p id="error-email" class="error-info" style="color: #ef9a9a; text-transform: capitalize; display: none;"></p>
                                 </label>
                             </li>
 
                             <li class="col-sm-4">
                                 <label>
-                                    <input type="text" class="form-control" name="faculty" id="faculty"
-                                        placeholder="Faculty">
+                                    {{training_form.faculty}}
+                                    <p id="error-faculty" class="error-info" style="color: #ef9a9a; text-transform: capitalize; display: none;"></p>
                                 </label>
                             </li>
                             <li class="col-sm-4">
                                 <label>
-                                    <input type="text" class="form-control" name="department" id="department"
-                                        placeholder="Department">
+                                    {{training_form.department}}
+                                    <p id="error-department" class="error-info" style="color: #ef9a9a; text-transform: capitalize; display: none;"></p>
                                 </label>
                             </li>
                             <li class="col-sm-4">
                                 <label>
-                                    <select class="form-select" aria-label="Default select example"
-                                        style="background-color: rgba(255,255,255,0.05); height: 48px; color: #61757a;">
-                                        <option selected>Select Your Level</option>
-                                        <option value="1">Undergrad</option>
-                                        <option value="2">Post Graduate</option>
-                                        <option value="3">Honors</option>
-                                        <option value="3">Diploma</option>
-                                        <option value="3">Higher Certificate</option>
-                                    </select>
+                                    {{training_form.level}}
+                                    <p id="error-level" class="error-info" style="color: #ef9a9a; text-transform: capitalize; display: none;"></p>
                                 </label>
                             </li>
                             <li class="col-sm-12">
                                 <label>
-                                    <textarea class="form-control" name="expectation" id="Expectation" rows="5"
-                                        placeholder="Message"></textarea>
+                                    {{training_form.expectation}}
+                                    <p id="error-expectation" class="error-info" style="color: #ef9a9a; text-transform: capitalize; display: none;"></p>
                                 </label>
                             </li>
                             <li class="col-sm-12 text-left">
-                                <button type="submit" class="btn btn-inverse" value="submit" id="btn_submit"
-                                    onClick="proceed();">SUBMIT</button>
+                                <button type="submit" class="btn btn-inverse" value="submit" id="btn_submit">SUBMIT</button>
                             </li>
                         </ul>
                     </form>
