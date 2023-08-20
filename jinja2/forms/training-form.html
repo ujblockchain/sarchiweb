@@ -1,6 +1,13 @@
 {# extend template #}
 {% extends 'base.html' %}
 
+{# import macro #}
+{% from "macros/nav.html" import  navPathDisplay as pathNav %}
+
+{# override head block#}
+{% block head %}{{pathNav()}}{% endblock head %}
+
+
 {# extra css style #}
 {% block extraStyle %} 
     <style>
