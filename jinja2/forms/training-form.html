@@ -118,3 +118,8 @@
         {% include "partials/pages/__community.html" %}
     </div>
 {% endblock content %}
+
+{# external scripts from pages #}
+{% block extraScript %}
+    <script src="{{ static('js/ajax-form.js') }}"></script>
+{% endblock extraScript %}
