@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'bootcamps.apps.BootcampsConfig',
     'contact.apps.ContactConfig',
     'pages.apps.PagesConfig',
+    # third party apps by location
+    'import_export',
+
 ]
 
 MIDDLEWARE = [
