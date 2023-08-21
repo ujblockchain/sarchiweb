@@ -42,3 +42,19 @@ class PostListViewTestClass(TestCase):
         self.assertTrue('blockchain' in str(response.content))
         self.assertTrue('main.css' in str(response.content))
         self.assertTrue('csrfmiddlewaretoken' in str(response.content))
+
+    def test_blog_detail_views(self):
+        response = self.client.get(
+            reverse('blog_details', kwargs={'id': self.bootcamp.id, 'slug': self.bootcamp.slug})
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.charset, 'utf-8')
+        self.assertTrue(self.bootcamp.title in str(response.content))
+        self.assertTrue(
+            self.bootcamp.first_section_image.name == self.bootcamp.first_section_image.name
+        )
+        self.assertTrue(
+            self.bootcamp.third_section_image.name == self.bootcamp.third_section_image.name
+        )
+        self.assertTrue('csrfmiddlewaretoken' in str(response.content))
