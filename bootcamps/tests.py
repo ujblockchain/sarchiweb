@@ -54,3 +54,39 @@ class BootcampTest(TestCase):
         # check model filed max length
         max_length = BootcampFirst._meta.get_field('first_name').max_length
         self.assertEqual(max_length, 100)
+
+
+class BootcampFormTestClass(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        # disable signals
+        signals.post_save.receivers = []
+        signals.pre_save.receivers = []
+
+    def test_bootcamp_post_form(self):
+        # get response
+        response = self.client.post(
+            reverse('bootcamp'),
+            {
+                'first_name': 'John',
+                'last_name': 'Doe',
+                'email': 'johndoe@test.com',
+                'faculty': 'FEBE',
+                'department': 'Electrical Engineering',
+                'level': 'Post Graduate',
+                'expectation': 'To build great DApps',
+            },
+            # ensure request is ajax
+            **{'HTTP_X_REQUESTED_WITH': 'XMLHttpRequest'},
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.request.get('PATH_INFO'), '/bootcamp/registration')
+        self.assertEqual(response.request.get('HTTP_X_REQUESTED_WITH'), 'XMLHttpRequest')
+        self.assertEqual(response.request.get('REQUEST_METHOD'), 'POST')
+        self.assertEqual(int(response.request.get('CONTENT_LENGTH')), 600)
+        self.assertEqual(
+            response.request.get('CONTENT_TYPE'), 'multipart/form-data; boundary=BoUnDaRyStRiNg'
+        )
+
+    
