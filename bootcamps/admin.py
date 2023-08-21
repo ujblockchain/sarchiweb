@@ -19,7 +19,6 @@ class BootcampResource(resources.ModelResource):
             'faculty',
             'department',
             'level',
-            'expectation',
             'application_status',
         )
         export_id_fields = '__all__'
