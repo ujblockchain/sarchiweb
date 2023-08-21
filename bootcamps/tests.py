@@ -89,4 +89,24 @@ class BootcampFormTestClass(TestCase):
             response.request.get('CONTENT_TYPE'), 'multipart/form-data; boundary=BoUnDaRyStRiNg'
         )
 
-    
+    def test_bootcamp_reg_form(self):
+        form = BootcampForm(
+            data={
+                'first_name': 'John',
+                'last_name': 'Doe',
+                'email': 'johndoe@test.com',
+                'faculty': 'FEBE',
+                'department': 'Electrical Engineering',
+                'level': 'Undergrad',
+                'expectation': 'To build great DApps',
+            }
+        )
+
+        self.assertTrue(form.fields['first_name'])
+        self.assertFalse(form.errors)
+        self.assertTrue(form.is_valid())
+        self.assertTrue(form.fields['last_name'])
+        self.assertEqual(form.cleaned_data['last_name'], 'Doe')
+        self.assertTrue(form.cleaned_data['email'] == 'johndoe@test.com')
+        self.assertEqual(form.cleaned_data['expectation'], 'To build great DApps')
+        self.assertEqual(form.fields['email'].help_text, '')
