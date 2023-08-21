@@ -14,3 +14,9 @@ def dateformat(value):
 # convert dict to string
 def dict_string(value):
     return ast.literal_eval(value)
+
+
+# get hour different from current time
+def time_since(value):
+    difference = current_timestamp.hour - value
+    return difference
