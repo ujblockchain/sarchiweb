@@ -1,6 +1,12 @@
 {# extend template #}
 {% extends 'base.html' %}
 
+{# import macro #}
+{% from "macros/nav.html" import  navPathDisplay as pathNav %}
+
+{# override head block#}
+{% block head %}{{pathNav()}}{% endblock head %}
+
 {# extra css style #}
 {% block extraStyle %} 
     <style>
@@ -9,7 +15,7 @@
             color: #fff !important;
         }
     </style>
-{% end extraStyle %} 
+{% endblock extraStyle %} 
 
 {# override header intro #}
 {% block headIntro %}
@@ -18,12 +24,15 @@
         <div id="particles-js"></div>
         <div class="position-center-center">
             <div class="container text-center">
-                <h1>Build a new kind of Decentralized </h1>
-                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
-                    deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non
-                    provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et
-                    dolorum fuga.</p>
-                <a href="#." class="btn">Join Us</a> <a href="#." class="btn btn-inverse">View White Paper</a>
+                <h1>Innovation and Teaching Using Blockchain </h1>
+
+                <p>
+                    Explore our latest research in Blockchain and Agri-food, and get 
+                    insights on Open-Source Projects, Deployments, Hackathon, Bootcamps,
+                    Workshops and Community Engagement of the University of Johannesburg Blockchain.
+                </p>
+                <a href="https://github.com/ujblockchain" class="btn" target="_blank">Repository</a> 
+                <a href="https://scholar.google.gr/citations?user=CzQ1lyYAAAAJ&hl=en" class="btn btn-inverse" target="_blank">Research</a>
             </div>
         </div>
     </section>
@@ -37,168 +46,108 @@
         <section class="distri drk padding-top-150 padding-bottom-150 " id="token">
             <div class="container">
                 <div class="row">
+                    {% for post in post if post %}
+                        <!-- Total Distribution -->
+                        <div class="col-lg-6">
+                            <h3>{{post.title}}</h3>
+                            <p>{{post.post_summary}}</p>
 
-                    <!-- Project  -->
-                    <div class="col-lg-6">
-                        <h3> Distribution</h3>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error quidem voluptate
-                            similique quas quibusdam ex recusandae officiis rerum sapiente eum sit incidunt quae
-                            minima pariatur laurem gg..</p>
-
-                        <!-- Progress -->
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="50"
-                                aria-valuemin="0" aria-valuemax="150" style="background: #f26422;"><span>Posted By
-                                    <small>Edmund Rotimi</small></span> </div>
-                        </div>
-                        <div class="row">
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error quidem voluptate
-                                similique quas quibusdam ex recusandae officiis rerum sapiente eum sit incidunt quae
-                                minima pariatur laurem gg.</p>
-
-                        </div>
-
-                        <!-- CountdownEnd -->
-                        <div class="countdown">
-                            <h6>22 January, 2023.</h6>
-                            <!-- Countdown-->
-                            <ul class="row">
-                                <!-- Days -->
-                                <li class="col-md-12 right">
-                                    <a class="days_ref" style="color: #fff; font-weight:bolder; float:right;">Read
-                                        More</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <br><br><br><br>
-
-                    <!-- Total Distribution -->
-                    <div class="col-lg-6">
-                        <h3>Project Distribution</h3>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error quidem voluptate
-                            similique quas quibusdam ex recusandae officiis rerum sapiente eum sit incidunt quae
-                            minima pariatur laurem gg.</p>
-
-                        <!-- Progress -->
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="50"
-                                aria-valuemin="0" aria-valuemax="150"><span>Posted By <small>Edmund
-                                        Rotimi</small></span>
+                            <!-- Progress -->
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="50"
+                                    aria-valuemin="0" aria-valuemax="150"><span><small> Author : {{post.author|title}}</small></span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error quidem voluptate
-                                similique quas quibusdam ex recusandae officiis rerum sapiente eum sit incidunt quae
-                                minima pariatur laurem gg.</p>
+                            <div class="row">
+                                <p>{{post.first_section_summary|truncate(240, true)}}</p>
+                            </div>
 
+                            <!-- CountdownEnd -->
+                            <div class="countdown">
+                                <h6>{{post.date_created|dateformat}}</h6>
+                                <!-- Countdown-->
+                                <ul class="row">
+                                    <!-- Days -->
+                                    <li class="col-md-12 right">
+                                        <a href = "{{ url('blog_details', args=[post.id, post.slug]) }}" class="days_ref" style="color: #fff; font-weight:bolder; float:right;">Read
+                                            More</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <br><br><br><br>
                         </div>
-
-                        <!-- CountdownEnd -->
-                        <div class="countdown">
-                            <h6>22 January, 2023.</h6>
-                            <!-- Countdown-->
-                            <ul class="row">
-                                <!-- Days -->
-                                <li class="col-md-12 right">
-                                    <a class="days_ref" style="color: #fff; font-weight:bolder; float:right;">Read
-                                        More</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
 
-                <br><br><br><br>
-
-                <div class="row">
-
-                    <!-- Project  -->
-                    <div class="col-lg-6">
-                        <h3>Project Distribution</h3>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error quidem voluptate
-                            similique quas quibusdam ex recusandae officiis rerum sapiente eum sit incidunt quae
-                            minima pariatur laurem gg.</p>
-
-                        <!-- Progress -->
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="50"
-                                aria-valuemin="0" aria-valuemax="150"><span>Posted By <small>Edmund
-                                        Rotimi</small></span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error quidem voluptate
-                                similique quas quibusdam ex recusandae officiis rerum sapiente eum sit incidunt quae
-                                minima pariatur laurem gg.</p>
-
-                        </div>
-
-                        <!-- CountdownEnd -->
-                        <div class="countdown">
-                            <h6>22 January, 2023.</h6>
-                            <!-- Countdown-->
-                            <ul class="row">
-                                <!-- Days -->
-                                <li class="col-md-12 right">
-                                    <a class="days_ref" style="color: #fff; font-weight:bolder; float:right;">Read
-                                        More</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <br><br><br><br>
-                    <!-- Total Distribution -->
-                    <div class="col-lg-6">
-                        <h3>Project Distribution</h3>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error quidem voluptate
-                            similique quas quibusdam ex recusandae officiis rerum sapiente eum sit incidunt quae
-                            minima pariatur laurem gg.</p>
-
-                        <!-- Progress -->
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="50"
-                                aria-valuemin="0" aria-valuemax="150"><span>Posted By <small>Edmund
-                                        Rotimi</small></span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error quidem voluptate
-                                similique quas quibusdam ex recusandae officiis rerum sapiente eum sit incidunt quae
-                                minima pariatur laurem gg.</p>
-
-                        </div>
-
-                        <!-- CountdownEnd -->
-                        <div class="countdown">
-                            <h6>22 January, 2023.</h6>
-                            <!-- Countdown-->
-                            <ul class="row">
-                                <!-- Days -->
-                                <li class="col-md-12 right">
-                                    <a class="days_ref" style="color: #fff; font-weight:bolder; float:right;">Read
-                                        More</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <br><br><br><br>
-
-                <ul class="pagination justify-content-end">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1">Previous</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" style="color: #f3a986 !important;">Next</a>
-                    </li>
-                </ul>
+                {% if is_paginated %}
+                    {# init total pages #}
+                    {% set pagesNum = paginator.page_range|count + 1 %}
+                    {# init total items in the pagination #}
+                    {% set totalItems = paginator.count %}
+                    {# init start number for the pagination range #}
+                    {% set starterCount = 1 %}
+                    {# init current page in the pagination #}
+                    {% set currentPage = page_obj.number  %}
+                    {# number of pages numbering to show per time #}
+                    {% set controller = 4 %}
+                    {# set the rage of the pagination per time#}
+                    {% set numberRange = totalItems %}
+                        
+                    <ul class="pagination justify-content-end">
+                        {# previous page navigation using page_obj.number which is the current page #}
+                        {% if currentPage - 1  >  0 %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{currentPage-1}}" tabindex="-1" style="color: #f3a986 !important;">Previous</a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#." tabindex="-1">Previous</a>
+                            </li>
+                        {% endif %}
+                        
+                        {# check if the current page is greater than the controller, if true,
+                            increase the number range by the total item plus 1 since a range 
+                            will stop at one shy in a loop and then set starter count to the
+                            current page minus 2 so that next page will start at 2 for instance
+                        #}
+                        {% if currentPage > controller  %}
+                            {% set numberRange = totalItems + 1 %}
+                            {% set starterCount = currentPage - 2 %}
+                        {% else %}
+                            {% set numberRange = 4 %}
+                        {% endif %}
+                        
+                        {# loop and set the numbering #}
+                        {% for k in range(starterCount, numberRange) %}
+                            {% if k <= pagesNum  %} 
+                                {# add the activate style for current page #}
+                                {% if currentPage==k %} 
+                                    <li class="page-item"><a class="page-link" href="?page={{k}}" 
+                                        style="color: #f3a986 !important;">{{k}}</a></li>
+                                    {% if not loop.first %}
+                                        {% set starterCount = starterCount + 1 %}
+                                        {% set numberRange = numberRange + 1 %}
+                                    {% endif %}
+                                {% elif loop.index <  pagesNum %}
+                                    <li class="page-item"><a class="page-link"  href="?page={{k}}">{{k}}</a></li>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                        
+                        {# next page navigation using page_obj.number which is the current page #}
+                        {% if currentPage + 1  <  pagesNum %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{currentPage+1}}" style="color: #f3a986 !important;">
+                                    Next 
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#"> Next</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
             </div>
         </section>
 
@@ -208,3 +157,13 @@
     </div>
 
 {% endblock content %}
+
+
+{# override Script #}
+{% block script %}
+    <script src="{{ static('js/jquery-1.11.3.min.js') }}"></script>
+    <script src="{{ static('js/bootstrap.bundle.js') }}"></script>
+    <script src="{{ static('js/particles.min.js') }}"></script>
+    <script src="{{ static('js/jquery.counterup.min.js') }}"></script>
+    <script src="{{ static('js/jquery.magnific-popup.min.js') }}"></script>
+{% endblock script %}
