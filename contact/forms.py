@@ -1,7 +1,7 @@
 from django import forms
-from .models import UserContact
 from captcha.fields import ReCaptchaField
 from captcha.widgets import ReCaptchaV3
+from .models import UserContact
 
 
 class UserMessageForm(forms.ModelForm):
