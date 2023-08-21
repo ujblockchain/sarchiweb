@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'bootcamps.apps.BootcampsConfig',
     'contact.apps.ContactConfig',
     'pages.apps.PagesConfig',
+    'repository.apps.RepositoryConfig',
     # third party apps by location
     'import_export',
     'django_cleanup.apps.CleanupConfig',
