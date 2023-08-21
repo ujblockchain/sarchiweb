@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'reversion_compare',
     # app
     'account.apps.AccountConfig',
+    'blog.apps.BlogConfig',
     'bootcamps.apps.BootcampsConfig',
     'contact.apps.ContactConfig',
     'pages.apps.PagesConfig',
