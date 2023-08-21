@@ -9,6 +9,7 @@ urlpatterns = [
     # apps path
     path('', include('pages.urls')),
     path('account/', include('account.urls')),
+    path('blog/', include('blog.urls')),
     path('bootcamp/', include('bootcamps.urls')),
     path('contact', include('contact.urls')),
 ]
