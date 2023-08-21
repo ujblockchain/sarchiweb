@@ -23,3 +23,15 @@ class PostListViews(ListView):
         context = super().get_context_data(**kwargs)
         context['form'] = UserMessageForm()
         return context
+
+
+class PostDetailViews(DetailView):
+    model = Blog
+    queryset = Blog.objects.filter(publish=True, schedule_message__lte=current_timestamp)
+    context_object_name = 'post'
+    template_name = 'blog/blog-detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = UserMessageForm()
+        return context
