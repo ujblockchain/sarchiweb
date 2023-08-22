@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from .modelChoices import nationality
 
 level = (
     ('Higher Certificate', 'Higher Certificate'),
@@ -23,6 +24,7 @@ class BootcampFirst(models.Model):
     faculty = models.CharField(max_length=100)
     department = models.CharField(max_length=100)
     level = models.CharField(max_length=50, choices=level, default='Undergrad')
+    nationality = models.CharField(max_length=50, choices=nationality, default='South Africa')
     expectation = models.TextField(max_length=800)
     application_status = models.BooleanField(null=True, blank=True, choices=applicant_selection)
     date_created = models.DateTimeField(auto_now_add=True)
