@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.utils.timezone import utc
 from django.views.generic import TemplateView
 from contact.forms import UserMessageForm
+from partners.models import Partners
 from repository.models import RepoInfo
 from .github_api import get_github_commits
 
@@ -39,5 +40,8 @@ class HomeView(TemplateView):
         # set context
         context['commit'] = get_commit_info
         context['repo'] = RepoInfo.objects.order_by('-date_created').all()[0]
+
+        # partner context
+        context['partners'] = Partners.objects.filter(publish=True)
 
         return context
