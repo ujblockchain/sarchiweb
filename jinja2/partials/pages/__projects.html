@@ -4,32 +4,32 @@
 
             <!-- Token  -->
             <div class="col-lg-7">
-                <h3>FoodTrolley</h3>
-                <p>We are utilizing the power of blockchain to build real world solution on Agri-Food Waste. </p>
+                <h3>{{project.title}}</h3>
+                <p>{{project.summary}}</p>
 
                 <!-- Progress -->
                 <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 30%;" aria-valuenow="30"
-                        aria-valuemin="0" aria-valuemax="30"><span> Private Commit: 100 <small>40%</small></span> </div>
+                    <div class="progress-bar" role="progressbar" style="width: {{project.project_progress}}%;" aria-valuenow="30"
+                        aria-valuemin="0" aria-valuemax="{{project.project_progress}}"><span> Private Commit: {{project.project_commit_count}} <small>{{project.project_progress}}%</small></span> </div>
                 </div>
                 <div class="row">
                     <div class="col">
                         <h6>  Total Distribution</h6>
-                        <span>2050</span>
+                        <span>{{project.total_distribution_count}}</span>
                     </div>
                     <div class="col">
-                        <h6> 2000</h6>
+                        <h6> {{project.lines_of_code}}</h6>
                         <span>Lines of Code</span>
                     </div>
                     <div class="col">
-                        <h6> 90</h6>
+                        <h6> {{project.coding_hours}}</h6>
                         <span>Hours</span>
                     </div>
                 </div>
 
                 <!-- CountdownEnd -->
                 <div class="countdown">
-                    <h6>Current Distribution Section 48/120</h6>
+                    <h6>Current Distribution Section {{project.distribution_section_stats}}/{{project.distribution_section_stats_end}}</h6>
                     <!-- Countdown-->
                     <ul class="row">
                         <!-- Days -->
@@ -62,8 +62,8 @@
 
             <!-- Total Distribution -->
             <div class="col-lg-5">
-                <h3>Total Distribution Section End <b>80/350</b></h3>
-                <p>FoodTrolley comprises of three(3) distribution cycle, each totally 120.</p>
+                <h3>Total Distribution Section End <b>{{project.distribution_count}}/{{project.total_distribution_count}}</b></h3>
+                <p>{{project.distribution_section_stats_end_summary}}</p>
                 <div class="countdown-all">
 
                     <!-- Countdown -->
