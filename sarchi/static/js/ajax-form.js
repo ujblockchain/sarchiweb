@@ -5,6 +5,7 @@ dormElement={
     'faculty': document.getElementById('id_faculty'),
     'department': document.getElementById('id_department'),
     'level': document.getElementById('id_level'),
+    'nationality': document.getElementById('id_nationality'),
     'expectation': document.getElementById('id_expectation'),
     'submitBtn': document.getElementById('btn_submit'),
     'formAlert': document.querySelector('.success-msg'),
@@ -34,6 +35,7 @@ dormElement.submitBtn.addEventListener('click', (e) => {
     formData.append('faculty', dormElement.faculty.value);
     formData.append('department', dormElement.department.value);
     formData.append('level', dormElement.level.value);
+    formData.append('nationality', dormElement.nationality.value);
     formData.append('expectation', dormElement.expectation.value);
     
     $.ajax({
@@ -82,7 +84,10 @@ dormElement.submitBtn.addEventListener('click', (e) => {
                     })
 
                     //reset all select
-                    document.querySelector('select').style.border = 'none';
+                    let select_field = document.querySelectorAll('select')
+                    Array.from(select_field).forEach((select) => {
+                        select.style.border = 'none';
+                    })
                 })
                 
                 console.log(response.message)
@@ -118,7 +123,8 @@ dormElement.submitBtn.addEventListener('click', (e) => {
                 dormElement.email.value = '';
                 dormElement.faculty.value = '';
                 dormElement.department.value = '';
-                dormElement.level.value = 'Select your level';
+                dormElement.level.value = 'Select Your Level';
+                dormElement.nationality.value = 'Select Nationality';
                 dormElement.expectation.value = '';
 
                 //reset error
@@ -136,7 +142,10 @@ dormElement.submitBtn.addEventListener('click', (e) => {
                     })
 
                     //reset all select style
-                    document.querySelector('select').style.border = 'none';
+                    let select_field = document.querySelectorAll('select')
+                    Array.from(select_field).forEach((select) => {
+                        select.style.border = 'none';
+                    })
                 })
             }
 
