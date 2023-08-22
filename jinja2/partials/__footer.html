@@ -5,12 +5,11 @@
     <div class="parthner">
       <h6>Partnered with Innovative Globally</h6>
       <ul>
-        <li>
-          <a href="#."><img src="{{ static('images/UJ.png') }}" alt="University of Johannesburg" /></a>
-        </li>
-        <li>
-          <a href="#."><img src="{{ static('images/HSLU.jpg') }}" alt="Lucerne University of Applied Sciences and Arts" /></a>
-        </li>
+        {% for partner in partners if partners %}
+          <li>
+            <a href="#."><img src="{{ partner.image.url }}" alt="{{partner.name}}" /></a>
+          </li>
+        {% endfor %}
       </ul>
     </div>
 
@@ -85,6 +84,8 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6">
+          {# set year #}
+          {% now 'Y' as  year %}
           <p>© {{year}} UJ Blockchain - SA-Swiss Bilateral Blockchain Research. All Rights Reserved.</p>
         </div>
         <div class="col-md-6 text-right">
