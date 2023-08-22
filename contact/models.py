@@ -15,5 +15,5 @@ class UserContact(models.Model):
 
     class Meta:
         ordering = ['-date_created']
-        verbose_name = "User's Contact"
-        verbose_name_plural = "User's Contacts"
+        verbose_name = "User Message"
+        verbose_name_plural = "User Massages"
