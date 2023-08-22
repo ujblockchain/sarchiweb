@@ -76,6 +76,7 @@ JAZZMIN_SETTINGS = {
         'bootcamps.bootcampfirst': 'fas fa-chalkboard-teacher',
         'contact.usercontact':'fas fa-id-badge',
         'partners.partners':'fas fa-handshake',
+        'projects.projects':'fas fa-project-diagram',
         'repository.repoinfo':'fas fa-code',
     },
     # Icons that are used when one is not manually specified
