@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.views.generic import View
 
 from contact.forms import UserMessageForm
+from partners.models import Partners
 from .forms import BootcampForm
 from .models import BootcampFirst
 
@@ -16,7 +17,11 @@ class BootcampView(View):
         template_name = 'forms/training-form.html'
 
         # init context
-        context = {'form': UserMessageForm(), 'training_form': BootcampForm()}
+        context = {
+            'form': UserMessageForm(),
+            'training_form': BootcampForm(),
+            'partners': Partners.objects.filter(publish=True),
+        }
 
         return render(request, template_name, context)
 
@@ -26,10 +31,8 @@ class BootcampView(View):
 
         # check if request is ajax
         if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-
             # check if form is valid
             if form.is_valid():
-
                 # init bound form field
                 first_name = form.cleaned_data['first_name']
                 last_name = form.cleaned_data['last_name']
@@ -38,6 +41,7 @@ class BootcampView(View):
                 department = form.cleaned_data['department']
                 level = form.cleaned_data['level']
                 expectation = form.cleaned_data['expectation']
+                nationality = form.cleaned_data['nationality']
 
                 # check if applicant has register before
                 if BootcampFirst.objects.filter(email=email).exists():
@@ -56,6 +60,7 @@ class BootcampView(View):
                         faculty=faculty,
                         department=department,
                         level=level,
+                        nationality=nationality,
                         expectation=expectation,
                     )
 
