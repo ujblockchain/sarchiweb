@@ -1,9 +1,8 @@
-from django.shortcuts import render
 from datetime import datetime
 from django.utils.timezone import utc
 from django.views.generic import ListView, DetailView
-
 from contact.forms import UserMessageForm
+from partners.models import Partners
 from .models import Blog
 
 
@@ -21,6 +20,9 @@ class PostListViews(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['form'] = UserMessageForm()
+        # partner context
+        context['partners'] = Partners.objects.filter(publish=True)
+
         return context
 
 
@@ -33,4 +35,6 @@ class PostDetailViews(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['form'] = UserMessageForm()
+        # partner context
+        context['partners'] = Partners.objects.filter(publish=True)
         return context
