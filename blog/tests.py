@@ -51,10 +51,6 @@ class PostListViewTestClass(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.charset, 'utf-8')
         self.assertTrue(self.bootcamp.title in str(response.content))
-        self.assertTrue(
-            self.bootcamp.first_section_image.name == self.bootcamp.first_section_image.name
-        )
-        self.assertTrue(
-            self.bootcamp.third_section_image.name == self.bootcamp.third_section_image.name
-        )
+        self.assertTrue('logo.png' in self.bootcamp.first_section_image.name)
+        self.assertTrue('UJ.png' in self.bootcamp.fifth_section_image.name)
         self.assertTrue('csrfmiddlewaretoken' in str(response.content))
