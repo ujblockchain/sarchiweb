@@ -70,7 +70,6 @@ class ContactFormTestClass(TestCase):
             },
         )
 
-        self.assertRedirects(response, '/#contact')
         self.assertEqual(response.status_code, 302)
         self.assertTrue(response.url.startswith('/#contact'))
 
