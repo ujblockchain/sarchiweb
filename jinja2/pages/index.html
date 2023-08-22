@@ -40,80 +40,80 @@
 {% endblock content %}
 
 
-  {# external scripts from pages #}
-  {% block extraScript %}
+{# external scripts from pages #}
+{% block extraScript %}
 
-    <!-- timer for distribution completion -->
-    <script>
-      // set timer end date 
-      let timerDate = new Date("Nov 30, 2023 11:59:59").getTime();
-      
-      // set update to every second
-      setInterval(function() {
-      
-        // Get current date and time
-        let currentDate = new Date().getTime();
-      
-        // Find the time difference between current date and the timer date
-        let distance = timerDate - currentDate;
-      
-        // get calculations for days, hours, minutes and seconds
-        let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      
-        // Display the result in the element with id="demo"
-        document.querySelector(".countdown .days").textContent = days;
-        document.querySelector(".countdown .hours").textContent = hours;
-        document.querySelector(".countdown .minutes").textContent = minutes;
-        document.querySelector(".countdown .seconds").textContent = seconds;
-      
-        // If the count down is finished, write some text
-        if (distance < 0) {
-          document.querySelector(".countdown .days").textContent = 0;
-          document.querySelector(".countdown .hours").textContent = 0;
-          document.querySelector(".countdown .minutes").textContent = 0;
-          document.querySelector(".countdown .seconds").textContent = 0;
-        }
-      }, 1000);
-    </script>
+  <!-- timer for distribution completion -->
+  <script>
+    // set timer end date 
+    let timerDate = new Date("{{project.current_stage_section_end_time|dateformat}} 11:59:59").getTime();
+    
+    // set update to every second
+    setInterval(function() {
+    
+      // Get current date and time
+      let currentDate = new Date().getTime();
+    
+      // Find the time difference between current date and the timer date
+      let distance = timerDate - currentDate;
+    
+      // get calculations for days, hours, minutes and seconds
+      let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+      // Display the result in the element with id="demo"
+      document.querySelector(".countdown .days").textContent = days;
+      document.querySelector(".countdown .hours").textContent = hours;
+      document.querySelector(".countdown .minutes").textContent = minutes;
+      document.querySelector(".countdown .seconds").textContent = seconds;
+    
+      // If the count down is finished, write some text
+      if (distance < 0) {
+        document.querySelector(".countdown .days").textContent = 0;
+        document.querySelector(".countdown .hours").textContent = 0;
+        document.querySelector(".countdown .minutes").textContent = 0;
+        document.querySelector(".countdown .seconds").textContent = 0;
+      }
+    }, 1000);
+  </script>
 
 
-    <!-- timer for projection completion -->
-    <script>
-      // set timer end date 
-      let timerDateProject = new Date("Feb 28, 2024 11:59:59").getTime();
-      
-      // set update to every second
-      setInterval(function() {
-      
-        // Get current date and time
-        let currentDate = new Date().getTime();
-      
-        // Find the time difference between current date and the timer date
-        let distance = timerDateProject - currentDate;
-      
-        // get calculations for days, hours, minutes and seconds
-        let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      
-        // Display the result in the element with id="demo"
-        document.querySelector(".countdown-all .days").textContent = days;
-        document.querySelector(".countdown-all .hours").textContent = hours;
-        document.querySelector(".countdown-all .minutes").textContent = minutes;
-        document.querySelector(".countdown-all .seconds").textContent = seconds;
-      
-        // If the count down is finished, write some text
-        if (distance < 0) {
-          document.querySelector(".countdown-all .days").textContent = 0;
-          document.querySelector(".countdown-all .hours").textContent = 0;
-          document.querySelector(".countdown-all .minutes").textContent = 0;
-          document.querySelector(".countdown-all .seconds").textContent = 0;
-        }
-      }, 1000);
-    </script>
-  
-  {% endblock extraScript %}
+  <!-- timer for projection completion -->
+  <script>
+    // set timer end date 
+    let timerDateProject = new Date("{{project.project_end_time|dateformat}} 11:59:59").getTime();
+    
+    // set update to every second
+    setInterval(function() {
+    
+      // Get current date and time
+      let currentDate = new Date().getTime();
+    
+      // Find the time difference between current date and the timer date
+      let distance = timerDateProject - currentDate;
+    
+      // get calculations for days, hours, minutes and seconds
+      let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+      // Display the result in the element with id="demo"
+      document.querySelector(".countdown-all .days").textContent = days;
+      document.querySelector(".countdown-all .hours").textContent = hours;
+      document.querySelector(".countdown-all .minutes").textContent = minutes;
+      document.querySelector(".countdown-all .seconds").textContent = seconds;
+    
+      // If the count down is finished, write some text
+      if (distance < 0) {
+        document.querySelector(".countdown-all .days").textContent = 0;
+        document.querySelector(".countdown-all .hours").textContent = 0;
+        document.querySelector(".countdown-all .minutes").textContent = 0;
+        document.querySelector(".countdown-all .seconds").textContent = 0;
+      }
+    }, 1000);
+  </script>
+
+{% endblock extraScript %}
