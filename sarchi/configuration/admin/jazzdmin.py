@@ -72,8 +72,11 @@ JAZZMIN_SETTINGS = {
         'axes.accesslog': 'fas fa-fingerprint',
         'reversion.revision': 'fas fa-feather-alt',
         'reversion.version': 'fas fa-code-branch',
+        'blog.blog':'fas fa-blog',
         'bootcamps.bootcampfirst': 'fas fa-chalkboard-teacher',
-        'contact.usercontact':'fas fa-id-badge'
+        'contact.usercontact':'fas fa-id-badge',
+        'partners.partners':'fas fa-handshake',
+        'repository.repoinfo':'fas fa-code',
     },
     # Icons that are used when one is not manually specified
     'default_icon_parents': 'fas fa-chevron-circle-right',
