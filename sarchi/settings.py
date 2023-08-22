@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'contact.apps.ContactConfig',
     'pages.apps.PagesConfig',
     'partners.apps.PartnersConfig',
+    'projects.apps.ProjectsConfig',
     'repository.apps.RepositoryConfig',
     # third party apps by location
     'import_export',
