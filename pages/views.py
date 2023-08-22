@@ -14,7 +14,7 @@ current_timestamp = datetime.now().replace(tzinfo=utc)
 
 # index page view
 class HomeView(TemplateView):
-    template_name = "pages/index.html"
+    template_name = 'pages/index.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -31,11 +31,10 @@ class HomeView(TemplateView):
         datetime_obj = parser.parse(get_commit_info['last_commit_time'])
 
         # use current timezone
-        datetime_obj = datetime_obj.replace(tzinfo=utc).hour
+        datetime_obj = datetime_obj.replace(tzinfo=utc)
 
         # set timezone aware time
-        # for some reason github using a time timezone two hours behind from our
-        get_commit_info['last_commit_time'] = datetime_obj + 2
+        get_commit_info['last_commit_time'] = datetime_obj
 
         # set context
         context['commit'] = get_commit_info

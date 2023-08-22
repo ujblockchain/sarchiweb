@@ -18,5 +18,13 @@ def dict_string(value):
 
 # get hour different from current time
 def time_since(value):
-    difference = current_timestamp.hour - value
-    return difference
+    difference = current_timestamp - value
+
+    # init days and seconds
+    days = difference.days
+    seconds = difference.seconds
+
+    # init hours
+    hours = days * 24 + seconds // 3600
+
+    return hours
