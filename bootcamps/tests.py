@@ -31,6 +31,7 @@ class BootcampTest(TestCase):
             faculty='FEBE',
             department='Electrical Engineering',
             level='Post Graduate',
+            nationality='South Africa',
             expectation='To build great DApps',
         )
 
@@ -74,6 +75,7 @@ class BootcampFormTestClass(TestCase):
                 'faculty': 'FEBE',
                 'department': 'Electrical Engineering',
                 'level': 'Post Graduate',
+                'nationality':'South Africa',
                 'expectation': 'To build great DApps',
             },
             # ensure request is ajax
@@ -84,7 +86,7 @@ class BootcampFormTestClass(TestCase):
         self.assertEqual(response.request.get('PATH_INFO'), '/bootcamp/registration')
         self.assertEqual(response.request.get('HTTP_X_REQUESTED_WITH'), 'XMLHttpRequest')
         self.assertEqual(response.request.get('REQUEST_METHOD'), 'POST')
-        self.assertEqual(int(response.request.get('CONTENT_LENGTH')), 600)
+        self.assertEqual(int(response.request.get('CONTENT_LENGTH')), 686)
         self.assertEqual(
             response.request.get('CONTENT_TYPE'), 'multipart/form-data; boundary=BoUnDaRyStRiNg'
         )
@@ -98,6 +100,7 @@ class BootcampFormTestClass(TestCase):
                 'faculty': 'FEBE',
                 'department': 'Electrical Engineering',
                 'level': 'Undergrad',
+                'nationality':'South Africa',
                 'expectation': 'To build great DApps',
             }
         )
