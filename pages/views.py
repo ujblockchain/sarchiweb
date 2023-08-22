@@ -5,6 +5,7 @@ from django.utils.timezone import utc
 from django.views.generic import TemplateView
 from contact.forms import UserMessageForm
 from partners.models import Partners
+from projects.models import Projects
 from repository.models import RepoInfo
 from .github_api import get_github_commits
 
@@ -43,5 +44,10 @@ class HomeView(TemplateView):
 
         # partner context
         context['partners'] = Partners.objects.filter(publish=True)
+
+        # project context; only get the latest
+        context['project'] = Projects.objects.order_by('-date_created').filter(
+            publish=True, schedule_message__lte=current_timestamp
+        )[0]
 
         return context
