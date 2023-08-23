@@ -5,7 +5,7 @@ from .modelChoices import nationality
 level = (
     ('Higher Certificate', 'Higher Certificate'),
     ('Diploma', 'Diploma'),
-    ('Honors', 'Honors'),
+    ('Honours', 'Honours'),
     ('Undergrad', 'Undergrad'),
     ('Post Graduate', 'Post Graduate'),
     ('Others', 'Others'),
