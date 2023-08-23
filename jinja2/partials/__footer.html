@@ -19,7 +19,7 @@
       <!-- Form  Msg -->
       {% for message in messages if messages %}
         {# display form #}
-        <div id="contact_message" class="success-msg" style="display: inline-block;">
+        <div id="contact_message" class="success-msg form_message" style="display: inline-block;">
           {# icon color check#}
           {% if message.level_tag == 'success' %}
             <i class="fa fa-paper-plane-o" style="border: 1px solid #ABD0A8;"></i>
