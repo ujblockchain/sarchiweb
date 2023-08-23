@@ -75,6 +75,7 @@ JAZZMIN_SETTINGS = {
         'blog.blog':'fas fa-blog',
         'bootcamps.bootcampfirst': 'fas fa-chalkboard-teacher',
         'contact.usercontact':'fas fa-id-badge',
+        'newsletters.newsletteremail':'fas fa-envelope-open-text',
         'partners.partners':'fas fa-handshake',
         'projects.projects':'fas fa-project-diagram',
         'repository.repoinfo':'fas fa-code',
