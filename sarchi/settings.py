@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'bootcamps.apps.BootcampsConfig',
     'contact.apps.ContactConfig',
+    'newsletters.apps.NewslettersConfig',
     'pages.apps.PagesConfig',
     'partners.apps.PartnersConfig',
     'projects.apps.ProjectsConfig',
