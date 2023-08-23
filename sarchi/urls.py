@@ -12,6 +12,7 @@ urlpatterns = [
     path('blog/', include('blog.urls')),
     path('bootcamp/', include('bootcamps.urls')),
     path('contact', include('contact.urls')),
+    path('newsletter', include('newsletters.urls')),
 ]
 
 
