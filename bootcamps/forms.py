@@ -6,7 +6,7 @@ applicant_level = (
     ('Select Your Level', 'Select Your Level'),
     ('Higher Certificate', 'Higher Certificate'),
     ('Diploma', 'Diploma'),
-    ('Honors', 'Honors'),
+    ('Honours', 'Honours'),
     ('Undergrad', 'Undergrad'),
     ('Post Graduate', 'Post Graduate'),
     ('Others', 'Others'),
