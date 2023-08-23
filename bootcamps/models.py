@@ -26,7 +26,7 @@ class BootcampFirst(models.Model):
     level = models.CharField(max_length=50, choices=level, default='Undergrad')
     nationality = models.CharField(max_length=50, choices=nationality, default='South Africa')
     expectation = models.TextField(max_length=800)
-    application_status = models.BooleanField(null=True, blank=True, choices=applicant_selection)
+    application_status = models.CharField(null=True, blank=True, choices=applicant_selection)
     date_created = models.DateTimeField(auto_now_add=True)
     timestamp = models.DateTimeField(default=timezone.now)
 
