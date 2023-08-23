@@ -49,6 +49,11 @@ dormElement.submitBtn.addEventListener('click', (e) => {
             // reset alert
             dormElement.formAlert.style.display = 'none';
             dormElement.formAlertIcon.style.border= 'none';
+
+            //disable submit btn.
+            dormElement.submitBtn.style.pointerEvents = 'none'
+            dormElement.submitBtn.textContent = 'Processing ...'
+            dormElement.submitBtn.classList.add('btn_ajax')
         },
         xhr: function(response){
 
@@ -58,9 +63,6 @@ dormElement.submitBtn.addEventListener('click', (e) => {
 
                 //calculate percentage
                 percent = e.loaded / e.total * 100;
-
-                //log progress
-                console.log(percent)
                 
             })
             
@@ -89,9 +91,7 @@ dormElement.submitBtn.addEventListener('click', (e) => {
                         select.style.border = 'none';
                     })
                 })
-                
-                console.log(response.message)
-        
+                        
                 //loop through error
                 for (let [key, value] of Object.entries(response.error)) {
                     if(response.message == "duplicate_error"){
@@ -148,6 +148,11 @@ dormElement.submitBtn.addEventListener('click', (e) => {
                     })
                 })
             }
+
+            //reset submit btn as long there is a response.
+            dormElement.submitBtn.style.pointerEvents = 'all'
+            dormElement.submitBtn.textContent = 'SUBMIT'
+            dormElement.submitBtn.classList.remove('btn_ajax')
 
         },
         error: function(error){
