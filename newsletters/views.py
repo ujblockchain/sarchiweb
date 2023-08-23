@@ -30,3 +30,19 @@ class NewsletterView(View):
 
             # redirect to form section
             return HttpResponseRedirect('/#newsletter')
+
+
+class NewsletterEmailUnsubscribe(View):
+    def get(self, request):
+        # get user email
+        email = self.kwargs.get('user_email')
+
+        # check if email exist
+        if NewsletterEmail.objects.filter(email=email).exists:
+            # delete email
+            NewsletterEmail.objects.get(email=email).delete()
+
+            # redirect to form section
+            return HttpResponseRedirect('/#newsletter')
+        else:
+            raise Http404
