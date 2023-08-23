@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.utils.timezone import utc
 from django.views.generic import TemplateView
 from contact.forms import UserMessageForm
+from newsletters.forms import NewsletterEmailForm
 from partners.models import Partners
 from projects.models import Projects
 from repository.models import RepoInfo
@@ -49,5 +50,8 @@ class HomeView(TemplateView):
         context['project'] = Projects.objects.order_by('-date_created').filter(
             publish=True, schedule_message__lte=current_timestamp
         )[0]
+
+        # newsletter form
+        context['newsletter_form'] = NewsletterEmailForm()
 
         return context
