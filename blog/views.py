@@ -2,6 +2,7 @@ from datetime import datetime
 from django.utils.timezone import utc
 from django.views.generic import ListView, DetailView
 from contact.forms import UserMessageForm
+from newsletters.forms import NewsletterEmailForm
 from partners.models import Partners
 from .models import Blog
 
@@ -22,6 +23,8 @@ class PostListViews(ListView):
         context['form'] = UserMessageForm()
         # partner context
         context['partners'] = Partners.objects.filter(publish=True)
+        # newsletter form
+        context['newsletter_form'] = NewsletterEmailForm()
 
         return context
 
@@ -37,4 +40,6 @@ class PostDetailViews(DetailView):
         context['form'] = UserMessageForm()
         # partner context
         context['partners'] = Partners.objects.filter(publish=True)
+        # newsletter form
+        context['newsletter_form'] = NewsletterEmailForm()
         return context
