@@ -116,4 +116,19 @@
     }, 1000);
   </script>
 
+  <script>
+    // control message show interval
+    setInterval(() => {
+      messages = document.querySelectorAll('.form_message')
+
+      Array.from(messages).forEach((message)=>{
+        //check message exist
+        if(message){
+          message.style.display = 'none';
+        }
+      })
+      
+    }, 4000)
+  </script>
+
 {% endblock extraScript %}
