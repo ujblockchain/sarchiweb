@@ -1,5 +1,5 @@
 import ast
-from datetime import datetime
+from datetime import datetime, timedelta
 from django.utils.timezone import utc
 
 
@@ -18,7 +18,8 @@ def dict_string(value):
 
 # get hour different from current time
 def time_since(value):
-    difference = current_timestamp - value
+    # add hack to fix github 2hrs ahead time zone
+    difference = current_timestamp - (value + timedelta(hours=2))
 
     # init days and seconds
     days = difference.days
