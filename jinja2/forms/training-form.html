@@ -150,4 +150,17 @@
 {# external scripts from pages #}
 {% block extraScript %}
     <script src="{{ static('js/ajax-form.js') }}"></script>
-{% endblock extraScript %}
+
+    
+    <script>
+        // control message show interval
+        setInterval(() => {
+          message = document.querySelector('#contact_message')
+            //check message exist
+            if(message){
+                message.style.display = 'none';
+            }
+        }, 6000)
+      </script>
+    
+    {% endblock extraScript %}
