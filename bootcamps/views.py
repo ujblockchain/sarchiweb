@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.views.generic import View
 
 from contact.forms import UserMessageForm
+from newsletters.forms import NewsletterEmailForm
 from partners.models import Partners
 from .forms import BootcampForm
 from .models import BootcampFirst
@@ -21,6 +22,8 @@ class BootcampView(View):
             'form': UserMessageForm(),
             'training_form': BootcampForm(),
             'partners': Partners.objects.filter(publish=True),
+            # newsletter form
+            'newsletter_form': NewsletterEmailForm(),
         }
 
         return render(request, template_name, context)
