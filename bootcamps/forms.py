@@ -6,8 +6,11 @@ applicant_level = (
     ('Select Your Level', 'Select Your Level'),
     ('Higher Certificate', 'Higher Certificate'),
     ('Diploma', 'Diploma'),
+    ('Year 1', 'Year 1'),
+    ('Year 2', 'Year 2'),
+    ('Year 3', 'Year 3'),
+    ('Year 4', 'Year 4'),
     ('Honours', 'Honours'),
-    ('Undergrad', 'Undergrad'),
     ('Post Graduate', 'Post Graduate'),
     ('Others', 'Others'),
 )
@@ -34,6 +37,9 @@ class BootcampForm(forms.ModelForm):
             choices=applicant_level, attrs={'class': 'form-control', 'aria-label': 'Default select'}
         ),
     )
+    student_number = forms.IntegerField(
+        widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Student Number'})
+    )
 
     nationality = forms.CharField(
         widget=forms.Select(
@@ -57,6 +63,7 @@ class BootcampForm(forms.ModelForm):
             'faculty',
             'department',
             'level',
+            'student_number',
             'nationality',
             'expectation',
         ]
