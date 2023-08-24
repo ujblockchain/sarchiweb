@@ -43,6 +43,7 @@ class BootcampView(View):
                 faculty = form.cleaned_data['faculty']
                 department = form.cleaned_data['department']
                 level = form.cleaned_data['level']
+                student_number = form.cleaned_data['student_number']
                 expectation = form.cleaned_data['expectation']
                 nationality = form.cleaned_data['nationality']
 
@@ -63,6 +64,7 @@ class BootcampView(View):
                         faculty=faculty,
                         department=department,
                         level=level,
+                        student_number=student_number,
                         nationality=nationality,
                         expectation=expectation,
                     )
