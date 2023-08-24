@@ -19,6 +19,7 @@ class BootcampResource(resources.ModelResource):
             'faculty',
             'department',
             'level',
+            'student_number',
             'nationality',
             'application_status',
         )
@@ -34,6 +35,7 @@ class BootcampFirstAdmin(ImportExportModelAdmin, CompareVersionAdmin):
         'faculty',
         'department',
         'level',
+        'student_number',
         'nationality',
         'application_status',
         'timestamp',
@@ -44,6 +46,7 @@ class BootcampFirstAdmin(ImportExportModelAdmin, CompareVersionAdmin):
         'faculty',
         'department',
         'level',
+        'student_number',
         'application_status',
     ]
     search_fields = [
@@ -53,6 +56,7 @@ class BootcampFirstAdmin(ImportExportModelAdmin, CompareVersionAdmin):
         'faculty',
         'department',
         'level',
+        'student_number',
         'nationality',
         'expectation',
         'application_status',
@@ -91,6 +95,7 @@ class BootcampFirstAdmin(ImportExportModelAdmin, CompareVersionAdmin):
                     'faculty',
                     'department',
                     'level',
+                    'student_number',
                 ],
             },
         ],
