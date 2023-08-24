@@ -5,8 +5,11 @@ from .modelChoices import nationality
 level = (
     ('Higher Certificate', 'Higher Certificate'),
     ('Diploma', 'Diploma'),
+    ('Year 1', 'Year 1'),
+    ('Year 2', 'Year 2'),
+    ('Year 3', 'Year 3'),
+    ('Year 4', 'Year 4'),
     ('Honours', 'Honours'),
-    ('Undergrad', 'Undergrad'),
     ('Post Graduate', 'Post Graduate'),
     ('Others', 'Others'),
 )
@@ -24,6 +27,7 @@ class BootcampFirst(models.Model):
     faculty = models.CharField(max_length=100)
     department = models.CharField(max_length=100)
     level = models.CharField(max_length=50, choices=level, default='Undergrad')
+    student_number = models.BigIntegerField()
     nationality = models.CharField(max_length=50, choices=nationality, default='South Africa')
     expectation = models.TextField(max_length=800)
     application_status = models.CharField(null=True, blank=True, choices=applicant_selection)
