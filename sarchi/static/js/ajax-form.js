@@ -5,6 +5,7 @@ dormElement={
     'faculty': document.getElementById('id_faculty'),
     'department': document.getElementById('id_department'),
     'level': document.getElementById('id_level'),
+    'studentNumber': document.getElementById('id_student_number'),
     'nationality': document.getElementById('id_nationality'),
     'expectation': document.getElementById('id_expectation'),
     'submitBtn': document.getElementById('btn_submit'),
@@ -16,7 +17,7 @@ dormElement={
 const formData = new FormData();
 
 //set post link
-const formActionLink='/bootcamp/registration';
+const formActionLink='/bootcamp/registration/';
 
 //get csrf token
 const csrf = document.getElementsByName('csrfmiddlewaretoken');
@@ -35,6 +36,7 @@ dormElement.submitBtn.addEventListener('click', (e) => {
     formData.append('faculty', dormElement.faculty.value);
     formData.append('department', dormElement.department.value);
     formData.append('level', dormElement.level.value);
+    formData.append('student_number', dormElement.studentNumber.value);
     formData.append('nationality', dormElement.nationality.value);
     formData.append('expectation', dormElement.expectation.value);
     
@@ -90,6 +92,10 @@ dormElement.submitBtn.addEventListener('click', (e) => {
                     Array.from(select_field).forEach((select) => {
                         select.style.border = 'none';
                     })
+
+                    //reset text area
+                    let textarea_field = document.querySelector('textarea')
+                    textarea_field.style.border = 'none';
                 })
                         
                 //loop through error
@@ -124,6 +130,7 @@ dormElement.submitBtn.addEventListener('click', (e) => {
                 dormElement.faculty.value = '';
                 dormElement.department.value = '';
                 dormElement.level.value = 'Select Your Level';
+                dormElement.studentNumber.value = '';
                 dormElement.nationality.value = 'Select Nationality';
                 dormElement.expectation.value = '';
 
@@ -146,6 +153,10 @@ dormElement.submitBtn.addEventListener('click', (e) => {
                     Array.from(select_field).forEach((select) => {
                         select.style.border = 'none';
                     })
+
+                    //reset text area
+                    let textarea_field = document.querySelector('textarea')
+                    textarea_field.style.border = 'none';
                 })
             }
 
