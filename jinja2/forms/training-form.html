@@ -27,6 +27,9 @@
         select#id_level {
             height: 49px;
         }
+        select#id_nationality {
+            height: 49px;
+        }
         .btn_ajax {
             background: #F26422;
             color: #fff;
@@ -42,9 +45,10 @@
         <div class="position-center-center">
             <div class="container text-center">
                 <h1>Demystifying Blockchain Bootcamp</h1>
-                <p>Learn Blockchain and build an amazing Decentralize Application. Learn from scratch as We take you
-                    from the basics to creating your own application, made by you and for you. Learn about
-                    framework, server deployment, tokens, NFT, the list goes on. Take the first step to this amazing journey by signing up today.</p>
+                <p>Learn about Blockchain Technology and build a fantastic Decentralised Application (DApp). 
+                    Learn from scratch as we take you from the basics to creating your own application, 
+                    made by you and for you. Learn about frameworks, server deployment, tokens, NFT, and 
+                    so many exciting topics. Take the first step on this amazing journey by signing up today.</p>
                 <a href="#bootcamp" class="btn">Signup For Bootcamp</a> <a href="/#about" class="btn btn-inverse">Learn More About Us</a>
             </div>
         </div>
@@ -60,7 +64,7 @@
             <div class="container">
 
                 <div class="contact">
-                    <h6>Signup For Blockchain Bootcamp Training(September 20th - 23th)</h6>
+                    <h6>Signup for the Demystifying Blockchain Bootcamp (Wednesday, September 20th - Saturday,  23rd September 2023)</h6>
                     <!-- Success Msg -->
                     <div id="contact_message" class="success-msg"> <i class="fa fa-paper-plane-o"></i>Thank You.
                         Your
@@ -111,7 +115,13 @@
                                     <p id="error-level" class="error-info" style="color: #ef9a9a; text-transform: capitalize; display: none;"></p>
                                 </label>
                             </li>
-                            <li class="col-sm-12">
+                            <li class="col-sm-6">
+                                <label>
+                                    {{training_form.student_number}}
+                                    <p id="error-student_number" class="error-info" style="color: #ef9a9a; text-transform: capitalize; display: none;"></p>
+                                </label>
+                            </li>
+                            <li class="col-sm-6">
                                 <label>
                                     {{training_form.nationality}}
                                     <p id="error-nationality" class="error-info" style="color: #ef9a9a; text-transform: capitalize; display: none;"></p>
