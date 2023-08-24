@@ -1,5 +1,8 @@
-{# extend template #}
-{% extends 'secondary-base.html' %}
+{# extend template #} 
+{% extends 'secondary-base.html' %} 
+{# load static #} 
+{% load static %} 
+
 
 {% block errorContent %}
   <!-- Wrap -->
@@ -15,16 +18,18 @@
         <div class="container text-center">
           <h1>Server Error</h1>
           <p>
-            Oops Something went wrong. Try refreshing this page; if it persist,
+            Oops!!! Something went wrong. Try refreshing this page; if it persist,
             feel free to contact us at support@sarchiuj.uj.ac.za if it persist.
           </p>
           <a href="#." class="btn">Join Us</a>
-          <a href="#." class="btn btn-inverse">View White Paper</a>
+          <a href="https://github.com/ujblockchain" class="btn btn-inverse"
+            >Repository</a
+          >
         </div>
       </div>
     </section>
   </div>
-{% endblock errorContent %}
+{% endblock errorContent %} 
 
 {% block script %}
   <script src="{% static 'js/jquery-1.11.3.min.js' %}"></script>

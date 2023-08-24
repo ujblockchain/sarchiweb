@@ -1,6 +1,9 @@
 {# extend template #}
 {% extends 'secondary-base.html' %}
 
+{# load static #}
+{% load static %}
+
 {% block errorContent %}
   <!-- Wrap -->
   <div id="wrap">
@@ -18,7 +21,7 @@
             You tried to access a page you did not have prior authorization for.
           </p>
           <a href="/" class="btn">Home</a>
-          <a href="" class="btn btn-inverse">View White Paper</a>
+          <a href="https://github.com/ujblockchain" class="btn btn-inverse">Repository</a>
         </div>
       </div>
     </section>
