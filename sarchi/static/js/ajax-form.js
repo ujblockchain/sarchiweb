@@ -1,6 +1,7 @@
 dormElement={
     'firstName': document.getElementById('id_first_name'),
     'lastName': document.getElementById('id_last_name'),
+    'gender': document.getElementById('id_gender'),
     'email': document.getElementById('id_email'),
     'faculty': document.getElementById('id_faculty'),
     'department': document.getElementById('id_department'),
@@ -32,6 +33,7 @@ dormElement.submitBtn.addEventListener('click', (e) => {
     //append data to form data object
     formData.append('first_name', dormElement.firstName.value);
     formData.append('last_name', dormElement.lastName.value);
+    formData.append('gender', dormElement.gender.value);
     formData.append('email', dormElement.email.value);
     formData.append('faculty', dormElement.faculty.value);
     formData.append('department', dormElement.department.value);
@@ -126,6 +128,7 @@ dormElement.submitBtn.addEventListener('click', (e) => {
                 //reset form
                 dormElement.firstName.value = '';
                 dormElement.lastName.value = '';
+                dormElement.gender.value = 'Gender';
                 dormElement.email.value = '';
                 dormElement.faculty.value = '';
                 dormElement.department.value = '';
