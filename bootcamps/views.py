@@ -74,7 +74,7 @@ class BootcampView(View):
                     return JsonResponse(
                         {
                             "message": "success",
-                            "status": "Thank You. Your Application has been Submitted Successfully",
+                            "status": "Thank You. Your Application has been Submitted Successfully.",
                         }
                     )
 
