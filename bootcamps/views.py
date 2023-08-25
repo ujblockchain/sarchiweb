@@ -39,6 +39,7 @@ class BootcampView(View):
                 # init bound form field
                 first_name = form.cleaned_data['first_name']
                 last_name = form.cleaned_data['last_name']
+                gender = form.cleaned_data['gender']
                 email = form.cleaned_data['email']
                 faculty = form.cleaned_data['faculty']
                 department = form.cleaned_data['department']
@@ -60,6 +61,7 @@ class BootcampView(View):
                     BootcampFirst.objects.create(
                         first_name=first_name,
                         last_name=last_name,
+                        gender=gender,
                         email=email,
                         faculty=faculty,
                         department=department,
