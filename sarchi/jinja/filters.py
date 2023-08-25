@@ -25,7 +25,4 @@ def time_since(value):
     days = difference.days
     seconds = difference.seconds
 
-    # init hours
-    hours = days * 24 + seconds // 3600
-
-    return hours
+    return days * 24 + seconds // 3600
