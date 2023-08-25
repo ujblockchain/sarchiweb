@@ -19,11 +19,17 @@ applicant_selection = (
     ('Rejected', 'Rejected'),
 )
 
+gender = (
+    ('Female', 'Female'),
+    ('Male', 'Male'),
+)
+
 
 class BootcampFirst(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email = models.EmailField()
+    gender = models.CharField(max_length=50, choices=gender, default='Female')
     faculty = models.CharField(max_length=100)
     department = models.CharField(max_length=100)
     level = models.CharField(max_length=50, choices=level, default='Undergrad')
