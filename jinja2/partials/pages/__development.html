@@ -5,10 +5,7 @@
             <p>We build, test and deploy blockchain open source codes. Stay up to date on latest development activities from our GitHub repositories. </p>
         </div>
         <ul class="row margin-top-50 margin-bottom-50">
-            {# set last commit time #}
-            {% set commitTime = {{commit.last_commit_time|timesince}}%}
-
-            <li class="col"> <i class="flaticon-rotate"></i> <span><span class="counter">{{commitTime}}</span> hrs Ago</span>
+            <li class="col"> <i class="flaticon-rotate"></i> <span><span class="counter">{{commit.last_commit_time|timesince}}</span> hrs Ago</span>
                 <p>Last Update</p>
             </li>
             <li class="col"><i class="flaticon-building"></i> <span><span>{{commit.sha|truncate(16, true)}}</span></span>
