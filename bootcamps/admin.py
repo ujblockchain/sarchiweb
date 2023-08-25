@@ -15,6 +15,7 @@ class BootcampResource(resources.ModelResource):
         import_id_fields = (
             'first_name',
             'last_name',
+            'gender',
             'email',
             'faculty',
             'department',
@@ -31,6 +32,7 @@ class BootcampFirstAdmin(ImportExportModelAdmin, CompareVersionAdmin):
     list_display = [
         'first_name',
         'last_name',
+        'gender',
         'email',
         'faculty',
         'department',
@@ -52,6 +54,7 @@ class BootcampFirstAdmin(ImportExportModelAdmin, CompareVersionAdmin):
     search_fields = [
         'first_name',
         'last_name',
+        'gender',
         'email',
         'faculty',
         'department',
@@ -81,6 +84,7 @@ class BootcampFirstAdmin(ImportExportModelAdmin, CompareVersionAdmin):
                 'fields': [
                     'first_name',
                     'last_name',
+                    'gender',
                     'email',
                     'nationality',
                     'info',
