@@ -16,12 +16,24 @@ applicant_level = (
 )
 
 
+gender = (
+    ('Gender', 'Gender'),
+    ('Female', 'Female'),
+    ('Male', 'Male'),
+)
+
+
 class BootcampForm(forms.ModelForm):
     first_name = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'First Name'})
     )
     last_name = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Last Name'})
+    )
+    gender = forms.CharField(
+        widget=forms.Select(
+            choices=gender, attrs={'class': 'form-control', 'aria-label': 'Default select'}
+        ),
     )
     email = forms.EmailField(
         widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'})
@@ -59,6 +71,7 @@ class BootcampForm(forms.ModelForm):
         fields = [
             'first_name',
             'last_name',
+            'gender',
             'email',
             'faculty',
             'department',
