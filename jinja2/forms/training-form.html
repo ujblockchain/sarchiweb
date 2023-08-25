@@ -23,11 +23,7 @@
             background: rgba(255, 255, 255, 0.05) !important;
             color: #61757a !important;
         }
-
-        select#id_level {
-            height: 49px;
-        }
-        select#id_nationality {
+        select#id_gender, select#id_level, select#id_nationality {
             height: 49px;
         }
         .btn_ajax {
@@ -92,6 +88,12 @@
                             </li>
                             <li class="col-sm-4">
                                 <label>
+                                    {{training_form.gender}}
+                                    <p id="error-gender" class="error-info" style="color: #ef9a9a; text-transform: capitalize; display: none;"></p>
+                                </label>
+                            </li>
+                            <li class="col-sm-4">
+                                <label>
                                     {{training_form.email}}
                                     <p id="error-email" class="error-info" style="color: #ef9a9a; text-transform: capitalize; display: none;"></p>
                                 </label>
@@ -115,13 +117,13 @@
                                     <p id="error-level" class="error-info" style="color: #ef9a9a; text-transform: capitalize; display: none;"></p>
                                 </label>
                             </li>
-                            <li class="col-sm-6">
+                            <li class="col-sm-4">
                                 <label>
                                     {{training_form.student_number}}
                                     <p id="error-student_number" class="error-info" style="color: #ef9a9a; text-transform: capitalize; display: none;"></p>
                                 </label>
                             </li>
-                            <li class="col-sm-6">
+                            <li class="col-sm-4">
                                 <label>
                                     {{training_form.nationality}}
                                     <p id="error-nationality" class="error-info" style="color: #ef9a9a; text-transform: capitalize; display: none;"></p>
@@ -170,7 +172,7 @@
             if(message){
                 message.style.display = 'none';
             }
-        }, 10000)
+        }, 12000)
       </script>
     
     {% endblock extraScript %}
