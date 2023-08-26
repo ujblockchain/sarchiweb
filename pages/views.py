@@ -1,5 +1,5 @@
 from dateutil import parser
-from datetime import datetime
+from datetime import datetime, timedelta
 from django.shortcuts import render
 from django.utils.timezone import utc
 from django.views.generic import TemplateView
@@ -36,8 +36,15 @@ class HomeView(TemplateView):
         # use current timezone
         datetime_obj = datetime_obj.replace(tzinfo=utc)
 
-        # set timezone aware time
-        get_commit_info['last_commit_time'] = datetime_obj
+        # get time difference from current time 
+        # add hack to fix github 2hrs behind time zone
+        time_difference = current_timestamp - (datetime_obj + timedelta(hours=2))
+
+        # init hours
+        hours = time_difference.days * 24 + time_difference.seconds // 3600
+
+        # set last commit time to hour
+        get_commit_info['last_commit_time'] = hours
 
         # set context
         context['commit'] = get_commit_info
