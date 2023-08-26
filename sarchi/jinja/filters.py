@@ -14,15 +14,3 @@ def dateformat(value):
 # convert dict to string
 def dict_string(value):
     return ast.literal_eval(value)
-
-
-# get hour different from current time
-def time_since(value):
-    # add hack to fix github 2hrs ahead time zone
-    difference = current_timestamp - (value + timedelta(hours=2))
-
-    # init days and seconds
-    days = difference.days
-    seconds = difference.seconds
-
-    return days * 24 + seconds // 3600
