@@ -52,6 +52,11 @@ def auto_mail_sending(sender, instance, created, **kwargs):
 
         # ensure that email format is html
         msg.content_subtype = 'html'
+
+        # attached file
+        bootcamp_flyer = f'{settings.PROJECT_DIR}/static/images/bootcamp.jpg'
+        msg.attach_file(bootcamp_flyer)
+
         # send email
         msg.send()
     else:
@@ -91,5 +96,11 @@ def auto_mail_sending(sender, instance, created, **kwargs):
 
         # ensure that email format is html
         msg.content_subtype = 'html'
+
+        # attached file
+        if instance.application_status == 'Selected':
+            bootcamp_flyer = f'{settings.PROJECT_DIR}/static/images/bootcamp.jpg'
+            msg.attach_file(bootcamp_flyer)
+
         # send email
         msg.send()
