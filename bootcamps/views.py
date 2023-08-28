@@ -47,6 +47,7 @@ class BootcampView(View):
                 student_number = form.cleaned_data['student_number']
                 expectation = form.cleaned_data['expectation']
                 nationality = form.cleaned_data['nationality']
+                phone_number = form.cleaned_data['phone_number']
 
                 # check if applicant has register before
                 if BootcampFirst.objects.filter(email=email).exists():
@@ -69,6 +70,7 @@ class BootcampView(View):
                         student_number=student_number,
                         nationality=nationality,
                         expectation=expectation,
+                        phone_number=phone_number,
                     )
 
                     return JsonResponse(
