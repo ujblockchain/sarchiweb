@@ -28,6 +28,12 @@ def time_since(value):
     # init hours
     hours = days * 24 + seconds // 3600
 
+    # prevent negative time difference
+    if hours >= 0:
+        hours = hours
+    else:
+        hours = 0
+
     print(hours)
 
     return hours
