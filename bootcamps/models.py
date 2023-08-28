@@ -35,6 +35,7 @@ class BootcampFirst(models.Model):
     level = models.CharField(max_length=50, choices=level, default='Undergrad')
     student_number = models.BigIntegerField(default=1)
     nationality = models.CharField(max_length=50, choices=nationality, default='South Africa')
+    phone_number = models.CharField(max_length=30, default='')
     expectation = models.TextField(max_length=800)
     application_status = models.CharField(null=True, blank=True, choices=applicant_selection)
     date_created = models.DateTimeField(auto_now_add=True)
