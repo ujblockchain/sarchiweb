@@ -31,8 +31,11 @@ class RepoAdmin(admin.ModelAdmin):
         'active_repo',
         'total_repo',
         'total_commit',
+        'sha',
+        'last_commit_time',
         'timestamp',
     ]
+
 
 #
 admin.site.register(RepoInfo, RepoAdmin)

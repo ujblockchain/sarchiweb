@@ -27,17 +27,37 @@ class HomeView(TemplateView):
         # get only the latest repo info
         latest_repo_info = RepoInfo.objects.order_by('-date_created')[0]
 
-        # get commit from api
-        get_commit_info = get_github_commits(latest_repo_info.active_repo)
+        # init commit info
+        get_commit_info = ''
 
-        # format date
-        datetime_obj = parser.parse(get_commit_info['last_commit_time'])
+        try:
+            get_commit_info = get_github_commits(latest_repo_info.active_repo)
 
-        # use current timezone
-        datetime_obj = datetime_obj.replace(tzinfo=utc)
+            # format date
+            datetime_obj = parser.parse(get_commit_info['last_commit_time'])
 
-        # set last commit time
-        get_commit_info['last_commit_time'] = datetime_obj
+            # use current timezone
+            datetime_obj = datetime_obj.replace(tzinfo=utc)
+
+            # set last commit time
+            get_commit_info['last_commit_time'] = datetime_obj
+
+            # update repo info
+            RepoInfo.objects.update(
+                active_repo=latest_repo_info.active_repo,
+                sha=get_commit_info['sha'],
+                last_commit_time=datetime_obj,
+            )
+        except:
+            # if error, it means github api request limit reached
+            # init time
+            time = latest_repo_info.last_commit_time
+
+            # read from model instance
+            get_commit_info = {
+                'last_commit_time': time,
+                'sha': latest_repo_info.sha,
+            }
 
         # set context
         context['commit'] = get_commit_info
