@@ -8,6 +8,7 @@ dormElement={
     'level': document.getElementById('id_level'),
     'studentNumber': document.getElementById('id_student_number'),
     'nationality': document.getElementById('id_nationality'),
+    'phoneNumber': document.getElementById('id_phone_number'),
     'expectation': document.getElementById('id_expectation'),
     'submitBtn': document.getElementById('btn_submit'),
     'formAlert': document.querySelector('.success-msg'),
@@ -41,6 +42,7 @@ dormElement.submitBtn.addEventListener('click', (e) => {
     formData.append('student_number', dormElement.studentNumber.value);
     formData.append('nationality', dormElement.nationality.value);
     formData.append('expectation', dormElement.expectation.value);
+    formData.append('phone_number', dormElement.phoneNumber.value);
     
     $.ajax({
         type:'POST',
@@ -136,6 +138,7 @@ dormElement.submitBtn.addEventListener('click', (e) => {
                 dormElement.studentNumber.value = '';
                 dormElement.nationality.value = 'Select Nationality';
                 dormElement.expectation.value = '';
+                dormElement.phoneNumber.value = '';
 
                 //reset error
                 Array.from(document.querySelectorAll('.error-info')).forEach((field) => {
