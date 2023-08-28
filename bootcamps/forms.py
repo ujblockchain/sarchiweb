@@ -59,7 +59,9 @@ class BootcampForm(forms.ModelForm):
             attrs={'class': 'form-control', 'aria-label': 'Default select'},
         ),
     )
-
+    phone_number = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Phone Number'})
+    )
     expectation = forms.CharField(
         widget=forms.Textarea(
             attrs={'class': 'form-control', 'placeholder': 'Expectation', 'row': 5}
@@ -78,5 +80,6 @@ class BootcampForm(forms.ModelForm):
             'level',
             'student_number',
             'nationality',
+            'phone_number',
             'expectation',
         ]
