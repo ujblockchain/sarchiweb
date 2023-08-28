@@ -34,6 +34,7 @@ class BootcampFirstAdmin(ImportExportModelAdmin, CompareVersionAdmin):
         'last_name',
         'gender',
         'email',
+        'phone_number',
         'faculty',
         'department',
         'level',
@@ -62,6 +63,7 @@ class BootcampFirstAdmin(ImportExportModelAdmin, CompareVersionAdmin):
         'student_number',
         'nationality',
         'expectation',
+        'phone_number',
         'application_status',
         'timestamp',
     ]
@@ -87,6 +89,7 @@ class BootcampFirstAdmin(ImportExportModelAdmin, CompareVersionAdmin):
                     'gender',
                     'email',
                     'nationality',
+                    'phone_number',
                     'info',
                 ],
             },
