@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.utils.timezone import utc
 from django.views.generic import TemplateView
 from contact.forms import UserMessageForm
+from facilitators.models import Facilitators
 from newsletters.forms import NewsletterEmailForm
 from partners.models import Partners
 from projects.models import Projects
@@ -23,6 +24,9 @@ class HomeView(TemplateView):
         context = super().get_context_data(**kwargs)
 
         context['form'] = UserMessageForm()
+
+        ## facilitators context
+        context['facilitators'] = Facilitators.objects.filter(publish=True)
 
         # get only the latest repo info
         latest_repo_info = RepoInfo.objects.order_by('-date_created')[0]
@@ -59,7 +63,7 @@ class HomeView(TemplateView):
                 'sha': latest_repo_info.sha,
             }
 
-        # set context
+        # set commit context
         context['commit'] = get_commit_info
         context['repo'] = RepoInfo.objects.order_by('-date_created').all()[0]
 
