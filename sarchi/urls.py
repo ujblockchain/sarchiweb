@@ -11,8 +11,8 @@ urlpatterns = [
     path('account/', include('account.urls')),
     path('blog/', include('blog.urls')),
     path('bootcamp/', include('bootcamps.urls')),
-    path('contact', include('contact.urls')),
-    path('newsletter', include('newsletters.urls')),
+    path('contact/', include('contact.urls')),
+    path('newsletter/', include('newsletters.urls')),
 ]
 
 
