@@ -22,9 +22,24 @@ class BootcampResource(resources.ModelResource):
             'level',
             'student_number',
             'nationality',
+            'phone_number',
+            'expectation',
             'application_status',
         )
-        export_id_fields = '__all__'
+        export_id_fields = (
+            'first_name',
+            'last_name',
+            'gender',
+            'email',
+            'faculty',
+            'department',
+            'level',
+            'student_number',
+            'nationality',
+            'phone_number',
+            'application_status',
+            'date_created',
+        )
 
 
 class BootcampFirstAdmin(ImportExportModelAdmin, CompareVersionAdmin):
@@ -52,6 +67,7 @@ class BootcampFirstAdmin(ImportExportModelAdmin, CompareVersionAdmin):
         'student_number',
         'application_status',
     ]
+    list_filter = ['application_status']
     search_fields = [
         'first_name',
         'last_name',
