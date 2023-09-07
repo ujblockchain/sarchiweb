@@ -47,3 +47,17 @@ class NewsletterConfirmUnsubscribe(View):
             return render(request, "newsletter/confirm-unsubscribe.html", context)
         else:
             raise Http404
+
+
+class NewsletterEmailUnsubscribe(View):
+    # get id as params
+    def get(self, request, id=''):
+        # check if email exist
+        if NewsletterEmail.objects.filter(id=id).exists:
+            # delete email
+            NewsletterEmail.objects.get(id=id).delete()
+
+            # redirect to unsubscribe page
+            return HttpResponseRedirect(reverse('newsletter_unsubscribe_done'))
+        else:
+            raise Http404
