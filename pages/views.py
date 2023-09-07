@@ -48,7 +48,7 @@ class HomeView(TemplateView):
 
             # update repo info
             RepoInfo.objects.update(
-                active_repo=latest_repo_info.active_repo,
+                id=latest_repo_info.id,
                 sha=get_commit_info['sha'],
                 last_commit_time=datetime_obj,
             )
