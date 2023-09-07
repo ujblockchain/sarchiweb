@@ -1,6 +1,10 @@
 from django.contrib import messages
 from django.http import HttpResponseRedirect
-from django.views.generic import View
+from django.shortcuts import render
+from django.urls import reverse
+from django.views.generic import View, TemplateView
+
+
 from .models import NewsletterEmail
 from .forms import NewsletterEmailForm
 from django.http import Http404
@@ -32,17 +36,14 @@ class NewsletterView(View):
             return HttpResponseRedirect('/#newsletter')
 
 
-class NewsletterEmailUnsubscribe(View):
-    def get(self, request):
-        # get user email
-        email = self.kwargs.get('user_email')
-
+class NewsletterConfirmUnsubscribe(View):
+    ## get id as params
+    def get(self, request, id=''):
         # check if email exist
-        if NewsletterEmail.objects.filter(email=email).exists:
-            # delete email
-            NewsletterEmail.objects.get(email=email).delete()
-
-            # redirect to form section
-            return HttpResponseRedirect('/#newsletter')
+        if NewsletterEmail.objects.filter(id=id).exists():
+            # context
+            context = {'email_id': id}
+            # render template
+            return render(request, "newsletter/confirm-unsubscribe.html", context)
         else:
             raise Http404
