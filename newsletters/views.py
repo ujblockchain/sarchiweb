@@ -61,3 +61,7 @@ class NewsletterEmailUnsubscribe(View):
             return HttpResponseRedirect(reverse('newsletter_unsubscribe_done'))
         else:
             raise Http404
+
+
+class NewsletterUnsubscribeDone(TemplateView):
+    template_name = "newsletter/unsubscribe.html"
