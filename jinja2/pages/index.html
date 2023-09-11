@@ -1,6 +1,15 @@
 {# extend template #}
 {% extends 'base.html' %}
 
+{# add extra style #}
+{% block extraStyle %} 
+  <style>
+    .image_resize{
+      height: 219px;
+    }
+  </style>
+{% endblock extraStyle %}
+
 <!-- Content -->
 {% block content %}
   <div id="content">
