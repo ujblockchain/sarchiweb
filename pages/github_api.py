@@ -19,7 +19,6 @@ def get_github_commits(request_url):
     get_dict = json.loads(response.text)
 
     sha = get_dict[0]['sha']
-    last_commit_time = get_dict[0]['commit']['author']['date']
-    
+    node_id = get_dict[0]['node_id']
 
-    return {'sha': sha, 'last_commit_time': last_commit_time}
+    return {'sha': sha, 'node_id': node_id}
