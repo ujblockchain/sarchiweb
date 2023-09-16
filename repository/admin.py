@@ -27,12 +27,16 @@ class RepoAdmin(admin.ModelAdmin):
     save_as = True
     save_as_continue = True
     save_on_top = True
+    readonly_fields = [
+        'sha',
+        'node_id',
+    ]
     fields = [
         'active_repo',
         'total_repo',
         'total_commit',
         'sha',
-        'last_commit_time',
+        'node_id',
         'timestamp',
     ]
 
