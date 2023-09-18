@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'captcha',
     'reversion',
     'reversion_compare',
+    # ckeditor app
+    'ckeditor',
+    'ckeditor_uploader',
     # app
     'account.apps.AccountConfig',
     'blog.apps.BlogConfig',
@@ -269,3 +272,6 @@ REVERSION_COMPARE_IGNORE_NOT_REGISTERED = False
 
 # import jazzmin settings
 from .configuration.admin.jazzdmin import *
+
+# import ck editor settings
+from .configuration.admin.ckeditor import *
