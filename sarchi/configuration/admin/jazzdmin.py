@@ -77,6 +77,7 @@ JAZZMIN_SETTINGS = {
         'contact.usercontact': 'fas fa-id-badge',
         'facilitators.facilitators': 'fas fa-user-check',
         'newsletters.newsletteremail': 'fas fa-envelope-open-text',
+        'newsletters.sendnewsletteremails': 'fas fa-paper-plane',
         'partners.partners': 'fas fa-handshake',
         'projects.projects': 'fas fa-project-diagram',
         'repository.repoinfo': 'fas fa-code',
