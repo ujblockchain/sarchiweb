@@ -5,7 +5,8 @@ from django.template.loader import render_to_string
 from decouple import config
 from sarchi.middleware.current_request import RequestMiddleware
 
-#handles email sending
+
+# handles email sending
 def send_email(salutation, subject, message, link, link_title, email_list):
     # init email details
     sender_email = settings.DEFAULT_FROM_EMAIL
@@ -30,10 +31,10 @@ def send_email(salutation, subject, message, link, link_title, email_list):
 
     # create HTML email.
     msg = mail.EmailMessage(
-        email_subject,
-        html_content,
-        sender_email,
-        recipient_email,
+        subject=email_subject,
+        body=html_content,
+        from_email=sender_email,
+        bcc=recipient_email,
         reply_to=[config('ADMIN_REPLY_EMAIL')],
         headers={'X-PM-Message-Stream': 'outbound', 'Message-ID': f'{randint(1, 1000)}'},
     )
