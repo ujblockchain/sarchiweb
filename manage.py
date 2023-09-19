@@ -3,6 +3,9 @@
 import os
 import sys
 
+# import monkey patch for huey
+from patch import *
+
 
 def main():
     """Run administrative tasks."""
