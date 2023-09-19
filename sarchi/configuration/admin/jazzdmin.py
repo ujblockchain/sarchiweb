@@ -76,6 +76,8 @@ JAZZMIN_SETTINGS = {
         'bootcamps.bootcampfirst': 'fas fa-chalkboard-teacher',
         'contact.usercontact': 'fas fa-id-badge',
         'facilitators.facilitators': 'fas fa-user-check',
+        'huey_monitor.signalinfomodel': 'fas fa-wave-square',
+        'huey_monitor.taskmodel': 'fas fa-tasks',
         'newsletters.newsletteremail': 'fas fa-envelope-open-text',
         'newsletters.sendnewsletteremails': 'fas fa-paper-plane',
         'partners.partners': 'fas fa-handshake',
