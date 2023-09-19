@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     # ckeditor app
     'ckeditor',
     'ckeditor_uploader',
+    # huey
+    'bx_django_utils',
+    'huey_monitor',
     # app
     'account.apps.AccountConfig',
     'blog.apps.BlogConfig',
@@ -56,6 +59,7 @@ INSTALLED_APPS = [
     # third party apps by location
     'import_export',
     'django_cleanup.apps.CleanupConfig',
+    'django_huey',
 ]
 
 MIDDLEWARE = [
@@ -275,3 +279,20 @@ from .configuration.admin.jazzdmin import *
 
 # import ck editor settings
 from .configuration.admin.ckeditor import *
+
+
+# huey distributed task processing
+DJANGO_HUEY = {
+    'default': 'send_emails',  # this name must match with any of the queues defined below.
+    'queues': {
+        'send_emails': {  # this name will be used in decorators below
+            'huey_class': 'huey.RedisHuey',
+            'name': 'send_email_task', #name of task
+            'immediate': False,
+            'consumer': {
+                'workers': 10,
+                'worker_type': 'greenlet', # using greenlet worker type
+            },
+        },
+    },
+}
