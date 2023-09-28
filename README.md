@@ -42,7 +42,7 @@ RECAPTCHA_REQUIRED_SCORE = ...
 ```
 
 ### Django huey Setup
-Setup huey distributed task processing using 'greenlet' worker type. For greenlet to work, you need to setup a money patch that servers as a custom bootstrap script.
+Setup huey distributed task processing using 'greenlet' worker type. For greenlet to work, you need to setup a money patch that serves as a custom bootstrap script.
 
 ```
 DJANGO_HUEY = {
