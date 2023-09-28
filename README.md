@@ -41,11 +41,24 @@ RECAPTCHA_REQUIRED_SCORE = ...
 
 ```
 
-### Sentry Setup
-Set sentry DNS path. DNS path can be gotten from https://sentry.io/welcome/. 
+### Django huey Setup
+Setup huey distributed task processing using 'greenlet' worker type. For greenlet to work, you need to setup a money patch that servers as a custom bootstrap script.
 
 ```
-SENTRY_DNS= '...'
+DJANGO_HUEY = {
+    'default': 'send_emails',  # this name must match with any of the queues defined below.
+    'queues': {
+        'send_emails': {
+            'huey_class': 'huey.RedisHuey',
+            'name': 'send_email_task', #name of task
+            'immediate': False,
+            'consumer': {
+                'workers': 10,
+                'worker_type': 'greenlet', # using greenlet worker type
+            },
+        },
+    },
+}
 
 ```
 
@@ -74,6 +87,13 @@ $ python manage.py createsuperuser
 ### Run Server
 ```
 $ python manage.py runserver
+
+```
+
+### Start Background Task
+There is need for a background task using huey. Since the default task is set to 'send_emails' there is no need to add '--queue send_emails'
+```
+$ python manage.py djangohuey
 
 ```
 
