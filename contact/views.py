@@ -28,7 +28,7 @@ class ContactView(View):
                 contact.save()
 
                 # sent success message
-                messages.add_message(request, messages.SUCCESS, 'Thank You. Your Message has been Submitted')
+                messages.add_message(request, messages.SUCCESS, 'Thank You. Your Message has been Submitted.')
 
                 # redirect to form section
                 return HttpResponseRedirect('/#contact')
