@@ -33,7 +33,7 @@ def auto_mail_sending(sender, instance, created, **kwargs):
             email_list = NewsletterEmail.objects.all().values_list('email', flat=True)
 
         # init number of  elements each list should have
-        n = 15  # 15 per list
+        n = 1  # 1 per list
 
         # using list comprehension to split email list into multiple lists
         sorted_email_list = [email_list[i : i + n] for i in range(0, len(email_list), n)]
