@@ -80,6 +80,7 @@ JAZZMIN_SETTINGS = {
         'huey_monitor.taskmodel': 'fas fa-tasks',
         'newsletters.newsletteremail': 'fas fa-envelope-open-text',
         'newsletters.sendnewsletteremails': 'fas fa-paper-plane',
+        'program.program': 'fas fa-camera-retro',
         'partners.partners': 'fas fa-handshake',
         'projects.projects': 'fas fa-project-diagram',
         'repository.repoinfo': 'fas fa-code',
