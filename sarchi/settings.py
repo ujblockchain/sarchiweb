@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'newsletters.apps.NewslettersConfig',
     'pages.apps.PagesConfig',
     'partners.apps.PartnersConfig',
+    'program.apps.ProgramConfig',
     'projects.apps.ProjectsConfig',
     'repository.apps.RepositoryConfig',
     # third party apps by location
@@ -287,11 +288,11 @@ DJANGO_HUEY = {
     'queues': {
         'send_emails': {  # this name will be used in decorators below
             'huey_class': 'huey.RedisHuey',
-            'name': 'send_email_task', #name of task
+            'name': 'send_email_task',  # name of task
             'immediate': False,
             'consumer': {
                 'workers': 10,
-                'worker_type': 'greenlet', # using greenlet worker type
+                'worker_type': 'greenlet',  # using greenlet worker type
             },
         },
     },
