@@ -13,7 +13,8 @@ urlpatterns = [
     # path('bootcamp/', include('bootcamps.urls')),
     path('contact/', include('contact.urls')),
     path('newsletter/', include('newsletters.urls')),
-    #ckeditor upload path
+    path('event/', include('program.urls')),
+    # ckeditor upload path
     path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
