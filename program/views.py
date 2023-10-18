@@ -20,13 +20,13 @@ class ProgramView(View):
         # init context
         context = {
             'form': UserMessageForm(),
-            'training_form': ProgramForm(),
+            'program_form': ProgramForm(),
             'partners': Partners.objects.filter(publish=True),
             # newsletter form
             'newsletter_form': NewsletterEmailForm(),
         }
 
-        #render template
+        # render template
         return render(request, template_name, context)
 
     # post request
@@ -45,6 +45,7 @@ class ProgramView(View):
                 expectation = form.cleaned_data['expectation']
                 nationality = form.cleaned_data['nationality']
                 phone_number = form.cleaned_data['phone_number']
+                organization = form.cleaned_data['organization']
 
                 # check if applicant has register before
                 if Program.objects.filter(email=email).exists():
@@ -64,6 +65,7 @@ class ProgramView(View):
                         nationality=nationality,
                         expectation=expectation,
                         phone_number=phone_number,
+                        organization=organization,
                     )
 
                     return JsonResponse(
