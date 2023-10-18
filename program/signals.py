@@ -40,8 +40,7 @@ def auto_mail_sending(sender, instance, created, **kwargs):
                 Blockchain technology is more than just another tech innovation; it lies at the core of the Fourth Industrial Revolution (4IR). \
                 It possesses the transformative power to reshape industries such as finance, healthcare, and logistics. \n\n\
                 Come gain an international perspective that transcends national borders. We have extended invitations to speakers and guests from \
-                various countries, including Kenya and Switzerland. By live-streaming the event, our aim is to provide a global audience with \
-                access to international insights and expertise.\n\n\
+                various countries, including Kenya and Switzerland. \n\n\
                 Kindly note that your application has been received and is slated for review by our development team within 24 hours. \
                 While you wait, kindly connect with us via our website; you can also access our open-source repository \
                 (<a href="http://github.com/ujblockchain" target="_blank" style="color: #ff6522 !important;">github.com/ujblockchain</a>) \
@@ -97,8 +96,7 @@ def auto_mail_sending(sender, instance, created, **kwargs):
                     Blockchain technology is more than just another tech innovation; it lies at the core of the Fourth Industrial Revolution (4IR). \
                     It possesses the transformative power to reshape industries such as finance, healthcare, and logistics. \n\n\
                     Come gain an international perspective that transcends national borders. We have extended invitations to speakers and guests from \
-                    various countries, including Kenya and Switzerland. By live-streaming the event, our aim is to provide a global audience with \
-                    access to international insights and expertise.\n\n\
+                    various countries, including Kenya and Switzerland. \n\n\
                     Kindly note that you have been selected to attend the Mainstreaming Blockchain (MB) event. Our development team will reach out to You\
                     within 24 hours to confirm your attendance. While you wait, kindly connect with us via our website; you can also access our \
                     open-source repository (<a href="http://github.com/ujblockchain" target="_blank" style="color: #ff6522 !important;">github.com/ujblockchain</a>) \
