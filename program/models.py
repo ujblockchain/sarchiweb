@@ -32,6 +32,7 @@ class Program(models.Model):
     gender = models.CharField(max_length=50, choices=gender, default='Female')
     nationality = models.CharField(max_length=50, choices=nationality, default='South Africa')
     phone_number = models.CharField(max_length=30, default='')
+    organization = models.CharField(max_length=300, default='University of Johannesburg')
     expectation = models.TextField(max_length=800)
     application_status = models.CharField(null=True, blank=True, choices=applicant_selection)
     date_created = models.DateTimeField(auto_now_add=True)
