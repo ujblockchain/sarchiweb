@@ -19,6 +19,7 @@ class ProgramResource(resources.ModelResource):
             'email',
             'nationality',
             'phone_number',
+            'organization',
             'expectation',
             'application_status',
         )
@@ -29,6 +30,7 @@ class ProgramResource(resources.ModelResource):
             'email',
             'nationality',
             'phone_number',
+            'organization',
             'application_status',
             'date_created',
         )
@@ -43,6 +45,7 @@ class ProgramAdmin(ImportExportModelAdmin, CompareVersionAdmin):
         'email',
         'phone_number',
         'nationality',
+        'organization',
         'application_status',
         'timestamp',
     ]
@@ -50,6 +53,7 @@ class ProgramAdmin(ImportExportModelAdmin, CompareVersionAdmin):
         'first_name',
         'last_name',
         'email',
+        'organization',
         'application_status',
     ]
     list_filter = ['application_status']
@@ -61,6 +65,7 @@ class ProgramAdmin(ImportExportModelAdmin, CompareVersionAdmin):
         'nationality',
         'expectation',
         'phone_number',
+        'organization',
         'application_status',
         'timestamp',
     ]
@@ -87,6 +92,7 @@ class ProgramAdmin(ImportExportModelAdmin, CompareVersionAdmin):
                     'email',
                     'nationality',
                     'phone_number',
+                    'organization',
                     'info',
                 ],
             },
