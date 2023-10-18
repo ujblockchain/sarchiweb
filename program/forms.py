@@ -34,6 +34,9 @@ class ProgramForm(forms.ModelForm):
     phone_number = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Phone Number'})
     )
+    organization = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Organization'})
+    )
     expectation = forms.CharField(
         widget=forms.Textarea(
             attrs={'class': 'form-control', 'placeholder': 'Expectation', 'row': 5}
@@ -49,5 +52,6 @@ class ProgramForm(forms.ModelForm):
             'email',
             'nationality',
             'phone_number',
+            'organization',
             'expectation',
         ]
