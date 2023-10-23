@@ -97,9 +97,9 @@ def auto_mail_sending(sender, instance, created, **kwargs):
                     It possesses the transformative power to reshape industries such as finance, healthcare, and logistics. \n\n\
                     Come gain an international perspective that transcends national borders. We have extended invitations to speakers and guests from \
                     various countries, including Kenya and Switzerland. \n\n\
-                    Kindly note that you have been selected to attend the Mainstreaming Blockchain (MB) event. Our development team will reach out to You\
-                    within 24 hours to confirm your attendance. While you wait, kindly connect with us via our website; you can also access our \
-                    open-source repository (<a href="http://github.com/ujblockchain" target="_blank" style="color: #ff6522 !important;">github.com/ujblockchain</a>) \
+                    Kindly note that you have been selected to attend the Mainstreaming Blockchain (MB) event. The event takes place at \
+                    <strong>STH Auckland Park Bunting Road Campus. Time is 8:30am </strong>. While you wait, kindly connect with us via our website; \
+                    you can also access our open-source repository (<a href="http://github.com/ujblockchain" target="_blank" style="color: #ff6522 !important;">github.com/ujblockchain</a>) \
                     for code guides and tips.\n\n\
                     Once again, thank you for applying for the Mainstreaming Blockchain (MB) Event. We are excited and cannot wait to see the many frontiers \
                     this will open for you in your Blockchain Development Journey 🤩🙌.\
