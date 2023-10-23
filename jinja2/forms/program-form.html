@@ -5,15 +5,31 @@
 {% from "macros/nav.html" import  navPathDisplay as pathNav %}
 
 {# override meta block #}
-{% block meta %}
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+{% block metaTag %}
     <meta name="description" content="Mainstreaming Blockchain (MO) is a thought leadership media event taking place on the 24th of October 2023. Organized by the SA/Swiss Chair on Blockchain Technology at the University of Johannesburg, the event is a gathering of blockchain enthusiasts, industry experts, researchers, and thought leaders. Its core focus is to explore the vast potential of blockchain technology within South and Sub-Saharan Africa." />
     <meta name="keywords"
-      content="UJ, University of Johannesburg, Johannesburg, Blockchain, Mainstreaming, Mainstreaming Blockchain, Media, Media Event, Consensus, Smart Contracts, Governance, Decentralization, Distributed, Ledger, Technology, Distributed Ledgers, Prof Nnamdi Nwulu, Nnamdi Nwulu, Dr Tebello Ntsiki Don Mathaba, Tebello Ntsiki Don Mathaba">
+      content="NRF, UJ, UJ Blockchain, Blockchain UJ, SARChI UJ, UJ SARChI, University of Johannesburg, South Africa, Switzerland, Johannesburg, Blockchain, Mainstreaming, Mainstreaming Blockchain, Media, Media Event, Consensus, Smart Contracts, Governance, Decentralization, Distributed, Ledger, Technology, Distributed Ledgers, Prof Nnamdi Nwulu, Nnamdi Nwulu, Dr Tebello Ntsiki Don Mathaba, Tebello Ntsiki Don Mathaba">
     <meta name="author" content="UJ Blockchain" />
-  {% endblock meta %} 
+{% endblock metaTag %} 
+
+{# Facebook meta override #}
+{% block FBMeta %}
+  <meta property="og:description"
+    content="Mainstreaming Blockchain (MO) is a thought leadership media event taking place on the 24th of October 2023. Organized by the SA/Swiss Chair on Blockchain Technology at the University of Johannesburg, the event is a gathering of blockchain enthusiasts, industry experts, researchers, and thought leaders. Its core focus is to explore the vast potential of blockchain technology within South and Sub-Saharan Africa.">
+{% endblock FBMeta %}
+{% block FBMetaLink %}
+    <meta property="og:url" content="https://blockchain.uj.ac.za/event/registration">
+{% endblock FBMetaLink %}
+
+{# twitter meta override #}
+{% block TwitterMeta %}
+    <meta name="twitter:description"
+        content="Mainstreaming Blockchain (MO) is a thought leadership media event taking place on the 24th of October 2023. Organized by the SA/Swiss Chair on Blockchain Technology at the University of Johannesburg, the event is a gathering of blockchain enthusiasts, industry experts, researchers, and thought leaders. Its core focus is to explore the vast potential of blockchain technology within South and Sub-Saharan Africa.">
+{% endblock TwitterMeta %}
+{% block TwitterMetaImage %}
+    <meta name="twitter:image:alt"
+        content="UJ Blockchain Logo. Mainstreaming Blockchain (MO) is a thought leadership media event taking place on the 24th of October 2023. Organized by the SA/Swiss Chair on Blockchain Technology at the University of Johannesburg, the event is a gathering of blockchain enthusiasts, industry experts, researchers, and thought leaders. Its core focus is to explore the vast potential of blockchain technology within South and Sub-Saharan Africa.">
+{% endblock TwitterMetaImage %}  
 
 {# override head block#}
 {% block head %}{{pathNav()}}{% endblock head %}

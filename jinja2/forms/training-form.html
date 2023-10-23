@@ -4,6 +4,33 @@
 {# import macro #}
 {% from "macros/nav.html" import  navPathDisplay as pathNav %}
 
+{# override meta block #}
+{% block metaTag %}
+    <meta name="description" content="Learn about Blockchain Technology and build a fantastic Decentralized Application (DApp). Learn and build your own application, made by you and for you. Learn about frameworks, server deployment, tokens, NFT, and so many exciting topics. Take the first step on this amazing journey by signing up today." />
+    <meta name="keywords"
+      content="UJ, UJ Blockchain, Blockchain UJ, SARChI UJ, UJ SARChI, University of Johannesburg, South Africa, Switzerland, Johannesburg, Blockchain, Bootcamp, Blockchain Bootcamp, Media, Media Event, Consensus, Smart Contracts, Governance, Decentralization, Distributed, Ledger, Technology, Distributed Ledgers, Prof Nnamdi Nwulu, Nnamdi Nwulu, Dr Tebello Ntsiki Don Mathaba, Tebello Ntsiki Don Mathaba">
+    <meta name="author" content="UJ Blockchain" />
+{% endblock metaTag %} 
+
+{# Facebook meta override #}
+{% block FBMeta %}
+  <meta property="og:description"
+    content="Learn about Blockchain Technology and build a fantastic Decentralized Application (DApp). Learn and build your own application, made by you and for you. Learn about frameworks, server deployment, tokens, NFT, and so many exciting topics. Take the first step on this amazing journey by signing up today.">
+{% endblock FBMeta %}
+{% block FBMetaLink %}
+    <meta property="og:url" content="https://blockchain.uj.ac.za/bootcamp/registration">
+{% endblock FBMetaLink %}
+
+{# twitter meta override #}
+{% block TwitterMeta %}
+    <meta name="twitter:description"
+        content="Learn about Blockchain Technology and build a fantastic Decentralized Application (DApp). Learn and build your own application, made by you and for you. Learn about frameworks, server deployment, tokens, NFT, and so many exciting topics. Take the first step on this amazing journey by signing up today.">
+{% endblock TwitterMeta %}
+{% block TwitterMetaImage %}
+    <meta name="twitter:image:alt"
+        content="UJ Blockchain Logo. Learn about Blockchain Technology and build a fantastic Decentralized Application (DApp). Learn and build your own application, made by you and for you. Learn about frameworks, server deployment, tokens, NFT, and so many exciting topics. Take the first step on this amazing journey by signing up today.">
+{% endblock TwitterMetaImage %}  
+
 {# override head block#}
 {% block head %}{{pathNav()}}{% endblock head %}
 
@@ -41,7 +68,7 @@
         <div class="position-center-center">
             <div class="container text-center">
                 <h1>Demystifying Blockchain Bootcamp</h1>
-                <p>Learn about Blockchain Technology and build a fantastic Decentralised Application (DApp). 
+                <p>Learn about Blockchain Technology and build a fantastic Decentralized Application (DApp). 
                     Learn from scratch as we take you from the basics to creating your own application, 
                     made by you and for you. Learn about frameworks, server deployment, tokens, NFT, and 
                     so many exciting topics. Take the first step on this amazing journey by signing up today.</p>
