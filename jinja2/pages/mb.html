@@ -116,7 +116,8 @@
         </div>
         <div class="header-wrapper row valign-wrapper">
           <div class="col s12 m8 offset-m2 valign">
-            <h2 style="font-size: 40px;">Mainstreaming Blockchain: A Thought Leadership Media Event</h2>
+            <h2 style="font-size: 40px;">Mainstreaming Blockchain: A Thought Leadership 
+              Media Event Held 24th October; 2023.</h2>
             <br><br>
             <span class="tagline">Event Schedule and Speaker's Profile</span>
             <button class="read-more"><i class="icon-caret-down"></i></button>
@@ -125,41 +126,54 @@
       </div>
     </div>
 
-    {% for event in events if event %}
-        <div class="flip-out-intro header full-height">
-        <div class="fixed-wrapper">
-          <div class="background">
-            <img src="http://placehold.it/1440x900" alt="">
-          </div>
-          <div class="header-wrapper row valign-wrapper">
-            <div class="col s12 m8 offset-m2 valign">
-              <h2>Currently Speaking</h2>
-              <span class="tagline">{{event.title}}.</span>
-              <br><br>
-              {% if event.speaker_one %}
-                  <img  class="circle" src="{{event.speaker_one.url}}" alt="" 
-                  style="width: 50px; display: inline-block; text-align: center;">
-              {% endif  %}
-              {% if event.speaker_two %}
-                  <img  class="circle" src="{{event.speaker_two.url}}" alt="" 
-                  style="width: 50px; display: inline-block; text-align: center;">
-              {% endif %}
-              {% if event.speaker_three %}
-                  <img  class="circle" src="{{event.speaker_three.url}}" alt="" 
-                  style="width: 50px; display: inline-block; text-align: center;">
-              {% endif %}
-              {% if event.speaker_four %}
-                  <img  class="circle" src="{{event.speaker_four.url}}" alt="" 
-                  style="width: 50px; display: inline-block; text-align: center;">
-              {% endif %}
-              <p>{{event.speakers}}</p>
-              <br>
-              <button class="read-more"><i class="icon-caret-down"></i></button>
-            </div>
+    
+    <div class="flip-out-intro header full-height">
+      <div class="fixed-wrapper">
+        <div class="background">
+          <img src="http://placehold.it/1440x900" alt="">
+        </div>
+        <div class="header-wrapper row valign-wrapper">
+          <div class="col s12 m8 offset-m2 valign">
+            <h2>Event Speakers</h2>
+            <span class="tagline">Blockchain Enthusiasts, Industry Experts, 
+              Researchers, and Thought Leaders</span>
+            <br><br>
+              <img  class="circle" src="{{ static('images/prof_nnamdi_nwulu.jpeg') }}" alt="" 
+                style="width: 50px; display: inline-block; text-align: center;">
+              <img  class="circle" src="{{ static('images/Luca.jpeg') }}" alt="" 
+                style="width: 50px; height: 50px; display: inline-block; text-align: center;">
+              <img  class="circle" src="{{ static('images/Anushka.jpg') }}" alt="" 
+                style="width: 50px; display: inline-block; text-align: center;">
+              <img  class="circle" src="{{ static('images/Akhona.jpg')}}" alt="" 
+                style="width: 50px; display: inline-block; text-align: center;">
+              <img  class="circle" src="{{ static('images/CAROLINE.jpg')}}" alt="" 
+                style="width: 50px; display: inline-block; text-align: center;">
+              <img  class="circle" src="{{ static('images/Hemash.png')}}" alt="" 
+                style="width: 50px; display: inline-block; text-align: center;">
+              <img  class="circle" src="{{ static('images/Ian.jpg')}}" alt="" 
+                style="width: 50px; display: inline-block; text-align: center;">
+              <img  class="circle" src="{{ static('images/Lohan.jpg')}}" alt="" 
+                style="width: 50px; display: inline-block; text-align: center;">
+              <img  class="circle" src="{{ static('images/Maurice.png')}}" alt="" 
+                style="width: 50px; height: 50px; display: inline-block; text-align: center;">
+              <img  class="circle" src="{{ static('images/Ntsibane.png')}}" alt="" 
+                style="width: 50px; display: inline-block; text-align: center;">
+              <img  class="circle" src="{{ static('images/Omarjee.png')}}" alt="" 
+                style="width: 50px; display: inline-block; text-align: center;">
+              <img  class="circle" src="{{ static('images/Sean.jpg')}}" alt="" 
+                style="width: 50px; display: inline-block; text-align: center;">
+
+            <p>
+              PROF NNAMDI NWULU; DR LUCA MAZZOLA; ANUSHKA SOMA-PATEL; AKHONA DAMANE;
+              CAROLINE DAMA; HEMASH KALA; IAN PUTTER; LOHAN SPIES; MAURICE CRESPI;
+              DR NTSIBANE NTLATLAPA; MUHAMMAD ZUBAIR OMARJEE; SEAN MOUTON.
+            </p>
+            <br>
+            <button class="read-more"><i class="icon-caret-down"></i></button>
           </div>
         </div>
       </div>
-    {% endfor %}
+    </div>
 
 
 
