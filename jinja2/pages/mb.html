@@ -125,7 +125,7 @@
       </div>
     </div>
 
-    {% if event %}
+    {% for event in events if event %}
         <div class="flip-out-intro header full-height">
         <div class="fixed-wrapper">
           <div class="background">
@@ -159,7 +159,7 @@
           </div>
         </div>
       </div>
-    {% endif %}
+    {% endfor %}
 
 
 
