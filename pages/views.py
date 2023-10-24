@@ -7,6 +7,7 @@ from contact.forms import UserMessageForm
 from facilitators.models import Facilitators
 from newsletters.forms import NewsletterEmailForm
 from partners.models import Partners
+from program.models import Event
 from projects.models import Projects
 from repository.models import RepoInfo
 from .github_api import get_github_commits
@@ -66,5 +67,17 @@ class HomeView(TemplateView):
 
         # newsletter form
         context['newsletter_form'] = NewsletterEmailForm()
+
+        return context
+
+
+# index page view
+class EventView(TemplateView):
+    template_name = 'pages/mb.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['event'] = Event.objects.all()[0:1][0]
 
         return context
