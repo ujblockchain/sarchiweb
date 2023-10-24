@@ -78,6 +78,6 @@ class EventView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        context['event'] = Event.objects.all()[0:1][0]
+        context['events'] = Event.objects.all()[0:1]
 
         return context
