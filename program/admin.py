@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import Program
+from .models import Program, Event
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 from reversion_compare.admin import CompareVersionAdmin
@@ -136,5 +136,49 @@ class ProgramAdmin(ImportExportModelAdmin, CompareVersionAdmin):
     info.short_description = 'Notice'
 
 
+class EventAdmin(ImportExportModelAdmin, CompareVersionAdmin):
+    resource_class = Event
+    list_display = [
+        'title',
+        'speakers',
+        'speaker_one',
+        'speaker_two',
+        'speaker_three',
+        'speaker_four',
+        'timestamp',
+    ]
+    list_display_links = [
+        'title',
+        'speakers',
+        'timestamp',
+    ]
+    search_fields = [
+        'title',
+        'speakers',
+        'speaker_one',
+        'speaker_two',
+        'speaker_three',
+        'speaker_four',
+        'timestamp',
+    ]
+    list_per_page = 50
+    show_full_result_count = True
+    actions_on_top = True
+    actions_on_bottom = True
+    save_as = True
+    save_as_continue = True
+    save_on_top = True
+    fields = [
+        'title',
+        'speakers',
+        'speaker_one',
+        'speaker_two',
+        'speaker_three',
+        'speaker_four',
+        'timestamp',
+    ]
+
+
 # register admin settings
 admin.site.register(Program, ProgramAdmin)
+admin.site.register(Event, EventAdmin)
