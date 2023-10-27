@@ -15,11 +15,11 @@ django-recaptcha==3.0.0
 django-reversion==5.0.6
 django-reversion-compare==0.16.2
 gevent==23.9.1
-greenlet==3.0.0
+greenlet==3.0.1
 huey==2.5.0
 Jinja2==3.1.2
 model-bakery==1.16.0
-Pillow==10.0.1
+Pillow==10.1.0
 psycopg2==2.9.9
 psycopg2-binary==2.9.9
 python-dateutil==2.8.2
