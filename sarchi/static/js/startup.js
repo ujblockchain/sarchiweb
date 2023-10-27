@@ -1,11 +1,3 @@
-/*!
- * Startup v1.0.5
- * Materialize theme
- * http://materializecss.com/themes.html
- * Personal Use License
- * by Alan Chang
- */
-
 (function ($) {
   $(document).ready(function(){
 
