@@ -10,7 +10,13 @@
                 <!-- Progress -->
                 <div class="progress">
                     <div class="progress-bar" role="progressbar" style="width: {{project.project_progress}}%;" aria-valuenow="30"
-                        aria-valuemin="0" aria-valuemax="{{project.project_progress}}"><span> Private Commit: {{project.project_commit_count}} <small>{{project.project_progress}}%</small></span> </div>
+                        aria-valuemin="0" aria-valuemax="{{project.project_progress}}">
+                        {% if project.project_progress >= 40 %}
+                            <span> Private Commit: {{project.project_commit_count}} <small>{{project.project_progress}}%</small></span> 
+                        {% else %}
+                            <span>Progress<small>{{project.project_progress}}%</small></span> 
+                        {% endif %}    
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col">
