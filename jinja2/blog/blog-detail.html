@@ -4,6 +4,33 @@
 {# import macro #}
 {% from "macros/nav.html" import  navPathDisplay as pathNav %}
 
+{# override meta block #}
+{% block metaTag %}
+    <meta name="description" content="{{post.post_summary|truncate(200, true)}}" />
+    <meta name="keywords"
+      content="UJ, UJ Blockchain, Blockchain UJ, SARCHi UJ, UJ SARCHi, University of Johannesburg, Johannesburg, Blockchain, Blog, South Africa, Johannesburg, Consensus, Smart Contracts, Governance, Decentralization, Distributed, Ledger, Technology, Distributed Ledgers, Prof Nnamdi Nwulu, Nnamdi Nwulu, Dr Tebello Ntsiki Don Mathaba, Tebello Ntsiki Don Mathaba">
+    <meta name="author" content="UJ Blockchain" />
+{% endblock metaTag %} 
+
+{# Facebook meta override #}
+{% block FBMeta %}
+  <meta property="og:description"
+    content="{{post.post_summary|truncate(200, true)}}">
+{% endblock FBMeta %}
+{% block FBMetaLink %}
+    <meta property="og:url" content="{{ url('blog_details', args=[post.id, post.slug]) }}">
+{% endblock FBMetaLink %}
+
+{# twitter meta override #}
+{% block TwitterMeta %}
+    <meta name="twitter:description"
+        content="{{post.post_summary|truncate(200, true)}}">
+{% endblock TwitterMeta %}
+{% block TwitterMetaImage %}
+    <meta name="twitter:image:alt"
+        content="{{post.post_summary|truncate(200, true)}}">
+{% endblock TwitterMetaImage %} 
+
 {# override head block#}
 {% block head %}{{pathNav()}}{% endblock head %}
 
@@ -17,7 +44,7 @@
         <h1>{{post.title|title}} </h1>
         <p>{{post.post_summary}}</p>
         <a href="https://github.com/ujblockchain" class="btn" target="_blank">Repository</a>
-        <a href="https://scholar.google.gr/citations?user=CzQ1lyYAAAAJ&hl=en" class="btn btn-inverse" target="_blank">Research</a>    </div>
+        <a href="https://scholar.google.gr/citations?user=CzQ1lyYAAAAJ&hl=en" class="btn btn-inverse" target="_blank">Research</a></div>
   </section>
 {% endblock headIntro %}
 

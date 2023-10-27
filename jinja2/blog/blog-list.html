@@ -79,6 +79,8 @@
                     {% endfor %}
                 </div>
 
+                {# pagination using only jinja, no js #}
+                
                 {% if is_paginated %}
                     {# init total pages #}
                     {% set pagesNum = paginator.page_range|count + 1 %}
@@ -90,7 +92,7 @@
                     {% set currentPage = page_obj.number  %}
                     {# number of pages numbering to show per time #}
                     {% set controller = 4 %}
-                    {# set the rage of the pagination per time#}
+                    {# set the range of the pagination per time#}
                     {% set numberRange = totalItems %}
                         
                     <ul class="pagination justify-content-end">
