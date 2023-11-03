@@ -112,6 +112,12 @@ li.breadcrumb-item a {
     color: wheat !important;
 }
 
+/* header */
+li.nav-header {
+    background: #454d55 !important;
+    opacity: .6;
+    font-weight: bolder !important;
+}
 
 /* model navigation */
 .accent-primary .btn-link, .accent-primary .nav-tabs .nav-link, .accent-primary a:not(.dropdown-item):not(.btn-app):not(.nav-link):not(.brand-link):not(.page-link):not(.btn) {
