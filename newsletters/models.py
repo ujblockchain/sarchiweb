@@ -35,7 +35,9 @@ class SendNewsletterEmails(models.Model):
         primary_key=True,
     )
     subject = models.CharField(max_length=200)
-    group = models.CharField(choices=groups, max_length=100, default='Selected Bootcamp Group')
+    group = models.CharField(
+        choices=groups, max_length=100, default="Selected Bootcamp Group"
+    )
     salutation = message = RichTextUploadingField(
         max_length=5000,
         help_text='to learn more about what format or the style \
@@ -60,5 +62,5 @@ class SendNewsletterEmails(models.Model):
 
     class Meta:
         ordering = ['-date_created']
-        verbose_name = "Send Newsletter Email"
-        verbose_name_plural = "Send Newsletter Emails"
+        verbose_name = 'Send Email'
+        verbose_name_plural = 'Send Emails'
