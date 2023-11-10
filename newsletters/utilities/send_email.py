@@ -19,13 +19,13 @@ def send_email(salutation, subject, message, link, link_title, email_list):
 
     # use email template
     html_content = render_to_string(
-        'email/email.html',
+        "email/email.html",
         {  # pass context to email template
-            'email_subject': email_subject,
-            'email_message': email_message,
-            'email_link': email_link,
-            'email_link_title': email_link_title,
-            'email_salutation': email_salutation,
+            "email_subject": email_subject,
+            "email_message": email_message,
+            "email_link": email_link,
+            "email_link_title": email_link_title,
+            "email_salutation": email_salutation,
         },
     )
 
@@ -35,16 +35,15 @@ def send_email(salutation, subject, message, link, link_title, email_list):
         body=html_content,
         from_email=sender_email,
         bcc=recipient_email,
-        reply_to=[config('ADMIN_REPLY_EMAIL')],
-        headers={'X-PM-Message-Stream': 'outbound', 'Message-ID': f'{randint(1, 1000)}'},
+        reply_to=[config("ADMIN_REPLY_EMAIL")],
+        headers={
+            "X-PM-Message-Stream": "outbound",
+            "Message-ID": f"{randint(1, 1000)}",
+        },
     )
 
     # ensure that email format is html
-    msg.content_subtype = 'html'
-
-    # attached file
-    bootcamp_flyer = f'{settings.PROJECT_DIR}/static/images/bootcamp.jpg'
-    msg.attach_file(bootcamp_flyer)
+    msg.content_subtype = "html"
 
     # send email
     msg.send()
