@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     # third party apps
     'axes',
     'corsheaders',
-    'captcha',
+    'django_recaptcha',
     'reversion',
     'reversion_compare',
     # ckeditor app
