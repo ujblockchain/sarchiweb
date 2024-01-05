@@ -1,6 +1,6 @@
 from django import forms
-from captcha.fields import ReCaptchaField
-from captcha.widgets import ReCaptchaV3
+from django_recaptcha.fields import ReCaptchaField
+from django_recaptcha.widgets import ReCaptchaV3
 from .models import UserContact
 
 
