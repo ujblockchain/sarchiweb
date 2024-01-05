@@ -1,20 +1,37 @@
 <section class="team style-2 padding-top-0 padding-bottom-150" id="team">
     <div class="container">
         <div class="heading text-center">
-            <h2>Our Senior Team Leads </h2>
+            <h2>Our Senior Team Leads</h2>
             <p>We are passionate and dedicated to building real solutions in the Blockchain-Agri-Food Nexus</p>
         </div>
         <ul class="team-small">
-            <li><img src="{{ static('images/prof_nnamdi_nwulu.jpeg') }}" alt="Prof Nnamdi Nwulu" class="image_resize"><a class="hover" href="#.">Prof Nnamdi Nwulu (Director)</a></li>
-            <li><img src="{{ static('images/tshabalala_dimakatso.jpeg') }}" alt="Tshabalala Dimakatso" class="image_resize"><a class="hover" href="#.">Tshabalala Dimakatso (Administrator)</a></li>
-            <li><img src="{{ static('images/timileyin_abiodun.png') }}" alt="Timileyin Abiodun" class="image_resize"><a class="hover" href="#.">Timileyin Abiodun (Researcher)</a></li>
-
+            <li>
+                <img src="{{ static("images/prof_nnamdi_nwulu.jpeg") }}"
+                     alt="Prof Nnamdi Nwulu"
+                     class="image_resize">
+                <a class="hover" href="#.">Prof Nnamdi Nwulu (Director)</a>
+            </li>
+            <li>
+                <img src="{{ static("images/tshabalala_dimakatso.jpeg") }}"
+                     alt="Tshabalala Dimakatso"
+                     class="image_resize">
+                <a class="hover" href="#.">Tshabalala Dimakatso (Administrator)</a>
+            </li>
+            <li>
+                <img src="{{ static("images/timileyin_abiodun.png") }}"
+                     alt="Timileyin Abiodun"
+                     class="image_resize">
+                <a class="hover" href="#.">Timileyin Abiodun (Researcher)</a>
+            </li>
             {# facilitators details #}
             {% for facilitator in facilitators if facilitator %}
-                <li><img src="{{ facilitator.image.url }}" alt="{{facilitator.full_name|title}}" class="image_resize"><a class="hover" href="#.">{{facilitator.full_name|title}} ({{facilitator.role}})</a></li>
+                <li>
+                    <img src="{{ facilitator.image.url }}"
+                         alt="{{ facilitator.full_name|title }}"
+                         class="image_resize">
+                    <a class="hover" href="#.">{{ facilitator.full_name|title }} ({{ facilitator.role }})</a>
+                </li>
             {% endfor %}
-            
-
         </ul>
     </div>
 </section>

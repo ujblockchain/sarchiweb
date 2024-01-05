@@ -1,44 +1,42 @@
 {# extend template #}
 {% extends 'base.html' %}
-
 {# import macro #}
 {% from "macros/nav.html" import  navPathDisplay as pathNav %}
-
 {# override meta block #}
 {% block metaTag %}
-    <meta name="description" content="Mainstreaming Blockchain (MO) is a thought leadership media event taking place on the 24th of October 2023. Organized by the SA/Swiss Chair on Blockchain Technology at the University of Johannesburg, the event is a gathering of blockchain enthusiasts, industry experts, researchers, and thought leaders. Its core focus is to explore the vast potential of blockchain technology within South and Sub-Saharan Africa." />
+    <meta name="description"
+          content="Mainstreaming Blockchain (MO) is a thought leadership media event taking place on the 24th of October 2023. Organized by the SA/Swiss Chair on Blockchain Technology at the University of Johannesburg, the event is a gathering of blockchain enthusiasts, industry experts, researchers, and thought leaders. Its core focus is to explore the vast potential of blockchain technology within South and Sub-Saharan Africa." />
     <meta name="keywords"
-      content="NRF, UJ, UJ Blockchain, Blockchain UJ, SARChI UJ, UJ SARChI, University of Johannesburg, South Africa, Switzerland, Johannesburg, Blockchain, Mainstreaming, Mainstreaming Blockchain, Media, Media Event, Consensus, Smart Contracts, Governance, Decentralization, Distributed, Ledger, Technology, Distributed Ledgers, Prof Nnamdi Nwulu, Nnamdi Nwulu">
+          content="NRF, UJ, UJ Blockchain, Blockchain UJ, SARChI UJ, UJ SARChI, University of Johannesburg, South Africa, Switzerland, Johannesburg, Blockchain, Mainstreaming, Mainstreaming Blockchain, Media, Media Event, Consensus, Smart Contracts, Governance, Decentralization, Distributed, Ledger, Technology, Distributed Ledgers, Prof Nnamdi Nwulu, Nnamdi Nwulu">
     <meta name="author" content="UJ Blockchain" />
-{% endblock metaTag %} 
-
+{% endblock metaTag %}
 {# Facebook meta override #}
 {% block FBMeta %}
-  <meta property="og:description"
-    content="Mainstreaming Blockchain (MO) is a thought leadership media event taking place on the 24th of October 2023. Organized by the SA/Swiss Chair on Blockchain Technology at the University of Johannesburg, the event is a gathering of blockchain enthusiasts, industry experts, researchers, and thought leaders. Its core focus is to explore the vast potential of blockchain technology within South and Sub-Saharan Africa.">
+    <meta property="og:description"
+          content="Mainstreaming Blockchain (MO) is a thought leadership media event taking place on the 24th of October 2023. Organized by the SA/Swiss Chair on Blockchain Technology at the University of Johannesburg, the event is a gathering of blockchain enthusiasts, industry experts, researchers, and thought leaders. Its core focus is to explore the vast potential of blockchain technology within South and Sub-Saharan Africa.">
 {% endblock FBMeta %}
 {% block FBMetaLink %}
-    <meta property="og:url" content="https://blockchain.uj.ac.za/event/registration">
+    <meta property="og:url"
+          content="https://blockchain.uj.ac.za/event/registration">
 {% endblock FBMetaLink %}
-
 {# twitter meta override #}
 {% block TwitterMeta %}
     <meta name="twitter:description"
-        content="Mainstreaming Blockchain (MO) is a thought leadership media event taking place on the 24th of October 2023. Organized by the SA/Swiss Chair on Blockchain Technology at the University of Johannesburg, the event is a gathering of blockchain enthusiasts, industry experts, researchers, and thought leaders. Its core focus is to explore the vast potential of blockchain technology within South and Sub-Saharan Africa.">
+          content="Mainstreaming Blockchain (MO) is a thought leadership media event taking place on the 24th of October 2023. Organized by the SA/Swiss Chair on Blockchain Technology at the University of Johannesburg, the event is a gathering of blockchain enthusiasts, industry experts, researchers, and thought leaders. Its core focus is to explore the vast potential of blockchain technology within South and Sub-Saharan Africa.">
 {% endblock TwitterMeta %}
 {% block TwitterMetaImage %}
     <meta name="twitter:image:alt"
-        content="UJ Blockchain Logo. Mainstreaming Blockchain (MO) is a thought leadership media event taking place on the 24th of October 2023. Organized by the SA/Swiss Chair on Blockchain Technology at the University of Johannesburg, the event is a gathering of blockchain enthusiasts, industry experts, researchers, and thought leaders. Its core focus is to explore the vast potential of blockchain technology within South and Sub-Saharan Africa.">
-{% endblock TwitterMetaImage %}  
-
+          content="UJ Blockchain Logo. Mainstreaming Blockchain (MO) is a thought leadership media event taking place on the 24th of October 2023. Organized by the SA/Swiss Chair on Blockchain Technology at the University of Johannesburg, the event is a gathering of blockchain enthusiasts, industry experts, researchers, and thought leaders. Its core focus is to explore the vast potential of blockchain technology within South and Sub-Saharan Africa.">
+{% endblock TwitterMetaImage %}
 {# override head block#}
-{% block head %}{{pathNav()}}{% endblock head %}
-
+{% block head %}
+    {{ pathNav() }}
+{% endblock head %}
 {# override footer block#}
-{% block footer %}{% endblock footer %}
-
+{% block footer %}
+{% endblock footer %}
 {# extra css style #}
-{% block extraStyle %} 
+{% block extraStyle %}
     <style>
         .form-select:focus {
             border-color: rgba(255, 255, 255, 0.05);
@@ -58,8 +56,7 @@
             color: #fff;
         }
     </style>
-{% endblock extraStyle %} 
-
+{% endblock extraStyle %}
 {# override header intro #}
 {% block headIntro %}
     <section class="simple-head" data-stellar-background-ratio="0.5">
@@ -68,9 +65,10 @@
         <div class="position-center-center">
             <div class="container text-center">
                 <h1>Mainstreaming Blockchain (MO)</h1>
-                <p>Mainstreaming Blockchain (MO) is a thought leadership media event involving
-                    blockchain enthusiasts, industry experts, researchers, and thought leaders. 
-                    Its core focus is to explore the vast potential of blockchain technology 
+                <p>
+                    Mainstreaming Blockchain (MO) is a thought leadership media event involving
+                    blockchain enthusiasts, industry experts, researchers, and thought leaders.
+                    Its core focus is to explore the vast potential of blockchain technology
                     within South and Sub-Saharan Africa.
                 </p>
                 <a href="#mo" class="btn">Signup For Event</a> <a href="/#about" class="btn btn-inverse">About UJ Blockchain</a>
@@ -78,75 +76,102 @@
         </div>
     </section>
 {% endblock headIntro %}
-
-
 {# override content block #}
 {% block content %}
     <!-- Content -->
     <div id="content">
         <section id="mo" class="distri drk padding-top-150 padding-bottom-50">
             <div class="container">
-
                 <div class="contact">
                     <h6>Signup for the Mainstreaming Blockchain (MO) Event (Tuesday, October 24th 2023)</h6>
                     <!-- Success Msg -->
-                    <div id="contact_message" class="success-msg"> <i class="fa fa-paper-plane-o"></i>
-                        Thank You. Your Application has been Submitted</div>
-
+                    <div id="contact_message" class="success-msg">
+                        <i class="fa fa-paper-plane-o"></i>
+                        Thank You. Your Application has been Submitted
+                    </div>
                     <!-- FORM -->
                     <form role="form" id="contact_form" class="contact-form">
-
                         {# csrf #}
                         {{ csrf_input }}
-
                         <ul class="row nolist-style">
                             <li class="col-sm-4">
                                 <label>
-                                    {{program_form.first_name}}
-                                    <p id="error-first_name" class="error-info" style="color: #ef9a9a; text-transform: capitalize; display: none;"></p>
-
+                                    {{ program_form.first_name }}
+                                    <p id="error-first_name"
+                                       class="error-info"
+                                       style="color: #ef9a9a;
+                                              text-transform: capitalize;
+                                              display: none"></p>
                                 </label>
                             </li>
                             <li class="col-sm-4">
                                 <label>
-                                    {{program_form.last_name}}
-                                    <p id="error-last_name" class="error-info" style="color: #ef9a9a; text-transform: capitalize; display: none;"></p>
+                                    {{ program_form.last_name }}
+                                    <p id="error-last_name"
+                                       class="error-info"
+                                       style="color: #ef9a9a;
+                                              text-transform: capitalize;
+                                              display: none"></p>
                                 </label>
                             </li>
                             <li class="col-sm-4">
                                 <label>
-                                    {{program_form.gender}}
-                                    <p id="error-gender" class="error-info" style="color: #ef9a9a; text-transform: capitalize; display: none;"></p>
+                                    {{ program_form.gender }}
+                                    <p id="error-gender"
+                                       class="error-info"
+                                       style="color: #ef9a9a;
+                                              text-transform: capitalize;
+                                              display: none"></p>
                                 </label>
                             </li>
                             <li class="col-sm-4">
                                 <label>
-                                    {{program_form.email}}
-                                    <p id="error-email" class="error-info" style="color: #ef9a9a; text-transform: capitalize; display: none;"></p>
+                                    {{ program_form.email }}
+                                    <p id="error-email"
+                                       class="error-info"
+                                       style="color: #ef9a9a;
+                                              text-transform: capitalize;
+                                              display: none"></p>
                                 </label>
                             </li>
                             <li class="col-sm-4">
                                 <label>
-                                    {{program_form.nationality}}
-                                    <p id="error-nationality" class="error-info" style="color: #ef9a9a; text-transform: capitalize; display: none;"></p>
+                                    {{ program_form.nationality }}
+                                    <p id="error-nationality"
+                                       class="error-info"
+                                       style="color: #ef9a9a;
+                                              text-transform: capitalize;
+                                              display: none"></p>
                                 </label>
                             </li>
                             <li class="col-sm-4">
                                 <label>
-                                    {{program_form.phone_number}}
-                                    <p id="error-phone_number" class="error-info" style="color: #ef9a9a; text-transform: capitalize; display: none;"></p>
+                                    {{ program_form.phone_number }}
+                                    <p id="error-phone_number"
+                                       class="error-info"
+                                       style="color: #ef9a9a;
+                                              text-transform: capitalize;
+                                              display: none"></p>
                                 </label>
                             </li>
                             <li class="col-sm-12">
                                 <label>
-                                    {{program_form.organization}}
-                                    <p id="error-organization" class="error-info" style="color: #ef9a9a; text-transform: capitalize; display: none;"></p>
+                                    {{ program_form.organization }}
+                                    <p id="error-organization"
+                                       class="error-info"
+                                       style="color: #ef9a9a;
+                                              text-transform: capitalize;
+                                              display: none"></p>
                                 </label>
                             </li>
                             <li class="col-sm-12">
                                 <label>
-                                    {{program_form.expectation}}
-                                    <p id="error-expectation" class="error-info" style="color: #ef9a9a; text-transform: capitalize; display: none;"></p>
+                                    {{ program_form.expectation }}
+                                    <p id="error-expectation"
+                                       class="error-info"
+                                       style="color: #ef9a9a;
+                                              text-transform: capitalize;
+                                              display: none"></p>
                                 </label>
                             </li>
                             <li class="col-sm-12 text-left">
@@ -157,13 +182,10 @@
                 </div>
             </div>
         </section>
-
         <!-- Join our community -->
         {% include "partials/pages/__community.html" %}
     </div>
 {% endblock content %}
-
-
 {% block script %}
     <script src="{{ static('js/jquery-1.11.3.min.js') }}"></script>
     <script src="{{ static('js/bootstrap.bundle.js') }}"></script>
@@ -171,12 +193,9 @@
     <script src="{{ static('js/jquery.counterup.min.js') }}"></script>
     <script src="{{ static('js/jquery.magnific-popup.min.js') }}"></script>
 {% endblock script %}
-
 {# external scripts from pages #}
 {% block extraScript %}
     <script src="{{ static('js/program-ajax.js') }}"></script>
-
-    
     <script>
         // control message show interval
         setInterval(() => {
@@ -186,6 +205,5 @@
                 message.style.display = 'none';
             }
         }, 12000)
-      </script>
-    
-    {% endblock extraScript %}
+    </script>
+{% endblock extraScript %}

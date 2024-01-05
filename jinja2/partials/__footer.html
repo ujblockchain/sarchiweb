@@ -1,98 +1,104 @@
 {% import "macros/form.html" as formMessage %}
-
 <footer id="contact">
-  <div class="container">
-    <div class="parthner">
-      <h6>Partnered with Innovative Globally</h6>
-      <ul>
-        {% for partner in partners if partners %}
-          <li>
-            <a href="#."><img src="{{ partner.image.url }}" alt="{{partner.name}}" /></a>
-          </li>
-        {% endfor %}
-      </ul>
-    </div>
-
-    <!-- Contact Us -->
-    <div class="contact">
-      <h6>Get In Touch With us</h6>
-      <!-- Form  Msg -->
-      {% for message in messages if messages %}
-        {# display form #}
-        <div id="contact_message" class="success-msg form_message" style="display: inline-block;">
-          {# icon color check#}
-          {% if message.level_tag == 'success' %}
-            <i class="fa fa-paper-plane-o" style="border: 1px solid #ABD0A8;"></i>
-            {# display message #}
-            {{message.message}}
-          {% else %}
-            <i class="fa fa-paper-plane-o" style="border: 1px solid #ef9a9a;"></i>
-            {# display error message #}
-            {{formMessage.generalErrorDisplay(messages, "msg") }}
-          {% endif %}
-        </div>
-      {% endfor %}
-
-      <!-- FORM -->
-      <form role="form" id="contact_form" class="contact-form" method="post" action="{{ url('contact') }}">
-
-        {# csrf token #}
-        {{ csrf_input }}
-        
-        <ul class="row nolist-style">
-          <li class="col-sm-4">
-            <label>
-              {{form.name}}
-              {{formMessage.errorDisplay(messages, "form", "name") }}
-            </label>
-          </li>
-          <li class="col-sm-4">
-            <label>
-              {{form.email}}
-              {{formMessage.errorDisplay(messages, "form", "email") }}
-            </label>
-          </li>
-          <li class="col-sm-4">
-            <label>
-              {{form.phone}}
-              {{formMessage.errorDisplay(messages, "form", "phone") }}
-            </label>
-          </li>
-          <li class="col-sm-12">
-            <label>
-              <textarea class="form-control" name="message" id="message" rows="5" placeholder="Message"></textarea>
-              {{formMessage.errorDisplay(messages, "form", "message") }}
-            </label>
-          </li>
-          <li>
-            <label>
-              {{form.captcha}}
-            </label>
-          </li>
-          <li class="col-sm-12 text-left">
-            <button type="submit" class="btn btn-inverse" value="submit" id="btn_submit" onClick="proceed();">
-              SUBMIT
-            </button>
-          </li>
-        </ul>
-      </form>
-    </div>
-  </div>
-
-  <!-- Rights -->
-  <div class="rights">
     <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          {# set year #}
-          {% now 'Y' as  year %}
-          <p>© {{year}} UJ Blockchain - SA-Swiss Bilateral Blockchain Research. All Rights Reserved.</p>
+        <div class="parthner">
+            <h6>Partnered with Innovative Globally</h6>
+            <ul>
+                {% for partner in partners if partners %}
+                    <li>
+                        <a href="#.">
+                            <img src="{{ partner.image.url }}" alt="{{ partner.name }}" />
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
-        <div class="col-md-6 text-right">
-          <a href="#faq">Faqs </a> <a href="#about">About UJ Blockchain</a>
-          <a href="#contact">Contact Us</a>
+        <!-- Contact Us -->
+        <div class="contact">
+            <h6>Get In Touch With us</h6>
+            <!-- Form  Msg -->
+            {% for message in messages if messages %}
+                {# display form #}
+                <div id="contact_message"
+                     class="success-msg form_message"
+                     style="display: inline-block">
+                    {# icon color check#}
+                    {% if message.level_tag == 'success' %}
+                        <i class="fa fa-paper-plane-o" style="border: 1px solid #ABD0A8;"></i>
+                        {# display message #}
+                        {{ message.message }}
+                    {% else %}
+                        <i class="fa fa-paper-plane-o" style="border: 1px solid #ef9a9a;"></i>
+                        {# display error message #}
+                        {{ formMessage.generalErrorDisplay(messages, "msg") }}
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <!-- FORM -->
+            <form role="form"
+                  id="contact_form"
+                  class="contact-form"
+                  method="post"
+                  action="{{ url('contact') }}">
+                {# csrf token #}
+                {{ csrf_input }}
+                <ul class="row nolist-style">
+                    <li class="col-sm-4">
+                        <label>
+                            {{ form.name }}
+                            {{ formMessage.errorDisplay(messages, "form", "name") }}
+                        </label>
+                    </li>
+                    <li class="col-sm-4">
+                        <label>
+                            {{ form.email }}
+                            {{ formMessage.errorDisplay(messages, "form", "email") }}
+                        </label>
+                    </li>
+                    <li class="col-sm-4">
+                        <label>
+                            {{ form.phone }}
+                            {{ formMessage.errorDisplay(messages, "form", "phone") }}
+                        </label>
+                    </li>
+                    <li class="col-sm-12">
+                        <label>
+                            <textarea class="form-control"
+                                      name="message"
+                                      id="message"
+                                      rows="5"
+                                      placeholder="Message"></textarea>
+                            {{ formMessage.errorDisplay(messages, "form", "message") }}
+                        </label>
+                    </li>
+                    <li>
+                        <label>{{ form.captcha }}</label>
+                    </li>
+                    <li class="col-sm-12 text-left">
+                        <button type="submit"
+                                class="btn btn-inverse"
+                                value="submit"
+                                id="btn_submit"
+                                onClick="proceed();">SUBMIT</button>
+                    </li>
+                </ul>
+            </form>
         </div>
-      </div>
     </div>
-  </div>
+    <!-- Rights -->
+    <div class="rights">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    {# set year #}
+                    {% now 'Y' as  year %}
+                    <p>© {{ year }} UJ Blockchain - SA-Swiss Bilateral Blockchain Research. All Rights Reserved.</p>
+                </div>
+                <div class="col-md-6 text-right">
+                    <a href="#faq">Faqs</a> <a href="#about">About UJ Blockchain</a>
+                    <a href="#contact">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </footer>

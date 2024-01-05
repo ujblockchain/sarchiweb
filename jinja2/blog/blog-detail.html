@@ -1,462 +1,501 @@
 {# extend template #}
 {% extends 'base.html' %}
-
 {# import macro #}
 {% from "macros/nav.html" import  navPathDisplay as pathNav %}
-
 {# override meta block #}
 {% block metaTag %}
-    <meta name="description" content="{{post.post_summary|truncate(200, true)}}" />
+    <meta name="description"
+          content="{{ post.post_summary|truncate(200, true) }}" />
     <meta name="keywords"
-      content="UJ, UJ Blockchain, Blockchain UJ, SARCHi UJ, UJ SARCHi, University of Johannesburg, Johannesburg, Blockchain, Blog, South Africa, Johannesburg, Consensus, Smart Contracts, Governance, Decentralization, Distributed, Ledger, Technology, Distributed Ledgers, Prof Nnamdi Nwulu, Nnamdi Nwulu, Dr Tebello Ntsiki Don Mathaba, Tebello Ntsiki Don Mathaba">
+          content="UJ, UJ Blockchain, Blockchain UJ, SARCHi UJ, UJ SARCHi, University of Johannesburg, Johannesburg, Blockchain, Blog, South Africa, Johannesburg, Consensus, Smart Contracts, Governance, Decentralization, Distributed, Ledger, Technology, Distributed Ledgers, Prof Nnamdi Nwulu, Nnamdi Nwulu, Dr Tebello Ntsiki Don Mathaba, Tebello Ntsiki Don Mathaba">
     <meta name="author" content="UJ Blockchain" />
-{% endblock metaTag %} 
-
+{% endblock metaTag %}
 {# Facebook meta override #}
 {% block FBMeta %}
-  <meta property="og:description"
-    content="{{post.post_summary|truncate(200, true)}}">
+    <meta property="og:description"
+          content="{{ post.post_summary|truncate(200, true) }}">
 {% endblock FBMeta %}
 {% block FBMetaLink %}
-    <meta property="og:url" content="{{ url('blog_details', args=[post.id, post.slug]) }}">
+    <meta property="og:url"
+          content="{{ url('blog_details', args=[post.id, post.slug]) }}">
 {% endblock FBMetaLink %}
-
 {# twitter meta override #}
 {% block TwitterMeta %}
     <meta name="twitter:description"
-        content="{{post.post_summary|truncate(200, true)}}">
+          content="{{ post.post_summary|truncate(200, true) }}">
 {% endblock TwitterMeta %}
 {% block TwitterMetaImage %}
     <meta name="twitter:image:alt"
-        content="{{post.post_summary|truncate(200, true)}}">
-{% endblock TwitterMetaImage %} 
-
+          content="{{ post.post_summary|truncate(200, true) }}">
+{% endblock TwitterMetaImage %}
 {# override head block#}
-{% block head %}{{pathNav()}}{% endblock head %}
-
+{% block head %}
+    {{ pathNav() }}
+{% endblock head %}
 {# override header intro #}
 {% block headIntro %}
-  <section class="simple-head" data-stellar-background-ratio="0.5" id="hme"> 
+<section class="simple-head" data-stellar-background-ratio="0.5" id="hme">
     <!-- Particles -->
     <div id="particles-js"></div>
     <div class="position-center-center">
-      <div class="container text-center">
-        <h1>{{post.title|title}} </h1>
-        <p>{{post.post_summary}}</p>
-        <a href="https://github.com/ujblockchain" class="btn" target="_blank">Repository</a>
-        <a href="https://scholar.google.gr/citations?user=CzQ1lyYAAAAJ&hl=en" class="btn btn-inverse" target="_blank">Research</a></div>
-  </section>
+        <div class="container text-center">
+            <h1>{{ post.title|title }}</h1>
+            <p>{{ post.post_summary }}</p>
+            <a href="https://github.com/ujblockchain" class="btn" target="_blank">Repository</a>
+            <a href="https://scholar.google.gr/citations?user=CzQ1lyYAAAAJ&hl=en"
+                class="btn btn-inverse"
+                target="_blank">Research</a>
+        </div>
+    </section>
 {% endblock headIntro %}
-
-
 {# override content block #}
 {% block content %}
-
-  <!-- Content -->
-  <div id="content"> 
-    
-    <!-- First Section -->
-    <section class="why-choose padding-top-100 padding-bottom-150" id="about">
-      <div class="container"> 
-        
-        <!-- Intro -->
-        <div class="row">
-          <div class="col-md-7 margin-top-60"> 
-            
-            <!-- Tittle -->
-            <div class="heading margin-bottom-20">
-              <h6 class="margin-bottom-10">South Africa - Switzerland Bilateral Research Chair in Blockchain Technology</h6>
-              <h4>{{post.first_section_title}}</h4>
+    <!-- Content -->
+    <div id="content">
+        <!-- First Section -->
+        <section class="why-choose padding-top-100 padding-bottom-150" id="about">
+            <div class="container">
+                <!-- Intro -->
+                <div class="row">
+                    <div class="col-md-7 margin-top-60">
+                        <!-- Tittle -->
+                        <div class="heading margin-bottom-20">
+                            <h6 class="margin-bottom-10">South Africa - Switzerland Bilateral Research Chair in Blockchain Technology</h6>
+                            <h4>{{ post.first_section_title }}</h4>
+                        </div>
+                        <p>{{ post.first_section_post }}</p>
+                        <div class="ultra-ser">
+                            <span><span class="name">Author &nbsp; - &nbsp;</span> <span>{{ post.author|title }}</span></span>
+                        </div>
+                        <a class="vid-btn margin-top-30 popup-youtube"
+                            href="{{ post.first_section_video_link }}"><i class="fas fa-play-circle"></i> Watch Video
+                            <br>
+                            <span>{{ post.first_section_video_description }}</span></a>
+                    </div>
+                    <!-- Image -->
+                    <div class="col-md-5 text-right">
+                        <img src="{{ post.first_section_image.url }}"
+                                alt="{{ post.title }}"
+                                style="margin-top: 80px">
+                    </div>
+                </div>
+                <!-- Services ROW -->
+                <div class="row">
+                    <!-- Services -->
+                    <div class="col-md-4">
+                        <div class="ib-icon">
+                            <i class="flaticon-smartphone"></i>
+                        </div>
+                        <div class="ib-info">
+                            <h4 class="h6">Peer-to-Peer Transactions</h4>
+                            <p>{{ post.first_section_list_per_desc }}</p>
+                        </div>
+                    </div>
+                    <!-- Services -->
+                    <div class="col-md-4">
+                        <div class="ib-icon">
+                            <i class="flaticon-flat-world-map"></i>
+                        </div>
+                        <div class="ib-info">
+                            <h4 class="h6">Borderless Payments</h4>
+                            <p>{{ post.first_section_list_borderless_application_desc }}</p>
+                        </div>
+                    </div>
+                    <!-- Services -->
+                    <div class="col-md-4">
+                        <div class="ib-icon">
+                            <i class="flaticon-secure-shield"></i>
+                        </div>
+                        <div class="ib-info">
+                            <h4 class="h6">Immutability</h4>
+                            <p>{{ post.first_section_list_platform_security_desc }}</p>
+                        </div>
+                    </div>
+                    <!-- Services -->
+                    <div class="col-md-4">
+                        <div class="ib-icon">
+                            <i class="flaticon-credit-card"></i>
+                        </div>
+                        <div class="ib-info">
+                            <h4 class="h6">Smart Contract</h4>
+                            <p>{{ post.first_section_list_contract_desc }}</p>
+                        </div>
+                    </div>
+                    <!-- Services -->
+                    <div class="col-md-4">
+                        <div class="ib-icon">
+                            <i class="flaticon-wallet"></i>
+                        </div>
+                        <div class="ib-info">
+                            <h4 class="h6">Decentralized Ledger</h4>
+                            <p>{{ post.first_section_list_ledger_desc }}</p>
+                        </div>
+                    </div>
+                    <!-- Services -->
+                    <div class="col-md-4">
+                        <div class="ib-icon">
+                            <i class="flaticon-money"></i>
+                        </div>
+                        <div class="ib-info">
+                            <h4 class="h6">Full Use Case in Agri-Food</h4>
+                            <p>{{ post.first_section_use_case_desc }}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <p>{{post.first_section_post}}</p>
-            <div class="ultra-ser"> <span><span class="name"> Author &nbsp; - &nbsp;</span> <span>{{post.author|title}}</span></span> </div>
-            <a class="vid-btn margin-top-30 popup-youtube" href="{{post.first_section_video_link}}"><i class="fas fa-play-circle"></i> Watch Video <br>
-            <span>{{post.first_section_video_description}}</span></a> </div>
-          
-          <!-- Image -->
-          <div class="col-md-5 text-right"> <img src="{{post.first_section_image.url}}" alt="{{post.title}}" style="margin-top: 80px;"> </div>
-        </div>
-        
-        <!-- Services ROW -->
-        <div class="row"> 
-          
-          <!-- Services -->
-          <div class="col-md-4">
-            <div class="ib-icon"> <i class="flaticon-smartphone"></i> </div>
-            <div class="ib-info">
-              <h4 class="h6">Peer-to-Peer Transactions</h4>
-              <p>{{post.first_section_list_per_desc}}</p>
+        </section>
+        <!-- Second Section -->
+        <section class="distri drk padding-top-150 padding-bottom-150 " id="token">
+            <div class="container">
+                <div class="row">
+                    <!-- Token  -->
+                    <div class="col-lg-7">
+                        <h3>{{ post.second_section_title|title }}</h3>
+                        <p>{{ post.second_section_post }}</p>
+                        <!-- Progress -->
+                        <div class="progress">
+                            <div class="progress-bar"
+                                    role="progressbar"
+                                    style="width: 100%"
+                                    aria-valuenow="100"
+                                    aria-valuemin="0"
+                                    aria-valuemax="150">
+                                <span><small></small></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h6>{{ post.second_section_short_stat_name_1 }}</h6>
+                                <span>{{ post.second_section_short_stat_metric_number_1 }}</span>
+                            </div>
+                            <div class="col">
+                                <h6>{{ post.second_section_short_stat_name_2 }}</h6>
+                                <span>{{ post.second_section_short_stat_metric_number_2 }}</span>
+                            </div>
+                            <div class="col">
+                                <h6>{{ post.second_section_short_stat_name_3 }}</h6>
+                                <span>{{ post.second_section_short_stat_metric_number_3 }}</span>
+                            </div>
+                        </div>
+                        <!-- CountdownEnd -->
+                        <div class="countdown">
+                            <h6>More on {{ post.second_section_title|title }}</h6>
+                            <!-- Countdown-->
+                            <p>{{ post.second_section_second_post }}</p>
+                        </div>
+                    </div>
+                    <!-- Total Distribution -->
+                    <div class="col-lg-5">
+                        <h3>
+                            {{ post.second_section_long_stat_title }} <b>{{ post.second_section_long_stat_title_metric_number }}</b>
+                        </h3>
+                        <p>{{ post.second_section_long_stat_about_metric }}</p>
+                        <div class="countdown-all">
+                            <!-- Countdown -->
+                            <ul class="row">
+                                <!-- Days -->
+                                <li class="col-md-3">
+                                        <article> <span class="days">{{ post.second_section_long_stat_short_metric_number_1 }}</span>
+                                        <p class="days_ref">{{ post.second_section_long_stat_short_name_1|title }}</p>
+                                    </article>
+                                </li>
+                                <!-- Hours -->
+                                <li class="col-md-3">
+                                    <article> <span class="hours">{{ post.second_section_long_stat_short_metric_number_2 }}</span>
+                                        <p class="hours_ref">{{ post.second_section_long_stat_short_stat_name_2|title }}</p>
+                                    </article>  
+                                </li>
+                                <!-- Mintes -->
+                                <li class="col-md-3">
+                                    <article><span class="minutes">{{ post.second_section_long_stat_short_metric_number_3 }}</span>
+                                        <p class="minutes_ref">{{ post.second_section_long_stat_short_name_3|title }}</p>
+                                    </article>
+                                </li>
+                                <!-- Seconds -->
+                                <li class="col-md-3">
+                                    <article><span class="seconds">{{ post.second_section_long_stat_short_metric_number_4 }}</span>
+                                        <p class="seconds_ref">{{ post.second_section_long_stat_short_name_4|title }}</p>
+                                    </article>
+                                </li>
+                            </ul>
+                            <a href="https://github.com/ujblockchain" class="btn" target="_blank">Repository</a>
+                            <a href="https://scholar.google.gr/citations?user=CzQ1lyYAAAAJ&hl=en"
+                                class="btn btn-inverse"
+                                target="_blank">Research</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          
-          <!-- Services -->
-          <div class="col-md-4">
-            <div class="ib-icon"> <i class="flaticon-flat-world-map"></i> </div>
-            <div class="ib-info">
-              <h4 class="h6">Borderless Payments</h4>
-              <p>{{post.first_section_list_borderless_application_desc}}</p>
-            </div>
-          </div>
-          
-          <!-- Services -->
-          <div class="col-md-4">
-            <div class="ib-icon"> <i class="flaticon-secure-shield"></i> </div>
-            <div class="ib-info">
-              <h4 class="h6">Immutability</h4>
-              <p>{{post.first_section_list_platform_security_desc}}</p>
-            </div>
-          </div>
-          
-          <!-- Services -->
-          <div class="col-md-4">
-            <div class="ib-icon"> <i class="flaticon-credit-card"></i> </div>
-            <div class="ib-info">
-              <h4 class="h6">Smart Contract </h4>
-              <p>{{post.first_section_list_contract_desc}}</p>
-            </div>
-          </div>
-          
-          <!-- Services -->
-          <div class="col-md-4">
-            <div class="ib-icon"> <i class="flaticon-wallet"></i> </div>
-            <div class="ib-info">
-              <h4 class="h6">Decentralized Ledger</h4>
-              <p>{{post.first_section_list_ledger_desc}}</p>
-            </div>
-          </div>
-          
-          <!-- Services -->
-          <div class="col-md-4">
-            <div class="ib-icon"> <i class="flaticon-money"></i> </div>
-            <div class="ib-info">
-              <h4 class="h6">Full Use Case in Agri-Food</h4>
-              <p>{{post.first_section_use_case_desc}}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Second Section -->
-    <section class="distri drk padding-top-150 padding-bottom-150 " id="token">
-      <div class="container">
-        <div class="row"> 
-          
-          <!-- Token  -->
-          <div class="col-lg-7">
-            <h3>{{post.second_section_title|title}}</h3>
-            <p>{{post.second_section_post}}</p>
-            
-            <!-- Progress -->
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="150"><span><small></small></span> </div>
-            </div>
-            <div class="row">
-              <div class="col">
-                <h6> {{post.second_section_short_stat_name_1}}</h6>
-                <span>{{post.second_section_short_stat_metric_number_1}}</span> </div>
-              <div class="col">
-                <h6> {{post.second_section_short_stat_name_2}}</h6>
-                <span>{{post.second_section_short_stat_metric_number_2}}</span> </div>
-              <div class="col">
-                <h6> {{post.second_section_short_stat_name_3}}</h6>
-                <span>{{post.second_section_short_stat_metric_number_3}}</span> </div>
-            </div>
-            
-            <!-- CountdownEnd -->
-            <div class="countdown">
-              <h6>More on {{post.second_section_title|title}}</h6>
-              <!-- Countdown-->
-              <p>{{post.second_section_second_post}}</p>
-            </div>
-          </div>
-          
-          <!-- Total Distribution -->
-          <div class="col-lg-5">
-            <h3>{{post.second_section_long_stat_title}} <b>{{post.second_section_long_stat_title_metric_number}}</b></h3>
-            <p>{{post.second_section_long_stat_about_metric}}</p>
-            <div class="countdown-all"> 
-              
-              <!-- Countdown -->
-              <ul class="row">
-                <!-- Days -->
-                <li class="col-md-3">
-                  <article> <span class="days">{{post.second_section_long_stat_short_metric_number_1}}</span>
-                    <p class="days_ref">{{post.second_section_long_stat_short_name_1|title}}</p>
-                  </article>
-                </li>
-                <!-- Hours -->
-                <li class="col-md-3">
-                  <article> <span class="hours">{{post.second_section_long_stat_short_metric_number_2}}</span>
-                    <p class="hours_ref">{{post.second_section_long_stat_short_stat_name_2|title}}</p>
-                  </article>
-                </li>
-                <!-- Mintes -->
-                <li class="col-md-3">
-                  <article><span class="minutes">{{post.second_section_long_stat_short_metric_number_3}}</span>
-                    <p class="minutes_ref">{{post.second_section_long_stat_short_name_3|title}}</p>
-                  </article>
-                </li>
-                <!-- Seconds -->
-                <li class="col-md-3">
-                  <article><span class="seconds">{{post.second_section_long_stat_short_metric_number_4}}</span>
-                    <p class="seconds_ref">{{post.second_section_long_stat_short_name_4|title}}</p>
-                  </article>
-                </li>
-              </ul>
-
-              <a href="https://github.com/ujblockchain" class="btn" target="_blank">Repository</a> 
-              <a href="https://scholar.google.gr/citations?user=CzQ1lyYAAAAJ&hl=en" class="btn btn-inverse" target="_blank">Research</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    
+        </section>
     <!-- Third Section -->
-    <section class="why-choose padding-top-150 padding-bottom-150" id="about">
-      <div class="container"> 
-        
-        <div class="row">
-          <div class="col-md-7 margin-top-60"> 
-            
-            <!-- Tittle -->
-            <div class="heading margin-bottom-20">
-              <h6 class="margin-bottom-10">Build, Test and Deploy</h6>
-              <h4>{{post.third_section_title}}</h4>
+        <section class="why-choose padding-top-150 padding-bottom-150" id="about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7 margin-top-60">
+                        <!-- Tittle -->
+                        <div class="heading margin-bottom-20">
+                            <h6 class="margin-bottom-10">Build, Test and Deploy</h6>
+                            <h4>{{ post.third_section_title }}</h4>
+                        </div>
+                        <p>{{ post.third_section_post }}</p>
+                        <div class="ultra-ser">
+                            <span><span class="name">Author &nbsp; - &nbsp;</span> <span>{{ post.author|title }}</span></span>
+                        </div>
+                        <a class="vid-btn margin-top-30 popup-youtube"
+                            href="{{ post.third_section_video_link }}"><i class="fas fa-play-circle"></i> Watch Video
+                            <br>
+                            <span>{{ post.third_section_video_description }}</span></a>
+                    </div>
+                    <!-- Image -->
+                    <div class="col-md-5 text-right">
+                        <img src="{{ post.third_section_image.url }}"
+                                alt="{{ post.third_section_title }}"
+                                style="margin-top: 80px">
+                    </div>
+                </div>
+                <!-- Services ROW -->
+                <div class="row">
+                    <!-- Services -->
+                    <div class="col-md-4">
+                        <div class="ib-icon">
+                            <i class="flaticon-smartphone"></i>
+                        </div>
+                        <div class="ib-info">
+                            <h4 class="h6">{{ post.third_section_short_stat_1_name }}</h4>
+                            <p>{{ post.third_section_short_stat_1_description }}</p>
+                        </div>
+                    </div>
+                    <!-- Services -->
+                    <div class="col-md-4">
+                        <div class="ib-icon">
+                            <i class="flaticon-flat-world-map"></i>
+                        </div>
+                        <div class="ib-info">
+                            <h4 class="h6">{{ post.third_section_short_stat_2_name }}</h4>
+                            <p>{{ post.third_section_short_stat_2_description }}</p>
+                        </div>
+                    </div>
+                    <!-- Services -->
+                    <div class="col-md-4">
+                        <div class="ib-icon">
+                            <i class="flaticon-secure-shield"></i>
+                        </div>
+                        <div class="ib-info">
+                            <h4 class="h6">{{ post.third_section_short_stat_3_name }}</h4>
+                            <p>{{ post.third_section_short_stat_3_description }}</p>
+                        </div>
+                    </div>
+                    <!-- Services -->
+                    <div class="col-md-4">
+                        <div class="ib-icon">
+                            <i class="flaticon-credit-card"></i>
+                        </div>
+                        <div class="ib-info">
+                            <h4 class="h6">{{ post.third_section_short_stat_4_name }}</h4>
+                            <p>{{ post.third_section_short_stat_4_description }}</p>
+                        </div>
+                    </div>
+                    <!-- Services -->
+                    <div class="col-md-4">
+                        <div class="ib-icon">
+                            <i class="flaticon-wallet"></i>
+                        </div>
+                        <div class="ib-info">
+                            <h4 class="h6">{{ post.third_section_short_stat_5_name }}</h4>
+                            <p>{{ post.third_section_short_stat_5_description }}</p>
+                        </div>
+                    </div>
+                    <!-- Services -->
+                    <div class="col-md-4">
+                        <div class="ib-icon">
+                            <i class="flaticon-money"></i>
+                        </div>
+                        <div class="ib-info">
+                            <h4 class="h6">{{ post.third_section_short_stat_6_name }}</h4>
+                            <p>{{ post.third_section_short_stat_6_description }}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <p>{{post.third_section_post}}</p>
-            <div class="ultra-ser"> <span><span class="name"> Author &nbsp; - &nbsp;</span> <span>{{post.author|title}}</span></span> </div>
-            <a class="vid-btn margin-top-30 popup-youtube" href="{{post.third_section_video_link}}"><i class="fas fa-play-circle"></i> Watch Video <br>
-            <span>{{post.third_section_video_description}}</span></a> </div>
-          
-          <!-- Image -->
-          <div class="col-md-5 text-right"> <img src="{{post.third_section_image.url}}" alt="{{post.third_section_title}}" style="margin-top: 80px;"> </div>
-        </div>
-        
-        <!-- Services ROW -->
-        <div class="row"> 
-          
-          <!-- Services -->
-          <div class="col-md-4">
-            <div class="ib-icon"> <i class="flaticon-smartphone"></i> </div>
-            <div class="ib-info">
-              <h4 class="h6">{{post.third_section_short_stat_1_name}}</h4>
-              <p>{{post.third_section_short_stat_1_description}}</p>
+        </section>
+        <!-- Fourth Section -->
+        <section class="distri drk padding-top-150 padding-bottom-150 " id="token">
+            <div class="container">
+                <div class="row">
+                    <!-- Token  -->
+                    <div class="col-lg-7">
+                        <h3>{{ post.fourth_section_title|title }}</h3>
+                        <p>{{ post.fourth_section_post }}</p>
+                        <!-- Progress -->
+                        <div class="progress">
+                            <div class="progress-bar"
+                                    role="progressbar"
+                                    style="width: 100%"
+                                    aria-valuenow="100"
+                                    aria-valuemin="0"
+                                    aria-valuemax="150">
+                                <span><small></small></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h6>{{ post.fourth_section_short_stat_name_1 }}</h6>
+                                <span>{{ post.fourth_section_short_stat_metric_number_1 }}</span>
+                            </div>
+                            <div class="col">
+                                <h6>{{ post.fourth_section_short_stat_name_2 }}</h6>
+                                <span>{{ post.fourth_section_short_stat_metric_number_2 }}</span>
+                            </div>
+                            <div class="col">
+                                <h6>{{ post.fourth_section_short_stat_name_3 }}</h6>
+                                <span>{{ post.fourth_section_short_stat_metric_number_3 }}</span>
+                            </div>
+                        </div>
+                        <!-- CountdownEnd -->
+                        <div class="countdown">
+                            <h6>More on {{ post.fourth_section_title|title }}</h6>
+                            <!-- Countdown-->
+                            <p>{{ post.fourth_section_second_post }}</p>
+                        </div>
+                    </div>
+                    <!--  Distribution -->
+                    <div class="col-lg-5">
+                        <h3>
+                            {{ post.fourth_section_long_stat_title }} <b>{{ post.fourth_section_long_stat_title_metric_number }}</b>
+                        </h3>
+                        <p>{{ post.fourth_section_long_stat_about_metric }}</p>
+                        <div class="countdown-all">
+                            <!-- Countdown -->
+                            <ul class="row">
+                                <!-- Days -->
+                                <li class="col-md-3">
+                                        <article> <span class="days">{{ post.fourth_section_long_stat_short_metric_number_1 }}</span>
+                                        <p class="days_ref">{{ post.fourth_section_long_stat_short_name_1|title }}</p>
+                                    </article>
+                                </li>
+                                        <!-- Hours -->
+                                <li class="col-md-3">
+                                    <article> <span class="hours">{{ post.fourth_section_long_stat_short_metric_number_2 }}</span>
+                                        <p class="hours_ref">{{ post.fourth_section_long_stat_short_stat_name_2|title }}</p>
+                                    </article>
+                                </li>
+                                <!-- Mintes -->
+                                <li class="col-md-3">
+                                    <article><span class="minutes">{{ post.fourth_section_long_stat_short_metric_number_3 }}</span>
+                                        <p class="minutes_ref">{{ post.fourth_section_long_stat_short_name_3|title }}</p>
+                                    </article>
+                                </li>
+                                <!-- Seconds -->
+                                <li class="col-md-3">
+                                    <article><span class="seconds">{{ post.fourth_section_long_stat_short_metric_number_4 }}</span>
+                                        <p class="seconds_ref">{{ post.fourth_section_long_stat_short_name_4|title }}</p>
+                                    </article>
+                                </li>
+                            </ul>
+                            <a href="https://github.com/ujblockchain" class="btn" target="_blank">Repository</a>
+                            <a href="https://scholar.google.gr/citations?user=CzQ1lyYAAAAJ&hl=en"
+                            class="btn btn-inverse"
+                            target="_blank">Research</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          
-          <!-- Services -->
-          <div class="col-md-4">
-            <div class="ib-icon"> <i class="flaticon-flat-world-map"></i> </div>
-            <div class="ib-info">
-              <h4 class="h6">{{post.third_section_short_stat_2_name}}</h4>
-              <p>{{post.third_section_short_stat_2_description}}</p>
+        </section>
+        <!-- Fifth Section -->
+        <section class="why-choose padding-top-150 padding-bottom-150" id="about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7 margin-top-60">
+                        <!-- Tittle -->
+                        <div class="heading margin-bottom-20">
+                            <h6 class="margin-bottom-10">We Build, Test and Deploy</h6>
+                            <h4>{{ post.fifth_section_title }}</h4>
+                        </div>
+                        <p>{{ post.fifth_section_post }}</p>
+                        <div class="ultra-ser">
+                            <span><span class="name">Author &nbsp; - &nbsp;</span> <span>{{ post.author|title }}</span></span>
+                        </div>
+                        <a class="vid-btn margin-top-30 popup-youtube"
+                            href="{{ post.fifth_section_video_link }}"><i class="fas fa-play-circle"></i> Watch Video
+                            <br>
+                            <span>{{ post.fifth_section_video_description }}</span></a>
+                    </div>
+                    <!-- Image -->
+                    <div class="col-md-5 text-right">
+                        <img src="{{ post.fifth_section_image.url }}"
+                                alt="{{ post.fifth_section_title }}"
+                                style="margin-top: 80px">
+                    </div>
+                </div>
+                <!-- Services ROW -->
+                <div class="row">
+                    <!-- Services -->
+                    <div class="col-md-4">
+                        <div class="ib-icon">
+                            <i class="flaticon-smartphone"></i>
+                        </div>
+                        <div class="ib-info">
+                            <h4 class="h6">{{ post.fifth_section_short_stat_1_name }}</h4>
+                            <p>{{ post.fifth_section_short_stat_1_description }}</p>
+                        </div>
+                    </div>
+                    <!-- Services -->
+                    <div class="col-md-4">
+                        <div class="ib-icon">
+                            <i class="flaticon-flat-world-map"></i>
+                        </div>
+                        <div class="ib-info">
+                            <h4 class="h6">{{ post.fifth_section_short_stat_2_name }}</h4>
+                            <p>{{ post.fifth_section_short_stat_2_description }}</p>
+                        </div>
+                    </div>
+                    <!-- Services -->
+                    <div class="col-md-4">
+                        <div class="ib-icon">
+                            <i class="flaticon-secure-shield"></i>
+                        </div>
+                        <div class="ib-info">
+                            <h4 class="h6">{{ post.fifth_section_short_stat_3_name }}</h4>
+                            <p>{{ post.fifth_section_short_stat_3_description }}</p>
+                        </div>
+                    </div>
+                    <!-- Services -->
+                    <div class="col-md-4">
+                        <div class="ib-icon">
+                            <i class="flaticon-credit-card"></i>
+                        </div>
+                        <div class="ib-info">
+                            <h4 class="h6">{{ post.fifth_section_short_stat_4_name }}</h4>
+                            <p>{{ post.fifth_section_short_stat_4_description }}</p>
+                        </div>
+                    </div>
+                    <!-- Services -->
+                    <div class="col-md-4">
+                        <div class="ib-icon">
+                            <i class="flaticon-wallet"></i>
+                        </div>
+                        <div class="ib-info">
+                            <h4 class="h6">{{ post.fifth_section_short_stat_5_name }}</h4>
+                            <p>{{ post.fifth_section_short_stat_5_description }}</p>
+                        </div>
+                    </div>
+                    <!-- Services -->
+                    <div class="col-md-4">
+                        <div class="ib-icon">
+                            <i class="flaticon-money"></i>
+                        </div>
+                        <div class="ib-info">
+                            <h4 class="h6">{{ post.fifth_section_short_stat_6_name }}</h4>
+                            <p>{{ post.fifth_section_short_stat_6_description }}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          
-          <!-- Services -->
-          <div class="col-md-4">
-            <div class="ib-icon"> <i class="flaticon-secure-shield"></i> </div>
-            <div class="ib-info">
-              <h4 class="h6">{{post.third_section_short_stat_3_name}}</h4>
-              <p>{{post.third_section_short_stat_3_description}}</p>
-            </div>
-          </div>
-          
-          <!-- Services -->
-          <div class="col-md-4">
-            <div class="ib-icon"> <i class="flaticon-credit-card"></i> </div>
-            <div class="ib-info">
-              <h4 class="h6">{{post.third_section_short_stat_4_name}}</h4>
-              <p>{{post.third_section_short_stat_4_description}}</p>
-            </div>
-          </div>
-          
-          <!-- Services -->
-          <div class="col-md-4">
-            <div class="ib-icon"> <i class="flaticon-wallet"></i> </div>
-            <div class="ib-info">
-              <h4 class="h6">{{post.third_section_short_stat_5_name}}</h4>
-              <p>{{post.third_section_short_stat_5_description}}</p>
-            </div>
-          </div>
-          
-          <!-- Services -->
-          <div class="col-md-4">
-            <div class="ib-icon"> <i class="flaticon-money"></i> </div>
-            <div class="ib-info">
-              <h4 class="h6">{{post.third_section_short_stat_6_name}}</h4>
-              <p>{{post.third_section_short_stat_6_description}}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Fourth Section -->
-    <section class="distri drk padding-top-150 padding-bottom-150 " id="token">
-      <div class="container">
-        <div class="row"> 
-          
-          <!-- Token  -->
-          <div class="col-lg-7">
-            <h3>{{post.fourth_section_title|title}}</h3>
-            <p>{{post.fourth_section_post}}</p>
-            
-            <!-- Progress -->
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="150"><span><small></small></span> </div>
-            </div>
-            <div class="row">
-              <div class="col">
-                <h6> {{post.fourth_section_short_stat_name_1}}</h6>
-                <span>{{post.fourth_section_short_stat_metric_number_1}}</span> </div>
-              <div class="col">
-                <h6> {{post.fourth_section_short_stat_name_2}}</h6>
-                <span>{{post.fourth_section_short_stat_metric_number_2}}</span> </div>
-              <div class="col">
-                <h6> {{post.fourth_section_short_stat_name_3}}</h6>
-                <span>{{post.fourth_section_short_stat_metric_number_3}}</span> </div>
-            </div>
-            
-            <!-- CountdownEnd -->
-            <div class="countdown">
-              <h6>More on {{post.fourth_section_title|title}}</h6>
-              <!-- Countdown-->
-              <p>{{post.fourth_section_second_post}}</p>
-            </div>
-          </div>
-          
-          <!--  Distribution -->
-          <div class="col-lg-5">
-            <h3>{{post.fourth_section_long_stat_title}} <b>{{post.fourth_section_long_stat_title_metric_number}}</b></h3>
-            <p>{{post.fourth_section_long_stat_about_metric}}</p>
-            <div class="countdown-all"> 
-              
-              <!-- Countdown -->
-              <ul class="row">
-                <!-- Days -->
-                <li class="col-md-3">
-                  <article> <span class="days">{{post.fourth_section_long_stat_short_metric_number_1}}</span>
-                    <p class="days_ref">{{post.fourth_section_long_stat_short_name_1|title}}</p>
-                  </article>
-                </li>
-                <!-- Hours -->
-                <li class="col-md-3">
-                  <article> <span class="hours">{{post.fourth_section_long_stat_short_metric_number_2}}</span>
-                    <p class="hours_ref">{{post.fourth_section_long_stat_short_stat_name_2|title}}</p>
-                  </article>
-                </li>
-                <!-- Mintes -->
-                <li class="col-md-3">
-                  <article><span class="minutes">{{post.fourth_section_long_stat_short_metric_number_3}}</span>
-                    <p class="minutes_ref">{{post.fourth_section_long_stat_short_name_3|title}}</p>
-                  </article>
-                </li>
-                <!-- Seconds -->
-                <li class="col-md-3">
-                  <article><span class="seconds">{{post.fourth_section_long_stat_short_metric_number_4}}</span>
-                    <p class="seconds_ref">{{post.fourth_section_long_stat_short_name_4|title}}</p>
-                  </article>
-                </li>
-              </ul>
-
-              <a href="https://github.com/ujblockchain" class="btn" target="_blank">Repository</a> 
-              <a href="https://scholar.google.gr/citations?user=CzQ1lyYAAAAJ&hl=en" class="btn btn-inverse" target="_blank">Research</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Fifth Section -->
-    <section class="why-choose padding-top-150 padding-bottom-150" id="about">
-      <div class="container"> 
-        
-        <div class="row">
-          <div class="col-md-7 margin-top-60"> 
-            
-            <!-- Tittle -->
-            <div class="heading margin-bottom-20">
-              <h6 class="margin-bottom-10">We Build, Test and Deploy</h6>
-              <h4>{{post.fifth_section_title}}</h4>
-            </div>
-            <p>{{post.fifth_section_post}}</p>
-            <div class="ultra-ser"> <span><span class="name"> Author &nbsp; - &nbsp;</span> <span>{{post.author|title}}</span></span> </div>
-            <a class="vid-btn margin-top-30 popup-youtube" href="{{post.fifth_section_video_link}}"><i class="fas fa-play-circle"></i> Watch Video <br>
-            <span>{{post.fifth_section_video_description}}</span></a> </div>
-          
-          <!-- Image -->
-          <div class="col-md-5 text-right"> <img src="{{post.fifth_section_image.url}}" alt="{{post.fifth_section_title}}" style="margin-top: 80px;"> </div>
-        </div>
-        
-        <!-- Services ROW -->
-        <div class="row"> 
-          
-          <!-- Services -->
-          <div class="col-md-4">
-            <div class="ib-icon"> <i class="flaticon-smartphone"></i> </div>
-            <div class="ib-info">
-              <h4 class="h6">{{post.fifth_section_short_stat_1_name}}</h4>
-              <p>{{post.fifth_section_short_stat_1_description}}</p>
-            </div>
-          </div>
-          
-          <!-- Services -->
-          <div class="col-md-4">
-            <div class="ib-icon"> <i class="flaticon-flat-world-map"></i> </div>
-            <div class="ib-info">
-              <h4 class="h6">{{post.fifth_section_short_stat_2_name}}</h4>
-              <p>{{post.fifth_section_short_stat_2_description}}</p>
-            </div>
-          </div>
-          
-          <!-- Services -->
-          <div class="col-md-4">
-            <div class="ib-icon"> <i class="flaticon-secure-shield"></i> </div>
-            <div class="ib-info">
-              <h4 class="h6">{{post.fifth_section_short_stat_3_name}}</h4>
-              <p>{{post.fifth_section_short_stat_3_description}}</p>
-            </div>
-          </div>
-          
-          <!-- Services -->
-          <div class="col-md-4">
-            <div class="ib-icon"> <i class="flaticon-credit-card"></i> </div>
-            <div class="ib-info">
-              <h4 class="h6">{{post.fifth_section_short_stat_4_name}}</h4>
-              <p>{{post.fifth_section_short_stat_4_description}}</p>
-            </div>
-          </div>
-          
-          <!-- Services -->
-          <div class="col-md-4">
-            <div class="ib-icon"> <i class="flaticon-wallet"></i> </div>
-            <div class="ib-info">
-              <h4 class="h6">{{post.fifth_section_short_stat_5_name}}</h4>
-              <p>{{post.fifth_section_short_stat_5_description}}</p>
-            </div>
-          </div>
-          
-          <!-- Services -->
-          <div class="col-md-4">
-            <div class="ib-icon"> <i class="flaticon-money"></i> </div>
-            <div class="ib-info">
-              <h4 class="h6">{{post.fifth_section_short_stat_6_name}}</h4>
-              <p>{{post.fifth_section_short_stat_6_description}}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Join our community -->
-    {% include "partials/pages/__community.html" %}
-  </div>
-  
+        </section>
+        <!-- Join our community -->
+        {% include "partials/pages/__community.html" %}
+    </div>
 {% endblock content %}
-
 {# override Script #}
 {% block script %}
     <script src="{{ static('js/jquery-1.11.3.min.js') }}"></script>

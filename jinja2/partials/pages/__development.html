@@ -1,23 +1,32 @@
-<section class="dev-activ text-center padding-top-150 padding-bottom-150" id="activity">
+<section class="dev-activ text-center padding-top-150 padding-bottom-150"
+         id="activity">
     <div class="container">
         <div class="sm-intro">
-            <h2>Development Activity</h2>  
-            <p>We build, test and deploy blockchain open source codes. Stay up to date on latest development activities from our GitHub repositories. </p>
+            <h2>Development Activity</h2>
+            <p>
+                We build, test and deploy blockchain open source codes. Stay up to date on latest development activities from our GitHub repositories.
+            </p>
         </div>
         <ul class="row margin-top-50 margin-bottom-50">
-            <li class="col"> <i class="flaticon-rotate"></i> <span><span>{{commit.node_id|truncate(16, true)}}</span></span>
+            <li class="col">
+                <i class="flaticon-rotate"></i> <span><span>{{ commit.node_id|truncate(16, true) }}</span></span>
                 <p>Node ID</p>
             </li>
-            <li class="col"><i class="flaticon-building"></i> <span><span>{{commit.sha|truncate(16, true)}}</span></span>
+            <li class="col">
+                <i class="flaticon-building"></i> <span><span>{{ commit.sha|truncate(16, true) }}</span></span>
                 <p>Last Commit Hash</p>
             </li>
-            <li class="col"><i class="flaticon-rotate"></i> <span><span class="counter">{{repo.total_commit}}</span>+</span>
+            <li class="col">
+                <i class="flaticon-rotate"></i> <span><span class="counter">{{ repo.total_commit }}</span>+</span>
                 <p>Contributions</p>
             </li>
-            <li class="col"><i class="flaticon-team"></i> <span class="counter">12</span>
+            <li class="col">
+                <i class="flaticon-team"></i> <span class="counter">12</span>
                 <p>Team Members</p>
             </li>
         </ul>
-        <a href="https://github.com/ujblockchain" class="btn" target="_blank">Repositories</a> <a href="https://scholar.google.gr/citations?user=CzQ1lyYAAAAJ&hl=en" class="btn btn-inverse" target="_blank">Research</a>
+        <a href="https://github.com/ujblockchain" class="btn" target="_blank">Repositories</a> <a href="https://scholar.google.gr/citations?user=CzQ1lyYAAAAJ&hl=en"
+    class="btn btn-inverse"
+    target="_blank">Research</a>
     </div>
 </section>

@@ -1,57 +1,43 @@
 {# extend template #}
 {% extends 'base.html' %}
-
 {# add extra style #}
-{% block extraStyle %} 
-  <style>
+{% block extraStyle %}
+    <style>
     .image_resize{
       height: 219px;
     }
-  </style>
+    </style>
 {% endblock extraStyle %}
-
 <!-- Content -->
 {% block content %}
   <div id="content">
-    <!-- Why Choose Us -->
-    <section class="why-choose padding-top-100 padding-bottom-150" id="about">
-      <div class="container">
-
-        <!-- Why Choose Us  ROW-->
-        {% include "partials/pages/__choice.html" %}
-
-        <!-- Services ROW -->
-        {% include "partials/pages/__services.html" %}
-      </div>
-    </section>
-
-    <!-- Project Distribution -->
-    {% include 'partials/pages/__projects.html' with context %}
-
-    <!-- Development -->
-    {% include 'partials/pages/__development.html' %}
-
-    <!-- Project Overview -->
-    {% include 'partials/pages/__about.html' %}
-
-    <!-- Road Map -->
-    {% include 'partials/pages/__roadmaps.html' %}
-
-    <!-- Team Members -->
-    {% include 'partials/pages/__team.html' %}
-
-    <!-- FAQ -->
-    {% include 'partials/pages/__faq.html' %}
-
-    <!-- Join our community -->
-    {% include 'partials/pages/__community.html' %}
+      <!-- Why Choose Us -->
+      <section class="why-choose padding-top-100 padding-bottom-150" id="about">
+          <div class="container">
+              <!-- Why Choose Us  ROW-->
+              {% include "partials/pages/__choice.html" %}
+              <!-- Services ROW -->
+              {% include "partials/pages/__services.html" %}
+          </div>
+      </section>
+      <!-- Project Distribution -->
+      {% include 'partials/pages/__projects.html' with context %}
+      <!-- Development -->
+      {% include 'partials/pages/__development.html' %}
+      <!-- Project Overview -->
+      {% include 'partials/pages/__about.html' %}
+      <!-- Road Map -->
+      {% include 'partials/pages/__roadmaps.html' %}
+      <!-- Team Members -->
+      {% include 'partials/pages/__team.html' %}
+      <!-- FAQ -->
+      {% include 'partials/pages/__faq.html' %}
+      <!-- Join our community -->
+      {% include 'partials/pages/__community.html' %}
   </div>
 {% endblock content %}
-
-
 {# external scripts from pages #}
 {% block extraScript %}
-
   <!-- timer for distribution completion -->
   <script>
     // set timer end date 
@@ -87,9 +73,7 @@
       }
     }, 1000);
   </script>
-
-
-  <!-- timer for projection completion -->
+    <!-- timer for projection completion -->
   <script>
     // set timer end date 
     let timerDateProject = new Date("{{project.project_end_time|dateformat}} 11:59:59").getTime();
@@ -124,7 +108,6 @@
       }
     }, 1000);
   </script>
-
   <script>
     // control message show interval
     setInterval(() => {
@@ -139,5 +122,4 @@
       
     }, 5000)
   </script>
-
 {% endblock extraScript %}

@@ -1,38 +1,34 @@
 {# extend template #}
 {% extends 'secondary-base.html' %}
-
 {# load static #}
 {% load static %}
-
 {% block errorContent %}
-  <!-- Wrap -->
-  <div id="wrap">
-    <!-- header -->
-    {% include "seconday-partials/__header.html" %}
-
-    <!-- HOME MAIN  -->
-    <section class="simple-head" data-stellar-background-ratio="0.5" id="hme">
-      <!-- Particles -->
-      <div id="particles-js"></div>
-      <div class="position-center-center">
-        <div class="container text-center">
-          <h1>Page Not Found</h1>
-          <p>
-            The page you tried to access could not be found. It might have been
-            renamed, removed or does not exist.
-          </p>
-          <a href="/" class="btn">Home</a>
-          <a href="https://github.com/ujblockchain" class="btn btn-inverse">Repository</a>
-        </div>
-      </div>
-    </section>
-  </div>
+    <!-- Wrap -->
+    <div id="wrap">
+        <!-- header -->
+        {% include "seconday-partials/__header.html" %}
+        <!-- HOME MAIN  -->
+        <section class="simple-head" data-stellar-background-ratio="0.5" id="hme">
+            <!-- Particles -->
+            <div id="particles-js"></div>
+            <div class="position-center-center">
+                <div class="container text-center">
+                    <h1>Page Not Found</h1>
+                    <p>
+                        The page you tried to access could not be found. It might have been
+                        renamed, removed or does not exist.
+                    </p>
+                    <a href="/" class="btn">Home</a>
+                    <a href="https://github.com/ujblockchain" class="btn btn-inverse">Repository</a>
+                </div>
+            </div>
+        </section>
+    </div>
 {% endblock errorContent %}
-
 {% block script %}
-  <script src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
-  <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
-  <script src="{% static 'js/particles.min.js' %}"></script>
-  <script src="{% static 'js/jquery.counterup.min.js' %}"></script>
-  <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+    <script src="{% static 'js/particles.min.js' %}"></script>
+    <script src="{% static 'js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
 {% endblock script %}

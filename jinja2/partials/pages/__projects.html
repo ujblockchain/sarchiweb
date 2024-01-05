@@ -1,107 +1,112 @@
 <section class="distri drk padding-top-150 padding-bottom-150 " id="project">
     <div class="container">
         <div class="row">
-
             <!-- Token  -->
             <div class="col-lg-7">
-                <h3>{{project.title}}</h3>
-                <p>{{project.summary}}</p>
-
+                <h3>{{ project.title }}</h3>
+                <p>{{ project.summary }}</p>
                 <!-- Progress -->
                 <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: {{project.project_progress}}%;" aria-valuenow="30"
-                        aria-valuemin="0" aria-valuemax="{{project.project_progress}}">
+                    <div class="progress-bar"
+                         role="progressbar"
+                         style="width: {{ project.project_progress }}%"
+                         aria-valuenow="30"
+                         aria-valuemin="0"
+                         aria-valuemax="{{ project.project_progress }}">
                         {% if project.project_progress >= 40 %}
-                            <span> Private Commit: {{project.project_commit_count}} <small>{{project.project_progress}}%</small></span> 
+                            <span> Private Commit: {{ project.project_commit_count }} <small>{{ project.project_progress }}%</small></span>
                         {% else %}
-                            <span>Progress<small>{{project.project_progress}}%</small></span> 
-                        {% endif %}    
+                            <span>Progress<small>{{ project.project_progress }}%</small></span>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <h6>  Total Distribution</h6>
-                        <span>{{project.total_distribution_count}}</span>
+                        <h6>Total Distribution</h6>
+                        <span>{{ project.total_distribution_count }}</span>
                     </div>
                     <div class="col">
-                        <h6> {{project.lines_of_code}}</h6>
+                        <h6>{{ project.lines_of_code }}</h6>
                         <span>Lines of Code</span>
                     </div>
                     <div class="col">
-                        <h6> {{project.coding_hours}}</h6>
+                        <h6>{{ project.coding_hours }}</h6>
                         <span>Hours</span>
                     </div>
                 </div>
-
                 <!-- CountdownEnd -->
                 <div class="countdown">
-                    <h6>Current Distribution Section {{project.distribution_section_stats}}/{{project.distribution_section_stats_end}}</h6>
+                    <h6>
+                        Current Distribution Section {{ project.distribution_section_stats }}/{{ project.distribution_section_stats_end }}
+                    </h6>
                     <!-- Countdown-->
                     <ul class="row">
                         <!-- Days -->
                         <li class="col-md-3">
-                            <article> <span class="days"></span>
-                                <p class="days_ref">Days</p>
-                            </article>
-                        </li>
-                        <!-- Hours -->
-                        <li class="col-md-3">
-                            <article> <span class="hours"></span>
-                                <p class="hours_ref">Hours</p>
-                            </article>
-                        </li>
-                        <!-- Mintes -->
-                        <li class="col-md-3">
-                            <article><span class="minutes"></span>
-                                <p class="minutes_ref">Minutes</p>
-                            </article>
-                        </li>
-                        <!-- Seconds -->
-                        <li class="col-md-3">
-                            <article><span class="seconds"></span>
-                                <p class="seconds_ref">Seconds</p>
-                            </article>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Total Distribution -->
-            <div class="col-lg-5">
-                <h3>Total Distribution Section End <b>{{project.distribution_count}}/{{project.total_distribution_count}}</b></h3>
-                <p>{{project.distribution_section_stats_end_summary}}</p>
-                <div class="countdown-all">
-
-                    <!-- Countdown -->
-                    <ul class="row">
-                        <!-- Days -->
-                        <li class="col-md-3">
-                            <article> <span class="days"></span>
-                                <p class="days_ref">Days</p>
-                            </article>
-                        </li>
-                        <!-- Hours -->
-                        <li class="col-md-3">
-                            <article> <span class="hours"></span>
-                                <p class="hours_ref">Hours</p>
-                            </article>
-                        </li>
-                        <!-- Mintes -->
-                        <li class="col-md-3">
-                            <article><span class="minutes"></span>
-                                <p class="minutes_ref">Minutes</p>
-                            </article>
-                        </li>
-                        <!-- Seconds -->
-                        <li class="col-md-3">
-                            <article><span class="seconds"></span>
-                                <p class="seconds_ref">Seconds</p>
-                            </article>
-                        </li>
-                    </ul>
-                    <a href="https://github.com/ujblockchain" class="btn" target="_blank">Repository</a> <a href="https://scholar.google.gr/citations?user=CzQ1lyYAAAAJ&hl=en" class="btn btn-inverse" target="_blank">Research</a>
-                </div>
-            </div>
-        </div>
-    </div>
+                        <article> <span class="days"></span>
+                        <p class="days_ref">Days</p>
+                    </article>
+                </li>
+                <!-- Hours -->
+                <li class="col-md-3">
+                <article> <span class="hours"></span>
+                <p class="hours_ref">Hours</p>
+            </article>
+        </li>
+        <!-- Mintes -->
+        <li class="col-md-3">
+        <article><span class="minutes"></span>
+        <p class="minutes_ref">Minutes</p>
+    </article>
+</li>
+<!-- Seconds -->
+<li class="col-md-3">
+<article><span class="seconds"></span>
+<p class="seconds_ref">Seconds</p>
+</article>
+</li>
+</ul>
+</div>
+</div>
+<!-- Total Distribution -->
+<div class="col-lg-5">
+    <h3>
+        Total Distribution Section End <b>{{ project.distribution_count }}/{{ project.total_distribution_count }}</b>
+    </h3>
+    <p>{{ project.distribution_section_stats_end_summary }}</p>
+    <div class="countdown-all">
+        <!-- Countdown -->
+        <ul class="row">
+            <!-- Days -->
+            <li class="col-md-3">
+            <article> <span class="days"></span>
+            <p class="days_ref">Days</p>
+        </article>
+    </li>
+    <!-- Hours -->
+    <li class="col-md-3">
+    <article> <span class="hours"></span>
+    <p class="hours_ref">Hours</p>
+</article>
+</li>
+<!-- Mintes -->
+<li class="col-md-3">
+<article><span class="minutes"></span>
+<p class="minutes_ref">Minutes</p>
+</article>
+</li>
+<!-- Seconds -->
+<li class="col-md-3">
+<article><span class="seconds"></span>
+<p class="seconds_ref">Seconds</p>
+</article>
+</li>
+</ul>
+<a href="https://github.com/ujblockchain" class="btn" target="_blank">Repository</a> <a href="https://scholar.google.gr/citations?user=CzQ1lyYAAAAJ&hl=en"
+    class="btn btn-inverse"
+    target="_blank">Research</a>
+</div>
+</div>
+</div>
+</div>
 </section>

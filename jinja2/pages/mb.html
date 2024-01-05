@@ -1,55 +1,60 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Mainstreaming Blockchain (MO) is a thought leadership media event taking place on the 24th of October 2023. Organized by the SA/Swiss Chair on Blockchain Technology at the University of Johannesburg, the event is a gathering of blockchain enthusiasts, industry experts, researchers, and thought leaders. Its core focus is to explore the vast potential of blockchain technology within South and Sub-Saharan Africa." />
-    <meta name="keywords"
-      content="NRF, UJ, UJ Blockchain, Blockchain UJ, SARChI UJ, UJ SARChI, University of Johannesburg, South Africa, Switzerland, Johannesburg, Blockchain, Mainstreaming, Mainstreaming Blockchain, Media, Media Event, Consensus, Smart Contracts, Governance, Decentralization, Distributed, Ledger, Technology, Distributed Ledgers, Prof Nnamdi Nwulu, Nnamdi Nwulu">
-    <meta name="author" content="UJ Blockchain" />
-  
-    <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ static('favicon/apple-touch-icon.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ static('favicon/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ static('favicon/favicon-16x16.png') }}">
-    <link rel="manifest" href="{{ static('favicon/site.webmanifest') }}">
-    <link rel="mask-icon" href="{{ static('favicon/safari-pinned-tab.svg') }}" color="#858585">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="theme-color" content="#ffffff">
-  
-    <!-- Facebook OpenGraph Metadata -->
-    <meta property="og:title" content="UJ Blockchain">
-    <meta property="og:description"
-    content="Mainstreaming Blockchain (MO) is a thought leadership media event taking place on the 24th of October 2023. Organized by the SA/Swiss Chair on Blockchain Technology at the University of Johannesburg, the event is a gathering of blockchain enthusiasts, industry experts, researchers, and thought leaders. Its core focus is to explore the vast potential of blockchain technology within South and Sub-Saharan Africa.">
-    <meta property="og:image" content="{{ static ('images/main-logo.png') }}">
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:url" content="https://blockchain.uj.ac.za/mb">
-    <meta property=”og:type” content=”website” />
-  
-    <!-- Twitter OpenGraph Metadata -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@research31961" />
-    <meta name="twitter:title" content="UJ Blockchain">
-    <meta name="twitter:creator" content="@research31961">
-    {# twitter meta override #}
-    <meta name="twitter:description"
-        content="Mainstreaming Blockchain (MO) is a thought leadership media event taking place on the 24th of October 2023. Organized by the SA/Swiss Chair on Blockchain Technology at the University of Johannesburg, the event is a gathering of blockchain enthusiasts, industry experts, researchers, and thought leaders. Its core focus is to explore the vast potential of blockchain technology within South and Sub-Saharan Africa.">
-    <meta name="twitter:image:alt"
-        content="UJ Blockchain Logo. Mainstreaming Blockchain (MO) is a thought leadership media event taking place on the 24th of October 2023. Organized by the SA/Swiss Chair on Blockchain Technology at the University of Johannesburg, the event is a gathering of blockchain enthusiasts, industry experts, researchers, and thought leaders. Its core focus is to explore the vast potential of blockchain technology within South and Sub-Saharan Africa.">
-
-    {# title #}
-    <title>UJ Blockchain - South Africa-Switzerland Bilateral Blockchain Research Chair</title>
-  
-
-    {# stylesheet #}
-    <link rel="stylesheet" href="{{ static ('css/materialize.min.css') }}">
-    <!-- Material Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-    {# style #}
-    <style>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description"
+              content="Mainstreaming Blockchain (MO) is a thought leadership media event taking place on the 24th of October 2023. Organized by the SA/Swiss Chair on Blockchain Technology at the University of Johannesburg, the event is a gathering of blockchain enthusiasts, industry experts, researchers, and thought leaders. Its core focus is to explore the vast potential of blockchain technology within South and Sub-Saharan Africa." />
+        <meta name="keywords"
+              content="NRF, UJ, UJ Blockchain, Blockchain UJ, SARChI UJ, UJ SARChI, University of Johannesburg, South Africa, Switzerland, Johannesburg, Blockchain, Mainstreaming, Mainstreaming Blockchain, Media, Media Event, Consensus, Smart Contracts, Governance, Decentralization, Distributed, Ledger, Technology, Distributed Ledgers, Prof Nnamdi Nwulu, Nnamdi Nwulu">
+        <meta name="author" content="UJ Blockchain" />
+        <!-- Favicon -->
+        <link rel="apple-touch-icon"
+              sizes="180x180"
+              href="{{ static('favicon/apple-touch-icon.png') }}">
+        <link rel="icon"
+              type="image/png"
+              sizes="32x32"
+              href="{{ static('favicon/favicon-32x32.png') }}">
+        <link rel="icon"
+              type="image/png"
+              sizes="16x16"
+              href="{{ static('favicon/favicon-16x16.png') }}">
+        <link rel="manifest" href="{{ static('favicon/site.webmanifest') }}">
+        <link rel="mask-icon"
+              href="{{ static('favicon/safari-pinned-tab.svg') }}"
+              color="#858585">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="theme-color" content="#ffffff">
+        <!-- Facebook OpenGraph Metadata -->
+        <meta property="og:title" content="UJ Blockchain">
+        <meta property="og:description"
+              content="Mainstreaming Blockchain (MO) is a thought leadership media event taking place on the 24th of October 2023. Organized by the SA/Swiss Chair on Blockchain Technology at the University of Johannesburg, the event is a gathering of blockchain enthusiasts, industry experts, researchers, and thought leaders. Its core focus is to explore the vast potential of blockchain technology within South and Sub-Saharan Africa.">
+        <meta property="og:image" content="{{ static ('images/main-logo.png') }}">
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:url" content="https://blockchain.uj.ac.za/mb">
+        <meta property=”og:type” content=”website” />
+        <!-- Twitter OpenGraph Metadata -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@research31961" />
+        <meta name="twitter:title" content="UJ Blockchain">
+        <meta name="twitter:creator" content="@research31961">
+        {# twitter meta override #}
+        <meta name="twitter:description"
+              content="Mainstreaming Blockchain (MO) is a thought leadership media event taking place on the 24th of October 2023. Organized by the SA/Swiss Chair on Blockchain Technology at the University of Johannesburg, the event is a gathering of blockchain enthusiasts, industry experts, researchers, and thought leaders. Its core focus is to explore the vast potential of blockchain technology within South and Sub-Saharan Africa.">
+        <meta name="twitter:image:alt"
+              content="UJ Blockchain Logo. Mainstreaming Blockchain (MO) is a thought leadership media event taking place on the 24th of October 2023. Organized by the SA/Swiss Chair on Blockchain Technology at the University of Johannesburg, the event is a gathering of blockchain enthusiasts, industry experts, researchers, and thought leaders. Its core focus is to explore the vast potential of blockchain technology within South and Sub-Saharan Africa.">
+        {# title #}
+        <title>UJ Blockchain - South Africa-Switzerland Bilateral Blockchain Research Chair</title>
+        {# stylesheet #}
+        <link rel="stylesheet" href="{{ static ('css/materialize.min.css') }}">
+        <!-- Material Icons -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+              rel="stylesheet">
+        {# style #}
+        <style>
         .header {
           color: #fff;
         }
@@ -78,657 +83,932 @@
         .section.valign-wrapper.price {
             margin-top: -50px;
         }
-    </style>
-
-  </head>
-  <body>
-
-    <!-- Navbar -->
-    <nav class="navbar absolute">
-      <div class="nav-wrapper">
-        <a href="horizontal-half.html" class="brand-logo"><img src="https://blockchain.uj.ac.za/static/images/logo.png" alt="" style="height: 50px; padding-top: 10px;"></a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li class="active"><a href="#!">Home<i class="material-icons right" style="color: #F26422;">arrow_drop_down</i></a></li>
-          <li><a href="#speakers">Speakers</a></li>
-          <li><a href="#schedule">Schedule</a></li>
-          <li><a href="https://blockchain.uj.ac.za/#about">About</a></li>
+        </style>
+    </head>
+    <body>
+        <!-- Navbar -->
+        <nav class="navbar absolute">
+            <div class="nav-wrapper">
+                <a href="horizontal-half.html" class="brand-logo">
+                    <img src="https://blockchain.uj.ac.za/static/images/logo.png"
+                         alt=""
+                         style="height: 50px;
+                                padding-top: 10px">
+                </a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li class="active">
+                        <a href="#!">Home<i class="material-icons right" style="color: #F26422;">arrow_drop_down</i></a>
+                    </li>
+                    <li>
+                        <a href="#speakers">Speakers</a>
+                    </li>
+                    <li>
+                        <a href="#schedule">Schedule</a>
+                    </li>
+                    <li>
+                        <a href="https://blockchain.uj.ac.za/#about">About</a>
+                    </li>
+                </ul>
+                <a href="#"
+                   data-target="slide-out"
+                   class="sidenav-trigger button-collapse right"><i class="material-icons white-text">menu</i></a>
+            </div>
+        </nav>
+        <ul id="slide-out" class="sidenav">
+            <li class="no-padding">
+                <li class="bold">
+                    <a href="#!" class="collapsible-header waves-effect waves-teal active">Home</a>
+                </li>
+            </li>
+            <li>
+                <a class="waves-effect waves-teal" href="#speakers">Speakers</a>
+            </li>
+            <li>
+                <a class="waves-effect waves-teal" href="#schedule">Schedule</a>
+            </li>
+            <li>
+                <a class="waves-effect waves-teal"
+                   href="https://blockchain.uj.ac.za/#about">About</a>
+            </li>
         </ul>
-
-        <a href="#" data-target="slide-out" class="sidenav-trigger button-collapse right"><i class="material-icons white-text">menu</i></a>
-      </div>
-    </nav>
-    <ul id="slide-out" class="sidenav">
-      <li class="no-padding">
-        <li class="bold">
-          <a href="#!" class="collapsible-header waves-effect waves-teal active">Home</a>
-        </li>
-      </li>
-      <li><a class="waves-effect waves-teal" href="#speakers">Speakers</a></li>
-      <li><a class="waves-effect waves-teal" href="#schedule">Schedule</a></li>
-      <li><a class="waves-effect waves-teal" href="https://blockchain.uj.ac.za/#about">About</a></li>
-    </ul>
-
-    <!-- Flip Out Intro -->
-    <div class="flip-out-intro header full-height">
-      <div class="fixed-wrapper">
-        <div class="background">
-          <img src="http://placehold.it/1440x900" alt="">
+        <!-- Flip Out Intro -->
+        <div class="flip-out-intro header full-height">
+            <div class="fixed-wrapper">
+                <div class="background">
+                    <img src="http://placehold.it/1440x900" alt="">
+                </div>
+                <div class="header-wrapper row valign-wrapper">
+                    <div class="col s12 m8 offset-m2 valign">
+                        <h2 style="font-size: 40px;">
+                            Mainstreaming Blockchain: A Thought Leadership
+                            Media Event Held 24th October; 2023.
+                        </h2>
+                        <br>
+                        <br>
+                        <span class="tagline">Event Schedule and Speaker's Profile</span>
+                        <button class="read-more">
+                            <i class="icon-caret-down"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="header-wrapper row valign-wrapper">
-          <div class="col s12 m8 offset-m2 valign">
-            <h2 style="font-size: 40px;">Mainstreaming Blockchain: A Thought Leadership 
-              Media Event Held 24th October; 2023.</h2>
-            <br><br>
-            <span class="tagline">Event Schedule and Speaker's Profile</span>
-            <button class="read-more"><i class="icon-caret-down"></i></button>
-          </div>
+        <div class="flip-out-intro header full-height">
+            <div class="fixed-wrapper">
+                <div class="background">
+                    <img src="http://placehold.it/1440x900" alt="">
+                </div>
+                <div class="header-wrapper row valign-wrapper">
+                    <div class="col s12 m8 offset-m2 valign">
+                        <h2>Event Speakers</h2>
+                        <span class="tagline">Blockchain Enthusiasts, Industry Experts,
+                        Researchers, and Thought Leaders</span>
+                        <br>
+                        <br>
+                        <img class="circle"
+                             src="{{ static('images/prof_nnamdi_nwulu.jpeg') }}"
+                             alt=""
+                             style="width: 50px;
+                                    display: inline-block;
+                                    text-align: center">
+                        <img class="circle"
+                             src="{{ static('images/Luca.jpeg') }}"
+                             alt=""
+                             style="width: 50px;
+                                    height: 50px;
+                                    display: inline-block;
+                                    text-align: center">
+                        <img class="circle"
+                             src="{{ static('images/Anushka.jpg') }}"
+                             alt=""
+                             style="width: 50px;
+                                    display: inline-block;
+                                    text-align: center">
+                        <img class="circle"
+                             src="{{ static('images/Akhona.jpg') }}"
+                             alt=""
+                             style="width: 50px;
+                                    display: inline-block;
+                                    text-align: center">
+                        <img class="circle"
+                             src="{{ static('images/CAROLINE.jpg') }}"
+                             alt=""
+                             style="width: 50px;
+                                    display: inline-block;
+                                    text-align: center">
+                        <img class="circle"
+                             src="{{ static('images/Hemash.png') }}"
+                             alt=""
+                             style="width: 50px;
+                                    display: inline-block;
+                                    text-align: center">
+                        <img class="circle"
+                             src="{{ static('images/Ian.jpg') }}"
+                             alt=""
+                             style="width: 50px;
+                                    display: inline-block;
+                                    text-align: center">
+                        <img class="circle"
+                             src="{{ static('images/Lohan.jpg') }}"
+                             alt=""
+                             style="width: 50px;
+                                    display: inline-block;
+                                    text-align: center">
+                        <img class="circle"
+                             src="{{ static('images/Maurice.png') }}"
+                             alt=""
+                             style="width: 50px;
+                                    height: 50px;
+                                    display: inline-block;
+                                    text-align: center">
+                        <img class="circle"
+                             src="{{ static('images/Ntsibane.png') }}"
+                             alt=""
+                             style="width: 50px;
+                                    display: inline-block;
+                                    text-align: center">
+                        <img class="circle"
+                             src="{{ static('images/Omarjee.png') }}"
+                             alt=""
+                             style="width: 50px;
+                                    display: inline-block;
+                                    text-align: center">
+                        <img class="circle"
+                             src="{{ static('images/Sean.jpg') }}"
+                             alt=""
+                             style="width: 50px;
+                                    display: inline-block;
+                                    text-align: center">
+                        <p>
+                            PROF NNAMDI NWULU; DR LUCA MAZZOLA; ANUSHKA SOMA-PATEL; AKHONA DAMANE;
+                            CAROLINE DAMA; HEMASH KALA; IAN PUTTER; LOHAN SPIES; MAURICE CRESPI;
+                            DR NTSIBANE NTLATLAPA; MUHAMMAD ZUBAIR OMARJEE; SEAN MOUTON.
+                        </p>
+                        <br>
+                        <button class="read-more">
+                            <i class="icon-caret-down"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-
-    
-    <div class="flip-out-intro header full-height">
-      <div class="fixed-wrapper">
-        <div class="background">
-          <img src="http://placehold.it/1440x900" alt="">
+        <!-- Features -->
+        <div class="section valign-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12">
+                        <h2 class="section-title" id="schedule">Schedule</h2>
+                    </div>
+                    <div class="col s12 m12 l12">
+                        <h4>
+                            <i class="icon-light-bulb"></i> About Event
+                        </h4>
+                        <p class="caption">
+                            Mainstreaming Blockchain is a thought leadership media event organized by the SA/Swiss Chair on Blockchain Technology
+                            at the University of Johannesburg, the event is a gathering of blockchain enthusiasts, industry experts, researchers,
+                            and thought leaders. Its core focus is to explore the vast potential of blockchain technology within South and Sub-Saharan Africa.
+                        </p>
+                    </div>
+                    <div class="col s12 m12 l12">
+                        <h4>
+                            <i class="icon-bolt"></i> Why Blockchain
+                        </h4>
+                        <p class="caption">
+                            Blockchain technology is not just another tech innovation; it's at the heart of the Fourth Industrial Revolution (4IR).
+                            It has the power to reshape industries like finance, healthcare, and logistics. To spread awareness about its significance,
+                            sharing insights on blockchain is vital.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="header-wrapper row valign-wrapper">
-          <div class="col s12 m8 offset-m2 valign">
-            <h2>Event Speakers</h2>
-            <span class="tagline">Blockchain Enthusiasts, Industry Experts, 
-              Researchers, and Thought Leaders</span>
-            <br><br>
-              <img  class="circle" src="{{ static('images/prof_nnamdi_nwulu.jpeg') }}" alt="" 
-                style="width: 50px; display: inline-block; text-align: center;">
-              <img  class="circle" src="{{ static('images/Luca.jpeg') }}" alt="" 
-                style="width: 50px; height: 50px; display: inline-block; text-align: center;">
-              <img  class="circle" src="{{ static('images/Anushka.jpg') }}" alt="" 
-                style="width: 50px; display: inline-block; text-align: center;">
-              <img  class="circle" src="{{ static('images/Akhona.jpg')}}" alt="" 
-                style="width: 50px; display: inline-block; text-align: center;">
-              <img  class="circle" src="{{ static('images/CAROLINE.jpg')}}" alt="" 
-                style="width: 50px; display: inline-block; text-align: center;">
-              <img  class="circle" src="{{ static('images/Hemash.png')}}" alt="" 
-                style="width: 50px; display: inline-block; text-align: center;">
-              <img  class="circle" src="{{ static('images/Ian.jpg')}}" alt="" 
-                style="width: 50px; display: inline-block; text-align: center;">
-              <img  class="circle" src="{{ static('images/Lohan.jpg')}}" alt="" 
-                style="width: 50px; display: inline-block; text-align: center;">
-              <img  class="circle" src="{{ static('images/Maurice.png')}}" alt="" 
-                style="width: 50px; height: 50px; display: inline-block; text-align: center;">
-              <img  class="circle" src="{{ static('images/Ntsibane.png')}}" alt="" 
-                style="width: 50px; display: inline-block; text-align: center;">
-              <img  class="circle" src="{{ static('images/Omarjee.png')}}" alt="" 
-                style="width: 50px; display: inline-block; text-align: center;">
-              <img  class="circle" src="{{ static('images/Sean.jpg')}}" alt="" 
-                style="width: 50px; display: inline-block; text-align: center;">
-
-            <p>
-              PROF NNAMDI NWULU; DR LUCA MAZZOLA; ANUSHKA SOMA-PATEL; AKHONA DAMANE;
-              CAROLINE DAMA; HEMASH KALA; IAN PUTTER; LOHAN SPIES; MAURICE CRESPI;
-              DR NTSIBANE NTLATLAPA; MUHAMMAD ZUBAIR OMARJEE; SEAN MOUTON.
-            </p>
-            <br>
-            <button class="read-more"><i class="icon-caret-down"></i></button>
-          </div>
+        <!-- Pricing Tables -->
+        <div class="section valign-wrapper price">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 m4">
+                        <div class="pricing-table featured">
+                            <div class="pricing-header">
+                                <h4>Session One</h4>
+                            </div>
+                            <ul class="pricing-features">
+                                <li class="pricing-feature">
+                                    <i class="icon-accept"></i>08:30 AM - 09:00 AM: Registration and Welcome Coffee
+                                </li>
+                                <li class="pricing-feature">
+                                    <i class="icon-accept"></i>09:00 AM - 09:15 AM: Opening Remarks
+                                </li>
+                                <li class="pricing-feature disabled">
+                                    <i class="icon-accept"></i>Introduction to the Event & Overview of Agenda: Mr MZ Omarjee
+                                </li>
+                                <li class="pricing-feature disabled">
+                                    <i class="icon-accept"></i>Welcome Address: Prof Nnamdi Nwulu (UJ) & Dr Luca Mazzola (HSLU)
+                                </li>
+                                <li class="pricing-feature">
+                                    <i class="icon-accept"></i>09:15 AM - 10:15 AM: Keynote Address
+                                </li>
+                                <li class="pricing-feature disabled">
+                                    <i class="icon-accept"></i>Topic: "Blockchain Technology: Transforming Africa's Future"
+                                </li>
+                                <li class="pricing-feature disabled">
+                                    <i class="icon-accept"></i>Speaker: Ms Anushka Soma-Patel, IOHK, South Africa
+                                </li>
+                                <li class="pricing-feature disabled">
+                                    <i class="icon-accept"></i>Q&A Session
+                                </li>
+                                <li class="pricing-feature">
+                                    <i class="icon-accept"></i>10:15 AM - 10:30 AM: Tea/Coffee Break
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col s12 m4">
+                        <div class="pricing-table featured">
+                            <div class="pricing-header">
+                                <i class="timer"></i>
+                                <h4>Session Two</h4>
+                            </div>
+                            <ul class="pricing-features">
+                                <li class="pricing-feature">
+                                    <i class="icon-accept"></i>10:30 AM - 11:30 AM: Panel Discussion
+                                </li>
+                                <li class="pricing-feature disabled">
+                                    <i class="icon-accept"></i>Topic: Blockchain Adoption Strategies for African Enterprises:
+                                    <br>
+                                    [Panelist 1: Mr Ian Putter, Standard Bank]
+                                    <br>
+                                    [Panelist 2: Mr Akhona Damane, Edgepoint Software]
+                                    Moderator: [Mr Hemash Kala, Beansprout Technologies]
+                                    <br>
+                                    <br>
+                                    Audience Q&A
+                                </li>
+                                <li class="pricing-feature">
+                                    <i class="icon-accept"></i>11:30 AM - 12:30 PM: Success Stories and Case Studies:
+                                </li>
+                                <li class="pricing-feature disabled">
+                                    <i class="icon-accept"></i>Topic: Real-world Impact: Blockchain in Africa/African Businesses:
+                                    <br>
+                                    <br>
+                                    Speaker: Ms Caroline Dama, Kenya
+                                    <br>
+                                    <br>
+                                    Audience Q&A
+                                </li>
+                                <li class="pricing-feature">
+                                    <i class="icon-accept"></i>12:30 PM - 01:30 PM: Lunch Break
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col s12 m4">
+                        <div class="pricing-table featured">
+                            <div class="pricing-header">
+                                <h4>Session Three</h4>
+                            </div>
+                            <ul class="pricing-features">
+                                <li class="pricing-feature">
+                                    <i class="icon-accept"></i>01:30 PM - 02:15 PM: Regulatory Landscape and Challenges
+                                </li>
+                                <li class="pricing-feature disabled">
+                                    <i class="icon-accept"></i>
+                                    Topic: Navigating Blockchain Regulations in South and Sub-Saharan Africa:
+                                    <br>
+                                    Speaker: Mr Maurice Crespi, Partner, Schindlers Attorneys
+                                    <br>
+                                    Audience Q&A
+                                </li>
+                                <li class="pricing-feature">
+                                    <i class="icon-accept"></i>02:15 PM - 03:00 PM: Future Trends and Opportunities
+                                </li>
+                                <li class="pricing-feature disabled">
+                                    <i class="icon-accept"></i>
+                                    Topic: "The Road Ahead: Emerging Trends in African Blockchain Ecosystem:
+                                    <br>
+                                    Speaker: Dr Ntsibane Ntlatlapa, C4IR South Africa: Centre Head, CSIR. &nbsp;
+                                    Audience Q&A
+                                </li>
+                                <li class="pricing-feature">
+                                    <i class="icon-accept"></i>03:00 PM - 03:15 PM: Tea/Coffee Break
+                                </li>
+                                <li class="pricing-feature">
+                                    <i class="icon-accept"></i>
+                                    03:15 PM - 04:15 PM: Live Demonstrations of Blockchain Use Cases with Interactive by:
+                                    Lohan Spies(DIDx) and Sean Mouton(ABSA)
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-
-
-
-    <!-- Features -->
-    <div class="section valign-wrapper">
-      <div class="container">
-        <div class="row">
-          <div class="col s12"><h2 class="section-title" id="schedule">Schedule</h2></div>
-          <div class="col s12 m12 l12">
-            <h4><i class="icon-light-bulb"></i> About Event</h4>
-            <p class="caption">
-              Mainstreaming Blockchain is a thought leadership media event organized by the SA/Swiss Chair on Blockchain Technology 
-              at the University of Johannesburg, the event is a gathering of blockchain enthusiasts, industry experts, researchers, 
-              and thought leaders. Its core focus is to explore the vast potential of blockchain technology within South and Sub-Saharan Africa.
-            </p>
-          </div>
-          <div class="col s12 m12 l12">
-            <h4><i class="icon-bolt"></i> Why Blockchain</h4>
-            <p class="caption">
-              Blockchain technology is not just another tech innovation; it's at the heart of the Fourth Industrial Revolution (4IR). 
-              It has the power to reshape industries like finance, healthcare, and logistics. To spread awareness about its significance, 
-              sharing insights on blockchain is vital.
-            </p>
-          </div>
+        <div class="section light full-height">
+            <div class="row">
+                <div class="col s12 m10 offset-m1 center">
+                    <h1 id="speakers">Speakers</h1>
+                    <h5 style="font-size: 18px; opacity: .6;">Click On Image or Name To See More</h5>
+                    <br>
+                    <br>
+                    <div class="row masonry-grid">
+                        <div class="col s12 m6 l4">
+                            <div class="card fade-in-out up-in-out" data-duration="0">
+                                <div class="card-image">
+                                    <a class="waves-effect waves-light modal-trigger" href="#nnamdi">
+                                        <img src="{{ static ('images/prof_nnamdi_nwulu.jpeg') }}"
+                                             style="width: -webkit-fill-available;
+                                                    height: 300px">
+                                    </a>
+                                    <span class="card-title waves-effect waves-light modal-trigger"
+                                          href="#nnamdi"
+                                          style="color: #fff;
+                                                 background: black;
+                                                 padding: 5px 10px;
+                                                 z-index:8">PROF NNAMDI NWULU</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col s12 m6 l4">
+                            <div class="card fade-in-out up-in-out" data-duration="0">
+                                <div class="card-image">
+                                    <a class="waves-effect waves-light modal-trigger" href="#luca">
+                                        <img src="{{ static ('images/Luca.jpeg') }}"
+                                             style="width: -webkit-fill-available;
+                                                    height: 300px">
+                                    </a>
+                                    <span class="card-title waves-effect waves-light modal-trigger"
+                                          href="#luca"
+                                          style="color: #fff;
+                                                 background: black;
+                                                 padding: 5px 10px;
+                                                 z-index:8">DR LUCA MAZZOLA</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col s12 m6 l4">
+                            <div class="card fade-in-out up-in-out" data-duration="0">
+                                <div class="card-image">
+                                    <a class="waves-effect waves-light modal-trigger" href="#anushka">
+                                        <img src="{{ static ('images/Anushka.jpg') }}"
+                                             style="width: -webkit-fill-available;
+                                                    height: 300px">
+                                    </a>
+                                    <span class="card-title waves-effect waves-light modal-trigger"
+                                          href="#anushka"
+                                          style="color: #fff;
+                                                 background: black;
+                                                 padding: 5px 10px;
+                                                 z-index:8">ANUSHKA SOMA-PATEL</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col s12 m6 l4">
+                            <div class="card fade-in-out up-in-out" data-duration="0">
+                                <div class="card-image">
+                                    <a class="waves-effect waves-light modal-trigger" href="#ian">
+                                        <img src="{{ static ('images/Ian.jpg') }}"
+                                             style="width: -webkit-fill-available;
+                                                    height: 300px">
+                                    </a>
+                                    <span class="card-title waves-effect waves-light modal-trigger"
+                                          href="#ian"
+                                          style="color: #fff;
+                                                 background: black;
+                                                 padding: 5px 10px;
+                                                 z-index:8">IAN PUTTER</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col s12 m6 l4">
+                            <div class="card fade-in-out up-in-out" data-duration="0">
+                                <div class="card-image">
+                                    <a class="waves-effect waves-light modal-trigger" href="#akhona">
+                                        <img src="{{ static ('images/Akhona.jpg') }}"
+                                             style="width: -webkit-fill-available;
+                                                    height: 300px">
+                                    </a>
+                                    <span class="card-title waves-effect waves-light modal-trigger"
+                                          href="#akhona"
+                                          style="color: #fff;
+                                                 background: black;
+                                                 padding: 5px 10px;
+                                                 z-index:8">AKHONA DAMANE</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col s12 m6 l4">
+                            <div class="card fade-in-out up-in-out" data-duration="0">
+                                <div class="card-image">
+                                    <a class="waves-effect waves-light modal-trigger" href="#hamash">
+                                        <img src="{{ static ('images/Hemash.png') }}"
+                                             style="width: -webkit-fill-available;
+                                                    height: 300px">
+                                    </a>
+                                    <span class="card-title waves-effect waves-light modal-trigger"
+                                          href="#hamash"
+                                          style="color: #fff;
+                                                 background: black;
+                                                 padding: 5px 10px;
+                                                 z-index:8">HEMASH KALA</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col s12 m6 l4">
+                            <div class="card fade-in-out up-in-out" data-duration="0">
+                                <div class="card-image">
+                                    <a class="waves-effect waves-light modal-trigger" href="#caroline">
+                                        <img src="{{ static ('images/CAROLINE.jpg') }}"
+                                             style="width: -webkit-fill-available;
+                                                    height: 300px">
+                                    </a>
+                                    <span class="card-title waves-effect waves-light modal-trigger"
+                                          href="#caroline"
+                                          style="color: #fff;
+                                                 background: black;
+                                                 padding: 5px 10px;
+                                                 z-index:8">CAROLINE DAMA</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col s12 m6 l4">
+                            <div class="card fade-in-out up-in-out" data-duration="0">
+                                <div class="card-image">
+                                    <a class="waves-effect waves-light modal-trigger" href="#maurice">
+                                        <img src="{{ static ('images/Maurice.png') }}"
+                                             style="width: -webkit-fill-available;
+                                                    height: 300px">
+                                    </a>
+                                    <span class="card-title waves-effect waves-light modal-trigger"
+                                          href="#maurice"
+                                          style="color: #fff;
+                                                 background: black;
+                                                 padding: 5px 10px;
+                                                 z-index:8">MAURICE CRESPI</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col s12 m6 l4">
+                            <div class="card fade-in-out up-in-out" data-duration="0">
+                                <div class="card-image">
+                                    <a class="waves-effect waves-light modal-trigger" href="#ntsibane">
+                                        <img src="{{ static ('images/Ntsibane.png') }}"
+                                             style="width: -webkit-fill-available;
+                                                    height: 300px">
+                                    </a>
+                                    <span class="card-title waves-effect waves-light modal-trigger"
+                                          href="#ntsibane"
+                                          style="color: #fff;
+                                                 background: black;
+                                                 padding: 5px 10px;
+                                                 z-index:8">DR NTSIBANE NTLATLAPA</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col s12 m6 l4">
+                            <div class="card fade-in-out up-in-out" data-duration="0">
+                                <div class="card-image">
+                                    <a class="waves-effect waves-light modal-trigger" href="#lohan">
+                                        <img src="{{ static ('images/Lohan.jpg') }}"
+                                             style="width: -webkit-fill-available;
+                                                    height: 300px">
+                                    </a>
+                                    <span class="card-title waves-effect waves-light modal-trigger"
+                                          href="#lohan"
+                                          style="color: #fff;
+                                                 background: black;
+                                                 padding: 5px 10px;
+                                                 z-index:8">LOHAN SPIES</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col s12 m6 l4">
+                            <div class="card fade-in-out up-in-out" data-duration="0">
+                                <div class="card-image">
+                                    <a class="waves-effect waves-light modal-trigger" href="#sean">
+                                        <img src="{{ static ('images/Sean.jpg') }}"
+                                             style="width: -webkit-fill-available;
+                                                    height: 300px">
+                                    </a>
+                                    <span class="card-title waves-effect waves-light modal-trigger"
+                                          href="#sean"
+                                          style="color: #fff;
+                                                 background: black;
+                                                 padding: 5px 10px;
+                                                 z-index:8">SEAN MOUTON</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col s12 m6 l4">
+                            <div class="card fade-in-out up-in-out" data-duration="0">
+                                <div class="card-image">
+                                    <a class="waves-effect waves-light modal-trigger" href="#omarjee">
+                                        <img src="{{ static ('images/Omarjee.png') }}"
+                                             style="width: -webkit-fill-available;
+                                                    height: 300px">
+                                    </a>
+                                    <span class="card-title waves-effect waves-light modal-trigger"
+                                          href="#omarjee"
+                                          style="color: #fff;
+                                                 background: black;
+                                                 padding: 5px 10px;
+                                                 z-index:8">MUHAMMAD ZUBAIR OMARJEE</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-
-    <!-- Pricing Tables -->
-    <div class="section valign-wrapper price">
-      <div class="container">
-        <div class="row">
-          <div class="col s12 m4">
-            <div class="pricing-table featured">
-              <div class="pricing-header">
-                <h4>Session One</h4>
-              </div>
-              <ul class="pricing-features">
-                <li class="pricing-feature"><i class="icon-accept"></i>08:30 AM - 09:00 AM: Registration and Welcome Coffee</li>
-                <li class="pricing-feature"><i class="icon-accept"></i>09:00 AM - 09:15 AM: Opening Remarks</li>
-                <li class="pricing-feature disabled"><i class="icon-accept"></i>Introduction to the Event & Overview of Agenda: Mr MZ Omarjee</li>
-                <li class="pricing-feature disabled"><i class="icon-accept"></i>Welcome Address: Prof Nnamdi Nwulu (UJ) & Dr Luca Mazzola (HSLU)</li>
-                <li class="pricing-feature"><i class="icon-accept"></i>09:15 AM - 10:15 AM: Keynote Address</li>
-                <li class="pricing-feature disabled"><i class="icon-accept"></i>Topic: "Blockchain Technology: Transforming Africa's Future"</li>
-                <li class="pricing-feature disabled"><i class="icon-accept"></i>Speaker: Ms Anushka Soma-Patel, IOHK, South Africa</li>
-                <li class="pricing-feature disabled"><i class="icon-accept"></i>Q&A Session</li>
-                <li class="pricing-feature"><i class="icon-accept"></i>10:15 AM - 10:30 AM: Tea/Coffee Break</li>
-              </ul>
+        <!-- Modal Structure -->
+        <div id="nnamdi" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4>PROF NNAMDI NWULU</h4>
+                <img src="{{ static ('images/prof_nnamdi_nwulu.jpeg') }}"
+                     class="circle"
+                     style="width: 100px;
+                            height: 100px">
+                <p style="text-align: justify;">
+                    Principal Investigator (PI), South Africa/ Switzerland Chair in Blockchain Technology
+                    <br>
+                    <br>
+                    Professor Nnamdi Nwulu holds the South Africa (DSI-NRF)/ Swiss Bilateral Chair in Blockchain Technology (SARChI) and is a
+                    Professor of Sustainable Cyber-Physical Engineering Systems. Prof Nwulu is the Director of the Centre for Cyber-Physical Food,
+                    Energy & Water Systems (CCP-FEWS) at the University of Johannesburg and also the Acting Head of School, School of Electrical
+                    Engineering, University of Johannesburg.
+                    <br>
+                    <br>
+                    Prof Nwulu's research focuses on Food, Energy and Water Systems (FEWS) and the inherent nexus between all three. Specifically,
+                    his research focuses on applying FEW-N thinking, digital technologies, mathematical optimisation techniques, and machine learning
+                    algorithms in food, energy, and water systems. This research focus has produced several books, inventions and over 170 publications,
+                    winning him the 2021 NRF Research Excellence Award for Early Career/Emerging Researchers in Engineering/Technology.
+                    He was also a 2020/2021 TW Kambule-NSTF-South32 Award finalist in the Emerging Researcher category and won the 2020 UJ Vice-Chancellors'
+                    most promising young researcher award. He is a Member of the prestigious South African Young Academy of Science (SAYAS).
+                    <br>
+                    <br>
+                    Prof Nwulu is a Professional Engineer registered with the Engineering Council of South Africa (ECSA), a Senior Member of the Institute of
+                    Electrical and Electronics Engineers (SMIEEE), a Senior Member of the South African Institute of Electrical Engineers (SMSAIEE) and a
+                    Y-rated Researcher by the National Research Foundation of South Africa.
+                    Prof. Nwulu is the Editor-in-Chief of the Journal of Digital Food Energy and Water Systems (JD-FEWS),
+                    Associate Editor of the IET Renewable Power Generation (IET-RPG) and the African Journal of Science, Technology,
+                    Innovation and Development (AJSTID).
+                </p>
             </div>
-          </div>
-
-          <div class="col s12 m4">
-            <div class="pricing-table featured">
-              <div class="pricing-header">
-                <i class="timer"></i>
-                <h4>Session Two</h4>
-              </div>
-              <ul class="pricing-features">
-                <li class="pricing-feature"><i class="icon-accept"></i>10:30 AM - 11:30 AM: Panel Discussion</li>
-                <li class="pricing-feature disabled"><i class="icon-accept"></i>Topic: Blockchain Adoption Strategies for African Enterprises:
-                  <br>
-                  [Panelist 1: Mr Ian Putter, Standard Bank]
-                  <br>
-                  [Panelist 2: Mr Akhona Damane, Edgepoint Software]
-                  Moderator: [Mr Hemash Kala, Beansprout Technologies]
-                  <br><br>
-                  Audience Q&A
-                </li>
-
-                <li class="pricing-feature"><i class="icon-accept"></i>11:30 AM - 12:30 PM: Success Stories and Case Studies:</li>
-                <li class="pricing-feature disabled"><i class="icon-accept"></i>Topic: Real-world Impact: Blockchain in Africa/African Businesses:
-                  <br><br>
-                  Speaker: Ms Caroline Dama, Kenya
-                  <br><br>
-                  Audience Q&A
-                </li>
-                <li class="pricing-feature"><i class="icon-accept"></i>12:30 PM - 01:30 PM: Lunch Break</li>
-              </ul>
+            <div class="modal-footer">
+                <a href="#!"
+                   class="modal-close waves-effect waves-red lighten-1 btn-flat white">Close</a>
             </div>
-          </div>
-
-          <div class="col s12 m4">
-            <div class="pricing-table featured">
-              <div class="pricing-header">
-                <h4>Session Three</h4>
-              </div>
-              <ul class="pricing-features">
-                <li class="pricing-feature"><i class="icon-accept"></i>01:30 PM - 02:15 PM: Regulatory Landscape and Challenges</li>
-                <li class="pricing-feature disabled"><i class="icon-accept"></i>
-                  Topic: Navigating Blockchain Regulations in South and Sub-Saharan Africa:
-                  <br>
-                  Speaker: Mr Maurice Crespi, Partner, Schindlers Attorneys
-                  <br>
-                  Audience Q&A
-                </li>
-                <li class="pricing-feature"><i class="icon-accept"></i>02:15 PM - 03:00 PM: Future Trends and Opportunities</li>
-                <li class="pricing-feature disabled"><i class="icon-accept"></i>
-                  Topic: "The Road Ahead: Emerging Trends in African Blockchain Ecosystem:
-                  <br>
-                  Speaker: Dr Ntsibane Ntlatlapa, C4IR South Africa: Centre Head, CSIR. &nbsp;
-                  Audience Q&A
-                </li>
-                <li class="pricing-feature"><i class="icon-accept"></i>03:00 PM - 03:15 PM: Tea/Coffee Break</li>
-                <li class="pricing-feature"><i class="icon-accept"></i>
-                  03:15 PM - 04:15 PM: Live Demonstrations of Blockchain Use Cases with Interactive by:
-                  Lohan Spies(DIDx) and Sean Mouton(ABSA)</li>
-              </ul>
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
-
-    <div class="section light full-height">
-      <div class="row">
-        <div class="col s12 m10 offset-m1 center">
-          <h1 id="speakers">Speakers</h1>
-          <h5 style="font-size: 18px; opacity: .6;">Click On Image or Name To See More</h5>
-          <br><br>
-          <div class="row masonry-grid">
-            
-
-          <div class="col s12 m6 l4">
-            <div class="card fade-in-out up-in-out" data-duration="0">
-              <div class="card-image">
-                <a class="waves-effect waves-light modal-trigger" href="#nnamdi"><img src="{{ static ('images/prof_nnamdi_nwulu.jpeg') }}" style="width: -webkit-fill-available; height: 300px;"></a>
-                <span class="card-title waves-effect waves-light modal-trigger" href="#nnamdi" style="color: #fff; background: black; padding: 5px 10px;  z-index:8;">PROF NNAMDI NWULU</span>
-              </div>
+        <div id="luca" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4>DR LUCA MAZZOLA</h4>
+                <img src="{{ static ('images/Luca.jpeg') }}"
+                     class="circle"
+                     style="width: 100px;
+                            height: 100px">
+                <p style="text-align: justify;">
+                    Co-Principal Investigator (Co-PI), South Africa/ Switzerland Chair in Blockchain Technology
+                    <br>
+                    <br>
+                    Dr. Luca Mazzola is research associate at the Hochschule Luzern-Informatik in the Data Intelligence Research Team, with interest from
+                    Big Data to Machine Learning applications, including distributed ledgers and Neural network models for data analysis.
+                    <br>
+                    <br>
+                    He holds a MSc. of Engineering in Computer Sciences (Politecnico di Milano, IT, 2004) and a PhD. in Technologies for Human Communication
+                    (Università della Svizzera italiana, CH, 2014).
+                    He is experienced in secondary usage of information for designing DSS in heterogeneous fields. He was previously employed
+                    at the JRC (Joint Research Center of the European Commission) for ML methods in containerased transportation antifraud purposes.
+                    He worked also as researcher in Saarbruecken (DE) at DFKI (German Research Center for Artificial Intelligence), applying technologies
+                    from Semantic Web for Manufacturing application. He additionally lectured Medical Informatics classes at Politecnico di Milano, Italy..
+                </p>
             </div>
-          </div>
-
-          <div class="col s12 m6 l4">
-            <div class="card fade-in-out up-in-out" data-duration="0">
-              <div class="card-image">
-                <a class="waves-effect waves-light modal-trigger" href="#luca"><img src="{{ static ('images/Luca.jpeg') }}" style="width: -webkit-fill-available; height: 300px;"></a>
-                <span class="card-title waves-effect waves-light modal-trigger" href="#luca" style="color: #fff; background: black; padding: 5px 10px;  z-index:8;">DR LUCA MAZZOLA</span>
-              </div>
+            <div class="modal-footer">
+                <a href="#!"
+                   class="modal-close waves-effect waves-red lighten-1 btn-flat white">Close</a>
             </div>
-          </div>
-            <div class="col s12 m6 l4">
-              <div class="card fade-in-out up-in-out" data-duration="0">
-                <div class="card-image">
-                  <a class="waves-effect waves-light modal-trigger" href="#anushka"><img src="{{ static ('images/Anushka.jpg') }}" style="width: -webkit-fill-available; height: 300px;"></a>
-                  <span class="card-title waves-effect waves-light modal-trigger" href="#anushka" style="color: #fff; background: black; padding: 5px 10px; z-index:8;">ANUSHKA SOMA-PATEL</span>
-                </div>
-              </div>
-            </div>
-            <div class="col s12 m6 l4">
-              <div class="card fade-in-out up-in-out" data-duration="0">
-                <div class="card-image">
-                  <a class="waves-effect waves-light modal-trigger" href="#ian"><img src="{{ static ('images/Ian.jpg') }}" style="width: -webkit-fill-available; height: 300px;"></a>
-                  <span class="card-title waves-effect waves-light modal-trigger" href="#ian" style="color: #fff; background: black; padding: 5px 10px;  z-index:8;">IAN PUTTER</span>
-                </div>
-              </div>
-            </div>
-            <div class="col s12 m6 l4">
-              <div class="card fade-in-out up-in-out" data-duration="0">
-                <div class="card-image">
-                  <a class="waves-effect waves-light modal-trigger" href="#akhona"><img src="{{ static ('images/Akhona.jpg') }}" style="width: -webkit-fill-available; height: 300px;"></a>
-                  <span class="card-title waves-effect waves-light modal-trigger" href="#akhona" style="color: #fff; background: black; padding: 5px 10px;  z-index:8;">AKHONA DAMANE</span>
-                </div>
-              </div>
-            </div>
-            <div class="col s12 m6 l4">
-              <div class="card fade-in-out up-in-out" data-duration="0">
-                <div class="card-image">
-                  <a class="waves-effect waves-light modal-trigger" href="#hamash"><img src="{{ static ('images/Hemash.png') }}" style="width: -webkit-fill-available; height: 300px;"></a>
-                  <span class="card-title waves-effect waves-light modal-trigger" href="#hamash" style="color: #fff; background: black; padding: 5px 10px;  z-index:8;">HEMASH KALA</span>
-                </div>
-              </div>
-            </div>
-            <div class="col s12 m6 l4">
-              <div class="card fade-in-out up-in-out" data-duration="0">
-                <div class="card-image">
-                  <a class="waves-effect waves-light modal-trigger" href="#caroline"><img src="{{ static ('images/CAROLINE.jpg') }}" style="width: -webkit-fill-available; height: 300px;"></a>
-                  <span class="card-title waves-effect waves-light modal-trigger" href="#caroline" style="color: #fff; background: black; padding: 5px 10px;  z-index:8;">CAROLINE DAMA</span>
-                </div>
-              </div>
-            </div>
-            <div class="col s12 m6 l4">
-              <div class="card fade-in-out up-in-out" data-duration="0">
-                <div class="card-image">
-                  <a class="waves-effect waves-light modal-trigger" href="#maurice"><img src="{{ static ('images/Maurice.png') }}" style="width: -webkit-fill-available; height: 300px;"></a>
-                  <span class="card-title waves-effect waves-light modal-trigger" href="#maurice" style="color: #fff; background: black; padding: 5px 10px;  z-index:8;">MAURICE CRESPI</span>
-                </div>
-              </div>
-            </div>
-            <div class="col s12 m6 l4">
-              <div class="card fade-in-out up-in-out" data-duration="0">
-                <div class="card-image">
-                  <a class="waves-effect waves-light modal-trigger" href="#ntsibane"><img src="{{ static ('images/Ntsibane.png') }}" style="width: -webkit-fill-available; height: 300px;"></a>
-                  <span class="card-title waves-effect waves-light modal-trigger" href="#ntsibane" style="color: #fff; background: black; padding: 5px 10px;  z-index:8;">DR NTSIBANE NTLATLAPA</span>
-                </div>
-              </div>
-            </div>
-            <div class="col s12 m6 l4">
-              <div class="card fade-in-out up-in-out" data-duration="0">
-                <div class="card-image">
-                  <a class="waves-effect waves-light modal-trigger" href="#lohan"><img src="{{ static ('images/Lohan.jpg') }}" style="width: -webkit-fill-available; height: 300px;"></a>
-                  <span class="card-title waves-effect waves-light modal-trigger" href="#lohan" style="color: #fff; background: black; padding: 5px 10px;  z-index:8;">LOHAN SPIES</span>
-                </div>
-              </div>
-            </div>
-            <div class="col s12 m6 l4">
-              <div class="card fade-in-out up-in-out" data-duration="0">
-                <div class="card-image">
-                  <a class="waves-effect waves-light modal-trigger" href="#sean"><img src="{{ static ('images/Sean.jpg') }}" style="width: -webkit-fill-available; height: 300px;"></a>
-                  <span class="card-title waves-effect waves-light modal-trigger" href="#sean" style="color: #fff; background: black; padding: 5px 10px;  z-index:8;">SEAN MOUTON</span>
-                </div>
-              </div>
-            </div>
-            <div class="col s12 m6 l4">
-              <div class="card fade-in-out up-in-out" data-duration="0">
-                <div class="card-image">
-                  <a class="waves-effect waves-light modal-trigger" href="#omarjee"><img src="{{ static ('images/Omarjee.png') }}" style="width: -webkit-fill-available; height: 300px;"></a>
-                  <span class="card-title waves-effect waves-light modal-trigger" href="#omarjee" style="color: #fff; background: black; padding: 5px 10px;  z-index:8;">MUHAMMAD ZUBAIR OMARJEE</span>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
-
-
-      <!-- Modal Structure -->
-  <div id="nnamdi" class="modal modal-fixed-footer">
-    <div class="modal-content">
-      <h4>PROF NNAMDI NWULU</h4>
-      <img src="{{ static ('images/prof_nnamdi_nwulu.jpeg') }}" class="circle" style="width: 100px; height: 100px;">
-      <p style="text-align: justify;">
-        Principal Investigator (PI), South Africa/ Switzerland Chair in Blockchain Technology
-        <br><br>
-        Professor Nnamdi Nwulu holds the South Africa (DSI-NRF)/ Swiss Bilateral Chair in Blockchain Technology (SARChI) and is a 
-        Professor of Sustainable Cyber-Physical Engineering Systems. Prof Nwulu is the Director of the Centre for Cyber-Physical Food, 
-        Energy & Water Systems (CCP-FEWS) at the University of Johannesburg and also the Acting Head of School, School of Electrical 
-        Engineering, University of Johannesburg.
-        <br><br>
-        Prof Nwulu's research focuses on Food, Energy and Water Systems (FEWS) and the inherent nexus between all three. Specifically, 
-        his research focuses on applying FEW-N thinking, digital technologies, mathematical optimisation techniques, and machine learning 
-        algorithms in food, energy, and water systems. This research focus has produced several books, inventions and over 170 publications, 
-        winning him the 2021 NRF Research Excellence Award for Early Career/Emerging Researchers in Engineering/Technology. 
-        He was also a 2020/2021 TW Kambule-NSTF-South32 Award finalist in the Emerging Researcher category and won the 2020 UJ Vice-Chancellors'
-         most promising young researcher award. He is a Member of the prestigious South African Young Academy of Science (SAYAS).
-         <br><br>
-        Prof Nwulu is a Professional Engineer registered with the Engineering Council of South Africa (ECSA), a Senior Member of the Institute of 
-        Electrical and Electronics Engineers (SMIEEE), a Senior Member of the South African Institute of Electrical Engineers (SMSAIEE) and a 
-        Y-rated Researcher by the National Research Foundation of South Africa.
-        Prof. Nwulu is the Editor-in-Chief of the Journal of Digital Food Energy and Water Systems (JD-FEWS), 
-        Associate Editor of the IET Renewable Power Generation (IET-RPG) and the African Journal of Science, Technology, 
-        Innovation and Development (AJSTID).</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-red lighten-1 btn-flat white">Close</a>
-    </div>
-  </div>
-
-  <div id="luca" class="modal modal-fixed-footer">
-    <div class="modal-content">
-      <h4>DR LUCA MAZZOLA</h4>
-      <img src="{{ static ('images/Luca.jpeg') }}" class="circle" style="width: 100px; height: 100px;">
-      <p style="text-align: justify;">
-        Co-Principal Investigator (Co-PI), South Africa/ Switzerland Chair in Blockchain Technology
-        <br><br>
-        Dr. Luca Mazzola is research associate at the Hochschule Luzern-Informatik in the Data Intelligence Research Team, with interest from 
-        Big Data to Machine Learning applications, including distributed ledgers and Neural network models for data analysis.
-        <br><br>
-        He holds a MSc. of Engineering in Computer Sciences (Politecnico di Milano, IT, 2004) and a PhD. in Technologies for Human Communication 
-        (Università della Svizzera italiana, CH, 2014).
-        He is experienced in secondary usage of information for designing DSS in heterogeneous fields. He was previously employed 
-        at the JRC (Joint Research Center of the European Commission) for ML methods in containerased transportation antifraud purposes. 
-        He worked also as researcher in Saarbruecken (DE) at DFKI (German Research Center for Artificial Intelligence), applying technologies 
-        from Semantic Web for Manufacturing application. He additionally lectured Medical Informatics classes at Politecnico di Milano, Italy..</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-red lighten-1 btn-flat white">Close</a>
-    </div>
-  </div>
-
-
-  <div id="anushka" class="modal modal-fixed-footer">
-    <div class="modal-content">
-      <h4>ANUSHKA SOMA-PATEL</h4>
-      <img src="{{ static ('images/Anushka.jpg') }}" class="circle" style="width: 100px; height: 100px;">
-      <p style="text-align: justify;">
-        Product manager for Atala PRISM ecosystems at Input Output Global
-        <br><br>
-        Anushka is the Product manager for Atala PRISM ecosystems at Input Output Global. She has over 20 years experience in IT and 
-        Lean and has been exploring blockchain technology with an open mind and much curiosity since 2018.
-        <br><br>
-        Her roles as the Co-Chair of the South African Financial Blockchain Consortium Identity Working Group, guest lecturer for 
-        blockchain at The University of Stellenbosch Business School as well as at the University of Cape Town Fintech Program, 
-        and Lead writer for the African Union Blockchain report, speaker at blockchain conferences and advisory working group member 
-        of the IAMZA project qualify her to collaborate both locally and abroad to move the dial on digital identity in South Africa 
-        and the World.</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-red lighten-1 btn-flat white">Close</a>
-    </div>
-  </div>
-
-
-  <div id="ian" class="modal modal-fixed-footer">
-    <div class="modal-content">
-      <h4>IAN PUTTER</h4>
-      <img src="{{ static ('images/Ian.jpg') }}" class="circle" style="width: 100px; height: 100px;">
-      <p style="text-align: justify;">
-        Head Blockchain COE, Innovation as a Service at Standard Bank
-        <br><br>
-        Ian currently holds the title of Head Blockchain COE in the Innovation team at Standard Bank. He collaborates and partners 
-        with specialists and organisations locally and internationally as well as Standard Bank teams to determine how this 
-        emerging technology can be leveraged best for enhanced efficiency and controls including focusing on new business models 
-        focusing on customer first. He also performs in the role of Training Officer for the CA Graduate Training Program.
-        <br><br>
-        Ian received a Master’s degree in Banking and Economics from the University of Pretoria and thereafter completed an Honors 
-        and CTA at the University of Johannesburg to qualify as a Chartered Accountant. He started his career as an Economist and 
-        later joined Standard Bank in 1996 in the Treasury Audit Department. Ian participated in the original SAP General Ledger 
-        implementation at Standard Bank and later became the Global CFO of the Global Markets business for the Corporate and Investment 
-        bank “CIB” – where he spent a large part of his career and gained extensive local and international accounting, tax and regulatory 
-        experience. This was invaluable when he was appointed the Legal Entity Controller for CIB South Africa and the lead on the Global 
-        CIB Accounting Rules Engine project – which further enhanced his technical skills. He spent two years as the Head of Africa Finance 
-        Integration and had the privilege of traveling to nearly all the Standard Bank franchises in the Rest of Africa. Ian has worked in 
-        various areas and functions in the Bank working across the group in many African countries as well as internationally
-        <br><br>
-        With more than 26 years of industry expertise, comprehensive academic training and practical professional development, 
-        Ian Putter is a future-focused Executive at Standard Bank, the largest financial institution in Africa, where he heads 
-        up Blockchain focusing on multiple use cases and platforms some in production and some starting – working and collaborating 
-        with local and global experts. He is a blockchain evangelist and has spent the last two years focusing on this technology.</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-red lighten-1 btn-flat white">Close</a>
-    </div>
-  </div>
-
-
-  <div id="akhona" class="modal modal-fixed-footer">
-    <div class="modal-content">
-      <h4>AKHONA DAMANE</h4>
-      <img src="{{ static ('images/Akhona.jpg') }}" class="circle" style="width: 100px; height: 100px;">
-      <p style="text-align: justify;">
-        Chief Technology Officer of Edgepoint Software
-        <br><br>
-        Akhona Damane is currently Chief Technology Office of Edgepoint Software. Prior to that, he was the Manager: Office of Digital Advantage 
-        at CSIR, where he was responsible for facilitating the implementation of the Department of Science and Innovation’s National ICT Research, 
-        Development and Innovation Roadmap. He led projects in Data Science, Artificial Intelligence, Blockchain, Internet of Things, and 
-        Cybersecurity. He is the co-founder and chair for the South African National Blockchain Alliance's (SANBA) Leadership Forum, and 
-        the previous chair of the Advisory Panel for the Centre for Artificial Intelligence Research (CAIR).
-        <br><br>
-        He holds a Bachelor of Science Honours Degree in Computer Science and a Bachelor of Science from the University of Fort Hare. 
-        He has completed a number of training certificates in ITIL 4 Foundation, Systems Analysis, Knowledge Management, and AI and Machine 
-        Learning.</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-red lighten-1 btn-flat white">Close</a>
-    </div>
-  </div>
-
-
-  <div id="hamash" class="modal modal-fixed-footer">
-    <div class="modal-content">
-      <h4>HEMASH KALA</h4>
-      <img src="{{ static ('images/Hemash.png') }}" class="circle" style="width: 100px; height: 100px;">
-      <p style="text-align: justify;">
-        Managing Director at Beansprout Technologies and Crypto Compliance Services Consultant
-        <br><br>
-        Having started his career in corporate and investment banking, Hemash has gained over 15 years of experience in strategising, 
-        leading and executing change within the business and technology sectors of financial services.
-        <br><br>
-        In pursuit of creating more credibility to the South African cryptocurrency market, Hemash is currently developing crypto regulatory 
-        compliance tools and services for banks and cryptocurrency service providers.
-        <br><br>
-        Having previously worked at RMB as the Blockchain Lead, he has gained extensive experience in assess the impact of cryptocurrencies 
-        and blockchain technology on the existing centralised banking business model and driving the evolutionary transformation of banking 
-        in the new decentralised world. Driven by his passion for digital transformation within this fourth industrial revolution, his primary 
-        objective is to help lead organisations into the digital future.</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-red lighten-1 btn-flat white">Close</a>
-    </div>
-  </div>
-
-
-  <div id="caroline" class="modal modal-fixed-footer">
-    <div class="modal-content">
-      <h4>CAROLINE DAMA</h4>
-      <img src="{{ static ('images/CAROLINE.jpg') }}" class="circle" style="width: 100px; height: 100px;">
-      <p style="text-align: justify;">
-        Country Director, Green World Campaign, Kenya
-        <br><br>
-        Mother, teacher and activist. Through her various roles, Caroline Dama strives to inspire the women and children of her home 
-        country Kenya to take charge of their economic future by working on programs that build their capacity to create a 
-        thriving and sustainable way of life. After all, “who is identified as poor depends upon what we measure” and there 
-        is a lot of potential everywhere she goes.</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-red lighten-1 btn-flat white">Close</a>
-    </div>
-  </div>
-
-
-  <div id="maurice" class="modal modal-fixed-footer">
-    <div class="modal-content">
-      <h4>MAURICE CRESPI</h4>
-      <img src="{{ static ('images/Maurice.png') }}" class="circle" style="width: 100px; height: 100px;">
-      <p style="text-align: justify;">
-        Partner, Schindlers Attorneys
-        <br><br>
-        Maurice is a highly respected attorney who has established himself as a leading expert in the field of blockchain law. 
-        With over 25 years of experience in commercial law and litigation, he has combined his legal expertise with his passion 
-        for technology to become a trailblazer in the blockchain industry.
-        <br><br>
-        In 2017, Maurice founded the first blockchain department in South Africa, which quickly became a go-to destination for 
-        clients seeking legal solutions for their blockchain needs. His unique approach encompasses both the legal and technological 
-        aspects of blockchain, providing clients with comprehensive advice on developing tokens, wallets, exchanges, NFTs, and other 
-        blockchain-related matters.
-         <br><br>
-         Maurice’s ground-breaking work in the field of blockchain law includes the development of the Cowrie Token (www.mycowrie.org), 
-         the world’s first turnkey ICO by a law firm. He specializes in what he calls “Crypto 3.0”, the intersection of technology and law,
-         which involves tokenization of real-world assets, NFTs that transfer legal rights, security and utility token offerings, and 
-         fractionalization of property using NFTs or fungible tokens.
-        <br><br>
-        With his team of tech experts, Maurice can offer comprehensive assistance to clients with all aspects of their technological requirements, 
-        which is a world first for a law firm.
-        <br><br>
-        As a leading expert in the field of blockchain law, Maurice can help clients navigate the emerging tax and regulatory landscape for 
-        blockchain enterprises. He has a deep understanding of the legal and regulatory challenges that blockchain enterprises face and 
-        can provide valuable advice on compliance with regulations, including anti-money laundering and know-your-customer requirements. 
-        Additionally, Maurice stays up-to-date on the latest regulatory developments in the blockchain industry, ensuring that his clients 
-        receive the most current and accurate legal advice.
-        <br><br>
-        Maurice is an accomplished speaker and has been invited to speak at various conferences around the world, including the Nordic 
-        Blockchain Conference in Copenhagen and the Noah Conference in Zurich. He has also founded the South African Institute of Blockchain 
-        Practitioners, a leading association that provides training and certification programs for blockchain professionals.
-        <br><br>
-        Through his contributions to the blockchain industry, Maurice has played a crucial role in advancing the legal framework for emerging technologies, 
-        making him a true pioneer in the field of blockchain law.
-      
-      </p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-red lighten-1 btn-flat white">Close</a>
-    </div>
-  </div>
-
-
-  <div id="ntsibane" class="modal modal-fixed-footer">
-    <div class="modal-content">
-      <h4>DR NTSIBANE NTLATLAPA</h4>
-      <img src="{{ static ('images/Ntsibane.png') }}" class="circle" style="width: 100px; height: 100px;">
-      <p style="text-align: justify;">
-        Centre Head of the Centre for the 4th Industrial Revolution South Africa (C4IRSA) at the Council for Scientific and Industrial Resesearch (CSIR), 
-        Adjunct Honorary Professor at the University of the Witwatersrand
-        <br><br>
-        Dr. Ntsibane Ntlatlapa is Centre Head of the Centre for the 4th Industrial Revolution South Africa (C4IRSA) at the Council for 
-        Scientific and Industrial Resesearch (CSIR), and was previously the CSIR's Competency Area Manager for NextGen Enterprises and 
-        Institutions. He is also an Adjunct Honorary Professor at the University of the Witwatersrand (Wits).
-        <br><br>
-        Ntsibane holds a PhD in Computer Science (graduated 1999) from Auburn University in the US, and has more than 20 years of post-doctoral 
-        research experience in research and technology development. At international level, he served as the Vice-Chairperson of the International 
-        Telecommunication Union's ITU-T Multimedia Study Group (Study Group 16) for a three-year period.
-         <br><br>
-         Ntsibane has academic experience in developing curricula, teaching and supervision in Lesotho, Nigeria, the US, and South Africa.</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-red lighten-1 btn-flat white">Close</a>
-    </div>
-  </div>
-
-
-  <div id="lohan" class="modal modal-fixed-footer">
-    <div class="modal-content">
-      <h4>LOHAN SPIES</h4>
-      <img src="{{ static ('images/Lohan.jpg') }}" class="circle" style="width: 100px; height: 100px;">
-      <p style="text-align: justify;">
-        Founder and CEO of DIDx and Chair of Sovrin Steward Council
-        <br><br>
-        Lohan has been a Co-founder of various cybersecurity and blockchain-based ventures in digital identity and personal data protection, 
-        a DApp called Amply aimed towards dematerialising the early childhood development subsidy claims to optimising the impact market with 
-        the IXO protocol; the blockchain for impact. His latest venture – DIDx focuses on self-sovereign identity and cybersecurity. 
-        As a serial entrepreneur and self-sovereign identity thought leader, he continues to find motivation in building start-ups 
-        that leverage exponential technology and decentralised trust networks with the vision to achieve the identity for all. 
-        He is also a founding steward of the Sovrin Network and chair of the Sovrin Steward Council and ex-officio Sovrin Foundation 
-        board member and trustee. Furthermore, he is an active participant/member in the South African Financial Blockchain Consortium (SAFBC), 
-        South African National Blockchain Alliance (SANBA), World Economic Forum Digital Identity Coalition, Bankserv Digital Identity project, 
-        Decentralised Identity Foundation, Trust over IP Foundation and a frequent speaker on self-sovereign identity.
-      </p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-red lighten-1 btn-flat white">Close</a>
-    </div>
-  </div>
-
-
-  <div id="sean" class="modal modal-fixed-footer">
-    <div class="modal-content">
-      <h4>SEAN MOUTON</h4>
-      <img src="{{ static ('images/Sean.jpg') }}" class="circle" style="width: 100px; height: 100px;">
-      <p style="text-align: justify;">
-        Chief Technology Manager Head of R&D at Absa
-        <br><br>
-        Sean is Chief Technology Manager Head of R&D at Absa with 32 years of extensive knowledge in banking and payments. Sean serves as 
-        the Chairperson for the Financial Industry Standards Association and represents South Africa as Head of Delegation at ISO T68. 
-        Sean is also very involved with Digital Identity, CBDC and DLT.
-      </p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-red lighten-1 btn-flat white">Close</a>
-    </div>
-  </div>
-
-
-  <div id="omarjee" class="modal modal-fixed-footer">
-    <div class="modal-content">
-      <h4>MUHAMMAD ZUBAIR OMARJEE</h4>
-      <img src="{{ static ('images/Omarjee.png') }}" class="circle" style="width: 100px; height: 100px;">``
-      <p style="text-align: justify;">
-        Head of Security Architecture, Standard Bank Group
-        <br><br>
-        Muhammed Zubair (Mz) is an Enterprise Security Architect with Standard Bank GroupSouth Africa. He is instrumental in defining 
-        the security technology strategy and plays a pivotal role in shaping the information security practice as a transformative business 
-        driven and risk oriented discipline.
-        <br><br>
-        Together with 17 years of experience in the Banking and IT sectors, Muhammed Zubair (Mz) has architected and delivered a diverse 
-        portfolio of successful IT projects. He has been instrumental in key enterprise wide IT initiatives as it relates to: Design and 
-        development of Mobile banking and Speech Banking Solutions, Defining organizational strategies for Cyber Resilience, Driving the 
-        implementation of a strategic enterprise wide Digital Identity and Access Management initiatives, Designing of a multi-channel 
-        architecture aiming to integrate vertical and horizontal business domains within Standard Bank, and Establishing an Enterprise 
-        Architecture Practice.
-      </p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-red lighten-1 btn-flat white">Close</a>
-    </div>
-  </div>
-
-    <!-- Footer -->
-    <footer class="page-footer" style="background: #18282d !important;">
-      <div class="container center white-text">
-        © 2023 UJ Blockchain - SA-Swiss Bilateral Blockchain Research. All Rights Reserved.
-      </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="{{ static ('js/materialize.min.js') }}"></script>
-
-    <!-- External libraries -->
-    <script src="{{ static ('js/imagesloaded.pkgd.min.js') }}"></script>
-    <script src="{{ static ('js/masonry.pkgd.min.js') }}"></script>
-    <script src="{{ static ('js/TweenMax.min.js') }}"></script>
-    <script src="{{ static ('js/ScrollMagic.min.js') }}"></script>
-    <script src="{{ static ('js/animation.gsap.min.js') }}"></script>
-
-    <!-- Initialization script -->
-    <script src="{{ static ('js/startup.js') }}"></script>
-    <script src="{{ static ('js/init.js') }}"></script>
-  </body>
+        <div id="anushka" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4>ANUSHKA SOMA-PATEL</h4>
+                <img src="{{ static ('images/Anushka.jpg') }}"
+                     class="circle"
+                     style="width: 100px;
+                            height: 100px">
+                <p style="text-align: justify;">
+                    Product manager for Atala PRISM ecosystems at Input Output Global
+                    <br>
+                    <br>
+                    Anushka is the Product manager for Atala PRISM ecosystems at Input Output Global. She has over 20 years experience in IT and
+                    Lean and has been exploring blockchain technology with an open mind and much curiosity since 2018.
+                    <br>
+                    <br>
+                    Her roles as the Co-Chair of the South African Financial Blockchain Consortium Identity Working Group, guest lecturer for
+                    blockchain at The University of Stellenbosch Business School as well as at the University of Cape Town Fintech Program,
+                    and Lead writer for the African Union Blockchain report, speaker at blockchain conferences and advisory working group member
+                    of the IAMZA project qualify her to collaborate both locally and abroad to move the dial on digital identity in South Africa
+                    and the World.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!"
+                   class="modal-close waves-effect waves-red lighten-1 btn-flat white">Close</a>
+            </div>
+        </div>
+        <div id="ian" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4>IAN PUTTER</h4>
+                <img src="{{ static ('images/Ian.jpg') }}"
+                     class="circle"
+                     style="width: 100px;
+                            height: 100px">
+                <p style="text-align: justify;">
+                    Head Blockchain COE, Innovation as a Service at Standard Bank
+                    <br>
+                    <br>
+                    Ian currently holds the title of Head Blockchain COE in the Innovation team at Standard Bank. He collaborates and partners
+                    with specialists and organisations locally and internationally as well as Standard Bank teams to determine how this
+                    emerging technology can be leveraged best for enhanced efficiency and controls including focusing on new business models
+                    focusing on customer first. He also performs in the role of Training Officer for the CA Graduate Training Program.
+                    <br>
+                    <br>
+                    Ian received a Master’s degree in Banking and Economics from the University of Pretoria and thereafter completed an Honors
+                    and CTA at the University of Johannesburg to qualify as a Chartered Accountant. He started his career as an Economist and
+                    later joined Standard Bank in 1996 in the Treasury Audit Department. Ian participated in the original SAP General Ledger
+                    implementation at Standard Bank and later became the Global CFO of the Global Markets business for the Corporate and Investment
+                    bank “CIB” – where he spent a large part of his career and gained extensive local and international accounting, tax and regulatory
+                    experience. This was invaluable when he was appointed the Legal Entity Controller for CIB South Africa and the lead on the Global
+                    CIB Accounting Rules Engine project – which further enhanced his technical skills. He spent two years as the Head of Africa Finance
+                    Integration and had the privilege of traveling to nearly all the Standard Bank franchises in the Rest of Africa. Ian has worked in
+                    various areas and functions in the Bank working across the group in many African countries as well as internationally
+                    <br>
+                    <br>
+                    With more than 26 years of industry expertise, comprehensive academic training and practical professional development,
+                    Ian Putter is a future-focused Executive at Standard Bank, the largest financial institution in Africa, where he heads
+                    up Blockchain focusing on multiple use cases and platforms some in production and some starting – working and collaborating
+                    with local and global experts. He is a blockchain evangelist and has spent the last two years focusing on this technology.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!"
+                   class="modal-close waves-effect waves-red lighten-1 btn-flat white">Close</a>
+            </div>
+        </div>
+        <div id="akhona" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4>AKHONA DAMANE</h4>
+                <img src="{{ static ('images/Akhona.jpg') }}"
+                     class="circle"
+                     style="width: 100px;
+                            height: 100px">
+                <p style="text-align: justify;">
+                    Chief Technology Officer of Edgepoint Software
+                    <br>
+                    <br>
+                    Akhona Damane is currently Chief Technology Office of Edgepoint Software. Prior to that, he was the Manager: Office of Digital Advantage
+                    at CSIR, where he was responsible for facilitating the implementation of the Department of Science and Innovation’s National ICT Research,
+                    Development and Innovation Roadmap. He led projects in Data Science, Artificial Intelligence, Blockchain, Internet of Things, and
+                    Cybersecurity. He is the co-founder and chair for the South African National Blockchain Alliance's (SANBA) Leadership Forum, and
+                    the previous chair of the Advisory Panel for the Centre for Artificial Intelligence Research (CAIR).
+                    <br>
+                    <br>
+                    He holds a Bachelor of Science Honours Degree in Computer Science and a Bachelor of Science from the University of Fort Hare.
+                    He has completed a number of training certificates in ITIL 4 Foundation, Systems Analysis, Knowledge Management, and AI and Machine
+                    Learning.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!"
+                   class="modal-close waves-effect waves-red lighten-1 btn-flat white">Close</a>
+            </div>
+        </div>
+        <div id="hamash" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4>HEMASH KALA</h4>
+                <img src="{{ static ('images/Hemash.png') }}"
+                     class="circle"
+                     style="width: 100px;
+                            height: 100px">
+                <p style="text-align: justify;">
+                    Managing Director at Beansprout Technologies and Crypto Compliance Services Consultant
+                    <br>
+                    <br>
+                    Having started his career in corporate and investment banking, Hemash has gained over 15 years of experience in strategising,
+                    leading and executing change within the business and technology sectors of financial services.
+                    <br>
+                    <br>
+                    In pursuit of creating more credibility to the South African cryptocurrency market, Hemash is currently developing crypto regulatory
+                    compliance tools and services for banks and cryptocurrency service providers.
+                    <br>
+                    <br>
+                    Having previously worked at RMB as the Blockchain Lead, he has gained extensive experience in assess the impact of cryptocurrencies
+                    and blockchain technology on the existing centralised banking business model and driving the evolutionary transformation of banking
+                    in the new decentralised world. Driven by his passion for digital transformation within this fourth industrial revolution, his primary
+                    objective is to help lead organisations into the digital future.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!"
+                   class="modal-close waves-effect waves-red lighten-1 btn-flat white">Close</a>
+            </div>
+        </div>
+        <div id="caroline" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4>CAROLINE DAMA</h4>
+                <img src="{{ static ('images/CAROLINE.jpg') }}"
+                     class="circle"
+                     style="width: 100px;
+                            height: 100px">
+                <p style="text-align: justify;">
+                    Country Director, Green World Campaign, Kenya
+                    <br>
+                    <br>
+                    Mother, teacher and activist. Through her various roles, Caroline Dama strives to inspire the women and children of her home
+                    country Kenya to take charge of their economic future by working on programs that build their capacity to create a
+                    thriving and sustainable way of life. After all, “who is identified as poor depends upon what we measure” and there
+                    is a lot of potential everywhere she goes.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!"
+                   class="modal-close waves-effect waves-red lighten-1 btn-flat white">Close</a>
+            </div>
+        </div>
+        <div id="maurice" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4>MAURICE CRESPI</h4>
+                <img src="{{ static ('images/Maurice.png') }}"
+                     class="circle"
+                     style="width: 100px;
+                            height: 100px">
+                <p style="text-align: justify;">
+                    Partner, Schindlers Attorneys
+                    <br>
+                    <br>
+                    Maurice is a highly respected attorney who has established himself as a leading expert in the field of blockchain law.
+                    With over 25 years of experience in commercial law and litigation, he has combined his legal expertise with his passion
+                    for technology to become a trailblazer in the blockchain industry.
+                    <br>
+                    <br>
+                    In 2017, Maurice founded the first blockchain department in South Africa, which quickly became a go-to destination for
+                    clients seeking legal solutions for their blockchain needs. His unique approach encompasses both the legal and technological
+                    aspects of blockchain, providing clients with comprehensive advice on developing tokens, wallets, exchanges, NFTs, and other
+                    blockchain-related matters.
+                    <br>
+                    <br>
+                    Maurice’s ground-breaking work in the field of blockchain law includes the development of the Cowrie Token (www.mycowrie.org),
+                    the world’s first turnkey ICO by a law firm. He specializes in what he calls “Crypto 3.0”, the intersection of technology and law,
+                    which involves tokenization of real-world assets, NFTs that transfer legal rights, security and utility token offerings, and
+                    fractionalization of property using NFTs or fungible tokens.
+                    <br>
+                    <br>
+                    With his team of tech experts, Maurice can offer comprehensive assistance to clients with all aspects of their technological requirements,
+                    which is a world first for a law firm.
+                    <br>
+                    <br>
+                    As a leading expert in the field of blockchain law, Maurice can help clients navigate the emerging tax and regulatory landscape for
+                    blockchain enterprises. He has a deep understanding of the legal and regulatory challenges that blockchain enterprises face and
+                    can provide valuable advice on compliance with regulations, including anti-money laundering and know-your-customer requirements.
+                    Additionally, Maurice stays up-to-date on the latest regulatory developments in the blockchain industry, ensuring that his clients
+                    receive the most current and accurate legal advice.
+                    <br>
+                    <br>
+                    Maurice is an accomplished speaker and has been invited to speak at various conferences around the world, including the Nordic
+                    Blockchain Conference in Copenhagen and the Noah Conference in Zurich. He has also founded the South African Institute of Blockchain
+                    Practitioners, a leading association that provides training and certification programs for blockchain professionals.
+                    <br>
+                    <br>
+                    Through his contributions to the blockchain industry, Maurice has played a crucial role in advancing the legal framework for emerging technologies,
+                    making him a true pioneer in the field of blockchain law.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!"
+                   class="modal-close waves-effect waves-red lighten-1 btn-flat white">Close</a>
+            </div>
+        </div>
+        <div id="ntsibane" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4>DR NTSIBANE NTLATLAPA</h4>
+                <img src="{{ static ('images/Ntsibane.png') }}"
+                     class="circle"
+                     style="width: 100px;
+                            height: 100px">
+                <p style="text-align: justify;">
+                    Centre Head of the Centre for the 4th Industrial Revolution South Africa (C4IRSA) at the Council for Scientific and Industrial Resesearch (CSIR),
+                    Adjunct Honorary Professor at the University of the Witwatersrand
+                    <br>
+                    <br>
+                    Dr. Ntsibane Ntlatlapa is Centre Head of the Centre for the 4th Industrial Revolution South Africa (C4IRSA) at the Council for
+                    Scientific and Industrial Resesearch (CSIR), and was previously the CSIR's Competency Area Manager for NextGen Enterprises and
+                    Institutions. He is also an Adjunct Honorary Professor at the University of the Witwatersrand (Wits).
+                    <br>
+                    <br>
+                    Ntsibane holds a PhD in Computer Science (graduated 1999) from Auburn University in the US, and has more than 20 years of post-doctoral
+                    research experience in research and technology development. At international level, he served as the Vice-Chairperson of the International
+                    Telecommunication Union's ITU-T Multimedia Study Group (Study Group 16) for a three-year period.
+                    <br>
+                    <br>
+                    Ntsibane has academic experience in developing curricula, teaching and supervision in Lesotho, Nigeria, the US, and South Africa.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!"
+                   class="modal-close waves-effect waves-red lighten-1 btn-flat white">Close</a>
+            </div>
+        </div>
+        <div id="lohan" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4>LOHAN SPIES</h4>
+                <img src="{{ static ('images/Lohan.jpg') }}"
+                     class="circle"
+                     style="width: 100px;
+                            height: 100px">
+                <p style="text-align: justify;">
+                    Founder and CEO of DIDx and Chair of Sovrin Steward Council
+                    <br>
+                    <br>
+                    Lohan has been a Co-founder of various cybersecurity and blockchain-based ventures in digital identity and personal data protection,
+                    a DApp called Amply aimed towards dematerialising the early childhood development subsidy claims to optimising the impact market with
+                    the IXO protocol; the blockchain for impact. His latest venture – DIDx focuses on self-sovereign identity and cybersecurity.
+                    As a serial entrepreneur and self-sovereign identity thought leader, he continues to find motivation in building start-ups
+                    that leverage exponential technology and decentralised trust networks with the vision to achieve the identity for all.
+                    He is also a founding steward of the Sovrin Network and chair of the Sovrin Steward Council and ex-officio Sovrin Foundation
+                    board member and trustee. Furthermore, he is an active participant/member in the South African Financial Blockchain Consortium (SAFBC),
+                    South African National Blockchain Alliance (SANBA), World Economic Forum Digital Identity Coalition, Bankserv Digital Identity project,
+                    Decentralised Identity Foundation, Trust over IP Foundation and a frequent speaker on self-sovereign identity.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!"
+                   class="modal-close waves-effect waves-red lighten-1 btn-flat white">Close</a>
+            </div>
+        </div>
+        <div id="sean" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4>SEAN MOUTON</h4>
+                <img src="{{ static ('images/Sean.jpg') }}"
+                     class="circle"
+                     style="width: 100px;
+                            height: 100px">
+                <p style="text-align: justify;">
+                    Chief Technology Manager Head of R&D at Absa
+                    <br>
+                    <br>
+                    Sean is Chief Technology Manager Head of R&D at Absa with 32 years of extensive knowledge in banking and payments. Sean serves as
+                    the Chairperson for the Financial Industry Standards Association and represents South Africa as Head of Delegation at ISO T68.
+                    Sean is also very involved with Digital Identity, CBDC and DLT.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!"
+                   class="modal-close waves-effect waves-red lighten-1 btn-flat white">Close</a>
+            </div>
+        </div>
+        <div id="omarjee" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4>MUHAMMAD ZUBAIR OMARJEE</h4>
+                <img src="{{ static ('images/Omarjee.png') }}"
+                     class="circle"
+                     style="width: 100px;
+                            height: 100px">
+                ``
+                <p style="text-align: justify;">
+                    Head of Security Architecture, Standard Bank Group
+                    <br>
+                    <br>
+                    Muhammed Zubair (Mz) is an Enterprise Security Architect with Standard Bank GroupSouth Africa. He is instrumental in defining
+                    the security technology strategy and plays a pivotal role in shaping the information security practice as a transformative business
+                    driven and risk oriented discipline.
+                    <br>
+                    <br>
+                    Together with 17 years of experience in the Banking and IT sectors, Muhammed Zubair (Mz) has architected and delivered a diverse
+                    portfolio of successful IT projects. He has been instrumental in key enterprise wide IT initiatives as it relates to: Design and
+                    development of Mobile banking and Speech Banking Solutions, Defining organizational strategies for Cyber Resilience, Driving the
+                    implementation of a strategic enterprise wide Digital Identity and Access Management initiatives, Designing of a multi-channel
+                    architecture aiming to integrate vertical and horizontal business domains within Standard Bank, and Establishing an Enterprise
+                    Architecture Practice.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!"
+                   class="modal-close waves-effect waves-red lighten-1 btn-flat white">Close</a>
+            </div>
+        </div>
+        <!-- Footer -->
+        <footer class="page-footer" style="background: #18282d !important;">
+            <div class="container center white-text">
+                © 2023 UJ Blockchain - SA-Swiss Bilateral Blockchain Research. All Rights Reserved.
+            </div>
+        </footer>
+        <!-- Scripts -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="{{ static ('js/materialize.min.js') }}"></script>
+        <!-- External libraries -->
+        <script src="{{ static ('js/imagesloaded.pkgd.min.js') }}"></script>
+        <script src="{{ static ('js/masonry.pkgd.min.js') }}"></script>
+        <script src="{{ static ('js/TweenMax.min.js') }}"></script>
+        <script src="{{ static ('js/ScrollMagic.min.js') }}"></script>
+        <script src="{{ static ('js/animation.gsap.min.js') }}"></script>
+        <!-- Initialization script -->
+        <script src="{{ static ('js/startup.js') }}"></script>
+        <script src="{{ static ('js/init.js') }}"></script>
+    </body>
 </html>
