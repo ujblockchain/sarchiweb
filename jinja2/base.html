@@ -5,41 +5,32 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       {% block metaTag %}
-            <meta name="description"
-                content="The SA/Swiss Chair on Blockchain Technology at the University of Johannesburg is a unique entity within the university, dedicated to advancing research and education in the field of blockchain with aim for real-world blockchain applications and development" />
-            <meta name="keywords"
-                content="university of johannesburg, uj south africa, uj johannesburg, uj ulink, ulink, u link, south african, research sa, nrfconnect, nrf connect, national research foundation, nrf, nrf sarchi, uj, ujblockchain, uj blockchain, blockchain uj, sarchi uj, sarchi, uj sarchi, sarchi blockchain, uj sarchi blockchain, south africa, switzerland, johannesburg, blockchain, distributed ledger technology, dlt, consensus, smart contract, council, governance, decentralization, distributed, ledger, technology, distributed ledgers, prof nnamdi nwulu, nnamdi nwulu, Prof Nnamdi Nwulu - University of Johannesburg, Nnamdi I. Nwulu - Google Scholar, Nnamdi NWULU | Professor (Full) | PhD Electrical Engineering, Nnamdi Nwulu (0000-0003-2607-7439) - ORCID, Nnamdi Nwulu | IEEE Xplore Author Details, Nnamdi Nwulu - SARChI Chair - University of Johannesburg, linkedin, Nnamdi Nwulu's research works | University of Johannesburg, researchgate, research gate, research, lucerne university of applied sciences and arts, hslu, a World-wide Blockchain Hub, coordinating research, education and networking, zurich university, uzh, github, university">
-          <meta name="author" content="UJ Blockchain" />
+        <meta name="description"
+            content="The SA/Swiss Chair on Blockchain Technology at the University of Johannesburg is a unique entity within the university, dedicated to advancing research and education in the field of blockchain with aim for real-world blockchain applications and development" />
+        <meta name="keywords"
+            content="university of johannesburg, uj south africa, uj johannesburg, uj ulink, ulink, u link, south african, research sa, nrfconnect, nrf connect, national research foundation, nrf, nrf sarchi, uj, south africa-swiss bilateral research Chair in blockchain technology, swiss bilateral research chair in blockchain technology, ujblockchain, uj blockchain, blockchain uj, sarchi uj, sarchi, uj sarchi, sarchi blockchain, uj sarchi blockchain, south africa, switzerland, johannesburg, blockchain, distributed ledger technology, dlt, consensus, smart contract, council, governance, decentralization, distributed, ledger, technology, distributed ledgers, prof nnamdi nwulu, nnamdi nwulu, nnamdi I. nwulu, nnamdi nwulu professor (full), nnamdi nwulu full prof, nnamdi nwulu linkedin, nnamdi nwulu's research works, nnamdi nwulu research works, nnamdi nwulu research work, nnamdi nwulu researchgate, nnamdi nwulu research gate, nnamdi nwulu google scholar, nnamdi nwulu google, nnamdi nwulu research, lucerne university of applied sciences and arts, hslu, blockchain hub, coordinating research, education, networking, zurich university, ujblockchain github, university">
+        <meta name="author" content="UJ Blockchain" />
       {% endblock metaTag %}
       <!-- Favicon -->
-      <link rel="apple-touch-icon"
-            sizes="180x180"
-            href="{{ static('favicon/apple-touch-icon.png') }}">
-      <link rel="icon"
-            type="image/png"
-            sizes="32x32"
-            href="{{ static('favicon/favicon-32x32.png') }}">
-      <link rel="icon"
-            type="image/png"
-            sizes="16x16"
-            href="{{ static('favicon/favicon-16x16.png') }}">
+      <link rel="apple-touch-icon" sizes="180x180" href="{{ static('favicon/apple-touch-icon.png') }}">
+      <link rel="icon" type="image/png" sizes="32x32" href="{{ static('favicon/favicon-32x32.png') }}">
+      <link rel="icon" type="image/png" sizes="16x16" href="{{ static('favicon/favicon-16x16.png') }}">
       <link rel="manifest" href="{{ static('favicon/site.webmanifest') }}">
       <link rel="mask-icon"
-            href="{{ static('favicon/safari-pinned-tab.svg') }}"
-            color="#858585">
+        href="{{ static('favicon/safari-pinned-tab.svg') }}" color="#858585">
       <meta name="msapplication-TileColor" content="#ffffff">
       <meta name="theme-color" content="#ffffff">
       <!-- Facebook OpenGraph Metadata -->
       <meta property="og:title" content="UJ Blockchain">
       {% block FBMeta %}
-          <meta property="og:description"
-                content="The SA/Swiss Chair on Blockchain Technology at the University of Johannesburg is a unique entity within the university, dedicated to advancing research and education in the field of blockchain with aim for real-world blockchain applications and development.">
+        <meta property="og:description"
+            content="The SA/Swiss Chair on Blockchain Technology at the University of Johannesburg is a unique entity within the university, dedicated to advancing research and education in the field of blockchain with aim for real-world blockchain applications and development.">
       {% endblock FBMeta %}
       <meta property="og:image" content="{{ static ('images/main-logo.png') }}">
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       {% block FBMetaLink %}
-          <meta property="og:url" content="https://blockchain.uj.ac.za/">
+        <meta property="og:url" content="https://blockchain.uj.ac.za/">
       {% endblock FBMetaLink %}
       <meta property=”og:type” content=”website” />
       <!-- Twitter OpenGraph Metadata -->
@@ -48,13 +39,13 @@
       <meta name="twitter:title" content="UJ Blockchain">
       <meta name="twitter:creator" content="@research31961">
       {% block TwitterMeta %}
-            <meta name="twitter:description"
-                content="The SA/Swiss Chair on Blockchain Technology at the University of Johannesburg is a unique entity within the university, dedicated to advancing research and education in the field of blockchain with aim for real-world blockchain applications and development.">
+        <meta name="twitter:description"
+            content="The SA/Swiss Chair on Blockchain Technology at the University of Johannesburg is a unique entity within the university, dedicated to advancing research and education in the field of blockchain with aim for real-world blockchain applications and development.">
       {% endblock TwitterMeta %}
       <meta name="twitter:image" content="{{ static ('images/main-logo.png') }}">
       {% block TwitterMetaImage %}
-            <meta name="twitter:image:alt"
-                content="UJ Blockchain Logo. The SA/Swiss Chair on Blockchain Technology at the University of Johannesburg is a unique entity within the university, dedicated to advancing research and education in the field of blockchain with aim for real-world blockchain applications and development.">
+        <meta name="twitter:image:alt"
+            content="UJ Blockchain Logo. The SA/Swiss Chair on Blockchain Technology at the University of Johannesburg is a unique entity within the university, dedicated to advancing research and education in the field of blockchain with aim for real-world blockchain applications and development.">
       {% endblock TwitterMetaImage %}
       <title>UJ Blockchain - South Africa-Switzerland Bilateral Blockchain Research Chair</title>
       <!-- Bootstrap Core CSS -->
@@ -104,13 +95,13 @@
       <!-- GO TO TOP End -->
       <!-- Script -->
       {% block script %}
-          <script src="{{ static('js/jquery-1.11.3.min.js') }}"></script>
-          <script src="{{ static('js/bootstrap.bundle.js') }}"></script>
-          <script src="{{ static('js/particles.min.js') }}"></script>
-          <script src="{{ static('js/jquery.counterup.min.js') }}"></script>
-          <script src="{{ static('js/jquery.sticky.js') }}"></script>
-          <script src="{{ static('js/jquery.magnific-popup.min.js') }}"></script>
-          <script src="{{ static('js/main.js') }}"></script>
+        <script src="{{ static('js/jquery-1.11.3.min.js') }}"></script>
+        <script src="{{ static('js/bootstrap.bundle.js') }}"></script>
+        <script src="{{ static('js/particles.min.js') }}"></script>
+        <script src="{{ static('js/jquery.counterup.min.js') }}"></script>
+        <script src="{{ static('js/jquery.sticky.js') }}"></script>
+        <script src="{{ static('js/jquery.magnific-popup.min.js') }}"></script>
+        <script src="{{ static('js/main.js') }}"></script>
       {% endblock script %}
       {# external scripts from pages #}
       {% block extraScript %}{% endblock extraScript %}
