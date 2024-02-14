@@ -49,7 +49,7 @@
                             {% endif %}
                         </div>
                     {% endfor %}
-                    <form method="post"  action="{{ url("newsletter_signup") }}">
+                    <form method="post"  action="{{ url('newsletter_signup') }}">
                         {{ csrf_input }}
                         {{ newsletter_form.email }}
                         <button type="submit">SEND</button>
