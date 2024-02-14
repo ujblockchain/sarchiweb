@@ -5,5 +5,5 @@ class BootcampsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'bootcamps'
 
-    def ready(self):
-        import bootcamps.signals
+    # def ready(self):
+    #     import bootcamps.signals
