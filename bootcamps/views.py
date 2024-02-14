@@ -9,7 +9,7 @@ from contact.forms import UserMessageForm
 from newsletters.forms import NewsletterEmailForm
 from partners.models import Partners
 from .forms import BootcampForm
-from .models import BootcampFirst
+from .models import Bootcamp
 
 
 class BootcampView(View):
@@ -34,6 +34,7 @@ class BootcampView(View):
 
         # check if request is ajax
         if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        
             # check if form is valid
             if form.is_valid():
                 # init bound form field
@@ -48,9 +49,15 @@ class BootcampView(View):
                 expectation = form.cleaned_data['expectation']
                 nationality = form.cleaned_data['nationality']
                 phone_number = form.cleaned_data['phone_number']
+                session = form.cleaned_data['session']
+                repo_link = form.cleaned_data['repo_link']
+                if form.cleaned_data['can_you_code'] == 'Can you code in HTML, CSS & Python':
+                    can_you_code = 'No'
+                else:
+                   can_you_code = form.cleaned_data['can_you_code'] 
 
                 # check if applicant has register before
-                if BootcampFirst.objects.filter(email=email).exists():
+                if Bootcamp.objects.filter(email=email).exists():
                     return JsonResponse(
                         {
                             "message": "duplicate_error",
@@ -59,7 +66,7 @@ class BootcampView(View):
                     )
                 else:
                     # create model instance
-                    BootcampFirst.objects.create(
+                    Bootcamp.objects.create(
                         first_name=first_name,
                         last_name=last_name,
                         gender=gender,
@@ -71,6 +78,9 @@ class BootcampView(View):
                         nationality=nationality,
                         expectation=expectation,
                         phone_number=phone_number,
+                        session=session,
+                        can_you_code=can_you_code,
+                        repo_link=repo_link,
                     )
 
                     return JsonResponse(
