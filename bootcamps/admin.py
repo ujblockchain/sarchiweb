@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import BootcampFirst
+from .models import Bootcamp
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 from reversion_compare.admin import CompareVersionAdmin
@@ -8,13 +8,14 @@ from reversion_compare.admin import CompareVersionAdmin
 
 class BootcampResource(resources.ModelResource):
     class Meta:
-        model = BootcampFirst
+        model = Bootcamp
         skip_unchanged = True
         report_skipped = True
         exclude = ('id',)
         import_id_fields = (
             'first_name',
             'last_name',
+            'can_you_code',
             'gender',
             'email',
             'faculty',
@@ -37,12 +38,15 @@ class BootcampResource(resources.ModelResource):
             'student_number',
             'nationality',
             'phone_number',
+            'session',
+            'can_you_code',
+            'repo_link',
             'application_status',
             'date_created',
         )
 
 
-class BootcampFirstAdmin(ImportExportModelAdmin, CompareVersionAdmin):
+class BootcampAdmin(ImportExportModelAdmin, CompareVersionAdmin):
     resource_class = BootcampResource
     list_display = [
         'first_name',
@@ -123,6 +127,17 @@ class BootcampFirstAdmin(ImportExportModelAdmin, CompareVersionAdmin):
             },
         ],
         [
+            'User Sessions',
+            {
+                'classes': ['collapse', 'wide'],
+                'fields': [
+                    'session',
+                    'can_you_code',
+                    'repo_link',
+                ],
+            },
+        ],
+        [
             'Application Details',
             {
                 'classes': ['collapse', 'wide'],
@@ -162,4 +177,4 @@ class BootcampFirstAdmin(ImportExportModelAdmin, CompareVersionAdmin):
 
 
 # register admin settings
-admin.site.register(BootcampFirst, BootcampFirstAdmin)
+admin.site.register(Bootcamp, BootcampAdmin)
