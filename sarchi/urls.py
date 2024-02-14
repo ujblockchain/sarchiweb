@@ -10,12 +10,12 @@ urlpatterns = [
     path('', include('pages.urls')),
     path('account/', include('account.urls')),
     path('blog/', include('blog.urls')),
-    # path('bootcamp/', include('bootcamps.urls')),
+    path('bootcamp/', include('bootcamps.urls')),
     path('contact/', include('contact.urls')),
     path('newsletter/', include('newsletters.urls')),
     # path('event/', include('program.urls')),
     # ckeditor upload path
-    path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('ckeditor5/', include('django_ckeditor_5.urls'), name='ck_editor_5_upload_file'),
 ]
 
 
