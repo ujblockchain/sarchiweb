@@ -1,182 +1,218 @@
-dormElement={
-    'firstName': document.getElementById('id_first_name'),
-    'lastName': document.getElementById('id_last_name'),
-    'gender': document.getElementById('id_gender'),
-    'email': document.getElementById('id_email'),
-    'faculty': document.getElementById('id_faculty'),
-    'department': document.getElementById('id_department'),
-    'level': document.getElementById('id_level'),
-    'studentNumber': document.getElementById('id_student_number'),
-    'nationality': document.getElementById('id_nationality'),
-    'phoneNumber': document.getElementById('id_phone_number'),
-    'expectation': document.getElementById('id_expectation'),
-    'submitBtn': document.getElementById('btn_submit'),
-    'formAlert': document.querySelector('.success-msg'),
-    'formAlertIcon': document.querySelector('.fa-paper-plane-o'),
-}
+dormElement = {
+  firstName: document.getElementById("id_first_name"),
+  lastName: document.getElementById("id_last_name"),
+  gender: document.getElementById("id_gender"),
+  email: document.getElementById("id_email"),
+  faculty: document.getElementById("id_faculty"),
+  department: document.getElementById("id_department"),
+  level: document.getElementById("id_level"),
+  studentNumber: document.getElementById("id_student_number"),
+  nationality: document.getElementById("id_nationality"),
+  phoneNumber: document.getElementById("id_phone_number"),
+  trainingSession: document.getElementById("id_session"),
+  userCanCode: document.getElementById("id_can_you_code"),
+  projectLink: document.getElementById("id_repo_link"),
+  expectation: document.getElementById("id_expectation"),
+  submitBtn: document.getElementById("btn_submit"),
+  formAlert: document.querySelector(".success-msg"),
+  formAlertIcon: document.querySelector(".fa-paper-plane-o"),
+  sessionCodeFields: document.getElementById("session-code"),
+};
 
 //init form data object
 const formData = new FormData();
 
 //set post link
-const formActionLink='/bootcamp/registration/';
+const formActionLink = "/bootcamp/registration/";
 
 //get csrf token
-const csrf = document.getElementsByName('csrfmiddlewaretoken');
+const csrf = document.getElementsByName("csrfmiddlewaretoken");
 
 //append form csrf to form data object
-formData.append('csrfmiddlewaretoken', csrf[0].value);
+formData.append("csrfmiddlewaretoken", csrf[0].value);
+
+//show form field if session is selected
+dormElement.trainingSession.addEventListener("change", (e) => {
+  if (e.target.value === "Coding Session (Requires basic knowledge of HTML, CSS & Python)") {
+    //change display
+    dormElement.userCanCode.parentElement.parentElement.style.display = "inline-block";
+    dormElement.projectLink.parentElement.parentElement.style.display = "inline-block";
+
+    //update class 
+    dormElement.userCanCode.parentElement.parentElement.className = "col-sm-6 animate__animated animate__bounceIn";
+    dormElement.projectLink.parentElement.parentElement.className = "col-sm-6 animate__animated animate__bounceIn";
+
+} else if (e.target.value === "No Coding Session (Drag and Drop Design)") {
+
+    //update class
+    dormElement.userCanCode.parentElement.parentElement.className = "col-sm-6 animate__animated animate__bounceOut";
+    dormElement.projectLink.parentElement.parentElement.className = "col-sm-6 animate__animated animate__bounceOut";
+
+    //use timeout to create a time for animation to run before changing display
+    setTimeout(() => {
+        //change display
+        dormElement.userCanCode.parentElement.parentElement.style.display = "None";
+        dormElement.projectLink.parentElement.parentElement.style.display = "None";
+    }, 500);
+  }
+});
 
 
-dormElement.submitBtn.addEventListener('click', (e) => {
-    e.preventDefault();
+dormElement.submitBtn.addEventListener("click", (e) => {
+  e.preventDefault();
 
-    //append data to form data object
-    formData.append('first_name', dormElement.firstName.value);
-    formData.append('last_name', dormElement.lastName.value);
-    formData.append('gender', dormElement.gender.value);
-    formData.append('email', dormElement.email.value);
-    formData.append('faculty', dormElement.faculty.value);
-    formData.append('department', dormElement.department.value);
-    formData.append('level', dormElement.level.value);
-    formData.append('student_number', dormElement.studentNumber.value);
-    formData.append('nationality', dormElement.nationality.value);
-    formData.append('expectation', dormElement.expectation.value);
-    formData.append('phone_number', dormElement.phoneNumber.value);
-    
-    $.ajax({
-        type:'POST',
-        url: formActionLink,
-        data: formData,
-        beforeSend: function(){
+  //append data to form data object
+  formData.append("first_name", dormElement.firstName.value);
+  formData.append("last_name", dormElement.lastName.value);
+  formData.append("gender", dormElement.gender.value);
+  formData.append("email", dormElement.email.value);
+  formData.append("faculty", dormElement.faculty.value);
+  formData.append("department", dormElement.department.value);
+  formData.append("level", dormElement.level.value);
+  formData.append("student_number", dormElement.studentNumber.value);
+  formData.append("nationality", dormElement.nationality.value);
+  formData.append("expectation", dormElement.expectation.value);
+  formData.append("phone_number", dormElement.phoneNumber.value);
+  formData.append("session", dormElement.trainingSession.value);
+  formData.append("can_you_code", dormElement.userCanCode.value);
+  formData.append("repo_link", dormElement.projectLink.value);
 
-            console.log('before send');
+  $.ajax({
+    type: "POST",
+    url: formActionLink,
+    data: formData,
+    beforeSend: function () {
+      console.log("before send");
 
-            // reset alert
-            dormElement.formAlert.style.display = 'none';
-            dormElement.formAlertIcon.style.border= 'none';
+      // reset alert
+      dormElement.formAlert.style.display = "none";
+      dormElement.formAlertIcon.style.border = "none";
 
-            //disable submit btn.
-            dormElement.submitBtn.style.pointerEvents = 'none'
-            dormElement.submitBtn.textContent = 'Processing ...'
-            dormElement.submitBtn.classList.add('btn_ajax')
-        },
-        xhr: function(response){
+      //disable submit btn.
+      dormElement.submitBtn.style.pointerEvents = "none";
+      dormElement.submitBtn.textContent = "Processing ...";
+      dormElement.submitBtn.classList.add("btn_ajax");
+    },
+    xhr: function (response) {
+      const xhr = new window.XMLHttpRequest();
+      let percent;
+      xhr.upload.addEventListener("progress", (e) => {
+        //calculate percentage
+        percent = (e.loaded / e.total) * 100;
+      });
 
-            const xhr = new window.XMLHttpRequest();
-            let percent; 
-            xhr.upload.addEventListener('progress', e =>{
+      return xhr;
+    },
+    success: function (response) {
+      //loop through error
+      if (response.error) {
+        //reset all error fields firsts
+        Array.from(document.querySelectorAll(".error-info")).forEach(
+          (field) => {
+            //set empty content
+            field.textContent = "";
 
-                //calculate percentage
-                percent = e.loaded / e.total * 100;
-                
-            })
-            
-            return xhr
-        },
-        success: function(response){
-            //loop through error
-            if(response.error){
-                //reset all error fields firsts
-                Array.from(document.querySelectorAll('.error-info')).forEach((field) => {
-                    //set empty content
-                    field.textContent = '';
+            //ensure error display is none
+            field.style.display = "none";
 
-                    //ensure error display is none
-                    field.style.display = 'none';
+            //reset all input error
+            let inputs = document.querySelectorAll("input");
+            Array.from(inputs).forEach((input) => {
+              input.style.border = "none";
+            });
 
-                    //reset all input error
-                    let inputs = document.querySelectorAll('input')
-                    Array.from(inputs).forEach((input) => {
-                        input.style.border = 'none';
-                    })
+            //reset all select
+            let select_field = document.querySelectorAll("select");
+            Array.from(select_field).forEach((select) => {
+              select.style.border = "none";
+            });
 
-                    //reset all select
-                    let select_field = document.querySelectorAll('select')
-                    Array.from(select_field).forEach((select) => {
-                        select.style.border = 'none';
-                    })
+            //reset text area
+            let textarea_field = document.querySelector("textarea");
+            textarea_field.style.border = "none";
+          }
+        );
 
-                    //reset text area
-                    let textarea_field = document.querySelector('textarea')
-                    textarea_field.style.border = 'none';
-                })
-                        
-                //loop through error
-                for (let [key, value] of Object.entries(response.error)) {
-                    if(response.message == "duplicate_error"){
-                        // style displayed alert
-                        dormElement.formAlert.style.display = 'block';
-                        dormElement.formAlert.innerHTML= `<i class="fa fa-paper-plane-o" style="border: 1px solid #ef9a9a"></i> ${response.error}`;
-                    }else if(response.message == "error"){
+        //loop through error
+        for (let [key, value] of Object.entries(response.error)) {
+          if (response.message == "duplicate_error") {
+            // style displayed alert
+            dormElement.formAlert.style.display = "block";
+            dormElement.formAlert.innerHTML = `<i class="fa fa-paper-plane-o" style="border: 1px solid #ef9a9a"></i> ${response.error}`;
+          } else if (response.message == "error") {
+            //set error display text
+            document.getElementById(`error-${key}`).textContent = value[0];
+            //show error
+            document.getElementById(`error-${key}`).style.display = "block";
+            //add error styling to input
+            document.getElementById(
+              `error-${key}`
+            ).previousElementSibling.style.border = "1px solid #dc3545";
 
-                        //set error display text
-                        document.getElementById(`error-${key}`).textContent = value[0];
-                        //show error
-                        document.getElementById(`error-${key}`).style.display = 'block';
-                        //add error styling to input
-                        document.getElementById(`error-${key}`).previousElementSibling.style.border = '1px solid #dc3545';
-                        
-                        // style displayed alert
-                        dormElement.formAlert.style.display = 'block';
-                        dormElement.formAlert.innerHTML= `<i class="fa fa-paper-plane-o" style="border: 1px solid #ef9a9a"></i> Invalid form fields`;
-                    }
-                }
-            }else{
-                //style displayed alert
-                dormElement.formAlert.style.display = 'block';
-                dormElement.formAlert.innerHTML= `<i class="fa fa-paper-plane-o" style="border: 1px solid #ABD0A8"></i> ${response.status}`;
+            // style displayed alert
+            dormElement.formAlert.style.display = "block";
+            dormElement.formAlert.innerHTML = `<i class="fa fa-paper-plane-o" style="border: 1px solid #ef9a9a"></i> Invalid form fields`;
+          }
+        }
+      } else {
+        //style displayed alert
+        dormElement.formAlert.style.display = "block";
+        dormElement.formAlert.innerHTML = `<i class="fa fa-paper-plane-o" style="border: 1px solid #ABD0A8"></i> ${response.status}`;
 
-                //reset form
-                dormElement.firstName.value = '';
-                dormElement.lastName.value = '';
-                dormElement.gender.value = 'Gender';
-                dormElement.email.value = '';
-                dormElement.faculty.value = '';
-                dormElement.department.value = '';
-                dormElement.level.value = 'Select Your Level';
-                dormElement.studentNumber.value = '';
-                dormElement.nationality.value = 'Select Nationality';
-                dormElement.expectation.value = '';
-                dormElement.phoneNumber.value = '';
+        //reset form
+        dormElement.firstName.value = "";
+        dormElement.lastName.value = "";
+        dormElement.gender.value = "Gender";
+        dormElement.email.value = "";
+        dormElement.faculty.value = "";
+        dormElement.department.value = "";
+        dormElement.level.value = "Select Your Level";
+        dormElement.studentNumber.value = "";
+        dormElement.nationality.value = "Select Nationality";
+        dormElement.expectation.value = "";
+        dormElement.phoneNumber.value = "";
+        dormElement.trainingSession.value = "Select training session";
+        dormElement.userCanCode.value = "Can you code in HTML, CSS & Python";
+        dormElement.projectLink.value = "";
 
-                //reset error
-                Array.from(document.querySelectorAll('.error-info')).forEach((field) => {
-                    //set empty content
-                    field.textContent = '';
+        //reset error
+        Array.from(document.querySelectorAll(".error-info")).forEach(
+          (field) => {
+            //set empty content
+            field.textContent = "";
 
-                    //ensure error display is none
-                    field.style.display = 'none';
+            //ensure error display is none
+            field.style.display = "none";
 
-                    //reset all input error
-                    let inputs = document.querySelectorAll('input')
-                    Array.from(inputs).forEach((input) => {
-                        input.style.border = 'none';
-                    })
+            //reset all input error
+            let inputs = document.querySelectorAll("input");
+            Array.from(inputs).forEach((input) => {
+              input.style.border = "none";
+            });
 
-                    //reset all select style
-                    let select_field = document.querySelectorAll('select')
-                    Array.from(select_field).forEach((select) => {
-                        select.style.border = 'none';
-                    })
+            //reset all select style
+            let select_field = document.querySelectorAll("select");
+            Array.from(select_field).forEach((select) => {
+              select.style.border = "none";
+            });
 
-                    //reset text area
-                    let textarea_field = document.querySelector('textarea')
-                    textarea_field.style.border = 'none';
-                })
-            }
+            //reset text area
+            let textarea_field = document.querySelector("textarea");
+            textarea_field.style.border = "none";
+          }
+        );
+      }
 
-            //reset submit btn as long there is a response.
-            dormElement.submitBtn.style.pointerEvents = 'all'
-            dormElement.submitBtn.textContent = 'SUBMIT'
-            dormElement.submitBtn.classList.remove('btn_ajax')
-
-        },
-        error: function(error){
-            console.log(error)
-        },
-        cache: false,
-        contentType: false,
-        processData: false,
-    })
-})
+      //reset submit btn as long there is a response.
+      dormElement.submitBtn.style.pointerEvents = "all";
+      dormElement.submitBtn.textContent = "SUBMIT";
+      dormElement.submitBtn.classList.remove("btn_ajax");
+    },
+    error: function (error) {
+      console.log(error);
+    },
+    cache: false,
+    contentType: false,
+    processData: false,
+  });
+});
