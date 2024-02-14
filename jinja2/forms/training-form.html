@@ -5,28 +5,28 @@
 {# override meta block #}
 {% block metaTag %}
     <meta name="description"
-          content="Learn about Blockchain Technology and build a fantastic Decentralized Application (DApp). Learn and build your own application, made by you and for you. Learn about frameworks, server deployment, tokens, NFT, and so many exciting topics. Take the first step on this amazing journey by signing up today." />
+        content="Learn about Blockchain Technology and build a fantastic Decentralized Application (DApp). Learn and build your own application, made by you and for you. Learn about frameworks, server deployment, tokens, NFT, and so many exciting topics. Take the first step on this amazing journey by signing up today." />
     <meta name="keywords"
-          content="UJ, UJ Blockchain, Blockchain UJ, SARChI UJ, UJ SARChI, University of Johannesburg, South Africa, Switzerland, Johannesburg, Blockchain, Bootcamp, Blockchain Bootcamp, Media, Media Event, Consensus, Smart Contracts, Governance, Decentralization, Distributed, Ledger, Technology, Distributed Ledgers, Prof Nnamdi Nwulu, Nnamdi Nwulu">
+        content="UJ, UJ Blockchain, Blockchain UJ, SARChI UJ, UJ SARChI, University of Johannesburg, South Africa, Switzerland, Johannesburg, Blockchain, Bootcamp, Blockchain Bootcamp, Media, Media Event, Consensus, Smart Contracts, Governance, Decentralization, Distributed, Ledger, Technology, Distributed Ledgers, Prof Nnamdi Nwulu, Nnamdi Nwulu">
     <meta name="author" content="UJ Blockchain" />
 {% endblock metaTag %}
 {# Facebook meta override #}
 {% block FBMeta %}
     <meta property="og:description"
-          content="Learn about Blockchain Technology and build a fantastic Decentralized Application (DApp). Learn and build your own application, made by you and for you. Learn about frameworks, server deployment, tokens, NFT, and so many exciting topics. Take the first step on this amazing journey by signing up today.">
+        content="Learn about Blockchain Technology and build a fantastic Decentralized Application (DApp). Learn and build your own application, made by you and for you. Learn about frameworks, server deployment, tokens, NFT, and so many exciting topics. Take the first step on this amazing journey by signing up today.">
 {% endblock FBMeta %}
 {% block FBMetaLink %}
     <meta property="og:url"
-          content="https://blockchain.uj.ac.za/bootcamp/registration">
+        content="https://blockchain.uj.ac.za/bootcamp/registration">
 {% endblock FBMetaLink %}
 {# twitter meta override #}
 {% block TwitterMeta %}
     <meta name="twitter:description"
-          content="Learn about Blockchain Technology and build a fantastic Decentralized Application (DApp). Learn and build your own application, made by you and for you. Learn about frameworks, server deployment, tokens, NFT, and so many exciting topics. Take the first step on this amazing journey by signing up today.">
+        content="Learn about Blockchain Technology and build a fantastic Decentralized Application (DApp). Learn and build your own application, made by you and for you. Learn about frameworks, server deployment, tokens, NFT, and so many exciting topics. Take the first step on this amazing journey by signing up today.">
 {% endblock TwitterMeta %}
 {% block TwitterMetaImage %}
     <meta name="twitter:image:alt"
-          content="UJ Blockchain Logo. Learn about Blockchain Technology and build a fantastic Decentralized Application (DApp). Learn and build your own application, made by you and for you. Learn about frameworks, server deployment, tokens, NFT, and so many exciting topics. Take the first step on this amazing journey by signing up today.">
+        content="UJ Blockchain Logo. Learn about Blockchain Technology and build a fantastic Decentralized Application (DApp). Learn and build your own application, made by you and for you. Learn about frameworks, server deployment, tokens, NFT, and so many exciting topics. Take the first step on this amazing journey by signing up today.">
 {% endblock TwitterMetaImage %}
 {# override head block#}
 {% block head %}
@@ -37,6 +37,7 @@
 {% endblock footer %}
 {# extra css style #}
 {% block extraStyle %}
+    <link rel="stylesheet" href="{{ static ('css/animate.css') }}">
     <style>
         .form-select:focus {
             border-color: rgba(255, 255, 255, 0.05);
@@ -48,7 +49,7 @@
             background: rgba(255, 255, 255, 0.05) !important;
             color: #61757a !important;
         }
-        select#id_gender, select#id_level, select#id_nationality {
+        select#id_gender, select#id_level, select#id_nationality, select#id_session, select#id_can_you_code{
             height: 49px;
         }
         .btn_ajax {
@@ -68,7 +69,7 @@
                 <p>
                     Learn about Blockchain Technology and build a fantastic Decentralized Application (DApp).
                     Learn from scratch as we take you from the basics to creating your own application,
-                    made by you and for you. Learn about frameworks, server deployment, tokens, NFT, and
+                    made by you and for you. Learn about frameworks, Hedera Blockchain, and
                     so many exciting topics. Take the first step on this amazing journey by signing up today.
                 </p>
                 <a href="#bootcamp" class="btn">Signup For Bootcamp</a> <a href="/#about" class="btn btn-inverse">Learn More About Us</a>
@@ -83,7 +84,7 @@
         <section id="bootcamp" class="distri drk padding-top-150 padding-bottom-150">
             <div class="container">
                 <div class="contact">
-                    <h6>Signup for the Demystifying Blockchain Bootcamp (Wednesday, September 20th - Saturday,  23rd September 2023)</h6>
+                    <h6>Signup for the Demystifying Blockchain Bootcamp (Tuesday, April 2nd - Friday,  5th April 2024)</h6>
                     <!-- Success Msg -->
                     <div id="contact_message" class="success-msg">
                         <i class="fa fa-paper-plane-o"></i>Thank You.
@@ -193,6 +194,36 @@
                                        style="color: #ef9a9a;
                                               text-transform: capitalize;
                                               display: none"></p>
+                                </label>
+                            </li>
+                            <li class="col-sm-12">
+                                <label>
+                                    {{ training_form.session }}
+                                    <p id="error-session"
+                                       class="error-info"
+                                       style="color: #ef9a9a;
+                                              text-transform: capitalize;
+                                              display: none"></p>
+                                </label>
+                            </li>
+                            <li class="col-sm-6" style="display: none;">
+                                <label>
+                                    {{ training_form.can_you_code }}
+                                    <p id="error-can_you_code"
+                                        class="error-info"
+                                        style="color: #ef9a9a;
+                                                text-transform: capitalize;
+                                                display: none"></p>
+                                </label>
+                            </li>
+                            <li class="col-sm-6" style="display: none;">
+                                <label>
+                                    {{ training_form.repo_link }}
+                                    <p id="error-repo_link"
+                                        class="error-info"
+                                        style="color: #ef9a9a;
+                                                text-transform: capitalize;
+                                                display: none"></p>
                                 </label>
                             </li>
                             <li class="col-sm-12">
