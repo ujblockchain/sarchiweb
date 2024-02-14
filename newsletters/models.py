@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from shortuuid.django_fields import ShortUUIDField
-from ckeditor_uploader.fields import RichTextUploadingField
+from django_ckeditor_5.fields import CKEditor5Field
 
 groups = (
     ('Selected Bootcamp Group', 'Selected Bootcamp Group'),
@@ -38,14 +38,14 @@ class SendNewsletterEmails(models.Model):
     group = models.CharField(
         choices=groups, max_length=100, default="Selected Bootcamp Group"
     )
-    salutation = message = RichTextUploadingField(
+    salutation = message = CKEditor5Field(
         max_length=5000,
         help_text='to learn more about what format or the style \
                 tab content mean kindly click\
                 <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element"\
                 target="_blank" style="color:wheat;">Here</a>.',
     )
-    message = RichTextUploadingField(
+    message = CKEditor5Field(
         max_length=5000,
         help_text='to learn more about what format or the style \
                 tab content mean kindly click\
