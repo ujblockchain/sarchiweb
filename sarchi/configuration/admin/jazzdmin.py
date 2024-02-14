@@ -73,7 +73,7 @@ JAZZMIN_SETTINGS = {
         'reversion.revision': 'fas fa-feather-alt',
         'reversion.version': 'fas fa-code-branch',
         'blog.blog': 'fas fa-blog',
-        'bootcamps.bootcampfirst': 'fas fa-chalkboard-teacher',
+        'bootcamps.bootcamp': 'fas fa-chalkboard-teacher',
         'contact.usercontact': 'fas fa-id-badge',
         'facilitators.facilitators': 'fas fa-user-check',
         'huey_monitor.signalinfomodel': 'fas fa-wave-square',
