@@ -40,8 +40,7 @@ INSTALLED_APPS = [
     'reversion',
     'reversion_compare',
     # ckeditor app
-    'ckeditor',
-    'ckeditor_uploader',
+    'django_ckeditor_5',
     # huey
     'bx_django_utils',
     'huey_monitor',
