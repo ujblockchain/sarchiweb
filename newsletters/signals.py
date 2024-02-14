@@ -1,6 +1,6 @@
 from django.dispatch import receiver
 from django.db.models.signals import post_save
-from bootcamps.models import BootcampFirst
+from bootcamps.models import Bootcamp
 from .models import NewsletterEmail, SendNewsletterEmails
 
 from .tasks import send_email_task
@@ -15,18 +15,19 @@ def auto_mail_sending(sender, instance, created, **kwargs):
         group = instance.group
 
         # use value_list to get use emails based on selection groups
-        ## for those selected for bootcamps
+        ## for those selected for bootcamp
         if group == 'Selected Bootcamp Group':
             # get the email list
-            email_list = BootcampFirst.objects.filter(application_status='Selected').values_list(
-                'email', flat=True
-            )
+            email_list = Bootcamp.objects.filter(
+                application_status='Selected'
+            ).values_list('email', flat=True)
+
         ## for those not selected for bootcamps
         elif group == 'Rejected Bootcamp Group':
             # get the email list
-            email_list = BootcampFirst.objects.filter(application_status='Rejected').values_list(
-                'email', flat=True
-            )
+            email_list = Bootcamp.objects.filter(
+                application_status='Rejected'
+            ).values_list('email', flat=True)
         ## for for news letter Signup
         elif group == 'Newsletter Email Group':
             # get the email list
@@ -36,7 +37,9 @@ def auto_mail_sending(sender, instance, created, **kwargs):
         n = 15  # 15 per list
 
         # using list comprehension to split email list into multiple lists
-        sorted_email_list = [email_list[i : i + n] for i in range(0, len(email_list), n)]
+        sorted_email_list = [
+            email_list[i : i + n] for i in range(0, len(email_list), n)
+        ]
 
         # init task
         send_email_task(
