@@ -52,43 +52,34 @@ class BootcampView(View):
                 session = form.cleaned_data['session']
                 repo_link = form.cleaned_data['repo_link']
                 if form.cleaned_data['can_you_code'] == 'Can you code in HTML, CSS & Python':
-                    can_you_code = 'No'
+                    can_you_code = 'No I can not code in HTML, CSS & Python'
                 else:
                    can_you_code = form.cleaned_data['can_you_code'] 
 
-                # check if applicant has register before
-                if Bootcamp.objects.filter(email=email).exists():
-                    return JsonResponse(
-                        {
-                            "message": "duplicate_error",
-                            "error": "You have already registered for the Bootcamp!",
-                        }
-                    )
-                else:
-                    # create model instance
-                    Bootcamp.objects.create(
-                        first_name=first_name,
-                        last_name=last_name,
-                        gender=gender,
-                        email=email,
-                        faculty=faculty,
-                        department=department,
-                        level=level,
-                        student_number=student_number,
-                        nationality=nationality,
-                        expectation=expectation,
-                        phone_number=phone_number,
-                        session=session,
-                        can_you_code=can_you_code,
-                        repo_link=repo_link,
-                    )
+                # create model instance
+                Bootcamp.objects.create(
+                    first_name=first_name,
+                    last_name=last_name,
+                    gender=gender,
+                    email=email,
+                    faculty=faculty,
+                    department=department,
+                    level=level,
+                    student_number=student_number,
+                    nationality=nationality,
+                    expectation=expectation,
+                    phone_number=phone_number,
+                    session=session,
+                    can_you_code=can_you_code,
+                    repo_link=repo_link,
+                )
 
-                    return JsonResponse(
-                        {
-                            "message": "success",
-                            "status": "Thank You. Your Application has been Submitted Successfully.",
-                        }
-                    )
+                return JsonResponse(
+                    {
+                        "message": "success",
+                        "status": "Thank You. Your Application has been Submitted Successfully.",
+                    }
+                )
 
             else:
                 return JsonResponse({"message": "error", "error": form.errors})
