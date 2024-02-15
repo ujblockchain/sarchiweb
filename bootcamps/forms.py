@@ -155,9 +155,9 @@ class BootcampForm(forms.ModelForm):
         # get input value form clean_data dict
         value = self.cleaned_data['email']
         # Check if the value already exist
-        if Bootcamp.objects.filter(email=value).exists:
+        if Bootcamp.objects.filter(email=value).exists():
+            # raise exception
             raise forms.ValidationError(
                 'You have already registered with this email.', code='email'
             )
-        # return updated value
         return value
