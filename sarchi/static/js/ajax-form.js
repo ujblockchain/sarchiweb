@@ -42,7 +42,7 @@ dormElement.trainingSession.addEventListener("change", (e) => {
     dormElement.userCanCode.parentElement.parentElement.className = "col-sm-6 animate__animated animate__bounceIn";
     dormElement.projectLink.parentElement.parentElement.className = "col-sm-6 animate__animated animate__bounceIn";
 
-} else if (e.target.value === "No Coding Session (Drag and Drop Design)") {
+} else if (e.target.value === "No Coding Session (Drag and Drop Design)" || e.target.value === "Select training session") {
 
     //update class
     dormElement.userCanCode.parentElement.parentElement.className = "col-sm-6 animate__animated animate__bounceOut";
