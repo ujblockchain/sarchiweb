@@ -215,7 +215,7 @@ EMAIL_SUBJECT_PREFIX = config('EMAIL_SUBJECT_PREFIX')
 EMAIL_USE_TSL = config('EMAIL_USE_TSL')
 
 # Security Settings In Production Environment
-X_FRAME_OPTIONS = 'SAMEORIGIN'
+X_FRAME_OPTIONS = 'DENY'
 if DEBUG == False:
     # security settings
     SECURE_BROWSER_XSS_FILTER = True
