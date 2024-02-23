@@ -2,7 +2,8 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-from django.views.generic import View, TemplateView
+from django.views import View
+from django.views.generic.base import TemplateView
 
 
 from .models import NewsletterEmail
@@ -11,26 +12,33 @@ from django.http import Http404
 
 
 class NewsletterView(View):
-    def post(self, request):
+    def post(self, request, *args, **kwargs):
         form = NewsletterEmailForm(request.POST)
 
         # check if form is valid
         if form.is_valid():
+
             # init model instance
-            NewsletterEmail.objects.update_or_create(
-                email=form.cleaned_data['email'],
-            )
+            NewsletterEmail.objects.update_or_create(email=form.cleaned_data['email'])
 
             # sent success message
             messages.add_message(
-                request, messages.SUCCESS, 'Thank You. You Have Been Added to Our Mailing List.'
+                request,
+                messages.SUCCESS,
+                'Thank You. You Have Been Added to Our Mailing List.',
+                extra_tags='newsletter',
             )
 
             # redirect to form section
             return HttpResponseRedirect('/#newsletter')
         else:
             # raise exception
-            messages.add_message(request, messages.ERROR, 'Invalid Email Address.')
+            messages.add_message(
+                request,
+                messages.ERROR,
+                'Invalid Email Address. Enter A Valid Email.',
+                extra_tags='newsletter',
+            )
 
             # redirect to form section
             return HttpResponseRedirect('/#newsletter')
@@ -38,7 +46,11 @@ class NewsletterView(View):
 
 class NewsletterConfirmUnsubscribe(View):
     ## get id as params
-    def get(self, request, id=''):
+    def get(self, request, *args, **kwargs):
+
+        # get id
+        id = kwargs.get('id', '')
+
         # check if email exist
         if NewsletterEmail.objects.filter(id=id).exists():
             # context
@@ -51,7 +63,11 @@ class NewsletterConfirmUnsubscribe(View):
 
 class NewsletterEmailUnsubscribe(View):
     # get id as params
-    def get(self, request, id=''):
+    def get(self, request, *args, **kwargs):
+
+        # get id
+        id = kwargs.get('id', '')
+
         # check if email exist
         if NewsletterEmail.objects.filter(id=id).exists:
             # delete email
