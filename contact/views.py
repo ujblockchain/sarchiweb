@@ -1,7 +1,6 @@
-from django.conf import settings
 from django.contrib import messages
 from django.http import HttpResponseRedirect
-from django.views.generic import View
+from django.views import View
 from .models import UserContact
 from .forms import UserMessageForm
 
@@ -28,7 +27,12 @@ class ContactView(View):
                 contact.save()
 
                 # sent success message
-                messages.add_message(request, messages.SUCCESS, 'Thank You. Your Message has been Submitted.')
+                messages.add_message(
+                    request,
+                    messages.SUCCESS,
+                    'Thank You. Your Message has been Submitted.',
+                    extra_tags='contact',
+                )
 
                 # redirect to form section
                 return HttpResponseRedirect('/#contact')
@@ -38,10 +42,12 @@ class ContactView(View):
 
         except Exception as e:
             # get the error and send as an error message
-            messages.add_message(request, messages.ERROR, {
-                'form_error': form.errors,
-                'msg': 'Invalid Form Field(s)'
-            })
+            messages.add_message(
+                request,
+                messages.ERROR,
+                {'form_error': form.errors},
+                extra_tags='contact',
+            )
 
             # redirect to form section
             return HttpResponseRedirect('/#contact')
