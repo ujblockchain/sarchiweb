@@ -33,30 +33,41 @@ formData.append("csrfmiddlewaretoken", csrf[0].value);
 
 //show form field if session is selected
 dormElement.trainingSession.addEventListener("change", (e) => {
-  if (e.target.value === "Coding Session (Requires basic knowledge of HTML, CSS & Python)") {
+  if (
+    e.target.value ===
+    "Coding Session (Requires basic knowledge of HTML, CSS & Python)"
+  ) {
     //change display
-    dormElement.userCanCode.parentElement.parentElement.style.display = "inline-block";
-    dormElement.projectLink.parentElement.parentElement.style.display = "inline-block";
-
-    //update class 
-    dormElement.userCanCode.parentElement.parentElement.className = "col-sm-6 animate__animated animate__bounceIn";
-    dormElement.projectLink.parentElement.parentElement.className = "col-sm-6 animate__animated animate__bounceIn";
-
-} else if (e.target.value === "No Coding Session (Drag and Drop Design)" || e.target.value === "Select training session") {
+    dormElement.userCanCode.parentElement.parentElement.style.display =
+      "inline-block";
+    dormElement.projectLink.parentElement.parentElement.style.display =
+      "inline-block";
 
     //update class
-    dormElement.userCanCode.parentElement.parentElement.className = "col-sm-6 animate__animated animate__bounceOut";
-    dormElement.projectLink.parentElement.parentElement.className = "col-sm-6 animate__animated animate__bounceOut";
+    dormElement.userCanCode.parentElement.parentElement.className =
+      "col-sm-6 animate__animated animate__bounceIn";
+    dormElement.projectLink.parentElement.parentElement.className =
+      "col-sm-6 animate__animated animate__bounceIn";
+  } else if (
+    e.target.value === "No Coding Session (Drag and Drop Design)" ||
+    e.target.value === "Select training session"
+  ) {
+    //update class
+    dormElement.userCanCode.parentElement.parentElement.className =
+      "col-sm-6 animate__animated animate__bounceOut";
+    dormElement.projectLink.parentElement.parentElement.className =
+      "col-sm-6 animate__animated animate__bounceOut";
 
     //use timeout to create a time for animation to run before changing display
     setTimeout(() => {
-        //change display
-        dormElement.userCanCode.parentElement.parentElement.style.display = "None";
-        dormElement.projectLink.parentElement.parentElement.style.display = "None";
+      //change display
+      dormElement.userCanCode.parentElement.parentElement.style.display =
+        "None";
+      dormElement.projectLink.parentElement.parentElement.style.display =
+        "None";
     }, 500);
   }
 });
-
 
 dormElement.submitBtn.addEventListener("click", (e) => {
   e.preventDefault();
@@ -151,7 +162,12 @@ dormElement.submitBtn.addEventListener("click", (e) => {
 
             // style displayed alert
             dormElement.formAlert.style.display = "block";
-            dormElement.formAlert.innerHTML = `<i class="fa fa-paper-plane-o" style="border: 1px solid #ef9a9a"></i> Invalid form fields`;
+            //show block if error
+            dormElement.formAlert.innerHTML = `<i class="fa fa-paper-plane-o" style="border: 1px solid #ef9a9a"></i>${
+              key == "repo_link"
+                ? "Valid Repository Link Is Required. Check 'Coding Session' Under Training Session"
+                : "Invalid form fields"
+            }`;
           }
         }
       } else {
