@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from django.urls import reverse
 from django.contrib import messages
-from django.views.generic import View
+from django.views import View
 
 from contact.forms import UserMessageForm
 from newsletters.forms import NewsletterEmailForm
@@ -13,7 +13,7 @@ from .models import Bootcamp
 
 
 class BootcampView(View):
-    def get(self, request):
+    def get(self, request, *args, **kwargs):
         # set template
         template_name = 'forms/training-form.html'
 
@@ -29,7 +29,7 @@ class BootcampView(View):
         return render(request, template_name, context)
 
     # post request
-    def post(self, request):
+    def post(self, request,  *args, **kwargs):
         form = BootcampForm(request.POST)
 
         # check if request is ajax
