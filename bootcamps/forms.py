@@ -114,7 +114,7 @@ class BootcampForm(forms.ModelForm):
     repo_link = forms.URLField(
         required=False,
         widget=forms.URLInput(
-            attrs={'class': 'form-control', 'placeholder': 'https://...'}
+            attrs={'class': 'form-control', 'placeholder': 'Github Repo Link (https://github.com/...)'}
         ),
     )
     expectation = forms.CharField(
