@@ -1,30 +1,19 @@
-{# handles all form macros #}
-{# handles error display for forms that uses django message #}
+{# handles error display for contact forms that uses django message #}
 {% macro errorDisplay(message, condition_str, errorName) %}
     {# loop through message #}
     {% for error in message if message %}
-        {% if error.level_tag == 'error' %}
-            {# convert message to dictionary #}
-            {% set error_dict_msg = error.message|dictstring %}
-            {# check if it is a form error or just a normal message #}
-            {% if condition_str == 'form' and error_dict_msg.form_error.get(errorName) %}
-                {# style form error #}
-                <p style="color: #ef9a9a; text-transform: capitalize;">
-                    {{ error_dict_msg.form_error[errorName][0]|trim|striptags|string }}
-                </p>
+        {% if error.extra_tags == 'contact' %}
+            {% if error.level_tag == 'error' %}
+                {# convert message to dictionary #}
+                {% set error_dict_msg = error.message|dictstring %}
+                {# check if it is a form error or just a normal message #}
+                {% if condition_str == 'form' and error_dict_msg.form_error.get(errorName) %}
+                    {# style form error #}
+                    <p style="color: #ef9a9a; text-transform: capitalize;">
+                        {{ error_dict_msg.form_error[errorName][0]|trim|striptags|string }}
+                    </p>
+                {% endif %}
             {% endif %}
-        {% endif %}
-    {% endfor %}
-{% endmacro %}
-{# handles general error display for forms that uses django message #}
-{% macro generalErrorDisplay(message, condition_str) %}
-    {# loop through message #}
-    {% for error in message if message %}
-        {% if error.level_tag == 'error' %}
-            {# convert message to dictionary #}
-            {% set error_dict_msg = error.message|dictstring %}
-            {# display error message #}
-            {{ error_dict_msg.msg }}
         {% endif %}
     {% endfor %}
 {% endmacro %}
