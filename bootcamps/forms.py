@@ -1,3 +1,4 @@
+import validators
 from django import forms
 from .modelChoices import nationality_form
 from .models import Bootcamp
@@ -114,7 +115,10 @@ class BootcampForm(forms.ModelForm):
     repo_link = forms.URLField(
         required=False,
         widget=forms.URLInput(
-            attrs={'class': 'form-control', 'placeholder': 'Github Repo Link (https://github.com/...)'}
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Github Repo Link (https://github.com/...)',
+            }
         ),
     )
     expectation = forms.CharField(
@@ -161,3 +165,22 @@ class BootcampForm(forms.ModelForm):
                 'You have already registered with this email.', code='email'
             )
         return value
+
+    def clean_repo_link(self):
+        # get input value form clean_data dict
+        repo_link = self.cleaned_data['repo_link']
+        can_code = self.cleaned_data['can_you_code']
+
+        # check if user said they can code
+        if (
+            can_code != 'No I can not code in HTML, CSS & Python'
+            and can_code != 'Can you code in HTML, CSS & Python'
+        ):
+            #
+            if not validators.url(repo_link):
+                # raise exceptions
+                raise forms.ValidationError(
+                    'Enter a valid repository link.', code='repo'
+                )
+
+        return repo_link
