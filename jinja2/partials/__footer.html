@@ -18,21 +18,23 @@
             <h6>Get In Touch With us</h6>
             <!-- Form  Msg -->
             {% for message in messages if messages %}
-                {# display form #}
-                <div id="contact_message"
-                     class="success-msg form_message"
-                     style="display: inline-block">
-                    {# icon color check#}
-                    {% if message.level_tag == 'success' %}
-                        <i class="fa fa-paper-plane-o" style="border: 1px solid #ABD0A8;"></i>
-                        {# display message #}
-                        {{ message.message }}
-                    {% else %}
-                        <i class="fa fa-paper-plane-o" style="border: 1px solid #ef9a9a;"></i>
-                        {# display error message #}
-                        {{ formMessage.generalErrorDisplay(messages, "msg") }}
-                    {% endif %}
-                </div>
+                {% if message.extra_tags == 'contact' %}
+                    {# display form #}
+                    <div id="contact_message"
+                        class="success-msg form_message"
+                        style="display: inline-block">
+                        {# icon color check#}
+                        {% if message.level_tag == 'success' %}
+                            <i class="fa fa-paper-plane-o" style="border: 1px solid #ABD0A8;"></i>
+                            {# display message #}
+                            {{ message.message }}
+                        {% else %}
+                            <i class="fa fa-paper-plane-o" style="border: 1px solid #ef9a9a;"></i>
+                            {# display error message #}
+                            <span>Invalid Form Field(s)</span>
+                        {% endif %}
+                    </div>
+                {% endif %}
             {% endfor %}
             <!-- FORM -->
             <form role="form"
