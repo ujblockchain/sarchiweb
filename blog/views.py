@@ -1,6 +1,7 @@
 from datetime import datetime
 from django.utils.timezone import utc
-from django.views.generic import ListView, DetailView
+from django.views.generic.list import ListView 
+from django.views.generic.detail import DetailView
 from contact.forms import UserMessageForm
 from newsletters.forms import NewsletterEmailForm
 from partners.models import Partners
