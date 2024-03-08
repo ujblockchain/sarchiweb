@@ -1,8 +1,8 @@
-coverage==7.4.1
-Django==4.2.10
+coverage==7.4.3
+Django==4.2.11
 django-autoslug==1.9.9
-django-axes==6.3.0
-django-ckeditor-5==0.2.11
+django-axes==6.4.0
+django-ckeditor-5==0.2.12
 django-cleanup==8.1.0
 django-cors-headers==4.3.1
 django-debug-toolbar==4.3.0
@@ -13,7 +13,7 @@ django-import-export==3.3.7
 django-jazzmin==2.6.0
 django-recaptcha==4.0.0
 django-reversion==5.0.12
-django-reversion-compare==0.16.2
+django-reversion-compare==0.17.0
 gevent==24.2.1
 greenlet==3.0.3
 huey==2.5.0
@@ -22,10 +22,10 @@ model-bakery==1.17.0
 Pillow==10.2.0
 psycopg==3.1.18
 psycopg-binary==3.1.18
-python-dateutil==2.8.2
+python-dateutil==2.9.0.post0
 python-decouple==3.8
-redis==5.0.1
+redis==5.0.2
 requests==2.31.0
-shortuuid==1.0.11
+shortuuid==1.0.12
 validators==0.22.0
 
