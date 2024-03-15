@@ -1,4 +1,4 @@
-coverage==7.4.3
+coverage==7.4.4
 Django==4.2.11
 django-autoslug==1.9.9
 django-axes==6.4.0
@@ -24,8 +24,8 @@ psycopg==3.1.18
 psycopg-binary==3.1.18
 python-dateutil==2.9.0.post0
 python-decouple==3.8
-redis==5.0.2
+redis==5.0.3
 requests==2.31.0
-shortuuid==1.0.12
+shortuuid==1.0.13
 validators==0.22.0
 
