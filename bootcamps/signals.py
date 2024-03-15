@@ -11,16 +11,13 @@ from .models import Bootcamp
 @receiver(post_save, sender=Bootcamp)
 def auto_mail_sending(sender, instance, created, **kwargs):
     # avoid sending empty mails
-    if (
-        created
-        or instance.application_status == 'Selected'
-        or instance.application_status == 'Rejected'
-    ):
+    if (created or instance.application_status == 'Selected'
+            or instance.application_status == 'Rejected'):
 
         # send email on registration complete
         sender_email = settings.DEFAULT_FROM_EMAIL
         recipient_email = [instance.email]
-        email_salutation = 'Thanks,\n UJ Blockchain Team.'
+        email_salutation = 'Thanks, <br /> UJ Blockchain Team.'
 
         # email context init
         email_subject = ''
@@ -70,10 +67,8 @@ def auto_mail_sending(sender, instance, created, **kwargs):
             # send email
             msg.send()
 
-        elif (
-            instance.application_status == 'Selected'
-            or instance.application_status == 'Rejected'
-        ):
+        elif (instance.application_status == 'Selected'
+              or instance.application_status == 'Rejected'):
             # once model is saved, trigger signal
             if instance.application_status == 'Selected':
                 email_subject = (
