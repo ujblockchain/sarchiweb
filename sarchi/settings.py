@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'program.apps.ProgramConfig',
     'projects.apps.ProjectsConfig',
     'repository.apps.RepositoryConfig',
+    'settings.apps.SettingsConfig',
     # third party apps by location
     'import_export',
     'django_cleanup.apps.CleanupConfig',
