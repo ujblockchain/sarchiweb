@@ -167,9 +167,9 @@ class BootcampAdmin(ImportExportModelAdmin, CompareVersionAdmin):
     ]
 
     # add custom field
-    def info(self, obj):
+    def info(self, obj): 
         return format_html(
-            "<span style='color:#ef9a9a; ;'>All mails are handled automatically and delivered using signup email"
+            "<span style='color: #454d55; padding: 10px; font-size: 13px; font-style: italic; background: #ef9a9a; border-radius: 50px;'>All mails are handled automatically and delivered using signup email</span>"
         )
 
     # add custom field description for info
