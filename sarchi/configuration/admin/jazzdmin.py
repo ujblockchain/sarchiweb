@@ -36,7 +36,7 @@ JAZZMIN_SETTINGS = {
         # external url that opens in a new window (Permissions can be added)
         {'name': 'View Site', 'url': '/', 'new_window': False},
         {'model': 'auth.User'},
-        # {'model': '...'},
+        {'model': 'settings.BootcampSettings'},
         # {'model': '...'},
     ],
     ######################################################
@@ -45,6 +45,7 @@ JAZZMIN_SETTINGS = {
     # Additional links to include in the user menu on the top right ('app' url type is not allowed)
     'usermenu_links': [
         {'name': 'View Site', 'url': '/', 'icon': 'fas fa-server', 'new_window': False},
+        {'name': 'Bootcamp Settings', 'url': '/settings/bootcampsettings/', 'icon': 'fas fa-sliders-h', 'new_window': False},
     ],
     #####################################################
     # Side Menu #
@@ -85,6 +86,7 @@ JAZZMIN_SETTINGS = {
         'partners.partners': 'fas fa-handshake',
         'projects.projects': 'fas fa-project-diagram',
         'repository.repoinfo': 'fas fa-code',
+        'settings.BootcampSettings': 'fas fa-sliders-h',
     },
     # Icons that are used when one is not manually specified
     'default_icon_parents': 'fas fa-chevron-circle-right',
