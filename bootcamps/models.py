@@ -75,9 +75,7 @@ class Bootcamp(models.Model):
         help_text='code sample link',
     )
     expectation = models.TextField(max_length=800)
-    application_status = models.CharField(
-        null=True, blank=True, choices=applicant_selection
-    )
+    application_status = models.CharField(null=True, blank=True, choices=applicant_selection)
     date_created = models.DateTimeField(auto_now_add=True)
     timestamp = models.DateTimeField(default=timezone.now)
 
