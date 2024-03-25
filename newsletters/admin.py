@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import NewsletterEmail, SendNewsletterEmails
+from .models import NewsletterEmail, SendUserEmails
 
 
 class NewsletterAdmin(admin.ModelAdmin):
@@ -33,7 +33,7 @@ class NewsletterAdmin(admin.ModelAdmin):
     fields = ['id', 'email', 'timestamp']
 
 
-class SendNewsletterEmailsAdmin(admin.ModelAdmin):
+class SendUserEmailsAdmin(admin.ModelAdmin):
     list_display = [
         'id',
         'subject',
@@ -108,4 +108,4 @@ class SendNewsletterEmailsAdmin(admin.ModelAdmin):
 
 # register models
 admin.site.register(NewsletterEmail, NewsletterAdmin)
-admin.site.register(SendNewsletterEmails, SendNewsletterEmailsAdmin)
+admin.site.register(SendUserEmails, SendUserEmailsAdmin)
