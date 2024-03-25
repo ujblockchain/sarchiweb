@@ -7,6 +7,8 @@ groups = (
     ('Selected Bootcamp Group', 'Selected Bootcamp Group'),
     ('Rejected Bootcamp Group', 'Rejected Bootcamp Group'),
     ('Newsletter Email Group', 'Newsletter Email Group'),
+    ('Bootcamp: Coding Session', 'Bootcamp: Coding Session'),
+    ('Bootcamp: Drag and Drop Session', 'Bootcamp: Drag and Drop Session'),
 )
 
 
@@ -26,7 +28,7 @@ class NewsletterEmail(models.Model):
         return self.id
 
 
-class SendNewsletterEmails(models.Model):
+class SendUserEmails(models.Model):
     # A primary key ID of length 16 and a short alphabet.
     id = ShortUUIDField(
         length=16,
@@ -35,9 +37,7 @@ class SendNewsletterEmails(models.Model):
         primary_key=True,
     )
     subject = models.CharField(max_length=200)
-    group = models.CharField(
-        choices=groups, max_length=100, default="Selected Bootcamp Group"
-    )
+    group = models.CharField(choices=groups, max_length=100, default="Selected Bootcamp Group")
     salutation = message = CKEditor5Field(
         max_length=5000,
         help_text='to learn more about what format or the style \
@@ -62,5 +62,5 @@ class SendNewsletterEmails(models.Model):
 
     class Meta:
         ordering = ['-date_created']
-        verbose_name = 'Send Email'
-        verbose_name_plural = 'Send Emails'
+        verbose_name = 'Send User Email'
+        verbose_name_plural = 'Send User Emails'
