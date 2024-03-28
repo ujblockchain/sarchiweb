@@ -9,7 +9,7 @@ class Facilitators(models.Model):
     id = ShortUUIDField(
         length=16,
         max_length=40,
-        alphabet="abcdefg1234",
+        alphabet='abcdefg1234',
         primary_key=True,
     )
     full_name = models.CharField(max_length=100)
@@ -25,5 +25,5 @@ class Facilitators(models.Model):
 
     class Meta:
         ordering = ['date_created']
-        verbose_name = "Facilitator"
-        verbose_name_plural = "Facilitators"
+        verbose_name = 'Facilitator'
+        verbose_name_plural = 'Facilitators'
