@@ -21,7 +21,6 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='127.0.0.1', cast=Csv())
 # Admin Path URL Name
 ADMIN_PATH = config('ADMIN_PATH')
 
-
 # Application definition
 INSTALLED_APPS = [
     # third party apps
@@ -57,6 +56,7 @@ INSTALLED_APPS = [
     'projects.apps.ProjectsConfig',
     'repository.apps.RepositoryConfig',
     'settings.apps.SettingsConfig',
+    'sms.apps.SmsConfig',
     # third party apps by location
     'import_export',
     'django_cleanup.apps.CleanupConfig',
@@ -135,7 +135,6 @@ if DEBUG:
     # set internal ips
     INTERNAL_IPS = ['127.0.0.1']
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
@@ -168,7 +167,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -182,14 +180,12 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 AUTHENTICATION_BACKENDS = [
     # AxesStandaloneBackend should be the first backend in the AUTHENTICATION_BACKENDS list.
     'axes.backends.AxesStandaloneBackend',
     # Django ModelBackend is the default authentication backend.
     'django.contrib.auth.backends.ModelBackend',
 ]
-
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = 'static/'
@@ -259,12 +255,10 @@ AXES_RESET_ON_SUCCESS = config('AXES_RESET_ON_SUCCESS', cast=bool)
 # lock user using ip address, username and user agent
 AXES_LOCKOUT_PARAMETERS = config('AXES_LOCKOUT_PARAMETERS', cast=Csv())
 
-
 # captcha settings
 RECAPTCHA_PUBLIC_KEY = config('RECAPTCHA_PUBLIC_KEY')
 RECAPTCHA_PRIVATE_KEY = config('RECAPTCHA_PRIVATE_KEY')
 RECAPTCHA_REQUIRED_SCORE = config('RECAPTCHA_REQUIRED_SCORE', cast=float)
-
 
 # Add reversion settings
 ## add admin interface
@@ -274,13 +268,11 @@ REVERSION_COMPARE_FOREIGN_OBJECTS_AS_ID = False
 ## ignore not registered in comparison
 REVERSION_COMPARE_IGNORE_NOT_REGISTERED = False
 
-
 # import jazzmin settings
 from .configuration.admin.jazzdmin import *
 
 # import ck editor settings
 from .configuration.admin.ckeditor import *
-
 
 # huey distributed task processing
 DJANGO_HUEY = {
@@ -289,6 +281,24 @@ DJANGO_HUEY = {
         'send_emails': {  # this name will be used in decorators below
             'huey_class': 'huey.RedisHuey',
             'name': 'send_email_task',  # name of task
+            'immediate': False,
+            'consumer': {
+                'workers': 10,
+                'worker_type': 'greenlet',  # using greenlet worker type
+            },
+        },
+        'bootcamp_reminder_emails': {  # this name will be used in decorators below
+            'huey_class': 'huey.RedisHuey',
+            'name': 'bootcamp_reminder_email_task',  # name of task
+            'immediate': False,
+            'consumer': {
+                'workers': 10,
+                'worker_type': 'greenlet',  # using greenlet worker type
+            },
+        },
+        'send_sms': {
+            'huey_class': 'huey.RedisHuey',
+            'name': 'send_sms_task',  # name of task
             'immediate': False,
             'consumer': {
                 'workers': 10,
