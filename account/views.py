@@ -15,7 +15,7 @@ def test_user_role(request):
 
 
 @user_passes_test(test_user_role)
-def revisiondelete(request):
+def revision_delete(request):
     if request.method == 'POST':
         app_name = request.POST.get('app_name')
         model_name = request.POST.get('model_name')
