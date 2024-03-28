@@ -33,5 +33,5 @@ class SendUserSms(models.Model):
 
     class Meta:
         ordering = ['-date_created']
-        verbose_name = 'Send SMS To USer'
-        verbose_name_plural = 'Send SMS To USers'
+        verbose_name = 'Send SMS To User'
+        verbose_name_plural = 'Send SMS To Users'
