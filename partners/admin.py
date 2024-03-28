@@ -3,22 +3,9 @@ from .models import Partners
 
 
 class PartnersAdmin(admin.ModelAdmin):
-    list_display = [
-        'name',
-        'image',
-        'publish',
-        'timestamp',
-    ]
-    list_display_links = [
-        'name',
-        'image',
-    ]
-    search_fields = [
-        'name',
-        'image',
-        'publish',
-        'timestamp',
-    ]
+    list_display = ['name', 'image', 'publish', 'timestamp']
+    list_display_links = ['name', 'image']
+    search_fields = ['name', 'image', 'publish', 'timestamp']
     list_per_page = 50
     show_full_result_count = True
     actions_on_top = True

@@ -15,5 +15,5 @@ class Partners(models.Model):
 
     class Meta:
         ordering = ['date_created']
-        verbose_name = "Partner"
-        verbose_name_plural = "Partners"
+        verbose_name = 'Partner'
+        verbose_name_plural = 'Partners'
