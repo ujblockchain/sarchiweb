@@ -16,5 +16,5 @@ class RepoInfo(models.Model):
 
     class Meta:
         ordering = ['-date_created']
-        verbose_name = "Repository"
-        verbose_name_plural = "Repository"
+        verbose_name = 'Repository'
+        verbose_name_plural = 'Repository'
