@@ -5,45 +5,17 @@ from .models import Projects
 
 class ProjectAdmin(admin.ModelAdmin):
     list_display = [
-        'id',
-        'title',
-        'project_progress',
-        'project_commit_count',
-        'distribution_count',
-        'total_distribution_count',
-        'lines_of_code',
-        'coding_hours',
-        'project_start_time',
-        'project_end_time',
-        'last_update',
+        'id', 'title', 'project_progress', 'project_commit_count', 'distribution_count', 'total_distribution_count',
+        'lines_of_code', 'coding_hours', 'project_start_time', 'project_end_time', 'last_update'
     ]
     list_display_links = [
-        'id',
-        'title',
-        'project_progress',
-        'project_commit_count',
-        'distribution_count',
-        'total_distribution_count',
-        'lines_of_code',
-        'coding_hours',
-        'project_start_time',
-        'project_end_time',
+        'id', 'title', 'project_progress', 'project_commit_count', 'distribution_count', 'total_distribution_count',
+        'lines_of_code', 'coding_hours', 'project_start_time', 'project_end_time'
     ]
-    list_filter = [
-        'publish',
-    ]
+    list_filter = ['publish']
     search_fields = [
-        'id',
-        'title',
-        'project_progress',
-        'project_commit_count',
-        'distribution_count',
-        'total_distribution_count',
-        'lines_of_code',
-        'coding_hours',
-        'project_start_time',
-        'project_end_time',
-        'last_update',
+        'id', 'title', 'project_progress', 'project_commit_count', 'distribution_count', 'total_distribution_count',
+        'lines_of_code', 'coding_hours', 'project_start_time', 'project_end_time', 'last_update'
     ]
     readonly_fields = ['id', 'slug']
     list_per_page = 50
@@ -59,13 +31,7 @@ class ProjectAdmin(admin.ModelAdmin):
             'General Information',
             {
                 'classes': ['wide'],
-                'fields': [
-                    'id',
-                    'title',
-                    'project_progress',
-                    'project_start_time',
-                    'project_end_time',
-                ],
+                'fields': ['id', 'title', 'project_progress', 'project_start_time', 'project_end_time'],
             },
         ],
         [
@@ -73,12 +39,8 @@ class ProjectAdmin(admin.ModelAdmin):
             {
                 'classes': ['collapse', 'wide'],
                 'fields': [
-                    'summary',
-                    'project_commit_count',
-                    'distribution_count',
-                    'total_distribution_count',
-                    'lines_of_code',
-                    'coding_hours',
+                    'summary', 'project_commit_count', 'distribution_count', 'total_distribution_count',
+                    'lines_of_code', 'coding_hours'
                 ],
             },
         ],
@@ -87,10 +49,8 @@ class ProjectAdmin(admin.ModelAdmin):
             {
                 'classes': ['collapse', 'wide'],
                 'fields': [
-                    'distribution_section_stats',
-                    'distribution_section_stats_end',
-                    'distribution_section_stats_end_summary',
-                    'current_stage_section_end_time',
+                    'distribution_section_stats', 'distribution_section_stats_end',
+                    'distribution_section_stats_end_summary', 'current_stage_section_end_time'
                 ],
             },
         ],
@@ -98,10 +58,7 @@ class ProjectAdmin(admin.ModelAdmin):
             'Visibility and Control',
             {
                 'classes': ['collapse', 'wide'],
-                'fields': [
-                    'publish',
-                    'schedule_message',
-                ],
+                'fields': ['publish', 'schedule_message'],
             },
         ],
         [
