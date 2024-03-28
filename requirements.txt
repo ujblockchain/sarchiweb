@@ -27,5 +27,6 @@ python-decouple==3.8
 redis==5.0.3
 requests==2.31.0
 shortuuid==1.0.13
+twilio==9.0.2
 validators==0.22.0
 
