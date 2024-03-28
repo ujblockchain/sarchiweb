@@ -7,85 +7,33 @@ from reversion_compare.admin import CompareVersionAdmin
 
 
 class BootcampResource(resources.ModelResource):
+
     class Meta:
         model = Bootcamp
         skip_unchanged = True
         report_skipped = True
         exclude = ('id',)
-        import_id_fields = (
-            'first_name',
-            'last_name',
-            'can_you_code',
-            'gender',
-            'email',
-            'faculty',
-            'department',
-            'level',
-            'student_number',
-            'nationality',
-            'phone_number',
-            'expectation',
-            'application_status',
-        )
-        export_id_fields = (
-            'first_name',
-            'last_name',
-            'gender',
-            'email',
-            'faculty',
-            'department',
-            'level',
-            'student_number',
-            'nationality',
-            'phone_number',
-            'session',
-            'can_you_code',
-            'repo_link',
-            'application_status',
-            'date_created',
-        )
+        import_id_fields = ('first_name', 'last_name', 'can_you_code', 'gender', 'email', 'faculty', 'department',
+                            'level', 'student_number', 'nationality', 'phone_number', 'expectation',
+                            'application_status')
+        export_id_fields = ('first_name', 'last_name', 'gender', 'email', 'faculty', 'department', 'level',
+                            'student_number', 'nationality', 'phone_number', 'session', 'can_you_code', 'repo_link',
+                            'application_status', 'date_created')
 
 
 class BootcampAdmin(ImportExportModelAdmin, CompareVersionAdmin):
     resource_class = BootcampResource
     list_display = [
-        'first_name',
-        'last_name',
-        'gender',
-        'email',
-        'phone_number',
-        'faculty',
-        'department',
-        'level',
-        'student_number',
-        'nationality',
-        'application_status',
-        'timestamp',
+        'first_name', 'last_name', 'gender', 'email', 'phone_number', 'faculty', 'department', 'level',
+        'student_number', 'nationality', 'application_status', 'timestamp'
     ]
     list_display_links = [
-        'first_name',
-        'last_name',
-        'faculty',
-        'department',
-        'level',
-        'student_number',
-        'application_status',
+        'first_name', 'last_name', 'faculty', 'department', 'level', 'student_number', 'application_status'
     ]
     list_filter = ['application_status']
     search_fields = [
-        'first_name',
-        'last_name',
-        'gender',
-        'email',
-        'faculty',
-        'department',
-        'level',
-        'student_number',
-        'nationality',
-        'expectation',
-        'phone_number',
-        'application_status',
-        'timestamp',
+        'first_name', 'last_name', 'gender', 'email', 'faculty', 'department', 'level', 'student_number',
+        'nationality', 'expectation', 'phone_number', 'application_status', 'timestamp'
     ]
     readonly_fields = [
         'info',
@@ -103,71 +51,48 @@ class BootcampAdmin(ImportExportModelAdmin, CompareVersionAdmin):
             'General Information',
             {
                 'classes': ['wide'],
-                'fields': [
-                    'first_name',
-                    'last_name',
-                    'gender',
-                    'email',
-                    'nationality',
-                    'phone_number',
-                    'info',
-                ],
+                'fields': ['first_name', 'last_name', 'gender', 'email', 'nationality', 'phone_number', 'info'],
             },
         ],
         [
             'Department Summary',
             {
                 'classes': ['collapse', 'wide'],
-                'fields': [
-                    'faculty',
-                    'department',
-                    'level',
-                    'student_number',
-                ],
+                'fields': ['faculty', 'department', 'level', 'student_number'],
             },
         ],
         [
             'User Sessions',
             {
                 'classes': ['collapse', 'wide'],
-                'fields': [
-                    'session',
-                    'can_you_code',
-                    'repo_link',
-                ],
+                'fields': ['session', 'can_you_code', 'repo_link'],
             },
         ],
         [
             'Application Details',
             {
                 'classes': ['collapse', 'wide'],
-                'fields': [
-                    'expectation',
-                ],
+                'fields': ['expectation',],
             },
         ],
         [
             'Application Status',
             {
                 'classes': ['collapse'],
-                'fields': [
-                    'application_status',
-                ],
+                'fields': ['application_status',],
             },
         ],
         [
             'Last Updated',
             {
                 'classes': ['collapse', 'wide'],
-                'fields': [
-                    'timestamp',
-                ],
+                'fields': ['timestamp'],
             },
         ],
     ]
 
     # add custom field
-    def info(self, obj): 
+    def info(self, obj):
         return format_html(
             "<span style='color: #454d55; padding: 10px; font-size: 13px; font-style: italic; background: #ef9a9a; border-radius: 50px;'>All mails are handled automatically and delivered using signup email</span>"
         )
