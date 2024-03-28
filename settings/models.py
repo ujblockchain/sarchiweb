@@ -14,5 +14,5 @@ class BootcampSettings(models.Model):
 
     class Meta:
         ordering = ['-date_created']
-        verbose_name = "Bootcamp Settings"
-        verbose_name_plural = "Bootcamp Settings"
+        verbose_name = 'Bootcamp Settings'
+        verbose_name_plural = 'Bootcamp Settings'
