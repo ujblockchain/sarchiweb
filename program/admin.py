@@ -7,67 +7,33 @@ from reversion_compare.admin import CompareVersionAdmin
 
 
 class ProgramResource(resources.ModelResource):
+
     class Meta:
         model = Program
         skip_unchanged = True
         report_skipped = True
-        exclude = ('id',)
-        import_id_fields = (
-            'first_name',
-            'last_name',
-            'gender',
-            'email',
-            'nationality',
-            'phone_number',
-            'organization',
-            'expectation',
-            'application_status',
-        )
-        export_id_fields = (
-            'first_name',
-            'last_name',
-            'gender',
-            'email',
-            'nationality',
-            'phone_number',
-            'organization',
-            'application_status',
-            'date_created',
-        )
+        exclude = ['id']
+        import_id_fields = [
+            'first_name', 'last_name', 'gender', 'email', 'nationality', 'phone_number', 'organization', 'expectation',
+            'application_status'
+        ]
+        export_id_fields = [
+            'first_name', 'last_name', 'gender', 'email', 'nationality', 'phone_number', 'organization',
+            'application_status', 'date_created'
+        ]
 
 
 class ProgramAdmin(ImportExportModelAdmin, CompareVersionAdmin):
     resource_class = ProgramResource
     list_display = [
-        'first_name',
-        'last_name',
-        'gender',
-        'email',
-        'phone_number',
-        'nationality',
-        'organization',
-        'application_status',
-        'timestamp',
+        'first_name', 'last_name', 'gender', 'email', 'phone_number', 'nationality', 'organization',
+        'application_status', 'timestamp'
     ]
-    list_display_links = [
-        'first_name',
-        'last_name',
-        'email',
-        'organization',
-        'application_status',
-    ]
+    list_display_links = ['first_name', 'last_name', 'email', 'organization', 'application_status']
     list_filter = ['application_status']
     search_fields = [
-        'first_name',
-        'last_name',
-        'gender',
-        'email',
-        'nationality',
-        'expectation',
-        'phone_number',
-        'organization',
-        'application_status',
-        'timestamp',
+        'first_name', 'last_name', 'gender', 'email', 'nationality', 'expectation', 'phone_number', 'organization',
+        'application_status', 'timestamp'
     ]
     readonly_fields = [
         'info',
@@ -86,14 +52,7 @@ class ProgramAdmin(ImportExportModelAdmin, CompareVersionAdmin):
             {
                 'classes': ['wide'],
                 'fields': [
-                    'first_name',
-                    'last_name',
-                    'gender',
-                    'email',
-                    'nationality',
-                    'phone_number',
-                    'organization',
-                    'info',
+                    'first_name', 'last_name', 'gender', 'email', 'nationality', 'phone_number', 'organization', 'info'
                 ],
             },
         ],
@@ -101,27 +60,21 @@ class ProgramAdmin(ImportExportModelAdmin, CompareVersionAdmin):
             'Application Details',
             {
                 'classes': ['collapse', 'wide'],
-                'fields': [
-                    'expectation',
-                ],
+                'fields': ['expectation',],
             },
         ],
         [
             'Application Status',
             {
                 'classes': ['collapse'],
-                'fields': [
-                    'application_status',
-                ],
+                'fields': ['application_status',],
             },
         ],
         [
             'Last Updated',
             {
                 'classes': ['collapse', 'wide'],
-                'fields': [
-                    'timestamp',
-                ],
+                'fields': ['timestamp',],
             },
         ],
     ]
@@ -129,8 +82,7 @@ class ProgramAdmin(ImportExportModelAdmin, CompareVersionAdmin):
     # add custom field
     def info(self, obj):
         return format_html(
-            "<span style='color:#ef9a9a; ;'>All mails are handled automatically and delivered using signup email"
-        )
+            "<span style='color:#ef9a9a; ;'>All mails are handled automatically and delivered using signup email")
 
     # add custom field description for info
     info.short_description = 'Notice'
@@ -138,29 +90,9 @@ class ProgramAdmin(ImportExportModelAdmin, CompareVersionAdmin):
 
 class EventAdmin(ImportExportModelAdmin, CompareVersionAdmin):
     resource_class = Event
-    list_display = [
-        'title',
-        'speakers',
-        'speaker_one',
-        'speaker_two',
-        'speaker_three',
-        'speaker_four',
-        'timestamp',
-    ]
-    list_display_links = [
-        'title',
-        'speakers',
-        'timestamp',
-    ]
-    search_fields = [
-        'title',
-        'speakers',
-        'speaker_one',
-        'speaker_two',
-        'speaker_three',
-        'speaker_four',
-        'timestamp',
-    ]
+    list_display = ['title', 'speakers', 'speaker_one', 'speaker_two', 'speaker_three', 'speaker_four', 'timestamp']
+    list_display_links = ['title', 'speakers', 'timestamp']
+    search_fields = ['title', 'speakers', 'speaker_one', 'speaker_two', 'speaker_three', 'speaker_four', 'timestamp']
     list_per_page = 50
     show_full_result_count = True
     actions_on_top = True
@@ -168,15 +100,7 @@ class EventAdmin(ImportExportModelAdmin, CompareVersionAdmin):
     save_as = True
     save_as_continue = True
     save_on_top = True
-    fields = [
-        'title',
-        'speakers',
-        'speaker_one',
-        'speaker_two',
-        'speaker_three',
-        'speaker_four',
-        'timestamp',
-    ]
+    fields = ['title', 'speakers', 'speaker_one', 'speaker_two', 'speaker_three', 'speaker_four', 'timestamp']
 
 
 # register admin settings

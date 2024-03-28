@@ -44,17 +44,17 @@ class Program(models.Model):
 
     class Meta:
         ordering = ['-date_created']
-        verbose_name = "Program"
-        verbose_name_plural = "Program"
+        verbose_name = 'Program'
+        verbose_name_plural = 'Program'
 
 
 class Event(models.Model):
     title = models.CharField(max_length=400)
     speakers = models.CharField(max_length=300)
-    speaker_one  = models.ImageField(upload_to='event/speakers/', null=True, blank=True, validators=[clean_image])
-    speaker_two  = models.ImageField(upload_to='event/speakers/', null=True, blank=True, validators=[clean_image])
-    speaker_three  = models.ImageField(upload_to='event/speakers/', null=True, blank=True, validators=[clean_image])
-    speaker_four  = models.ImageField(upload_to='event/speakers/', null=True, blank=True, validators=[clean_image])
+    speaker_one = models.ImageField(upload_to='event/speakers/', null=True, blank=True, validators=[clean_image])
+    speaker_two = models.ImageField(upload_to='event/speakers/', null=True, blank=True, validators=[clean_image])
+    speaker_three = models.ImageField(upload_to='event/speakers/', null=True, blank=True, validators=[clean_image])
+    speaker_four = models.ImageField(upload_to='event/speakers/', null=True, blank=True, validators=[clean_image])
     date_created = models.DateTimeField(auto_now_add=True)
     timestamp = models.DateTimeField(default=timezone.now)
 
@@ -63,5 +63,5 @@ class Event(models.Model):
 
     class Meta:
         ordering = ['-date_created']
-        verbose_name = "Event Feed"
-        verbose_name_plural = "Event Feed"
+        verbose_name = 'Event Feed'
+        verbose_name_plural = 'Event Feed'
