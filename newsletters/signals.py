@@ -50,14 +50,8 @@ def auto_mail_sending(sender, instance, created, **kwargs):
         sorted_email_list = [email_list[i:i + n] for i in range(0, len(email_list), n)]
 
         # init task
-        send_email_task(
-            sorted_email_list,
-            instance.salutation,
-            instance.subject,
-            instance.message,
-            instance.link,
-            instance.link_title,
-        )
+        send_email_task(sorted_email_list, instance.salutation, instance.subject, instance.message, instance.link,
+                        instance.link_title)
 
 
 @receiver(post_save, sender=SendBootcampReminderEmails)
