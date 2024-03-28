@@ -6,6 +6,7 @@ from .forms import UserMessageForm
 
 
 class ContactView(View):
+
     def post(self, request):
         form = UserMessageForm(request.POST)
 
