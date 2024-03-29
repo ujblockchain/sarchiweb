@@ -35,6 +35,9 @@ class NewsletterEmail(models.Model):
     def __str__(self):
         return self.id
 
+    class Meta:
+        ordering = ['-date_created']
+
 
 class SendUserEmails(models.Model):
     # A primary key ID of length 16 and a short alphabet.
@@ -86,7 +89,10 @@ class SendBootcampReminderEmails(models.Model):
     group = models.CharField(choices=groups_followup, max_length=100, default="Selected Bootcamp Group")
     main_message_heading = models.CharField(max_length=45, help_text='main heading in email template')
     primary_message_section = CKEditor5Field(max_length=650, help_text='the first message section in the email')
-    image_section_heading = models.CharField(max_length=40, null=True, blank=True, help_text='image heading session in email template')
+    image_section_heading = models.CharField(max_length=40,
+                                             null=True,
+                                             blank=True,
+                                             help_text='image heading session in email template')
     display_image_1 = models.ImageField(upload_to='email/template/', validators=[clean_image])
     display_image_1_text = models.CharField(max_length=26, help_text='displayed image text for image one')
     display_image_2 = models.ImageField(upload_to='email/template/', validators=[clean_image])
