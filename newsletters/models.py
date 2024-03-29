@@ -85,7 +85,7 @@ class SendBootcampReminderEmails(models.Model):
     subject = models.CharField(max_length=200)
     group = models.CharField(choices=groups_followup, max_length=100, default="Selected Bootcamp Group")
     main_message_heading = models.CharField(max_length=45, help_text='main heading in email template')
-    primary_message_section = CKEditor5Field(max_length=400, help_text='the first message section in the email')
+    primary_message_section = CKEditor5Field(max_length=600, help_text='the first message section in the email')
     image_section_heading = models.CharField(max_length=40, null=True, blank=True, help_text='image heading session in email template')
     display_image_1 = models.ImageField(upload_to='email/template/', validators=[clean_image])
     display_image_1_text = models.CharField(max_length=26, help_text='displayed image text for image one')
@@ -95,7 +95,7 @@ class SendBootcampReminderEmails(models.Model):
     display_image_3_text = models.CharField(max_length=26, help_text='displayed image text for image three')
     display_image_4 = models.ImageField(upload_to='email/template/', validators=[clean_image])
     display_image_4_text = models.CharField(max_length=26, help_text='displayed image text for image four')
-    secondary_message_section = CKEditor5Field(max_length=400, help_text='the second message section in the email')
+    secondary_message_section = CKEditor5Field(max_length=600, help_text='the second message section in the email')
     date_created = models.DateTimeField(auto_now_add=True)
     timestamp = models.DateTimeField(default=timezone.now)
 
