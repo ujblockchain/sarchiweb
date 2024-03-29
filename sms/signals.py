@@ -31,11 +31,5 @@ def auto_sms_sending(sender, instance, created, **kwargs):
             sms_list = Bootcamp.objects.filter(
                 training_session='No Coding Session (Drag and Drop Design)').values_list('phone_number', flat=True)
 
-        # init number of  elements each list should have
-        n = 15  # 15 per list
-
-        # using list comprehension to split sms list into multiple lists in a single list
-        sorted_sms_list = [sms_list[i:i + n] for i in range(0, len(sms_list), n)]
-
         # init task
-        send_sms_task(sorted_sms_list, instance.message)
+        send_sms_task(sms_list, instance.message)
