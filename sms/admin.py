@@ -12,7 +12,6 @@ class SendUserSmsAdmin(admin.ModelAdmin):
     show_full_result_count = True
     actions_on_top = True
     actions_on_bottom = True
-    save_as = True
     save_as_continue = True
     save_on_top = True
     fieldsets = [
@@ -28,13 +27,6 @@ class SendUserSmsAdmin(admin.ModelAdmin):
             {
                 'classes': ['collapse', 'wide'],
                 'fields': ['message'],
-            },
-        ],
-        [
-            'Schedule Delivery Time',
-            {
-                'classes': ['collapse', 'wide'],
-                'fields': ['schedule_message'],
             },
         ],
         [
