@@ -10,8 +10,8 @@ on_startup(queue='send_sms')(startup_handler)
 
 # set task
 @task(queue='send_sms')
-def send_sms_task(sms_list, message, delivery_time):
+def send_sms_task(sms_list, message):
     # send sms
     # loop number list
     for i in sms_list:
-        send_sms(i, message, delivery_time)
+        send_sms(i, message)
