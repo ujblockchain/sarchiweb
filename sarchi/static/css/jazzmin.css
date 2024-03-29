@@ -7,12 +7,12 @@
     box-shadow: none !important;
 }
 
-.brand-link .brand-image{
+.brand-link .brand-image {
     float: unset !important;
 }
 
 
-span.brand-text.font-weight-light{
+span.brand-text.font-weight-light {
     display: none;
 }
 
@@ -51,7 +51,7 @@ ul.object-tools li a {
     font-size: 17px;
     padding: 25px;
     margin: 10px 0 !important;
-    color: white!important;
+    color: white !important;
 }
 
 #toolbar #searchbar {
@@ -120,15 +120,21 @@ li.nav-header {
 }
 
 /* model navigation */
-.accent-primary .btn-link, .accent-primary .nav-tabs .nav-link, .accent-primary a:not(.dropdown-item):not(.btn-app):not(.nav-link):not(.brand-link):not(.page-link):not(.btn) {
+.accent-primary .btn-link,
+.accent-primary .nav-tabs .nav-link,
+.accent-primary a:not(.dropdown-item):not(.btn-app):not(.nav-link):not(.brand-link):not(.page-link):not(.btn) {
     color: grey;
 }
 
-.accent-primary .btn-link:hover, .accent-primary .nav-tabs .nav-link:hover, .accent-primary a:not(.dropdown-item):not(.btn-app):not(.nav-link):not(.brand-link):not(.page-link):not(.btn):hover {
+.accent-primary .btn-link:hover,
+.accent-primary .nav-tabs .nav-link:hover,
+.accent-primary a:not(.dropdown-item):not(.btn-app):not(.nav-link):not(.brand-link):not(.page-link):not(.btn):hover {
     color: wheat;
 }
 
-.dark-mode .custom-file-label, .dark-mode .custom-file-label::after, .dark-mode .form-control:not(.form-control-navbar):not(.form-control-sidebar):not(.is-invalid):not(:focus):hover {
+.dark-mode .custom-file-label,
+.dark-mode .custom-file-label::after,
+.dark-mode .form-control:not(.form-control-navbar):not(.form-control-sidebar):not(.is-invalid):not(:focus):hover {
     color: rosybrown;
 }
 
@@ -139,15 +145,15 @@ input.btn.btn-outline-success.form-control:hover {
     border-color: #00bc8c !important;
 }
 
-a.btn.btn-outline-danger.form-control:hover{
-    border-color:#e74c3c !important;
+a.btn.btn-outline-danger.form-control:hover {
+    border-color: #e74c3c !important;
 }
 
-input.btn.btn-outline-info.form-control:hover{
+input.btn.btn-outline-info.form-control:hover {
     border-color: #3498db !important;
 }
 
-input.btn.btn-outline-info.form-control:hover{
+input.btn.btn-outline-info.form-control:hover {
     border-color: #3498db !important;
 }
 
@@ -161,7 +167,7 @@ input.btn.btn-outline-info.form-control:hover{
 }
 
 /* brand text */
-.brand-text{
+.brand-text {
     display: none !important;
 }
 
@@ -171,7 +177,7 @@ input.btn.btn-outline-info.form-control:hover{
     color: wheat;
 }
 
-.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable{
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
     color: wheat !important;
 }
 
@@ -185,7 +191,7 @@ i.nav-icon {
 }
 
 /* admin side bar text */
-li.nav-header{
+li.nav-header {
     color: rosybrown !important;
 }
 
@@ -201,6 +207,15 @@ li.nav-header{
 }
 
 /* cancel btn styling */
-.dark-mode .custom-file-label, .dark-mode .custom-file-label::after, .dark-mode .form-control:not(.form-control-navbar):not(.form-control-sidebar):not(.is-invalid):not(:focus):hover {
-    color:cornsilk;
+.dark-mode .custom-file-label,
+.dark-mode .custom-file-label::after,
+.dark-mode .form-control:not(.form-control-navbar):not(.form-control-sidebar):not(.is-invalid):not(:focus):hover {
+    color: cornsilk;
+}
+
+
+/* ck editor styling */
+.ck.ck-content.ck-editor__editable.ck-rounded-corners.ck-editor__editable_inline.ck-blurred,
+.ck.ck-editor__editable.ck-focused:not(.ck-editor__nested-editable) {
+    color: black;
 }
