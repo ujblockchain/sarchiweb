@@ -87,9 +87,15 @@ def auto_mail_reminder_sending(sender, instance, created, **kwargs):
         # using list comprehension to split email list into multiple lists in a single list
         sorted_email_list = [email_list[i:i + n] for i in range(0, len(email_list), n)]
 
+        #format images
+        image_1 = f'https://www.blockchain.uj.ac.za/media/{instance.display_image_1}'
+        image_2 = f'https://www.blockchain.uj.ac.za/media/{instance.display_image_2}'
+        image_3 = f'https://www.blockchain.uj.ac.za/media/{instance.display_image_3}'
+        image_4 = f'https://www.blockchain.uj.ac.za/media/{instance.display_image_4}'
+
         # init task
         reminder_email_task(sorted_email_list, instance.subject, instance.main_message_heading,
-                            instance.primary_message_section, instance.image_section_heading, instance.display_image_1,
-                            instance.display_image_1_text, instance.display_image_2, instance.display_image_2_text,
-                            instance.display_image_3, instance.display_image_3_text, instance.display_image_4,
-                            instance.display_image_4_text, instance.secondary_message_section)
+                            instance.primary_message_section, instance.image_section_heading, image_1,
+                            instance.display_image_1_text, image_2, instance.display_image_2_text, image_3,
+                            instance.display_image_3_text, image_4, instance.display_image_4_text,
+                            instance.secondary_message_section)
