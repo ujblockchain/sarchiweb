@@ -21,10 +21,9 @@ class SendUserSms(models.Model):
     title = models.CharField(max_length=200, help_text='title is not used in sms')
     group = models.CharField(choices=groups, max_length=100, default='select bootcamp group')
     message = models.TextField(
-        max_length=80,
+        max_length=151,
         help_text='sms message',
     )
-    schedule_message = models.DateTimeField(default=datetime.now, help_text='specify when message will deliver')
     date_created = models.DateTimeField(auto_now_add=True)
     timestamp = models.DateTimeField(default=timezone.now)
 
