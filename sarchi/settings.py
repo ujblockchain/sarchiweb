@@ -283,9 +283,9 @@ CSP_DEFAULT_SRC = (
 # CSP script_src
 CSP_SCRIPT_SRC = (
     "'self'",
-    "https://www.google.com",
-    "https://www.googletagmanager.com",
-    "https://www.gstatic.com",
+    'https://www.google.com',
+    'https://www.googletagmanager.com',
+    'https://www.gstatic.com',
     "'unsafe-inline'",
 )
 # CSP style
