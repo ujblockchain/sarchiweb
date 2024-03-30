@@ -1,8 +1,9 @@
-from datetime import datetime
 from django.utils import timezone
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views import View
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import never_cache
 
 from contact.forms import UserMessageForm
 from newsletters.forms import NewsletterEmailForm
@@ -12,6 +13,8 @@ from .forms import BootcampForm
 from .models import Bootcamp
 
 
+
+@method_decorator([never_cache,], name='dispatch')
 class BootcampView(View):
 
     def get(self, request, *args, **kwargs):

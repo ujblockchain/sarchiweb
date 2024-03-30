@@ -3,9 +3,12 @@ from django.contrib import messages
 from django.contrib.auth.decorators import user_passes_test
 from django.core.management import call_command
 from django.contrib.auth import get_user_model
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_control
+from django.views.decorators.cache import never_cache
 from django.views.generic import TemplateView
 
-
+# init user
 User = get_user_model()
 
 
@@ -30,5 +33,6 @@ def revision_delete(request):
         return redirect(path)
 
 
+@method_decorator(cache_control(max_age=3600), name='dispatch')
 class AccountLockout(TemplateView):
     template_name = "account/lockout.html"

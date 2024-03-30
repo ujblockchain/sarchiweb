@@ -3,8 +3,12 @@ from django.http import HttpResponseRedirect
 from django.views import View
 from .models import UserContact
 from .forms import UserMessageForm
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import never_cache
 
 
+
+@method_decorator([never_cache,], name='dispatch')
 class ContactView(View):
 
     def post(self, request):

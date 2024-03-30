@@ -1,5 +1,7 @@
 from django.utils.timezone import datetime
 from django.views.generic.base import TemplateView
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import never_cache
 from contact.forms import UserMessageForm
 from facilitators.models import Facilitators
 from newsletters.forms import NewsletterEmailForm
@@ -10,11 +12,13 @@ from repository.models import RepoInfo
 from .github_api import get_github_commits
 
 
+
 # init current time, timezone aware
 current_timestamp = datetime.now()
 
 
 # index page view
+@method_decorator([never_cache,], name='dispatch')
 class HomeView(TemplateView):
     template_name = 'pages/index.html'
 
@@ -69,6 +73,7 @@ class HomeView(TemplateView):
 
 
 # index page view
+@method_decorator([never_cache,], name='dispatch')
 class EventView(TemplateView):
     template_name = 'pages/mb.html'
 

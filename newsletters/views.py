@@ -4,6 +4,9 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.views import View
 from django.views.generic.base import TemplateView
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_control
+from django.views.decorators.cache import never_cache
 
 
 from .models import NewsletterEmail
@@ -11,6 +14,7 @@ from .forms import NewsletterEmailForm
 from django.http import Http404
 
 
+@method_decorator([never_cache,], name='dispatch')
 class NewsletterView(View):
     def post(self, request, *args, **kwargs):
         form = NewsletterEmailForm(request.POST)
@@ -44,6 +48,7 @@ class NewsletterView(View):
             return HttpResponseRedirect('/#newsletter')
 
 
+@method_decorator([never_cache,], name='dispatch')
 class NewsletterConfirmUnsubscribe(View):
     ## get id as params
     def get(self, request, *args, **kwargs):
@@ -61,6 +66,7 @@ class NewsletterConfirmUnsubscribe(View):
             raise Http404
 
 
+@method_decorator([never_cache,], name='dispatch')
 class NewsletterEmailUnsubscribe(View):
     # get id as params
     def get(self, request, *args, **kwargs):
@@ -79,5 +85,6 @@ class NewsletterEmailUnsubscribe(View):
             raise Http404
 
 
+@method_decorator(cache_control(max_age=3600), name='dispatch')
 class NewsletterUnsubscribeDone(TemplateView):
     template_name = "newsletter/unsubscribe.html"
