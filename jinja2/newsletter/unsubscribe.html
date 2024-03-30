@@ -29,9 +29,9 @@
     </div>
 {% endblock content %}
 {% block script %}
-    <script src="{{ static ('js/jquery-1.11.3.min.js') }}"></script>
-    <script src="{{ static ('js/bootstrap.bundle.js') }}"></script>
-    <script src="{{ static ('js/particles.min.js') }}"></script>
-    <script src="{{ static ('js/jquery.counterup.min.js') }}"></script>
-    <script src="{{ static ('js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ static('js/jquery-1.11.3.min.js') }}" integrity="{{'js/jquery-1.11.3.min.js'|static_integrity}}"></script>
+    <script src="{{ static('js/bootstrap.bundle.js') }}" integrity="{{'js/bootstrap.bundle.js'|static_integrity}}""></script>
+    <script src="{{ static('js/particles.min.js') }}" integrity="{{'js/particles.min.js'|static_integrity}}"></script>
+    <script src="{{ static('js/jquery.counterup.min.js') }}" integrity="{{'js/jquery.counterup.min.js'|static_integrity}}"></script>
+    <script src="{{ static('js/jquery.magnific-popup.min.js') }}" integrity="{{'js/jquery.magnific-popup.min.js'|static_integrity}}"></script>
 {% endblock script %}

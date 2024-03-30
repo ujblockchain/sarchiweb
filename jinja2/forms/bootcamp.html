@@ -43,7 +43,7 @@
 
 {# extra css style #}
 {% block extraStyle %}
-    <link rel="stylesheet" href="{{ static ('css/animate.css') }}">
+    <link rel="stylesheet" href="{{ static ('css/animate.css') }}" integrity="{{'css/animate.css'|static_integrity}}">
     <style>
         .form-select:focus {
             border-color: rgba(255, 255, 255, 0.05);
@@ -267,15 +267,15 @@
 
 {# override script #}
 {% block script %}
-    <script src="{{ static('js/jquery-1.11.3.min.js') }}"></script>
-    <script src="{{ static('js/bootstrap.bundle.js') }}"></script>
-    <script src="{{ static('js/particles.min.js') }}"></script>
-    <script src="{{ static('js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ static('js/jquery-1.11.3.min.js') }}" integrity="{{'js/jquery-1.11.3.min.js'|static_integrity}}"></script>
+    <script src="{{ static('js/bootstrap.bundle.js') }}" integrity="{{'js/bootstrap.bundle.js'|static_integrity}}""></script>
+    <script src="{{ static('js/particles.min.js') }}" integrity="{{'js/particles.min.js'|static_integrity}}"></script>
+    <script src="{{ static('js/jquery.magnific-popup.min.js') }}" integrity="{{'js/jquery.magnific-popup.min.js'|static_integrity}}"></script>
 {% endblock script %}
 
 {# external scripts from pages #}
 {% block extraScript %}
-    <script src="{{ static('js/ajax-form.js') }}"></script>
+    <script src="{{ static('js/ajax-form.js') }}" integrity="{{'js/ajax-form.js'|static_integrity}}"></script>
     <script>
         // control message show interval
         setInterval(() => {

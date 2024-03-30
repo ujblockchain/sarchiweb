@@ -205,7 +205,7 @@
                                         <p class="hours_ref">{{ post.second_section_long_stat_short_stat_name_2|title }}</p>
                                     </article>  
                                 </li>
-                                <!-- Mintes -->
+                                <!-- Minutes -->
                                 <li class="col-md-3">
                                     <article><span class="minutes">{{ post.second_section_long_stat_short_metric_number_3 }}</span>
                                         <p class="minutes_ref">{{ post.second_section_long_stat_short_name_3|title }}</p>
@@ -379,7 +379,7 @@
                                         <p class="hours_ref">{{ post.fourth_section_long_stat_short_stat_name_2|title }}</p>
                                     </article>
                                 </li>
-                                <!-- Mintes -->
+                                <!-- Minutes -->
                                 <li class="col-md-3">
                                     <article><span class="minutes">{{ post.fourth_section_long_stat_short_metric_number_3 }}</span>
                                         <p class="minutes_ref">{{ post.fourth_section_long_stat_short_name_3|title }}</p>
@@ -498,9 +498,9 @@
 {% endblock content %}
 {# override Script #}
 {% block script %}
-    <script src="{{ static('js/jquery-1.11.3.min.js') }}"></script>
-    <script src="{{ static('js/bootstrap.bundle.js') }}"></script>
-    <script src="{{ static('js/particles.min.js') }}"></script>
-    <script src="{{ static('js/jquery.counterup.min.js') }}"></script>
-    <script src="{{ static('js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ static('js/jquery-1.11.3.min.js') }}" integrity="{{'js/jquery-1.11.3.min.js'|static_integrity}}"></script>
+    <script src="{{ static('js/bootstrap.bundle.js') }}" integrity="{{'js/bootstrap.bundle.js'|static_integrity}}""></script>
+    <script src="{{ static('js/particles.min.js') }}" integrity="{{'js/particles.min.js'|static_integrity}}"></script>
+    <script src="{{ static('js/jquery.counterup.min.js') }}" integrity="{{'js/jquery.counterup.min.js'|static_integrity}}"></script>
+    <script src="{{ static('js/jquery.magnific-popup.min.js') }}" integrity="{{'js/jquery.magnific-popup.min.js'|static_integrity}}"></script>
 {% endblock script %}
