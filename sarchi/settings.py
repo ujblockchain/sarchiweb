@@ -218,6 +218,8 @@ EMAIL_USE_TSL = config('EMAIL_USE_TSL')
 
 # Security Settings In Production Environment
 X_FRAME_OPTIONS = 'DENY'
+CSRF_COOKIE_SAMESITE = 'Strict'
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 if DEBUG == False:
     # security settings
     SECURE_BROWSER_XSS_FILTER = True
@@ -268,12 +270,12 @@ RECAPTCHA_REQUIRED_SCORE = config('RECAPTCHA_REQUIRED_SCORE', cast=float)
 # CSP default settings
 CSP_DEFAULT_SRC = (
     "'self'",
-    "https://www.google.com/",
-    "https://fonts.gstatic.com",
-    "https://use.fontawesome.com",
-    "https://fonts.googleapis.com",
-    "https://www.google-analytics.com",
-    "https://www.googletagmanager.com",
+    'https://www.google.com/',
+    'https://fonts.gstatic.com',
+    'https://use.fontawesome.com',
+    'https://fonts.googleapis.com',
+    'https://www.google-analytics.com',
+    'https://www.googletagmanager.com',
 )
 # CSP script_src
 CSP_SCRIPT_SRC = (
@@ -286,16 +288,16 @@ CSP_SCRIPT_SRC = (
 # CSP style
 CSP_STYLE_SRC = (
     "'self'",
-    "https://fonts.googleapis.com",
-    "https://use.fontawesome.com",
+    'https://fonts.googleapis.com',
+    'https://use.fontawesome.com',
     "'unsafe-inline'",
 )
 # CSP font
 CSP_FONT_SRC = (
     "'self'",
-    "https://fonts.gstatic.com",
-    "https://use.fontawesome.com",
-    "https://fonts.gstatic.com",
+    'https://fonts.gstatic.com',
+    'https://use.fontawesome.com',
+    'https://fonts.gstatic.com',
 )
 
 # Add reversion settings
