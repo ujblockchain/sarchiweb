@@ -72,6 +72,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # CSP
+    'csp.middleware.CSPMiddleware',
     # Remote Address Middleware, useful for security
     'sarchi.middleware.remoteAddr.RemoteAddrMiddleware',
     # Current User Middleware
@@ -89,9 +91,12 @@ TEMPLATES = [
         'DIRS': [os.path.join(BASE_DIR, 'jinja2')],
         'APP_DIRS': True,
         'OPTIONS': {
-            'autoescape': False,
-            'undefined': jinja2.StrictUndefined,
-            'environment': 'sarchi.jinja.env.JinjaEnvironment',
+            'autoescape':
+                False,
+            'undefined':
+                jinja2.StrictUndefined,
+            'environment':
+                'sarchi.jinja.env.JinjaEnvironment',
             'extensions': [
                 'jinja2.ext.loopcontrols',
                 'jinja2.ext.do',
@@ -259,6 +264,39 @@ AXES_LOCKOUT_PARAMETERS = config('AXES_LOCKOUT_PARAMETERS', cast=Csv())
 RECAPTCHA_PUBLIC_KEY = config('RECAPTCHA_PUBLIC_KEY')
 RECAPTCHA_PRIVATE_KEY = config('RECAPTCHA_PRIVATE_KEY')
 RECAPTCHA_REQUIRED_SCORE = config('RECAPTCHA_REQUIRED_SCORE', cast=float)
+
+# CSP default settings
+CSP_DEFAULT_SRC = (
+    "'self'",
+    "https://www.google.com/",
+    "https://fonts.gstatic.com",
+    "https://use.fontawesome.com",
+    "https://fonts.googleapis.com",
+    "https://www.google-analytics.com",
+    "https://www.googletagmanager.com",
+)
+# CSP script_src
+CSP_SCRIPT_SRC = (
+    "'self'",
+    "https://www.google.com",
+    "https://www.googletagmanager.com",
+    "https://www.gstatic.com",
+    "'unsafe-inline'",
+)
+# CSP style
+CSP_STYLE_SRC = (
+    "'self'",
+    "https://fonts.googleapis.com",
+    "https://use.fontawesome.com",
+    "'unsafe-inline'",
+)
+# CSP font
+CSP_FONT_SRC = (
+    "'self'",
+    "https://fonts.gstatic.com",
+    "https://use.fontawesome.com",
+    "https://fonts.gstatic.com",
+)
 
 # Add reversion settings
 ## add admin interface
