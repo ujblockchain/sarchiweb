@@ -91,12 +91,9 @@ TEMPLATES = [
         'DIRS': [os.path.join(BASE_DIR, 'jinja2')],
         'APP_DIRS': True,
         'OPTIONS': {
-            'autoescape':
-                False,
-            'undefined':
-                jinja2.StrictUndefined,
-            'environment':
-                'sarchi.jinja.env.JinjaEnvironment',
+            'autoescape': False,
+            'undefined': jinja2.StrictUndefined,
+            'environment': 'sarchi.jinja.env.JinjaEnvironment',
             'extensions': [
                 'jinja2.ext.loopcontrols',
                 'jinja2.ext.do',
@@ -227,12 +224,16 @@ if DEBUG == False:
     SESSION_COOKIE_SECURE = True
     SECURE_BROWSER_XSS_FILTER = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
-    SECURE_HSTS_SECONDS = 3600
+    SECURE_HSTS_SECONDS = 15768000
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
     SECURE_SSL_REDIRECT = True
     SECURE_REFERRER_POLICY = 'same-origin'
     SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin'
+    # Prefix session cookie with '__Host-'
+    SESSION_COOKIE_NAME = '__Host-sessionid'
+    # Prefix CSRF cookie with '__Host-'
+    CSRF_COOKIE_NAME = '__Host-csrftoken'
 
 # Cors settings
 CORS_ALLOWED_ORIGINS = [
@@ -271,37 +272,32 @@ RECAPTCHA_PRIVATE_KEY = config('RECAPTCHA_PRIVATE_KEY')
 RECAPTCHA_REQUIRED_SCORE = config('RECAPTCHA_REQUIRED_SCORE', cast=float)
 
 # CSP default settings
-CSP_DEFAULT_SRC = (
-    "'self'",
-    'https://www.google.com/',
-    'https://fonts.gstatic.com',
-    'https://use.fontawesome.com',
-    'https://fonts.googleapis.com',
-    'https://www.google-analytics.com',
-    'https://www.googletagmanager.com',
-)
-# CSP script_src
-CSP_SCRIPT_SRC = (
-    "'self'",
-    'https://www.google.com',
-    'https://www.googletagmanager.com',
-    'https://www.gstatic.com',
-    "'unsafe-inline'",
-)
-# CSP style
-CSP_STYLE_SRC = (
-    "'self'",
-    'https://fonts.googleapis.com',
-    'https://use.fontawesome.com',
-    "'unsafe-inline'",
-)
-# CSP font
-CSP_FONT_SRC = (
-    "'self'",
-    'https://fonts.gstatic.com',
-    'https://use.fontawesome.com',
-    'https://fonts.gstatic.com',
-)
+CSP = {
+    'default-src': "'none'",
+    'script-src': (
+        "'self'",
+        'https://www.google.com',
+        'https://www.googletagmanager.com',
+        'https://www.gstatic.com',
+    ),
+    'style_src': (
+        "'self'",
+        'https://fonts.googleapis.com',
+        'https://use.fontawesome.com',
+    ),
+    'font_src': (
+        "'self'",
+        'https://fonts.gstatic.com',
+        'https://use.fontawesome.com',
+        'https://fonts.gstatic.com',
+    ),
+    'form-action': ("'self'",),  # Allow form submissions to URLs from the same origin
+    'base-uri': ("'none'",),  # Disallow base URLs from the same origin
+    'frame-ancestors': ("'none'",),  # Deny embedding in iframes
+}
+# exclude admin path
+CSP_EXCLUDE_URL_PREFIXES = f'/{ADMIN_PATH}/'
+# Frame-ancestors:
 
 # Add reversion settings
 ## add admin interface
