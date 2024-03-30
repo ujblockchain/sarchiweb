@@ -2,6 +2,7 @@ from django.utils.timezone import datetime
 from django.views.generic.base import TemplateView
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
+from csp.decorators import csp_exempt
 from contact.forms import UserMessageForm
 from facilitators.models import Facilitators
 from newsletters.forms import NewsletterEmailForm
@@ -18,7 +19,7 @@ current_timestamp = datetime.now()
 
 
 # index page view
-@method_decorator([never_cache,], name='dispatch')
+@method_decorator([never_cache, csp_exempt], name='dispatch')
 class HomeView(TemplateView):
     template_name = 'pages/index.html'
 
