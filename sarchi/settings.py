@@ -91,9 +91,12 @@ TEMPLATES = [
         'DIRS': [os.path.join(BASE_DIR, 'jinja2')],
         'APP_DIRS': True,
         'OPTIONS': {
-            'autoescape': False,
-            'undefined': jinja2.StrictUndefined,
-            'environment': 'sarchi.jinja.env.JinjaEnvironment',
+            'autoescape':
+                False,
+            'undefined':
+                jinja2.StrictUndefined,
+            'environment':
+                'sarchi.jinja.env.JinjaEnvironment',
             'extensions': [
                 'jinja2.ext.loopcontrols',
                 'jinja2.ext.do',
@@ -272,32 +275,24 @@ RECAPTCHA_PRIVATE_KEY = config('RECAPTCHA_PRIVATE_KEY')
 RECAPTCHA_REQUIRED_SCORE = config('RECAPTCHA_REQUIRED_SCORE', cast=float)
 
 # CSP default settings
-CSP = {
-    'default-src': "'none'",
-    'script-src': (
-        "'self'",
-        'https://www.google.com',
-        'https://www.googletagmanager.com',
-        'https://www.gstatic.com',
-    ),
-    'style_src': (
-        "'self'",
-        'https://fonts.googleapis.com',
-        'https://use.fontawesome.com',
-    ),
-    'font_src': (
-        "'self'",
-        'https://fonts.gstatic.com',
-        'https://use.fontawesome.com',
-        'https://fonts.gstatic.com',
-    ),
-    'form-action': ("'self'",),  # Allow form submissions to URLs from the same origin
-    'base-uri': ("'none'",),  # Disallow base URLs from the same origin
-    'frame-ancestors': ("'none'",),  # Deny embedding in iframes
-}
+CSP_DEFAULT_SRC = "'none'"
+CSP_SCRIPT_SRC = (
+    "'self'",
+    'https://www.google.com',
+    'https://www.googletagmanager.com',
+    'https://www.gstatic.com',
+)
+CSP_FONT_SRC = (
+    "'self'",
+    'https://fonts.gstatic.com',
+    'https://use.fontawesome.com',
+    'https://fonts.gstatic.com',
+)
+CSP_FORM_ACTION = ["'self'"]  # Allow form submissions to URLs from the same origin
+CSP_BASE_URI = ["'none'"]  # Disallow base URLs from the same origin
+CSP_FRAME_ANCESTORS = ["'none'"]
 # exclude admin path
 CSP_EXCLUDE_URL_PREFIXES = f'/{ADMIN_PATH}/'
-# Frame-ancestors:
 
 # Add reversion settings
 ## add admin interface
