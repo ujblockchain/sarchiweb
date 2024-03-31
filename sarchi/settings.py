@@ -291,6 +291,9 @@ CSP_BASE_URI = ["'none'"]  # Disallow base URLs from the same origin
 CSP_FRAME_ANCESTORS = ["'none'"]
 # exclude admin path
 CSP_EXCLUDE_URL_PREFIXES = f'/{ADMIN_PATH}/'
+# report url
+CSP_REPORT_URI = config('SENTRY_REPORT_URL')
+
 
 # Add reversion settings
 ## add admin interface
