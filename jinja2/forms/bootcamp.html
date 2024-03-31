@@ -43,7 +43,7 @@
 
 {# extra css style #}
 {% block extraStyle %}
-    <link rel="stylesheet" href="{{ static ('css/animate.css') }}" integrity="sha256-ph4SMxQYi9BFMyAAjgG0u7ZlvuCQOfTL2b70TeQQzmc=">
+    <link rel="stylesheet" href="{{ static ('css/animate.css') }}">
     <style>
         .form-select:focus {
             border-color: rgba(255, 255, 255, 0.05);
@@ -267,14 +267,14 @@
 
 {# override script #}
 {% block script %}
-    <script src="{{ static('js/jquery-1.11.3.min.js') }}" integrity="sha256-IOEc5hiQwIwFKZEYIiM8kCPrw2ffbBBQ3sEF4rligQQ="></script>
-    <script src="{{ static('js/bootstrap.bundle.js') }}" integrity="sha256-k/yj/T770Uv2wzWWrvcGHmGIaeDSqlMmhHfGrY/5OGs="></script>
-    <script src="{{ static('js/particles.min.js') }}" integrity="sha256-LS4L1RWrmvVmzzIS+Stf2vaiWh82DNz1OmsCdn8YIGc="></script>
-    <script src="{{ static('js/jquery.magnific-popup.min.js') }}" integrity="sha256-sKRc1a7Wbie9juhh0OO3gsjnmEm94y+Q8Hi58kUaNvI="></script>
+    <script src="{{ static('js/jquery-1.11.3.min.js') }}"></script>
+    <script src="{{ static('js/bootstrap.bundle.js') }}"></script>
+    <script src="{{ static('js/particles.min.js') }}"></script>
+    <script src="{{ static('js/jquery.magnific-popup.min.js') }}"></script>
 {% endblock script %}
 {# external scripts from pages #}
 {% block extraScript %}
-    <script src="{{ static('js/ajax-form.js') }}" integrity="sha256-gB/D2TSynu7KqWPBK+SNxbgivBSzAMu7zRG5ihQqQTk="></script>
+    <script src="{{ static('js/ajax-form.js') }}"></script>
     <script>
         // control message show interval
         setInterval(() => {
