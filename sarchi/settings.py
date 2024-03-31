@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 from decouple import config, Csv
 import jinja2
+import sentry_sdk
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -91,12 +92,9 @@ TEMPLATES = [
         'DIRS': [os.path.join(BASE_DIR, 'jinja2')],
         'APP_DIRS': True,
         'OPTIONS': {
-            'autoescape':
-                False,
-            'undefined':
-                jinja2.StrictUndefined,
-            'environment':
-                'sarchi.jinja.env.JinjaEnvironment',
+            'autoescape': False,
+            'undefined': jinja2.StrictUndefined,
+            'environment': 'sarchi.jinja.env.JinjaEnvironment',
             'extensions': [
                 'jinja2.ext.loopcontrols',
                 'jinja2.ext.do',
@@ -307,6 +305,19 @@ from .configuration.admin.jazzdmin import *
 
 # import ck editor settings
 from .configuration.admin.ckeditor import *
+
+
+# sentry config
+sentry_sdk.init(
+    dsn=config('SENTRY_DNS'),
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    traces_sample_rate=1.0,
+    # Set profiles_sample_rate to 1.0 to profile 100%
+    # of sampled transactions.
+    # We recommend adjusting this value in production.
+    profiles_sample_rate=1.0,
+)
 
 # huey distributed task processing
 DJANGO_HUEY = {

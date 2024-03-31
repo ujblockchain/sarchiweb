@@ -18,7 +18,6 @@ urlpatterns = [
     path('ckeditor5/', include('django_ckeditor_5.urls'), name='ck_editor_5_upload_file'),
 ]
 
-
 # add admin path to urlpatterns
 if settings.DEBUG:
     import debug_toolbar
