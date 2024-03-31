@@ -44,6 +44,10 @@ def send_email(salutation, subject, message, link, link_title, email_list):
     # ensure that email format is html
     msg.content_subtype = 'html'
 
+    # attached bootcamp flier
+    bootcamp_flyer = f'{settings.PROJECT_DIR}/static/images/Bootcamp.png'
+    msg.attach_file(bootcamp_flyer)
+
     # send email
     msg.send()
 
