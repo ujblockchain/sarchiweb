@@ -286,7 +286,6 @@ CSP_FONT_SRC = (
     "'self'",
     'https://fonts.gstatic.com',
     'https://use.fontawesome.com',
-    'https://fonts.gstatic.com',
 )
 CSP_IMG_SRC = ("'self'",)
 CSP_MEDIA_SRC = ("'self'",)
