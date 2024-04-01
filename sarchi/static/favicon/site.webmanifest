@@ -1,6 +1,6 @@
 {
-    "name": "",
-    "short_name": "",
+    "name": "ujblockchain",
+    "short_name": "ujblockchain",
     "icons": [
         {
             "src": "/static/favicon/android-chrome-192x192.png",
