@@ -75,6 +75,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # CSP
     'csp.middleware.CSPMiddleware',
+    # custom csp
+    'sarchi.middleware.custom_csp.CustomCSPMiddleware',
     # Remote Address Middleware, useful for security
     'sarchi.middleware.remoteAddr.RemoteAddrMiddleware',
     # Current User Middleware
@@ -286,14 +288,15 @@ CSP_FONT_SRC = (
     'https://use.fontawesome.com',
     'https://fonts.gstatic.com',
 )
-CSP_FORM_ACTION = ["'self'"]  # Allow form submissions to URLs from the same origin
-CSP_BASE_URI = ["'none'"]  # Disallow base URLs from the same origin
-CSP_FRAME_ANCESTORS = ["'none'"]
-# exclude admin path
+CSP_IMG_SRC = ("'self'",)
+CSP_MEDIA_SRC = ("'self'",)
+CSP_FORM_ACTION = ("'self'")  # Allow form submissions to URLs from the same origin
+CSP_BASE_URI = ("'none'")  # Disallow base URLs from the same origin
+CSP_FRAME_ANCESTORS = ("'none'")
+# exclude admin path``
 CSP_EXCLUDE_URL_PREFIXES = f'/{ADMIN_PATH}/'
 # report url
 CSP_REPORT_URI = config('SENTRY_REPORT_URL')
-
 
 # Add reversion settings
 ## add admin interface
@@ -308,7 +311,6 @@ from .configuration.admin.jazzdmin import *
 
 # import ck editor settings
 from .configuration.admin.ckeditor import *
-
 
 # sentry config
 sentry_sdk.init(
