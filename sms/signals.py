@@ -23,13 +23,13 @@ def auto_sms_sending(sender, instance, created, **kwargs):
         elif group == 'Bootcamp: Coding Session':
             # get the  phone number list
             sms_list = Bootcamp.objects.filter(
-                training_session='Coding Session (Requires basic knowledge of HTML, CSS & Python)').values_list(
+                session='Coding Session (Requires basic knowledge of HTML, CSS & Python)').values_list(
                     'phone_number', flat=True)
         # for those selected in the drag and drop sessions
         elif group == 'Bootcamp: Drag and Drop Session':
             # get the email list
             sms_list = Bootcamp.objects.filter(
-                training_session='No Coding Session (Drag and Drop Design)').values_list('phone_number', flat=True)
+                session='No Coding Session (Drag and Drop Design)').values_list('phone_number', flat=True)
 
         # init task
         send_sms_task(sms_list, instance.message)

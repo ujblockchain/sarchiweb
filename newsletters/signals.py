@@ -29,14 +29,14 @@ def auto_mail_sending(sender, instance, created, **kwargs):
         elif group == 'Bootcamp: Coding Session':
             # get the email list
             email_list = Bootcamp.objects.filter(
-                training_session='Coding Session (Requires basic knowledge of HTML, CSS & Python)').values_list(
+                session='Coding Session (Requires basic knowledge of HTML, CSS & Python)').values_list(
                     'email', flat=True)
 
         # for those in drag and drop session for bootcamps
         elif group == 'Bootcamp: Drag and Drop Session':
             # get the email list
             email_list = Bootcamp.objects.filter(
-                training_session='No Coding Session (Drag and Drop Design)').values_list('email', flat=True)
+                session='No Coding Session (Drag and Drop Design)').values_list('email', flat=True)
 
         ## for newsletter Signup
         elif group == 'Newsletter Email Group':
@@ -72,14 +72,14 @@ def auto_mail_reminder_sending(sender, instance, created, **kwargs):
         elif group == 'Bootcamp: Coding Session':
             # get the email list
             email_list = Bootcamp.objects.filter(
-                training_session='Coding Session (Requires basic knowledge of HTML, CSS & Python)').values_list(
+                session='Coding Session (Requires basic knowledge of HTML, CSS & Python)').values_list(
                     'email', flat=True)
 
         # for those in drag and drop session for bootcamps
         elif group == 'Bootcamp: Drag and Drop Session':
             # get the email list
             email_list = Bootcamp.objects.filter(
-                training_session='No Coding Session (Drag and Drop Design)').values_list('email', flat=True)
+                session='No Coding Session (Drag and Drop Design)').values_list('email', flat=True)
 
         # init number of  elements each list should have
         n = 15  # 15 per list
