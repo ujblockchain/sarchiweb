@@ -16,7 +16,7 @@ class CustomCSPMiddleware:
                 response, HttpResponseBadRequest) or isinstance(response, HttpResponseForbidden):
 
             # Apply the relaxed CSP policy for error pages
-           response['Content-Security-Policy'] = "default-src 'self'; img-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' https://www.google.com https://www.googletagmanager.com https://www.gstatic.com; font-src 'self' https://fonts.gstatic.com https://use.fontawesome.com https://fonts.gstatic.com;"
+           response['Content-Security-Policy'] = "default-src 'self'; img-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' https://www.google.com https://www.googletagmanager.com https://www.gstatic.com; font-src 'self' https://fonts.gstatic.com https://use.fontawesome.com https://fonts.gstatic.com 'unsafe-inline';"
 
 
         return response
