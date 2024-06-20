@@ -101,9 +101,10 @@ JAZZMIN_SETTINGS = {
 
         # project apps
         'blog.blog': 'fas fa-blog',
-        'bootcamps.bootcamp': 'fas fa-chalkboard-teacher',
+        'bootcamps.bootcamp': 'fas fa-chalkboard',
         'contact.usercontact': 'fas fa-id-badge',
         'facilitators.facilitators': 'fas fa-user-check',
+        'masterclass.masterclass': 'fas fa-chalkboard-teacher',
         'newsletters.newsletteremail': 'fas fa-envelope-open-text',
         'newsletters.senduseremails': 'fas fa-paper-plane',
         'newsletters.sendbootcampreminderemails': 'fas fa-paper-plane',
@@ -113,6 +114,7 @@ JAZZMIN_SETTINGS = {
         'projects.projects': 'fas fa-project-diagram',
         'repository.repoinfo': 'fas fa-code',
         'settings.bootcampsettings': 'fas fa-sliders-h',
+        'settings.masterclasssettings': 'fas fa-chalkboard',
         'sms.sendusersms': 'fas fa-sliders-h',
     },
     # Icons that are used when one is not manually specified
