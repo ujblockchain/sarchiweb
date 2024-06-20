@@ -4,7 +4,6 @@ from django.shortcuts import render
 from django.views import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
-from csp.decorators import csp_exempt
 
 from contact.forms import UserMessageForm
 from newsletters.forms import NewsletterEmailForm
@@ -14,8 +13,7 @@ from .forms import BootcampForm
 from .models import Bootcamp
 
 
-
-@method_decorator([never_cache, csp_exempt], name='dispatch')
+@method_decorator([never_cache], name='dispatch')
 class BootcampView(View):
 
     def get(self, request, *args, **kwargs):
@@ -96,3 +94,4 @@ class BootcampView(View):
 
             else:
                 return JsonResponse({"message": "error", "error": form.errors})
+
