@@ -3,10 +3,116 @@
 {# add extra style #}
 {% block extraStyle %}
     <style>
-    .image_resize{
-      height: 219px;
+      .image_resize{
+        height: 219px;
+      }
+
+      @media(max-width:1024px){
+        #team_lead.col-9{
+          margin-left: 0 !important;
+        }
+      }
+
+      @media(max-width:768px){
+        #team_lead {
+          flex-shrink: 0;
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 640px) {
+          .team.style-2 .team-small li {
+              width: 33.33333%;
+          }
+          #team_lead.col-3 li{
+            display: inline-block !important;
+            width: 218px !important;
+          }
+      }
+
+      
+      @media (max-width: 460px) {
+        #team_lead.col-3 li{
+          display: inline-block !important;
+          width: 210px !important;
+        }
     }
-    </style>
+    
+    @media (max-width: 458px) {
+      li img{
+        width: 200px !important;
+      }
+      .team.style-2 .team-small li .hover{
+        width: 95%;
+      }
+  }
+
+  @media (max-width: 444px) {
+    
+      li img{
+        width: 190px !important;
+      }
+      #team_lead.col-3 li{
+        width: 190px !important;
+      }
+      .team.style-2 .team-small li .hover{
+        width: 100%;
+      }
+  }
+
+
+  @media (max-width: 405px) {
+      
+    li img{
+      width: 180px !important;
+    }
+    #team_lead.col-3 li{
+      width: 180px !important;
+    }
+  }
+
+  @media (max-width: 385px) {
+      
+    li img{
+      width: 170px !important;
+    }
+    #team_lead.col-3 li{
+      width: 170px !important;
+    }
+  }
+
+  @media (max-width: 364px) {
+      
+    li img{
+      width: 160px !important;
+    }
+    #team_lead.col-3 li{
+      width: 160px !important;
+    }
+  }
+
+  @media (max-width: 345px) {
+      
+    li img{
+      width: 150px !important;
+    }
+    #team_lead.col-3 li{
+      width: 150px !important;
+    }
+  }
+
+  @media (max-width: 324px) {
+      
+    li img{
+      width: 140px !important;
+    }
+    #team_lead.col-3 li{
+      width: 140px !important;
+    }
+  }
+    
+    
+  </style>
 {% endblock extraStyle %}
 <!-- Content -->
 {% block content %}

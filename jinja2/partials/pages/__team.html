@@ -5,45 +5,65 @@
             <p>We are passionate and dedicated to building real solutions in the Blockchain-Agri-Food Nexus</p>
         </div>
         <ul class="team-small">
-            <li>
-                <img src="{{ static('images/prof_nnamdi_nwulu.jpeg') }}"
-                     alt="Prof Nnamdi Nwulu"
-                     class="image_resize">
-                <a class="hover" href="#.">Prof Nnamdi Nwulu (Director)</a>
-            </li>
-            <li>
-                <img src="{{ static('images/tshabalala_dimakatso.jpeg') }}"
-                     alt="Tshabalala Dimakatso"
-                     class="image_resize">
-                <a class="hover" href="#.">Tshabalala Dimakatso (Administrator)</a>
-            </li>
-            <li>
-                <img src="{{ static('images/oseluole.jpg') }}"
-                     alt="Oseluole Enabor"
-                     class="image_resize">
-                <a class="hover" href="#.">Oseluole Enabor (Blockchain Instructor)</a>
-            </li>
-            <li>
-                <img src="{{ static('images/timileyin_abiodun.png') }}"
-                     alt="Timileyin Abiodun"
-                     class="image_resize">
-                <a class="hover" href="#.">Timileyin Abiodun (Blockchain Researcher)</a>
-            </li>
-            <li>
-                <img src="{{ static('images/robert.png') }}"
-                     alt="Lukwago Robert"
-                     class="image_resize">
-                <a class="hover" href="#.">Lukwago Robert (Blockchain Researcher)</a>
-            </li>
-            {# facilitators details #}
-            {% for facilitator in facilitators if facilitator %}
-                <li>
-                    <img src="{{ facilitator.image.url }}"
-                         alt="{{ facilitator.full_name|title }}"
-                         class="image_resize">
-                    <a class="hover" href="#.">{{ facilitator.full_name|title }} ({{ facilitator.role }})</a>
-                </li>
-            {% endfor %}
+            <div class="row">
+                <div id="team_lead" class="col-3">
+                    <li style="display:block; width:fit-content; margin-bottom:20px;">
+                        <img src="{{ static('images/prof_nnamdi_nwulu.jpeg') }}"
+                            alt="Prof Nnamdi Nwulu"
+                            class="image_resize">
+                        <a class="hover" href="#.">Prof Nnamdi Nwulu (Director)</a>
+                    </li>
+                    <li style="display:block; width:fit-content;">
+                        <img src="{{ static('images/Luca.png') }}"
+                            alt="DR LUCA MAZZOLA"
+                            class="image_resize" style="width:220px;">
+                        <a class="hover" href="#.">DR Luca Mazzola (Co-Principal Investigator)</a>
+                    </li>
+                </div>
+                <div id="team_lead" class="col-9" style="margin-left: -80px;">
+                    
+                    <li style="width:fit-content">
+                        <img src="{{ static('images/dr_tebello_ntsiki_don_mathaba.png') }}"
+                                alt="Dr Tebello Ntsiki Don Mathaba"
+                                class="image_resize">
+                        <a class="hover" href="#.">Dr Tebello Ntsiki Don Mathaba (Academic Faculty)</a>
+                    </li>
+                    <li style="width:fit-content">
+                        <img src="{{ static('images/tshabalala_dimakatso.jpeg') }}"
+                                alt="Tshabalala Dimakatso"
+                                class="image_resize">
+                        <a class="hover" href="#.">Tshabalala Dimakatso (Administrator)</a>
+                    </li>
+                    <li style="width:fit-content">
+                        <img src="{{ static('images/oseluole.jpg') }}"
+                                alt="Oseluole Enabor"
+                                class="image_resize">
+                        <a class="hover" href="#.">Oseluole Enabor (Blockchain Instructor)</a>
+                    </li>
+                    <li style="width:fit-content">
+                        <img src="{{ static('images/timileyin_abiodun.png') }}"
+                                alt="Timileyin Abiodun"
+                                class="image_resize">
+                        <a class="hover" href="#.">Timileyin Abiodun (Blockchain Researcher)</a>
+                    </li>
+                    <li>
+                        <img src="{{ static('images/robert.png') }}"
+                                alt="Lukwago Robert"
+                                class="image_resize">
+                        <a class="hover" href="#.">Lukwago Robert (Blockchain Researcher)</a>
+                    </li>
+                    {# facilitators details #}
+                    {% for facilitator in facilitators if facilitator %}
+                        <li>
+                            <img src="{{ facilitator.image.url }}"
+                                alt="{{ facilitator.full_name|title }}"
+                                class="image_resize">
+                            <a class="hover" href="#.">{{ facilitator.full_name|title }} ({{ facilitator.role }})</a>
+                        </li>
+                    {% endfor %}
+                    
+                </div>
+            </div>
         </ul>
     </div>
 </section>
