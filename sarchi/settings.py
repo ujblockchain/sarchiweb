@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'bootcamps.apps.BootcampsConfig',
     'contact.apps.ContactConfig',
     'facilitators.apps.FacilitatorsConfig',
+    'masterclass.apps.MasterclassConfig',
     'newsletters.apps.NewslettersConfig',
     'pages.apps.PagesConfig',
     'partners.apps.PartnersConfig',
@@ -287,9 +288,9 @@ RECAPTCHA_REQUIRED_SCORE = config('RECAPTCHA_REQUIRED_SCORE', cast=float)
 CSP_DEFAULT_SRC = ("'none'", )
 CSP_SCRIPT_SRC = (
     "'self'",
-    'https://www.google.com',
+    'https://google.com',
     'https://www.googletagmanager.com',
-    'https://www.gstatic.com',
+    'https://gstatic.com',
     'https://ajax.googleapis.com',
     "'unsafe-inline'",
 )
@@ -300,12 +301,14 @@ CSP_FONT_SRC = (
 )
 CSP_STYLE_SRC = (
     "'self'",
-    'https://www.google.com',
+    'https://google.com',
     'https://www.googletagmanager.com',
-    'https://www.gstatic.com',
+    'https://gstatic.com',
     'https://fonts.googleapis.com',
+    'https://use.fontawesome.com',
     "'unsafe-inline'",
 )
+CSP_CONNECT_SRC = ("'self'", "https://www.google-analytics.com")
 CSP_MANIFEST_SRC = ("'self'", )
 CSP_IMG_SRC = ("'self'", )
 CSP_MEDIA_SRC = ("'self'", )
