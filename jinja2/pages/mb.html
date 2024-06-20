@@ -38,9 +38,9 @@
         <meta property=”og:type” content=”website” />
         <!-- Twitter OpenGraph Metadata -->
         <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:site" content="@research31961" />
+        <meta name="twitter:site" content="@ujblockchain" />
         <meta name="twitter:title" content="UJ Blockchain">
-        <meta name="twitter:creator" content="@research31961">
+        <meta name="twitter:creator" content="@ujblockchain">
         {# twitter meta override #}
         <meta name="twitter:description"
               content="Mainstreaming Blockchain (MO) is a thought leadership media event taking place on the 24th of October 2023. Organized by the SA/Swiss Chair on Blockchain Technology at the University of Johannesburg, the event is a gathering of blockchain enthusiasts, industry experts, researchers, and thought leaders. Its core focus is to explore the vast potential of blockchain technology within South and Sub-Saharan Africa.">
@@ -55,34 +55,34 @@
               rel="stylesheet">
         {# style #}
         <style>
-        .header {
-          color: #fff;
-        }
-
-        .flip-out-intro.header.full-height, .modal-footer{
-        background: #18282d !important;
-        }
-
-        .fixed-wrapper, .header-wrapper.row.valign-wrapper, .section.light.full-height, .modal-content{
-            background: #033342;
-        }
-
-        i.icon-caret-down {
-            color: #F26422;
-        }
-
-        .section.valign-wrapper {
-            background: #18282d;
+            .header {
             color: #fff;
-        }
+            }
 
-        .pricing-table {
-            border: 2px solid #F26422;
-        }
+            .flip-out-intro.header.full-height, .modal-footer{
+            background: #18282d !important;
+            }
 
-        .section.valign-wrapper.price {
-            margin-top: -50px;
-        }
+            .fixed-wrapper, .header-wrapper.row.valign-wrapper, .section.light.full-height, .modal-content{
+                background: #033342;
+            }
+
+            i.icon-caret-down {
+                color: #F26422;
+            }
+
+            .section.valign-wrapper {
+                background: #18282d;
+                color: #fff;
+            }
+
+            .pricing-table {
+                border: 2px solid #F26422;
+            }
+
+            .section.valign-wrapper.price {
+                margin-top: -50px;
+            }
         </style>
     </head>
     <body>
@@ -90,7 +90,7 @@
         <nav class="navbar absolute">
             <div class="nav-wrapper">
                 <a href="{{ url('mb_home') }}" class="brand-logo">
-                    <img src="https://blockchain.uj.ac.za/static/images/logo.png"
+                    <img src="{{static ('images/logo.png')}}"
                          alt=""
                          style="height: 50px;
                                 padding-top: 10px">
@@ -134,9 +134,7 @@
         <!-- Flip Out Intro -->
         <div class="flip-out-intro header full-height">
             <div class="fixed-wrapper">
-                <div class="background">
-                    <img src="http://placehold.it/1440x900" alt="">
-                </div>
+                <div class="background"></div>
                 <div class="header-wrapper row valign-wrapper">
                     <div class="col s12 m8 offset-m2 valign">
                         <h2 style="font-size: 40px;">
@@ -155,9 +153,7 @@
         </div>
         <div class="flip-out-intro header full-height">
             <div class="fixed-wrapper">
-                <div class="background">
-                    <img src="http://placehold.it/1440x900" alt="">
-                </div>
+                <div class="background"></div>
                 <div class="header-wrapper row valign-wrapper">
                     <div class="col s12 m8 offset-m2 valign">
                         <h2>Event Speakers</h2>

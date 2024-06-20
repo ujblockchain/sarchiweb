@@ -94,9 +94,12 @@ TEMPLATES = [
         'DIRS': [os.path.join(BASE_DIR, 'jinja2')],
         'APP_DIRS': True,
         'OPTIONS': {
-            'autoescape': False,
-            'undefined': jinja2.StrictUndefined,
-            'environment': 'sarchi.jinja.env.JinjaEnvironment',
+            'autoescape':
+            False,
+            'undefined':
+            jinja2.StrictUndefined,
+            'environment':
+            'sarchi.jinja.env.JinjaEnvironment',
             'extensions': [
                 'jinja2.ext.loopcontrols',
                 'jinja2.ext.do',
@@ -159,16 +162,20 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
 
@@ -260,10 +267,12 @@ AXES_USERNAME_FORM_FIELD = config('AXES_USERNAME_FORM_FIELD')
 # Reset after success login
 AXES_RESET_ON_SUCCESS = config('AXES_RESET_ON_SUCCESS', cast=bool)
 # Whitelist local host
-AXES_NEVER_LOCKOUT_WHITELIST = config('AXES_NEVER_LOCKOUT_WHITELIST', cast=bool)
+AXES_NEVER_LOCKOUT_WHITELIST = config('AXES_NEVER_LOCKOUT_WHITELIST',
+                                      cast=bool)
 AXES_IP_WHITELIST = config('AXES_IP_WHITELIST', cast=Csv())
 # Enable writing login failure logs to database
-AXES_ENABLE_ACCESS_FAILURE_LOG = config('AXES_ENABLE_ACCESS_FAILURE_LOG', cast=bool)
+AXES_ENABLE_ACCESS_FAILURE_LOG = config('AXES_ENABLE_ACCESS_FAILURE_LOG',
+                                        cast=bool)
 # Successful login will reset the number of failed logins
 AXES_RESET_ON_SUCCESS = config('AXES_RESET_ON_SUCCESS', cast=bool)
 # lock user using ip address, username and user agent
@@ -275,22 +284,35 @@ RECAPTCHA_PRIVATE_KEY = config('RECAPTCHA_PRIVATE_KEY')
 RECAPTCHA_REQUIRED_SCORE = config('RECAPTCHA_REQUIRED_SCORE', cast=float)
 
 # CSP default settings
-CSP_DEFAULT_SRC = "'none'"
+CSP_DEFAULT_SRC = ("'none'", )
 CSP_SCRIPT_SRC = (
     "'self'",
     'https://www.google.com',
     'https://www.googletagmanager.com',
     'https://www.gstatic.com',
+    'https://ajax.googleapis.com',
+    "'unsafe-inline'",
 )
 CSP_FONT_SRC = (
     "'self'",
     'https://fonts.gstatic.com',
     'https://use.fontawesome.com',
 )
-CSP_IMG_SRC = ("'self'",)
-CSP_MEDIA_SRC = ("'self'",)
-CSP_FORM_ACTION = ("'self'")  # Allow form submissions to URLs from the same origin
-CSP_BASE_URI = ("'none'")  # Disallow base URLs from the same origin
+CSP_STYLE_SRC = (
+    "'self'",
+    'https://www.google.com',
+    'https://www.googletagmanager.com',
+    'https://www.gstatic.com',
+    'https://fonts.googleapis.com',
+    "'unsafe-inline'",
+)
+CSP_MANIFEST_SRC = ("'self'", )
+CSP_IMG_SRC = ("'self'", )
+CSP_MEDIA_SRC = ("'self'", )
+# Allow form submissions to URLs from the same origin
+CSP_FORM_ACTION = ("'self'", )
+# Disallow base URLs from the same origin
+CSP_BASE_URI = ("'self'")
 CSP_FRAME_ANCESTORS = ("'none'")
 # exclude admin path``
 CSP_EXCLUDE_URL_PREFIXES = f'/{ADMIN_PATH}/'
