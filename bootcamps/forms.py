@@ -4,7 +4,9 @@ from .modelChoices import nationality
 from .models import Bootcamp
 
 # update nationality list
-updated_nationality_list = nationality[:0] + [("Select Nationality", "Select Nationality")] + nationality[0:]
+updated_nationality_list = nationality[:0] + [
+    ("Select Nationality", "Select Nationality")
+] + nationality[0:]
 
 applicant_level = (
     ('Select Your Level', 'Select Your Level'),
@@ -26,8 +28,10 @@ gender = (
 )
 
 user_can_code = (
-    ('Can you code in HTML, CSS & Python', 'Can you code in HTML, CSS & Python'),
-    ('Yes I can code in HTML, CSS & Python', 'Yes I can code in HTML, CSS & Python'),
+    ('Can you code in HTML, CSS & Python',
+     'Can you code in HTML, CSS & Python'),
+    ('Yes I can code in HTML, CSS & Python',
+     'Yes I can code in HTML, CSS & Python'),
     (
         'No I can not code in HTML, CSS & Python',
         'No I can not code in HTML, CSS & Python',
@@ -48,48 +52,94 @@ training_session = (
 
 
 class BootcampForm(forms.ModelForm):
-    first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'First Name'}))
-    last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Last Name'}))
-    gender = forms.CharField(widget=forms.Select(
-        choices=gender,
-        attrs={
+    first_name = forms.CharField(
+        required=True,
+        widget=forms.TextInput(attrs={
             'class': 'form-control',
-            'aria-label': 'Default select'
-        },
-    ),)
-    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}))
-    faculty = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Faculty'}))
-    department = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Department'}))
-    level = forms.CharField(widget=forms.Select(
-        choices=applicant_level,
-        attrs={
+            'placeholder': 'First Name'
+        }, ),
+    )
+    last_name = forms.CharField(
+        required=True,
+        widget=forms.TextInput(attrs={
             'class': 'form-control',
-            'aria-label': 'Default select'
-        },
-    ),)
-    student_number = forms.IntegerField(widget=forms.NumberInput(attrs={
-        'class': 'form-control',
-        'placeholder': 'Student Number'
-    }))
+            'placeholder': 'Last Name'
+        }, ),
+    )
+    gender = forms.CharField(
+        required=True,
+        widget=forms.Select(
+            choices=gender,
+            attrs={
+                'class': 'form-control',
+                'aria-label': 'Default select'
+            },
+        ),
+    )
+    email = forms.EmailField(
+        required=True,
+        widget=forms.EmailInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Email'
+        }, ),
+    )
+    faculty = forms.CharField(
+        required=True,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Faculty'
+        }, ),
+    )
+    department = forms.CharField(
+        required=True,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Department'
+        }, ),
+    )
+    level = forms.CharField(
+        required=True,
+        widget=forms.Select(
+            choices=applicant_level,
+            attrs={
+                'class': 'form-control',
+                'aria-label': 'Default select'
+            },
+        ),
+    )
+    student_number = forms.IntegerField(
+        required=True,
+        widget=forms.NumberInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Student Number'
+        }, ),
+    )
 
-    nationality = forms.CharField(widget=forms.Select(
-        choices=updated_nationality_list,
-        attrs={
+    nationality = forms.CharField(
+        required=True,
+        widget=forms.Select(
+            choices=updated_nationality_list,
+            attrs={
+                'class': 'form-control',
+                'aria-label': 'Default select'
+            },
+        ),
+    )
+    phone_number = forms.CharField(
+        required=True,
+        widget=forms.TextInput(attrs={
             'class': 'form-control',
-            'aria-label': 'Default select'
-        },
-    ),)
-    phone_number = forms.CharField(widget=forms.TextInput(attrs={
-        'class': 'form-control',
-        'placeholder': 'Phone Number'
-    }))
+            'placeholder': 'Phone Number',
+        }, ),
+    )
+
     session = forms.CharField(widget=forms.Select(
         choices=training_session,
         attrs={
             'class': 'form-control',
             'aria-label': 'Default select'
         },
-    ),)
+    ), )
 
     can_you_code = forms.CharField(
         required=False,
@@ -103,22 +153,25 @@ class BootcampForm(forms.ModelForm):
     )
     repo_link = forms.URLField(
         required=False,
-        widget=forms.URLInput(attrs={
-            'class': 'form-control',
-            'placeholder': 'Github Repo Link (https://github.com/...)',
-        }),
+        widget=forms.URLInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Github Repo Link (https://github.com/...)',
+            }),
     )
     expectation = forms.CharField(widget=forms.Textarea(attrs={
         'class': 'form-control',
         'placeholder': 'Expectation',
         'row': 5
-    }))
+    }, ), )
 
     class Meta:
         model = Bootcamp
         fields = [
-            'first_name', 'last_name', 'gender', 'email', 'faculty', 'department', 'level', 'student_number',
-            'nationality', 'phone_number', 'expectation', 'session', 'can_you_code', 'repo_link'
+            'first_name', 'last_name', 'gender', 'email', 'faculty',
+            'department', 'level', 'student_number', 'nationality',
+            'phone_number', 'expectation', 'session', 'can_you_code',
+            'repo_link'
         ]
 
     def clean_can_you_code(self):
@@ -136,7 +189,8 @@ class BootcampForm(forms.ModelForm):
         # Check if the value already exist
         if Bootcamp.objects.filter(email=value).exists():
             # raise exception
-            raise forms.ValidationError('You have already registered with this email.', code='email')
+            raise forms.ValidationError(
+                'You have already registered with this email.', code='email')
         return value
 
     def clean_repo_link(self):
@@ -145,11 +199,12 @@ class BootcampForm(forms.ModelForm):
         can_code = self.cleaned_data['can_you_code']
 
         # check if user said they can code
-        if (can_code != 'No I can not code in HTML, CSS & Python' and
-                can_code != 'Can you code in HTML, CSS & Python'):
+        if (can_code != 'No I can not code in HTML, CSS & Python'
+                and can_code != 'Can you code in HTML, CSS & Python'):
             #
             if not validators.url(repo_link):
                 # raise exceptions
-                raise forms.ValidationError('Enter a valid repository link.', code='repo')
+                raise forms.ValidationError('Enter a valid repository link.',
+                                            code='repo')
 
         return repo_link
