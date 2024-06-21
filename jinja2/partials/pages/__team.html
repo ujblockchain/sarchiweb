@@ -52,7 +52,7 @@
                                 class="image_resize">
                         <a class="hover" href="#.">Timileyin Abiodun (Blockchain Researcher)</a>
                     </li>
-                    <li>
+                    <li style="width:fit-content">
                         <img src="{{ static('images/robert.png') }}"
                                 alt="Lukwago Robert"
                                 class="image_resize">
@@ -60,7 +60,7 @@
                     </li>
                     {# facilitators details #}
                     {% for facilitator in facilitators if facilitator %}
-                        <li>
+                        <li style="width:220">
                             <img src="{{ facilitator.image.url }}"
                                 alt="{{ facilitator.full_name|title }}"
                                 class="image_resize">
