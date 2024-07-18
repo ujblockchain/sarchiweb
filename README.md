@@ -130,10 +130,10 @@ $ python manage.py runserver
 
 ### Start Background Task
 
-There is need for a background task using huey to send emails to a many users. Since the default task is set to 'send_emails' there is no need to add '--queue send_emails'
+There is need for a background task using huey to send emails to users.
 
 ```
-$ python manage.py djangohuey
+$ python manage.py run_huey
 
 ```
 
