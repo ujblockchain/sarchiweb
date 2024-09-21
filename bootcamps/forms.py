@@ -208,3 +208,16 @@ class BootcampForm(forms.ModelForm):
                                             code='repo')
 
         return repo_link
+    
+
+    def clean_nationality(self):
+        # get input value form clean_data dict
+        nationality_choice = self.cleaned_data['nationality']
+
+        # check user selection
+        if nationality_choice == 'Select Nationality':
+            # raise exceptions
+            raise forms.ValidationError('Enter a valid nationality.',
+                                        code='nationality')
+
+        return nationality_choice
