@@ -64,128 +64,139 @@
         <div id="particles-js"></div>
         <div class="position-center-center">
             <div class="container text-center">
-                <h1>Mainstreaming Blockchain (MO)</h1>
+                <h1>UJ Blockchain Demo Day</h1>
                 <p>
-                    Mainstreaming Blockchain (MO) is a thought leadership media event involving
-                    blockchain enthusiasts, industry experts, researchers, and thought leaders.
-                    Its core focus is to explore the vast potential of blockchain technology
-                    within South and Sub-Saharan Africa.
+                    UJ Blockchain Demo Day showcases our depth of research and expertise in Blockchain, AI and Hardwares.
+                    From Drone Design, Computer Vision Project, Three 3d world reconstruction, to decentralized projects 
+                    used by thousands of users. Because for Us, we are not just a center but rather a 4IR driven one focused 
+                    on building practical real world solutions, One Block At A Time.
+
                 </p>
-                <a href="#mo" class="btn">Signup For Event</a> <a href="/#about" class="btn btn-inverse">About UJ Blockchain</a>
+                {% if registration_open is true() and registration_closed is false() %}
+                    <a href="#program" class="btn">Signup For Event</a> <a href="/#about" class="btn btn-inverse">About UJ Blockchain</a>
+                {% else %}
+                    <a href="#" class="btn">Registration Closed</a> <a href="/#about" class="btn btn-inverse">Learn More About Us</a>
+                {% endif %}
             </div>
         </div>
     </section>
 {% endblock headIntro %}
 {# override content block #}
 {% block content %}
-    <!-- Content -->
-    <div id="content">
-        <section id="mo" class="distri drk padding-top-150 padding-bottom-50">
-            <div class="container">
-                <div class="contact">
-                    <h6>Signup for the Mainstreaming Blockchain (MO) Event (Tuesday, October 24th 2023)</h6>
-                    <!-- Success Msg -->
-                    <div id="contact_message" class="success-msg">
-                        <i class="fa fa-paper-plane-o"></i>
-                        Thank You. Your Application has been Submitted
+
+    {# registration check #}
+    {% if registration_open is true() and registration_closed is false() %}
+        <!-- Content -->
+        <div id="content">
+            <section id="program" class="distri drk padding-top-150 padding-bottom-50">
+                <div class="container">
+                    <div class="contact">
+                        <h6>Signup for the UJ Blockchain Demo Day Event (Thursday, October 3rd 2024)</h6>
+                        <!-- Success Msg -->
+                        <div id="contact_message" class="success-msg">
+                            <i class="fa fa-paper-plane-o"></i>
+                            Thank You. Your Application has been Submitted
+                        </div>
+                        <!-- FORM -->
+                        <form role="form" id="contact_form" class="contact-form">
+                            {# csrf #}
+                            {{ csrf_input }}
+                            <ul class="row nolist-style">
+                                <li class="col-sm-4">
+                                    <label>
+                                        {{ program_form.first_name }}
+                                        <p id="error-first_name"
+                                        class="error-info"
+                                        style="color: #ef9a9a;
+                                                text-transform: capitalize;
+                                                display: none"></p>
+                                    </label>
+                                </li>
+                                <li class="col-sm-4">
+                                    <label>
+                                        {{ program_form.last_name }}
+                                        <p id="error-last_name"
+                                        class="error-info"
+                                        style="color: #ef9a9a;
+                                                text-transform: capitalize;
+                                                display: none"></p>
+                                    </label>
+                                </li>
+                                <li class="col-sm-4">
+                                    <label>
+                                        {{ program_form.gender }}
+                                        <p id="error-gender"
+                                        class="error-info"
+                                        style="color: #ef9a9a;
+                                                text-transform: capitalize;
+                                                display: none"></p>
+                                    </label>
+                                </li>
+                                <li class="col-sm-4">
+                                    <label>
+                                        {{ program_form.email }}
+                                        <p id="error-email"
+                                        class="error-info"
+                                        style="color: #ef9a9a;
+                                                text-transform: capitalize;
+                                                display: none"></p>
+                                    </label>
+                                </li>
+                                <li class="col-sm-4">
+                                    <label>
+                                        {{ program_form.nationality }}
+                                        <p id="error-nationality"
+                                        class="error-info"
+                                        style="color: #ef9a9a;
+                                                text-transform: capitalize;
+                                                display: none"></p>
+                                    </label>
+                                </li>
+                                <li class="col-sm-4">
+                                    <label>
+                                        {{ program_form.phone_number }}
+                                        <p id="error-phone_number"
+                                        class="error-info"
+                                        style="color: #ef9a9a;
+                                                text-transform: capitalize;
+                                                display: none"></p>
+                                    </label>
+                                </li>
+                                <li class="col-sm-12">
+                                    <label>
+                                        {{ program_form.organization }}
+                                        <p id="error-organization"
+                                        class="error-info"
+                                        style="color: #ef9a9a;
+                                                text-transform: capitalize;
+                                                display: none"></p>
+                                    </label>
+                                </li>
+                                <li class="col-sm-12">
+                                    <label>
+                                        {{ program_form.expectation }}
+                                        <p id="error-expectation"
+                                        class="error-info"
+                                        style="color: #ef9a9a;
+                                                text-transform: capitalize;
+                                                display: none"></p>
+                                    </label>
+                                </li>
+                                <li class="col-sm-12 text-left">
+                                    <button type="submit" class="btn btn-inverse" value="submit" id="btn_submit">SUBMIT</button>
+                                </li>
+                            </ul>
+                        </form>
                     </div>
-                    <!-- FORM -->
-                    <form role="form" id="contact_form" class="contact-form">
-                        {# csrf #}
-                        {{ csrf_input }}
-                        <ul class="row nolist-style">
-                            <li class="col-sm-4">
-                                <label>
-                                    {{ program_form.first_name }}
-                                    <p id="error-first_name"
-                                       class="error-info"
-                                       style="color: #ef9a9a;
-                                              text-transform: capitalize;
-                                              display: none"></p>
-                                </label>
-                            </li>
-                            <li class="col-sm-4">
-                                <label>
-                                    {{ program_form.last_name }}
-                                    <p id="error-last_name"
-                                       class="error-info"
-                                       style="color: #ef9a9a;
-                                              text-transform: capitalize;
-                                              display: none"></p>
-                                </label>
-                            </li>
-                            <li class="col-sm-4">
-                                <label>
-                                    {{ program_form.gender }}
-                                    <p id="error-gender"
-                                       class="error-info"
-                                       style="color: #ef9a9a;
-                                              text-transform: capitalize;
-                                              display: none"></p>
-                                </label>
-                            </li>
-                            <li class="col-sm-4">
-                                <label>
-                                    {{ program_form.email }}
-                                    <p id="error-email"
-                                       class="error-info"
-                                       style="color: #ef9a9a;
-                                              text-transform: capitalize;
-                                              display: none"></p>
-                                </label>
-                            </li>
-                            <li class="col-sm-4">
-                                <label>
-                                    {{ program_form.nationality }}
-                                    <p id="error-nationality"
-                                       class="error-info"
-                                       style="color: #ef9a9a;
-                                              text-transform: capitalize;
-                                              display: none"></p>
-                                </label>
-                            </li>
-                            <li class="col-sm-4">
-                                <label>
-                                    {{ program_form.phone_number }}
-                                    <p id="error-phone_number"
-                                       class="error-info"
-                                       style="color: #ef9a9a;
-                                              text-transform: capitalize;
-                                              display: none"></p>
-                                </label>
-                            </li>
-                            <li class="col-sm-12">
-                                <label>
-                                    {{ program_form.organization }}
-                                    <p id="error-organization"
-                                       class="error-info"
-                                       style="color: #ef9a9a;
-                                              text-transform: capitalize;
-                                              display: none"></p>
-                                </label>
-                            </li>
-                            <li class="col-sm-12">
-                                <label>
-                                    {{ program_form.expectation }}
-                                    <p id="error-expectation"
-                                       class="error-info"
-                                       style="color: #ef9a9a;
-                                              text-transform: capitalize;
-                                              display: none"></p>
-                                </label>
-                            </li>
-                            <li class="col-sm-12 text-left">
-                                <button type="submit" class="btn btn-inverse" value="submit" id="btn_submit">SUBMIT</button>
-                            </li>
-                        </ul>
-                    </form>
                 </div>
-            </div>
-        </section>
-        <!-- Join our community -->
-        {% include "partials/pages/__community.html" %}
-    </div>
+            </section>
+            <!-- Join our community -->
+            {% include "partials/pages/__community.html" %}
+        </div>
+    {% endif %}
 {% endblock content %}
+
+{# override script block #}
 {% block script %}
     <script src="{{ static('js/jquery-1.11.3.min.js') }}"></script>
     <script src="{{ static('js/bootstrap.bundle.js') }}"></script>
@@ -193,6 +204,7 @@
     <script src="{{ static('js/jquery.counterup.min.js') }}"></script>
     <script src="{{ static('js/jquery.magnific-popup.min.js') }}"></script>
 {% endblock script %}
+
 {# external scripts from pages #}
 {% block extraScript %}
     <script src="{{ static('js/program-ajax.js') }}"></script>
