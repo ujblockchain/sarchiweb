@@ -14,7 +14,7 @@ urlpatterns = [
     path('masterclass/', include('masterclass.urls')),
     path('contact/', include('contact.urls')),
     path('newsletter/', include('newsletters.urls')),
-    # path('event/', include('program.urls')),
+    path('event/', include('program.urls')),
     # ckeditor upload path
     path('ckeditor5/',
          include('django_ckeditor_5.urls'),
