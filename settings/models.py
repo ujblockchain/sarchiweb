@@ -5,7 +5,8 @@ from django.utils import timezone
 class TrainingSettingsBase(models.Model):
     opening_date = models.DateTimeField(default=timezone.now,
                                         help_text='Time registration starts')
-    closing_date = models.DateTimeField(help_text='Time registration closes')
+    closing_date = models.DateTimeField(default=timezone.now,
+                                        help_text='Time registration closes')
     date_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
