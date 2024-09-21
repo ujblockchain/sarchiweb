@@ -1,9 +1,8 @@
-from django.utils import timezone
+from django.db.models import Q
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views import View
-from django.utils.decorators import method_decorator
-from django.views.decorators.cache import never_cache
+from django.utils import timezone
 
 from contact.forms import UserMessageForm
 from newsletters.forms import NewsletterEmailForm
@@ -12,20 +11,21 @@ from settings.models import BootcampSettings
 from .forms import BootcampForm
 from .models import Bootcamp
 
+# get the current time in UTC
+current_timestamp = timezone.now()
 
-@method_decorator([never_cache], name='dispatch')
+
 class BootcampView(View):
 
     def get(self, request, *args, **kwargs):
         # set template
         template_name = 'forms/bootcamp.html'
+
         # init bootcamp settings
         # get latest record
-        bootcamp_settings = BootcampSettings.objects.order_by('-date_created').all()[0]
-
-        #init current date
-        # make timezone aware
-        current_timestamp = timezone.now()
+        bootcamp_settings = BootcampSettings.objects.order_by(
+            '-date_created').filter(Q(
+                closing_date__gte=current_timestamp))
 
         # init context
         context = {
@@ -35,8 +35,8 @@ class BootcampView(View):
             # newsletter form
             'newsletter_form': NewsletterEmailForm(),
             # bootcamp settings
-            'registration_open': current_timestamp > bootcamp_settings.opening_date,
-            'registration_closed': current_timestamp > bootcamp_settings.closing_date
+            'registration_open': current_timestamp > bootcamp_settings[0].opening_date if bootcamp_settings.exists() else False,
+            'registration_closed': current_timestamp > bootcamp_settings[0].closing_date if bootcamp_settings.exists() else False
         }
 
         return render(request, template_name, context)
@@ -64,10 +64,16 @@ class BootcampView(View):
                 phone_number = form.cleaned_data['phone_number']
                 session = form.cleaned_data['session']
                 repo_link = form.cleaned_data['repo_link']
-                if form.cleaned_data['can_you_code'] == 'Can you code in HTML, CSS & Python':
+                if form.cleaned_data[
+                        'can_you_code'] == 'Can you code in HTML, CSS & Python':
                     can_you_code = 'No I can not code in HTML, CSS & Python'
                 else:
                     can_you_code = form.cleaned_data['can_you_code']
+
+                # get bootcamp settings
+                bootcamp_settings = BootcampSettings.objects.order_by(
+                    '-date_created').filter(Q(
+                        closing_date__gte=current_timestamp))
 
                 # create model instance
                 Bootcamp.objects.create(
@@ -85,6 +91,7 @@ class BootcampView(View):
                     session=session,
                     can_you_code=can_you_code,
                     repo_link=repo_link,
+                    bootcamp_settings = bootcamp_settings[0]
                 )
 
                 return JsonResponse({
@@ -94,4 +101,3 @@ class BootcampView(View):
 
             else:
                 return JsonResponse({"message": "error", "error": form.errors})
-

@@ -1,9 +1,8 @@
+from django.db.models import Q
 from django.utils import timezone
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views import View
-from django.utils.decorators import method_decorator
-from django.views.decorators.cache import never_cache
 from contact.forms import UserMessageForm
 from newsletters.forms import NewsletterEmailForm
 from partners.models import Partners
@@ -12,20 +11,23 @@ from .forms import MasterclassForm
 from .models import Masterclass
 
 
-@method_decorator([never_cache], name='dispatch')
+
+# get the current time in UTC
+current_timestamp = timezone.now()
+
+
 class MasterclassView(View):
 
     def get(self, request, *args, **kwargs):
         # set template
         template_name = 'forms/masterclass.html'
+  
+
         # init bootcamp settings
         # get latest record
         masterclass_settings = MasterclassSettings.objects.order_by(
-            '-date_created').all()[0]
-
-        #init current date
-        # make timezone aware
-        current_timestamp = timezone.now()
+            '-date_created').filter(Q(closing_date__gte=current_timestamp.now()))
+        
 
         # init context
         context = {
@@ -35,8 +37,8 @@ class MasterclassView(View):
             # newsletter form 
             'newsletter_form': NewsletterEmailForm(),
             # bootcamp settings 
-            'registration_open': current_timestamp > masterclass_settings.opening_date, 
-            'registration_closed': current_timestamp > masterclass_settings.closing_date
+            'registration_open': current_timestamp > masterclass_settings[0].opening_date if masterclass_settings.exists() else False, 
+            'registration_closed': current_timestamp > masterclass_settings[0].closing_date if masterclass_settings.exists() else False
         }
 
         return render(request, template_name, context)
@@ -64,6 +66,12 @@ class MasterclassView(View):
                 phone_number = form.cleaned_data['phone_number']
                 repo_link = form.cleaned_data['repo_link']
 
+                
+                # init bootcamp settings
+                # get latest record
+                masterclass_settings = MasterclassSettings.objects.order_by(
+                    '-date_created').filter(Q(closing_date__gte=current_timestamp.now()))
+
                 # create model instance
                 Masterclass.objects.create(
                     first_name=first_name,
@@ -78,13 +86,12 @@ class MasterclassView(View):
                     expectation=expectation,
                     phone_number=phone_number,
                     repo_link=repo_link,
+                    masterclass_settings = masterclass_settings[0]
                 )
 
                 return JsonResponse({
-                    "message":
-                    "success",
-                    "status":
-                    "Thank You. Your Application has been Submitted Successfully.",
+                    "message": "success",
+                    "status": "Thank You. Your Application has been Submitted Successfully.",
                 })
 
             else:
