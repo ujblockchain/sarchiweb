@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import BootcampSettings, MasterclassSettings
+from .models import BootcampSettings, MasterclassSettings, ProgramSettings
 
 
 class BootcampSettingsAdmin(admin.ModelAdmin):
@@ -70,6 +70,40 @@ class MasterclassSettingsAdmin(admin.ModelAdmin):
     info.short_description = 'Notice'
 
 
+class ProgramSettingsAdmin(admin.ModelAdmin):
+    list_display = [
+        'event_title', 'opening_date', 'closing_date', 'last_update'
+    ]
+    list_display_links = [
+        'event_title', 'opening_date', 'closing_date', 'last_update'
+    ]
+    search_fields = [
+        'event_title', 'opening_date', 'closing_date', 'last_update'
+    ]
+    readonly_fields = ['last_update', 'info']
+    list_per_page = 50
+    show_full_result_count = True
+    actions_on_top = True
+    actions_on_bottom = True
+    save_as = True
+    save_as_continue = True
+    save_on_top = True
+
+    field = [
+        'event_title', 'opening_date', 'closing_date', 'last_update', 'info'
+    ]
+
+    # add custom field
+    def info(self, obj):
+        return format_html(
+            "<span style='color: #454d55; padding: 10px; font-size: 13px; font-style: italic; background: #ef9a9a; border-radius: 50px;'>Program registration auto disable after closing date</span>"
+        )
+
+    # add custom field description for info
+    info.short_description = 'Notice'
+
+
 # register admin settings
 admin.site.register(BootcampSettings, BootcampSettingsAdmin)
 admin.site.register(MasterclassSettings, MasterclassSettingsAdmin)
+admin.site.register(ProgramSettings, ProgramSettingsAdmin)
