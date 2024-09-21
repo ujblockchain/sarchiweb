@@ -1,4 +1,5 @@
 nationality = [
+    ('Select Nationality', 'Select Nationality'),
     ('Afghanistan', 'Afghanistan'),
     ('Albania', 'Albania'),
     ('Algeria', 'Algeria'),
