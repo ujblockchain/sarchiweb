@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from blog.validate_image import clean_image
 from bootcamps.modelChoices import nationality
+from settings.models import ProgramSettings
 
 level = (
     ('Higher Certificate', 'Higher Certificate'),
@@ -31,11 +32,29 @@ class Program(models.Model):
     last_name = models.CharField(max_length=100)
     email = models.EmailField()
     gender = models.CharField(max_length=50, choices=gender, default='Female')
-    nationality = models.CharField(max_length=50, choices=nationality, default='South Africa')
+    nationality = models.CharField(
+        max_length=50,
+        choices=nationality,
+        default='South Africa',
+    )
     phone_number = models.CharField(max_length=30, default='')
-    organization = models.CharField(max_length=300, default='University of Johannesburg')
+    organization = models.CharField(
+        max_length=300,
+        default='University of Johannesburg',
+    )
     expectation = models.TextField(max_length=800)
-    application_status = models.CharField(null=True, blank=True, choices=applicant_selection)
+    application_status = models.CharField(
+        null=True,
+        blank=True,
+        choices=applicant_selection,
+    )
+    program_settings = models.ForeignKey(
+        ProgramSettings,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        help_text='program settings',
+    )
     date_created = models.DateTimeField(auto_now_add=True)
     timestamp = models.DateTimeField(default=timezone.now)
 
@@ -51,10 +70,30 @@ class Program(models.Model):
 class Event(models.Model):
     title = models.CharField(max_length=400)
     speakers = models.CharField(max_length=300)
-    speaker_one = models.ImageField(upload_to='event/speakers/', null=True, blank=True, validators=[clean_image])
-    speaker_two = models.ImageField(upload_to='event/speakers/', null=True, blank=True, validators=[clean_image])
-    speaker_three = models.ImageField(upload_to='event/speakers/', null=True, blank=True, validators=[clean_image])
-    speaker_four = models.ImageField(upload_to='event/speakers/', null=True, blank=True, validators=[clean_image])
+    speaker_one = models.ImageField(
+        upload_to='event/speakers/',
+        null=True,
+        blank=True,
+        validators=[clean_image],
+    )
+    speaker_two = models.ImageField(
+        upload_to='event/speakers/',
+        null=True,
+        blank=True,
+        validators=[clean_image],
+    )
+    speaker_three = models.ImageField(
+        upload_to='event/speakers/',
+        null=True,
+        blank=True,
+        validators=[clean_image],
+    )
+    speaker_four = models.ImageField(
+        upload_to='event/speakers/',
+        null=True,
+        blank=True,
+        validators=[clean_image],
+    )
     date_created = models.DateTimeField(auto_now_add=True)
     timestamp = models.DateTimeField(default=timezone.now)
 

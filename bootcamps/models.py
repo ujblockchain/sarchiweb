@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils import timezone
+
+from settings.models import BootcampSettings
 from .modelChoices import nationality
 
 level = (
@@ -80,6 +82,12 @@ class Bootcamp(TrainingBaseModel):
         null=True,
         blank=True,
         help_text='can you code in HTML, CSS & Python',
+    )
+    bootcamp_settings = models.ForeignKey(
+        BootcampSettings,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
     )
     date_created = models.DateTimeField(auto_now_add=True)
     timestamp = models.DateTimeField(default=timezone.now)

@@ -1,9 +1,16 @@
 from django.db import models
 from django.utils import timezone
 from bootcamps.models import TrainingBaseModel
+from settings.models import MasterclassSettings
 
 
 class Masterclass(TrainingBaseModel):
+    masterclass_settings = models.ForeignKey(
+        MasterclassSettings,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+    )
     date_created = models.DateTimeField(auto_now_add=True)
     timestamp = models.DateTimeField(default=timezone.now)
 
