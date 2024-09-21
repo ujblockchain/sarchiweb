@@ -39,3 +39,16 @@ class MasterclassSettings(TrainingSettingsBase):
         ordering = ['-date_created']
         verbose_name = 'Masterclass Settings'
         verbose_name_plural = 'Masterclass Settings'
+
+
+class ProgramSettings(TrainingSettingsBase):
+    event_title = models.CharField(max_length=200)
+    last_update = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.event_title
+
+    class Meta:
+        ordering = ['-date_created']
+        verbose_name = 'Program Settings'
+        verbose_name_plural = 'Program Settings'
