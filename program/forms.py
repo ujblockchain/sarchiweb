@@ -43,7 +43,7 @@ class ProgramForm(forms.ModelForm):
     organization = forms.CharField(widget=forms.TextInput(
         attrs={
             'class': 'form-control',
-            'placeholder': 'Organization'
+            'placeholder': 'University/Organization'
         }))
     expectation = forms.CharField(widget=forms.Textarea(
         attrs={
