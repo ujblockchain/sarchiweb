@@ -31,16 +31,12 @@ def auto_mail_sending(sender, instance, created, **kwargs):
             # send email on registration complete
             email_subject = 'UJ Blockchain Demo Day'
             email_message = f'Hi {instance.first_name},\n\n\
-            
                 Thank you for your interest in attending the UJ Blockchain Demo Day Event, set to take place on October 3rd, 2024. Organized by the SA \
                 Swiss Chair in Blockchain Technology at the University of Johannesburg, this event showcases our depth of research and expertise in Blockchain, \
                 AI and hardware. \
-                
                 Projects ranging from drone designs and computer vision applications to 3D world reconstructions and decentralized solutions used by thousands \
                 will be displayed as we showcase our innovations and partnerships across industries since the year began. \n\n\
-                
                 Kindly note that your application has been received and is slated for review by our Development Team within 72 hours. \n\n\
-                
                 Once again, thank you for applying for the UJ Blockchain Demo Day Event. We are excited and cannot wait to show you some amazing \
                 innovations we have been working on 🤩🙌.\
             '
@@ -83,18 +79,14 @@ def auto_mail_sending(sender, instance, created, **kwargs):
             if instance.application_status == 'Selected':
                 email_subject = 'You Have Been Selected 🥳🎉: UJ Blockchain Demo Day'
                 email_message = f'Hi {instance.first_name}, \n\n\
-        
                     Thank you for your interest in attending the UJ Blockchain Demo Day Event, set to take place on October 3rd, 2024. Organized by the SA \
                     Swiss Chair in Blockchain Technology at the University of Johannesburg, this event showcases our depth of research and expertise in Blockchain, \
                     AI and hardware. \
-                    
                     Projects ranging from drone designs and computer vision applications to 3D world reconstructions and decentralized solutions used by thousands \
                     will be displayed as we showcase our innovations and partnerships across industries since the year began. \n\n\
-                    
                     Kindly note that you have been selected to attend the Demo Day event. The event will be held at \
                     <strong style="color: #ff6522 !important;">9 am</strong> on the \
                     <strong style="color: #ff6522 !important;">3rd of October 2024, at the Johannesburg Business School auditorium GLV1 behind the reception</strong>. \n\n\
- 
                     Once again, thank you for applying for the UJ Blockchain Demo Day Event. We are excited and cannot wait to show you some amazing \
                     innovations we have been working on 🤩🙌.\
                 '
@@ -107,13 +99,10 @@ def auto_mail_sending(sender, instance, created, **kwargs):
                 email_message = f'Hi {instance.first_name}, \n\n\
                     Thank you for your interest in attending the UJ Blockchain Demo Day. Unfortunately, you were not selected for the Demo Day event. \
                     We received large applications for the event but could only take a few\n\n\
-                    
                     We understand your desire to attend this event and your drive to gain a better perspective on Blockchain and 4IR; yes, \
                     we do. Other events will be coming up; sign up for our newsletter to ensure you register on time. \n\n\
-                    
                     Our newsletters give you up-to-date insight into our build stacks and projects we are currently working on. It also gives you the privilege \
                     of getting early registration links for Bootcamps, Hackathon, and other programs like this three days before it is made open to the public. \n\n\
-                     
                     Once again, thank you for applying for the UJ Blockchain Demo Day Event. We are excited and cannot wait to see the many frontiers upcoming \
                     events will open for you in your Blockchain Development Journey 🤩🙌.\
                 '
