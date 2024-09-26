@@ -61,7 +61,7 @@ class ProgramView(View):
                 organization = form.cleaned_data['organization']
 
                 # check if applicant has register before
-                if Program.objects.filter(email=email).exists():
+                if Program.objects.filter(Q(email=email) & Q(date_created__month=9) & Q(date_created__year=2024)).exists():
                     return JsonResponse({
                         "message":"duplicate_error",
                         "error": "You have already registered for this event!",
