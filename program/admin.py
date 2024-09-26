@@ -38,6 +38,7 @@ class ProgramAdmin(ImportExportModelAdmin, CompareVersionAdmin):
     readonly_fields = [
         'info',
     ]
+    date_hierarchy = 'timestamp'
     list_per_page = 50
     show_full_result_count = True
     actions_on_top = True
