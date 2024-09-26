@@ -115,7 +115,7 @@ def auto_mail_sending(sender, instance, created, **kwargs):
                     of getting early registration links for Bootcamps, Hackathon, and other programs like this three days before it is made open to the public. \n\n\
                      
                     Once again, thank you for applying for the UJ Blockchain Demo Day Event. We are excited and cannot wait to see the many frontiers upcoming \
-                    events will open for you in your Blockchain Development Journey 🤩🙌. 
+                    events will open for you in your Blockchain Development Journey 🤩🙌.\
                 '
 
                 email_link = 'https://blockchain.uj.ac.za/#newsletter'
