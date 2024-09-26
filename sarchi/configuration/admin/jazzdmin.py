@@ -115,6 +115,7 @@ JAZZMIN_SETTINGS = {
         'repository.repoinfo': 'fas fa-code',
         'settings.bootcampsettings': 'fas fa-sliders-h',
         'settings.masterclasssettings': 'fas fa-chalkboard',
+        'settings.programSettings': 'fas fa-cogs',
         'sms.sendusersms': 'fas fa-sliders-h',
     },
     # Icons that are used when one is not manually specified
