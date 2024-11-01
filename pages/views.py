@@ -10,9 +10,8 @@ from partners.models import Partners
 from program.models import Event
 from projects.models import Projects
 from repository.models import RepoInfo
+from settings.models import UpcomingEvent
 from .github_api import get_github_commits
-
-
 
 # init current time, timezone aware
 current_timestamp = datetime.now()
@@ -64,17 +63,21 @@ class HomeView(TemplateView):
 
         # project context; only get the latest
         context['project'] = Projects.objects.order_by('-date_created').filter(
-            publish=True, schedule_message__lte=current_timestamp
-        )[0]
+            publish=True, schedule_message__lte=current_timestamp)[0]
 
         # newsletter form
         context['newsletter_form'] = NewsletterEmailForm()
+        # event
+        context['upcoming_event'] = UpcomingEvent.objects.order_by(
+            'last_update').first()
 
         return context
 
 
 # index page view
-@method_decorator([never_cache,], name='dispatch')
+@method_decorator([
+    never_cache,
+], name='dispatch')
 class EventView(TemplateView):
     template_name = 'pages/mb.html'
 
