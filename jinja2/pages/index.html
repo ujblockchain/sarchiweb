@@ -135,13 +135,17 @@
       <!-- Development -->
       {% include 'partials/pages/__development.html' %}
       <!-- Project Overview -->
-      {% include 'partials/pages/__about.html' %}
+      {% include 'partials/pages/__overview.html' %}
       <!-- Road Map -->
       {% include 'partials/pages/__roadmaps.html' %}
       <!-- Team Members -->
       {% include 'partials/pages/__team.html' %}
       <!-- FAQ -->
       {% include 'partials/pages/__faq.html' %}
+      {% if upcoming_event %}
+        <!-- Event -->
+        {% include 'partials/pages/__upcoming-event.html' %}
+      {% endif %}
       <!-- Join our community -->
       {% include 'partials/pages/__community.html' %}
   </div>
