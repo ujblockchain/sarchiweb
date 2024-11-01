@@ -13,3 +13,6 @@ def dateformat(value):
 # convert dict to string
 def dict_string(value):
     return ast.literal_eval(value)
+
+def event_dateformat(value):
+    return f'{value.strftime("%d")}/{value.strftime("%m")}'
