@@ -1,5 +1,8 @@
 from django.db import models
 from django.utils import timezone
+from blog.validate_image import clean_image
+
+link_action = [('Internal', 'Internal'), ('External', 'External')]
 
 
 class TrainingSettingsBase(models.Model):
@@ -53,3 +56,23 @@ class ProgramSettings(TrainingSettingsBase):
         ordering = ['-date_created']
         verbose_name = 'Program Settings'
         verbose_name_plural = 'Program Settings'
+
+
+class UpcomingEvent(models.Model):
+    title = models.CharField(max_length=200)
+    event_info = models.TextField(max_length=240)
+    event_date = models.DateTimeField()
+    image = models.ImageField(upload_to='event/flyer',
+                              validators=[clean_image])
+    link_type = models.CharField(choices=link_action, default='Internal')
+    registration_link = models.URLField(default='https://blockchain.uj.ac.za')
+    event_website = models.URLField(default='https://blockchain.uj.ac.za')
+    last_update = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        ordering = ['-last_update']
+        verbose_name = 'Upcoming Event'
+        verbose_name_plural = 'Upcoming Events'
