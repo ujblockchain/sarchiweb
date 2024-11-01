@@ -116,6 +116,7 @@ JAZZMIN_SETTINGS = {
         'settings.bootcampsettings': 'fas fa-sliders-h',
         'settings.masterclasssettings': 'fas fa-chalkboard',
         'settings.programSettings': 'fas fa-cogs',
+        'settings.upcomingevent':'fas fa-calendar-week',
         'sms.sendusersms': 'fas fa-sliders-h',
     },
     # Icons that are used when one is not manually specified
