@@ -149,6 +149,5 @@ There is need for a background task using huey to send emails to users.
 
 Running Test With Coverage
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-    .. code-block:: bash
-        $ make run-coverage
+.. code-block:: bash
+    $ make run-coverage
