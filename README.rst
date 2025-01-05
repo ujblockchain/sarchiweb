@@ -1,4 +1,4 @@
-![image info](./sarchi/static/images/main-logo.png)
+.. image:: https://blockchain.uj.ac.za/static/images/logo.png
 
 
 =========
@@ -43,7 +43,7 @@ Also add configuration for Database, Django Axes and Email with SMTP Host.
     AXES_ENABLE_ACCESS_FAILURE_LOG = '...'
     AXES_RESET_ON_SUCCESS = '...'
     AXES_LOCKOUT_PARAMETERS = '...'
-    
+
     EMAIL_BACKEND = ''...'
     EMAIL_PORT = '...'
     EMAIL_HOST = '...'
@@ -148,7 +148,7 @@ There is need for a background task using huey to send emails to users.
 
 
 Running Test With Coverage
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: bash
-    $ make run-coverage
+    .. code-block:: bash
+        $ make run-coverage
