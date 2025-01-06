@@ -1,5 +1,4 @@
 .. figure:: https://blockchain.uj.ac.za/static/images/logo.png
-    :width: 100%
     :align: center
 
 
