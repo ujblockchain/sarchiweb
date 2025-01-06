@@ -1,4 +1,6 @@
-.. image:: https://blockchain.uj.ac.za/static/images/logo.png
+.. figure:: https://blockchain.uj.ac.za/static/images/logo.png
+    :width: 100%
+    :align: center
 
 
 =========
@@ -44,7 +46,7 @@ Also add configuration for Database, Django Axes and Email with SMTP Host.
     AXES_RESET_ON_SUCCESS = '...'
     AXES_LOCKOUT_PARAMETERS = '...'
 
-    EMAIL_BACKEND = ''...'
+    EMAIL_BACKEND = '...'
     EMAIL_PORT = '...'
     EMAIL_HOST = '...'
     EMAIL_HOST_USER = '...'
@@ -139,15 +141,18 @@ Run Server
 
 
 Start Background Task
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
 
 There is need for a background task using huey to send emails to users.
 
 .. code-block:: bash
-    $ make huey
+
+    make huey
 
 
 Running Test With Coverage
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 .. code-block:: bash
-    $ make run-coverage
+
+    make run-coverage
