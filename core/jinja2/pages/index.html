@@ -1,0 +1,246 @@
+{# extend template #}
+{% extends 'base.html' %}
+{# add extra style #}
+{% block extraStyle %}
+<style>
+    .image_resize {
+        height: 219px;
+    }
+
+    @media(max-width:1024px) {
+        #team_lead.col-9 {
+            margin-left: 0 !important;
+        }
+    }
+
+    @media(max-width:768px) {
+        #team_lead {
+            flex-shrink: 0;
+            width: 100%;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .team.style-2 .team-small li {
+            width: 33.33333%;
+        }
+
+        #team_lead.col-3 li {
+            display: inline-block !important;
+            width: 218px !important;
+        }
+    }
+
+
+    @media (max-width: 460px) {
+        .team.style-2 .team-small li {
+            width: 33% !important;
+        }
+
+        #team_lead.col-3 li {
+            display: inline-block !important;
+            width: 210px !important;
+        }
+    }
+
+    @media (max-width: 458px) {
+        li img {
+            width: 200px !important;
+        }
+
+        .team.style-2 .team-small li .hover {
+            width: 95%;
+        }
+    }
+
+    @media (max-width: 444px) {
+
+        li img {
+            width: 190px !important;
+        }
+
+        #team_lead.col-3 li {
+            width: 190px !important;
+        }
+
+        .team.style-2 .team-small li .hover {
+            width: 100%;
+        }
+    }
+
+
+    @media (max-width: 405px) {
+
+        li img {
+            width: 180px !important;
+        }
+
+        #team_lead.col-3 li {
+            width: 180px !important;
+        }
+    }
+
+    @media (max-width: 385px) {
+
+        li img {
+            width: 170px !important;
+        }
+
+        #team_lead.col-3 li {
+            width: 170px !important;
+        }
+    }
+
+    @media (max-width: 364px) {
+
+        li img {
+            width: 160px !important;
+        }
+
+        #team_lead.col-3 li {
+            width: 160px !important;
+        }
+    }
+
+    @media (max-width: 345px) {
+
+        li img {
+            width: 150px !important;
+        }
+
+        #team_lead.col-3 li {
+            width: 150px !important;
+        }
+    }
+
+    @media (max-width: 324px) {
+
+        li img {
+            width: 140px !important;
+        }
+
+        #team_lead.col-3 li {
+            width: 140px !important;
+        }
+    }
+</style>
+{% endblock extraStyle %}
+<!-- Content -->
+{% block content %}
+<div id="content">
+    <!-- Why Choose Us -->
+    <section class="why-choose padding-top-100 padding-bottom-150" id="about">
+        <div class="container">
+            <!-- Why Choose Us  ROW-->
+            {% include "partials/__choice.html" %}
+            <!-- Services ROW -->
+            {% include "partials/__services.html" %}
+        </div>
+    </section>
+    <!-- Project Distribution -->
+    {% include "partials/__projects.html" with context %}
+    <!-- Development -->
+    {% include "partials/__development.html" %}
+    <!-- Project Overview -->
+    {% include "partials/__overview.html" %}
+    <!-- Road Map -->
+    {% include "partials/__roadmaps.html" %}
+    <!-- Team Members -->
+    {% include "partials/__team.html" %}
+    <!-- FAQ -->
+    {% include "partials/__faq.html" %}
+    {% if upcoming_event %}
+    <!-- Event -->
+    {% include "partials/__upcoming-event.html" %}
+    {% endif %}
+    <!-- Join our community -->
+    {% include "partials/__community.html" %}
+</div>
+{% endblock content %}
+{# external scripts from pages #}
+{% block extraScript %}
+<!-- timer for distribution completion -->
+<script>
+    // set timer end date 
+    let timerDate = new Date("{{project.current_stage_section_end_time|dateformat}} 11:59:59").getTime();
+
+    // set update to every second
+    setInterval(function () {
+
+        // Get current date and time
+        let currentDate = new Date().getTime();
+
+        // Find the time difference between current date and the timer date
+        let distance = timerDate - currentDate;
+
+        // get calculations for days, hours, minutes and seconds
+        let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Display the result in the element with id="demo"
+        document.querySelector(".countdown .days").textContent = days;
+        document.querySelector(".countdown .hours").textContent = hours;
+        document.querySelector(".countdown .minutes").textContent = minutes;
+        document.querySelector(".countdown .seconds").textContent = seconds;
+
+        // If the count down is finished, write some text
+        if (distance < 0) {
+            document.querySelector(".countdown .days").textContent = 0;
+            document.querySelector(".countdown .hours").textContent = 0;
+            document.querySelector(".countdown .minutes").textContent = 0;
+            document.querySelector(".countdown .seconds").textContent = 0;
+        }
+    }, 1000);
+</script>
+<!-- timer for projection completion -->
+<script>
+    // set timer end date 
+    let timerDateProject = new Date("{{project.project_end_time|dateformat}} 11:59:59").getTime();
+
+    // set update to every second
+    setInterval(function () {
+
+        // Get current date and time
+        let currentDate = new Date().getTime();
+
+        // Find the time difference between current date and the timer date
+        let distance = timerDateProject - currentDate;
+
+        // get calculations for days, hours, minutes and seconds
+        let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Display the result in the element with id="demo"
+        document.querySelector(".countdown-all .days").textContent = days;
+        document.querySelector(".countdown-all .hours").textContent = hours;
+        document.querySelector(".countdown-all .minutes").textContent = minutes;
+        document.querySelector(".countdown-all .seconds").textContent = seconds;
+
+        // If the count down is finished, write some text
+        if (distance < 0) {
+            document.querySelector(".countdown-all .days").textContent = 0;
+            document.querySelector(".countdown-all .hours").textContent = 0;
+            document.querySelector(".countdown-all .minutes").textContent = 0;
+            document.querySelector(".countdown-all .seconds").textContent = 0;
+        }
+    }, 1000);
+</script>
+<script>
+    // control message show interval
+    setInterval(() => {
+        messages = document.querySelectorAll('.form_message')
+
+        Array.from(messages).forEach((message) => {
+            //check message exist
+            if (message) {
+                message.style.display = 'none';
+            }
+        })
+
+    }, 5000)
+</script>
+{% endblock extraScript %}

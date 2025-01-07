@@ -1,0 +1,16 @@
+[flake8]
+ignore = C101,D403,I100,I201,W503,W504
+exclude =
+    **/migrations/*,
+    **/apps.py,
+    **/middleware/custom_csp.py,
+    .git,
+    .mypy_cache,
+    __pycache__,
+filename = *.py
+accept-encodings = utf-8
+inline-quotes = single
+max-complexity = 12
+max-linenumber = 500
+max-line-length = 119
+multiline-quotes = double
