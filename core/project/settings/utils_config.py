@@ -44,13 +44,13 @@ TEMPLATES = [
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = 'static/'
-STATIC_ROOT = f'{BASE_DIR}/static'
+STATIC_ROOT = f'{BASE_DIR}/core/static'
 STATICFILES_DIRS = [f'{PROJECT_DIR}/static']
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 # Media files
 MEDIA_URL = '/media/'
-MEDIA_ROOT = f'{BASE_DIR}/media'
+MEDIA_ROOT = f'{BASE_DIR}/core/media'
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
