@@ -81,7 +81,7 @@ def auto_mail_sending(sender, instance, created, **kwargs):
             msg.content_subtype = 'html'
 
             # attached file
-            bootcamp_flyer = f'{settings.PROJECT_DIR}/static/images/Masterclass.png'
+            bootcamp_flyer = f'{settings.PROJECT_DIR}/static/images/Bootcamp.png'
             msg.attach_file(bootcamp_flyer)
 
             # send email
@@ -173,7 +173,7 @@ def auto_mail_sending(sender, instance, created, **kwargs):
 
             # attached file
             if instance.application_status == 'Selected':
-                bootcamp_flyer = f'{settings.PROJECT_DIR}/static/images/Masterclass.png'
+                bootcamp_flyer = f'{settings.PROJECT_DIR}/static/images/Bootcamp.png'
                 msg.attach_file(bootcamp_flyer)
 
             # send email
