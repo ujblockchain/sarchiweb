@@ -4,9 +4,6 @@ from django import forms
 from .models import BootcampSignup
 from .utils.modelChoices import nationality
 
-# update nationality list
-updated_nationality_list = nationality[:0] + [('Select Nationality', 'Select Nationality')] + nationality[0:]
-
 applicant_level = (
     ('Select Your Level', 'Select Your Level'),
     ('Higher Certificate', 'Higher Certificate'),
@@ -104,12 +101,10 @@ class BootcampForm(forms.ModelForm):
 
     nationality = forms.CharField(
         required=True,
-        widget=forms.Select(
-            choices=updated_nationality_list, attrs={
-                'class': 'form-control',
-                'aria-label': 'Default select'
-            }
-        ),
+        widget=forms.Select(choices=nationality, attrs={
+            'class': 'form-control',
+            'aria-label': 'Default select'
+        }),
     )
     phone_number = forms.CharField(
         required=True,

@@ -1,7 +1,7 @@
 import validators
 from django import forms
 
-from core.bootcamps.forms import applicant_level, gender, updated_nationality_list
+from core.bootcamps.forms import applicant_level, gender, nationality
 
 from .models import Masterclass
 
@@ -66,12 +66,10 @@ class MasterclassForm(forms.ModelForm):
 
     nationality = forms.CharField(
         required=True,
-        widget=forms.Select(
-            choices=updated_nationality_list, attrs={
-                'class': 'form-control',
-                'aria-label': 'Default select'
-            }
-        ),
+        widget=forms.Select(choices=nationality, attrs={
+            'class': 'form-control',
+            'aria-label': 'Default select'
+        }),
     )
     phone_number = forms.CharField(
         required=True,
