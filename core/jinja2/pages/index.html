@@ -2,160 +2,162 @@
 {% extends 'base.html' %}
 {# add extra style #}
 {% block extraStyle %}
-<style>
-    .image_resize {
-        height: 219px;
-    }
-
-    @media(max-width:1024px) {
-        #team_lead.col-9 {
-            margin-left: 0 !important;
-        }
-    }
-
-    @media(max-width:768px) {
-        #team_lead {
-            flex-shrink: 0;
-            width: 100%;
-        }
-    }
-
-    @media (max-width: 640px) {
-        .team.style-2 .team-small li {
-            width: 33.33333%;
+    <style>
+        .image_resize {
+            height: 219px;
         }
 
-        #team_lead.col-3 li {
-            display: inline-block !important;
-            width: 218px !important;
-        }
-    }
-
-
-    @media (max-width: 460px) {
-        .team.style-2 .team-small li {
-            width: 33% !important;
+        @media(max-width:1024px) {
+            #team_lead.col-9 {
+                margin-left: 0 !important;
+            }
         }
 
-        #team_lead.col-3 li {
-            display: inline-block !important;
-            width: 210px !important;
-        }
-    }
-
-    @media (max-width: 458px) {
-        li img {
-            width: 200px !important;
+        @media(max-width:768px) {
+            #team_lead {
+                flex-shrink: 0;
+                width: 100%;
+            }
         }
 
-        .team.style-2 .team-small li .hover {
-            width: 95%;
-        }
-    }
+        @media (max-width: 640px) {
+            .team.style-2 .team-small li {
+                width: 33.33333%;
+            }
 
-    @media (max-width: 444px) {
-
-        li img {
-            width: 190px !important;
-        }
-
-        #team_lead.col-3 li {
-            width: 190px !important;
+            #team_lead.col-3 li {
+                display: inline-block !important;
+                width: 218px !important;
+            }
         }
 
-        .team.style-2 .team-small li .hover {
-            width: 100%;
-        }
-    }
 
+        @media (max-width: 460px) {
+            .team.style-2 .team-small li {
+                width: 33% !important;
+            }
 
-    @media (max-width: 405px) {
-
-        li img {
-            width: 180px !important;
-        }
-
-        #team_lead.col-3 li {
-            width: 180px !important;
-        }
-    }
-
-    @media (max-width: 385px) {
-
-        li img {
-            width: 170px !important;
+            #team_lead.col-3 li {
+                display: inline-block !important;
+                width: 210px !important;
+            }
         }
 
-        #team_lead.col-3 li {
-            width: 170px !important;
-        }
-    }
+        @media (max-width: 458px) {
+            li img {
+                width: 200px !important;
+            }
 
-    @media (max-width: 364px) {
-
-        li img {
-            width: 160px !important;
-        }
-
-        #team_lead.col-3 li {
-            width: 160px !important;
-        }
-    }
-
-    @media (max-width: 345px) {
-
-        li img {
-            width: 150px !important;
+            .team.style-2 .team-small li .hover {
+                width: 95%;
+            }
         }
 
-        #team_lead.col-3 li {
-            width: 150px !important;
-        }
-    }
+        @media (max-width: 444px) {
 
-    @media (max-width: 324px) {
+            li img {
+                width: 190px !important;
+            }
 
-        li img {
-            width: 140px !important;
+            #team_lead.col-3 li {
+                width: 190px !important;
+            }
+
+            .team.style-2 .team-small li .hover {
+                width: 100%;
+            }
         }
 
-        #team_lead.col-3 li {
-            width: 140px !important;
+
+        @media (max-width: 405px) {
+
+            li img {
+                width: 180px !important;
+            }
+
+            #team_lead.col-3 li {
+                width: 180px !important;
+            }
         }
-    }
-</style>
+
+        @media (max-width: 385px) {
+
+            li img {
+                width: 170px !important;
+            }
+
+            #team_lead.col-3 li {
+                width: 170px !important;
+            }
+        }
+
+        @media (max-width: 364px) {
+
+            li img {
+                width: 160px !important;
+            }
+
+            #team_lead.col-3 li {
+                width: 160px !important;
+            }
+        }
+
+        @media (max-width: 345px) {
+
+            li img {
+                width: 150px !important;
+            }
+
+            #team_lead.col-3 li {
+                width: 150px !important;
+            }
+        }
+
+        @media (max-width: 324px) {
+
+            li img {
+                width: 140px !important;
+            }
+
+            #team_lead.col-3 li {
+                width: 140px !important;
+            }
+        }
+    </style>
 {% endblock extraStyle %}
 <!-- Content -->
 {% block content %}
-<div id="content">
-    <!-- Why Choose Us -->
-    <section class="why-choose padding-top-100 padding-bottom-150" id="about">
-        <div class="container">
-            <!-- Why Choose Us  ROW-->
-            {% include "partials/__choice.html" %}
-            <!-- Services ROW -->
-            {% include "partials/__services.html" %}
-        </div>
-    </section>
-    <!-- Project Distribution -->
-    {% include "partials/__projects.html" with context %}
-    <!-- Development -->
-    {% include "partials/__development.html" %}
-    <!-- Project Overview -->
-    {% include "partials/__overview.html" %}
-    <!-- Road Map -->
-    {% include "partials/__roadmaps.html" %}
-    <!-- Team Members -->
-    {% include "partials/__team.html" %}
-    <!-- FAQ -->
-    {% include "partials/__faq.html" %}
-    {% if upcoming_event %}
-    <!-- Event -->
-    {% include "partials/__upcoming-event.html" %}
-    {% endif %}
-    <!-- Join our community -->
-    {% include "partials/__community.html" %}
-</div>
+    <div id="content">
+        <!-- Why Choose Us -->
+        <section class="why-choose padding-top-100 padding-bottom-150" id="about">
+            <div class="container">
+                <!-- Why Choose Us  ROW-->
+                {% include "partials/__choice.html" %}
+                <!-- Services ROW -->
+                {% include "partials/__services.html" %}
+            </div>
+        </section>
+        <!-- Project Distribution -->
+        {% include "partials/__projects.html" with context %}
+        <!-- Development -->
+        {% include "partials/__development.html" %}
+        <!-- Project Overview -->
+        {% include "partials/__overview.html" %}
+        <!-- Road Map -->
+        {% include "partials/__roadmaps.html" %}
+        <!-- Team Members -->
+        {% include "partials/__team.html" %}
+        <!-- FAQ -->
+        {% include "partials/__faq.html" %}
+        <!-- Event -->
+        {% if upcoming_event %}
+            {% if upcoming_event.event_date.day - current_day|int >= 0 %}
+                {% include "partials/__upcoming-event.html" %}
+            {% endif %}
+        {% endif %}
+        <!-- Join our community -->
+        {% include "partials/__community.html" %}
+    </div>
 {% endblock content %}
 {# external scripts from pages #}
 {% block extraScript %}
