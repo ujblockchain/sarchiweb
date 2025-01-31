@@ -6,7 +6,6 @@ from core.bootcamps.forms import applicant_level, gender, updated_nationality_li
 from .models import Masterclass
 
 
-#
 class MasterclassForm(forms.ModelForm):
     first_name = forms.CharField(
         required=True,
@@ -112,7 +111,6 @@ class MasterclassForm(forms.ModelForm):
         value = self.cleaned_data['email']
         # Check if the value already exist
         if Masterclass.objects.filter(email=value).exists():
-            # raise exception
             raise forms.ValidationError('You have already registered with this email.', code='email')
         return value
 
@@ -121,7 +119,6 @@ class MasterclassForm(forms.ModelForm):
         repo_link = self.cleaned_data['repo_link']
 
         if not validators.url(repo_link):
-            # raise exceptions
             raise forms.ValidationError('Enter a valid repository link.', code='repo')
 
         return repo_link
