@@ -56,7 +56,7 @@ class MasterclassView(View):
 
             # check if form is valid
             if form.is_valid():
-                cleaned_data = form.cleaned_data()
+                cleaned_data = form.cleaned_data
 
                 # get latest  bootcamp settings
                 masterclass_config = MasterclassConfig.objects.order_by('-date_created').filter(
@@ -64,7 +64,7 @@ class MasterclassView(View):
                 )
 
                 # create model instance
-                Masterclass.objects.create(**cleaned_data, masterclass_config=masterclass_config[0])
+                Masterclass.objects.create(**cleaned_data, masterclass_settings=masterclass_config[0])
 
                 return JsonResponse({
                     'message': 'success',
