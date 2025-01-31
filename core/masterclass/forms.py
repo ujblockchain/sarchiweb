@@ -118,7 +118,8 @@ class MasterclassForm(forms.ModelForm):
         # get input value form clean_data dict
         repo_link = self.cleaned_data['repo_link']
 
-        if not validators.url(repo_link):
-            raise forms.ValidationError('Enter a valid repository link.', code='repo')
+        # Check if the value already exist
+        if 'github.com' not in repo_link or validators.url(repo_link) is False:
+            raise forms.ValidationError('Enter a valid Github link.', code='repo_link')
 
         return repo_link
