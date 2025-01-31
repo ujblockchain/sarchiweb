@@ -28,14 +28,13 @@ def auto_mail_sending(sender, instance, created, **kwargs):
 
         if created:
             # send email on registration complete
-            email_subject = 'Demystifying Blockchain Masterclass'
+            email_subject = 'Blockchain Masterclass'
             email_message = f'Hi {instance.first_name}.\n\nThank you for your interest and consequent \
                 application to the Demystifying \
-                Blockchain Masterclass every Saturday from July <strong>July 13th - 28th September, \
-                2024 at Kopano Hall, Electrical and \
-                Electronics Department, APK Campus, University of Johannesburg</strong>. \
-                \n\nYour interest in coding and desire to upskill aligns with our vision of \
-                building practical capacity in blockchain.\
+                Blockchain Masterclass every Saturday from <strong>February 15th - 1st March, \
+                2025 at  APK Lab B2 207, Kopanong Lab, Electrical and Electronics Department,\
+                University of Johannesburg</strong>. \n\nYour interest in coding and desire to\
+                upskill aligns with our vision of building practical capacity in blockchain.\
                 \n\n We have received your application, which is slated for review by our \
                 development team. This process might take a couple of days but \
                 be assured that we will be in contact every step of the way.\
@@ -91,20 +90,20 @@ def auto_mail_sending(sender, instance, created, **kwargs):
         elif (instance.application_status == 'Selected' or instance.application_status == 'Rejected'):
             # once model is saved, trigger signal
             if instance.application_status == 'Selected':
-                email_subject = ('You Have Been Selected 🥳🎉: Demystifying Blockchain Masterclass')
+                email_subject = ('You Have Been Selected 🥳🎉: Blockchain Masterclass')
                 email_message = f'Hi {instance.first_name}.\n\nThank you for your interest and \
-                    consequent application to the Demystifying Blockchain Masterclass every \
-                    Saturday from <strong>July 13th - 28th September, 2024 at Kopano Hall, \
+                    consequent application to the Blockchain Masterclass every \
+                    Saturday from every Saturday from <strong>February 15th - 1st March, \
+                    2025 at  APK Lab B2 207, Kopanong Lab, Electrical and Electronics \
+                    Department, University of Johannesburg</strong>. \n\nYour interest \
+                    in coding and desire to upskill aligns with our vision of building \
+                    practical capacity in blockchain. We are glad to inform you that you \
+                    have been selected for the Demystifying Blockchain Masterclass. In this\
+                    training, you will be taken step by step from beginning to becoming a \
+                    Blockchain Developer.\n\n The venue for this training is <strong>Kopano Hall, \
                     Electrical and Electronics Department, APK Campus, University of \
-                    Johannesburg</strong>. \n\nYour interest in coding and desire to \
-                    upskill aligns with our vision of building practical capacity in \
-                    blockchain. We are glad to inform you that you have been selected \
-                    for the Demystifying Blockchain Masterclass. In this training, you \
-                    will be taken step by step from beginning to becoming a Blockchain \
-                    Developer.\n\n The venue for this training is <strong>Kopano Hall, \
-                    Electrical and Electronics Department, APK Campus, University of \
-                    Johannesburg; every Saturday from July 13th - 28th September</strong>. \
-                    You are only to come with your computer with a basic Python and \
+                    Johannesburg; every Saturday from February 15th - 1st March</strong>. \
+                    You are only to come with your computer with a basic Javascripts, Python and \
                     Golang programming knowledge; the rest will be provided, including \
                     lunch for every training day. We will also offer coding support during \
                     and after the Masterclass.\n\nOnce again, on behalf of our entire team, \
@@ -115,19 +114,16 @@ def auto_mail_sending(sender, instance, created, **kwargs):
                 email_link_title = 'UJ Blockchain'
 
             elif instance.application_status == 'Rejected':
-                email_subject = 'Application Status: Demystifying Blockchain Masterclass'
+                email_subject = 'Application Status: Blockchain Masterclass'
                 email_message = f'Hi {instance.first_name}. \n\nThank you for your interest and \
-                    consequent application to the Demystifying Blockchain \
-                    Masterclass. \n\nYour interest in coding and desire to upskill aligns with \
-                    our vision of building practical capacity in blockchain.\n\n Unfortunately, \
-                    you were not selected for the Masterclass. We received large volumes of \
-                    applications for the training, but we could only take a few for the \
-                    Masterclass. \n\n We understand your desire to attend the Masterclass \
-                    and your drive to upskill in Blockchain; yes, we do. There will be other \
-                    Masterclasses, Bootcamps, Hackathon, Media Events and Project \
-                    Demo coming up. We will be having the next bootcamp come September 2024; \
-                    this Bootcamp also comes with a hands-on where you will \
-                    be taught step by step by our development team.\n\n To ensure you register \
+                    consequent application to the Blockchain Masterclass. \n\nYour interest in \
+                    coding and desire to upskill aligns with our vision of building practical \
+                    capacity in blockchain.\n\n Unfortunately, you were not selected for the \
+                    Masterclass. We received large volumes of applications for the training, \
+                    but we could only take a few for the Masterclass. \n\n We understand your \
+                    desire to attend the Masterclass and your drive to upskill in Blockchain; \
+                    yes, we do. There will be other Masterclasses, Bootcamps, Hackathon, Media \
+                    Events and Project Demo coming up. \n\n To ensure you register \
                     in time, sign up for our newsletter. Our newsletters gives you up-to-date \
                     insight into our build stacks and projects we are currently working on. It \
                     also gives you the privilege of getting early registration links for \
@@ -181,4 +177,4 @@ def auto_mail_sending(sender, instance, created, **kwargs):
                 msg.attach_file(bootcamp_flyer)
 
             # send email
-            msg.send()
+            msg.send(fail_silently=True)
