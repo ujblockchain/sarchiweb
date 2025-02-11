@@ -14,7 +14,6 @@ from .models import Masterclass
 def auto_mail_sending(sender, instance, created, **kwargs):
     # avoid sending empty mails
     if (created or instance.application_status == 'Selected' or instance.application_status == 'Rejected'):
-
         # send email on registration complete
         sender_email = settings.DEFAULT_FROM_EMAIL
         recipient_email = [instance.email]
@@ -81,8 +80,8 @@ def auto_mail_sending(sender, instance, created, **kwargs):
             msg.content_subtype = 'html'
 
             # attached file
-            bootcamp_flyer = f'{settings.PROJECT_DIR}/static/images/Bootcamp.png'
-            msg.attach_file(bootcamp_flyer)
+            masterclass_flyer = f'{settings.PROJECT_DIR}/static/images/masterclass.png'
+            msg.attach_file(masterclass_flyer)
 
             # send email
             msg.send()
@@ -90,25 +89,22 @@ def auto_mail_sending(sender, instance, created, **kwargs):
         elif (instance.application_status == 'Selected' or instance.application_status == 'Rejected'):
             # once model is saved, trigger signal
             if instance.application_status == 'Selected':
-                email_subject = ('You Have Been Selected 🥳🎉: Blockchain Masterclass')
+                email_subject = 'You Have Been Selected 🥳🎉: Blockchain Masterclass'
                 email_message = f'Hi {instance.first_name}.\n\nThank you for your interest and \
                     consequent application to the Blockchain Masterclass every \
-                    Saturday from every Saturday from <strong>February 15th - 1st March, \
-                    2025 at  APK Lab B2 207, Kopanong Lab, Electrical and Electronics \
+                    Saturday:  <strong>February 15th, 22nd and 1st March, \
+                    2025; at  APK Kopanong Lab (Lab B2 207), Electrical and Electronics \
                     Department, University of Johannesburg</strong>. \n\nYour interest \
                     in coding and desire to upskill aligns with our vision of building \
                     practical capacity in blockchain. We are glad to inform you that you \
                     have been selected for the Demystifying Blockchain Masterclass. In this\
                     training, you will be taken step by step from beginning to becoming a \
-                    Blockchain Developer.\n\n The venue for this training is <strong>Kopano Hall, \
-                    Electrical and Electronics Department, APK Campus, University of \
-                    Johannesburg; every Saturday from February 15th - 1st March</strong>. \
-                    You are only to come with your computer with a basic Javascripts, Python and \
-                    Golang programming knowledge; the rest will be provided, including \
-                    lunch for every training day. We will also offer coding support during \
-                    and after the Masterclass.\n\nOnce again, on behalf of our entire team, \
-                    a big congratulations. We are excited and ready to begin this fantastic \
-                    journey of Blockchain development, step by step, with You!🤩🙌.'
+                    Blockchain Developer.\n\n You are only to come with your computer with a \
+                    basic Javascripts, Python and Golang programming knowledge; the rest will \
+                    be provided, including lunch for every training day. We will also offer \
+                    coding support during and after the Masterclass.\n\nOnce again, on behalf \
+                    of our entire team, a big congratulations. We are excited and ready to begin \
+                    this fantastic journey of Blockchain development, step by step, with You!🤩🙌.'
 
                 email_link = 'https://blockchain.uj.ac.za'
                 email_link_title = 'UJ Blockchain'
@@ -173,8 +169,8 @@ def auto_mail_sending(sender, instance, created, **kwargs):
 
             # attached file
             if instance.application_status == 'Selected':
-                bootcamp_flyer = f'{settings.PROJECT_DIR}/static/images/Bootcamp.png'
-                msg.attach_file(bootcamp_flyer)
+                masterclass_flyer = (f'{settings.PROJECT_DIR}/static/images/masterclass.png')
+                msg.attach_file(masterclass_flyer)
 
             # send email
-            msg.send(fail_silently=True)
+            msg.send()
