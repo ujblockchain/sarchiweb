@@ -5,5 +5,5 @@ class MasterclassConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'core.masterclass'
 
-    def ready(self):
-        import core.masterclass.signals
+    # def ready(self):
+    #     import core.masterclass.signals
