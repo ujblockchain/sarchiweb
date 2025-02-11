@@ -37,9 +37,9 @@ class BootcampView(View):
             'newsletter_form':
                 NewsletterEmailForm(),
             'registration_open':
-                current_timestamp > bootcamp_settings[0].opening_date if bootcamp_settings.exists() else False,
+                (current_timestamp > bootcamp_settings[0].opening_date if bootcamp_settings.exists() else False),
             'registration_closed':
-                current_timestamp > bootcamp_settings[0].closing_date if bootcamp_settings.exists() else False
+                (current_timestamp > bootcamp_settings[0].closing_date if bootcamp_settings.exists() else False),
         }
 
         return render(request, template_name, context)
@@ -50,14 +50,13 @@ class BootcampView(View):
 
         # check if request is ajax
         if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-
             # check if form is valid
             if form.is_valid():
                 # clean form
                 cleaned_data = form.cleaned_data
                 # update value
                 if cleaned_data['can_you_code'] == 'Can you code in HTML, CSS & Python':
-                    cleaned_data['can_you_code'] = 'No I can not code in HTML, CSS & Python'
+                    cleaned_data['can_you_code'] = ('No I can not code in HTML, CSS & Python')
                 else:
                     cleaned_data['can_you_code'] = form.cleaned_data['can_you_code']
 

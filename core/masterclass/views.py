@@ -40,9 +40,9 @@ class MasterclassView(View):
                 NewsletterEmailForm(),
             # bootcamp settings
             'registration_open':
-                current_timestamp > masterclass_config[0].opening_date if masterclass_config.exists() else False,
+                (current_timestamp > masterclass_config[0].opening_date if masterclass_config.exists() else False),
             'registration_closed':
-                current_timestamp > masterclass_config[0].closing_date if masterclass_config.exists() else False
+                (current_timestamp > masterclass_config[0].closing_date if masterclass_config.exists() else False),
         }
 
         return render(request, template_name, context)
@@ -53,7 +53,6 @@ class MasterclassView(View):
 
         # check if request is ajax
         if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-
             # check if form is valid
             if form.is_valid():
                 cleaned_data = form.cleaned_data
