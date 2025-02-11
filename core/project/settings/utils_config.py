@@ -17,7 +17,9 @@ TEMPLATES = [
             'environment':
                 'core.project.settings.jinja.env.JinjaEnvironment',
             'extensions': [
-                'jinja2.ext.loopcontrols', 'jinja2.ext.do', 'core.project.settings.jinja.extensions.DjangoNow'
+                'jinja2.ext.loopcontrols',
+                'jinja2.ext.do',
+                'core.project.settings.jinja.extensions.DjangoNow',
             ],
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -57,14 +59,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Email settings
 EMAIL_BACKEND = ENV.config('EMAIL_BACKEND')
-EMAIL_PORT = ENV.config('EMAIL_PORT')
 EMAIL_HOST = ENV.config('EMAIL_HOST')
+EMAIL_PORT = ENV.config('EMAIL_PORT', cast=int)
 EMAIL_HOST_USER = ENV.config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = ENV.config('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = ENV.config('DEFAULT_FROM_EMAIL')
 SERVER_EMAIL = ENV.config('SERVER_EMAIL')
 EMAIL_SUBJECT_PREFIX = ENV.config('EMAIL_SUBJECT_PREFIX')
-EMAIL_USE_TSL = ENV.config('EMAIL_USE_TSL')
+EMAIL_USE_TSL = ENV.config('EMAIL_USE_TSL', cast=bool)
 
 # Add reversion settings
 ADD_REVERSION_ADMIN = True
