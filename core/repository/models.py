@@ -7,7 +7,7 @@ class RepoInfo(models.Model):
     total_repo = models.IntegerField()
     total_commit = models.IntegerField(default=100)
     sha = models.CharField(max_length=300, default='', help_text='last commit sha recorded')
-    node_id = models.CharField(default='', help_text='last node id recorded')
+    node_id = models.CharField(max_length=200, default='', help_text='last node id recorded')
     date_created = models.DateTimeField(auto_now_add=True)
     timestamp = models.DateTimeField(default=timezone.now)
 

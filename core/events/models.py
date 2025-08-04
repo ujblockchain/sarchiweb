@@ -24,8 +24,8 @@ class Event(models.Model):
     info = models.TextField(max_length=240, help_text='event description')
     date = models.DateTimeField(help_text='date event starts')
     image = models.ImageField(upload_to='event/flyer', validators=[clean_image], help_text='event flyer or poster')
-    link_type = models.CharField(choices=link_action, default='Internal')
-    registration_link = models.URLField(default='https://blockchain.uj.ac.za')
+    link_type = models.CharField(max_length=200, choices=link_action, default='Internal')
+    registration_link = models.URLField(max_length=300, default='https://blockchain.uj.ac.za')
     website = models.URLField(default='https://blockchain.uj.ac.za', help_text='link to event website')
     last_update = models.DateTimeField(default=timezone.now)
 

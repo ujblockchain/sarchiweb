@@ -70,7 +70,7 @@ class TrainingBaseModel(models.Model):
     phone_number = models.CharField(max_length=30, default='')
     repo_link = models.URLField(null=True, blank=True, help_text='code sample link')
     expectation = models.TextField(max_length=800)
-    application_status = models.CharField(null=True, blank=True, choices=applicant_selection)
+    application_status = models.CharField(max_length=200, null=True, blank=True, choices=applicant_selection)
 
     class Meta:
         abstract = True
