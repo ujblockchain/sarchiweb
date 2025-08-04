@@ -7,8 +7,6 @@ ALLOWED_HOSTS = ['blockchain.uj.ac.za']
 ADMIN_PATH = ADMIN_PATH
 
 # Application definition
-
-# Application definition
 INSTALLED_APPS = [
     # third party apps
     'jazzmin',
