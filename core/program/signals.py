@@ -17,7 +17,7 @@ def auto_mail_sending(sender, instance, created, **kwargs):
         # send email on registration complete
         sender_email = settings.DEFAULT_FROM_EMAIL
         recipient_email = [instance.email]
-        email_salutation = 'Thanks,\n UJ Blockchain Team.'
+        email_salutation = 'Thanks,\n\n UJ Blockchain Team.'
 
         # email context init
         email_subject = ''
@@ -30,15 +30,15 @@ def auto_mail_sending(sender, instance, created, **kwargs):
             email_subject = 'UJ Blockchain Demo Day'
             email_message = f'Hi {instance.first_name},\n\n\
                 Thank you for your interest in attending the UJ Blockchain Demo Day Event, set to take \
-                place on October 3rd, 2024. Organized by the SA \
-                Swiss Chair in Blockchain Technology at the University of Johannesburg, this event \
+                place on August 15th, 2025. Organized by the South Africa - \
+                Switzerland Chair in Blockchain Technology at the University of Johannesburg, this event \
                 showcases our depth of research and expertise in Blockchain, \
-                AI and hardware. Projects ranging from drone designs and computer \
-                vision applications to 3D world reconstructions and decentralized \
-                solutions used by thousands will be displayed as we showcase our \
-                innovations and partnerships across industries since the year began. \n\n\
+                AI and Hardware. Projects ranging from drone designs, computer \
+                vision applications to AI and decentralized \
+                solutions will be displayed as we showcase our \
+                innovations since the year began. \n\n\
                 Kindly note that your application has been received and is slated for review \
-                by our Development Team within 72 hours. \n\n\
+                by our Development Team. \n\n\
                 Once again, thank you for applying for the UJ Blockchain Demo Day Event. \
                 We are excited and cannot wait to show you some amazing \
                 innovations we have been working on 🤩🙌.\
@@ -80,24 +80,24 @@ def auto_mail_sending(sender, instance, created, **kwargs):
             msg.attach_file(program_flyer)
 
             # send email
-            msg.send()
+            msg.send(fail_silently=True)
         else:
             # once model is saved, trigger signal
             if instance.application_status == 'Selected':
                 email_subject = 'You Have Been Selected 🥳🎉: UJ Blockchain Demo Day'
                 email_message = f'Hi {instance.first_name}, \n\n\
                     Thank you for your interest in attending the UJ Blockchain Demo Day Event, \
-                    set to take place on October 3rd, 2024. Organized by the SA \
-                    Swiss Chair in Blockchain Technology at the University of Johannesburg, \
+                    set to take place on August 15th, 2025. Organized by the South Africa - \
+                    Switzerland Chair in Blockchain Technology at the University of Johannesburg, \
                     this event showcases our depth of research and expertise in Blockchain, \
                     AI and hardware. Projects ranging from drone designs and computer vision \
-                    applications to 3D world reconstructions and decentralized solutions used \
-                    by thousands will be displayed as we showcase our innovations and \
-                    partnerships across industries since the year began. \n\n\
+                    applications to AI and decentralized solutions \
+                    will be displayed as we showcase our innovations \
+                    since the year began. \n\n\
                     Kindly note that you have been selected to attend the Demo Day \
                     event. The event will be held at \
                     <strong style="color: #ff6522 !important;">10 am</strong> on the \
-                    <strong style="color: #ff6522 !important;">3rd of October 2024, at the \
+                    <strong style="color: #ff6522 !important;">15th of August 2025, at the \
                     Johannesburg Business School auditorium GLV1 behind the reception</strong>. \n\n\
                     Once again, thank you for applying for the UJ Blockchain Demo Day Event. \
                     We are excited and cannot wait to show you some amazing \
@@ -163,4 +163,4 @@ def auto_mail_sending(sender, instance, created, **kwargs):
                 msg.attach_file(program_flyer)
 
             # send email
-            msg.send()
+            msg.send(fail_silently=True)
