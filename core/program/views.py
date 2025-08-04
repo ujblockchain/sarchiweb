@@ -54,12 +54,12 @@ class ProgramView(View):
         if request.headers.get('x-requested-with') == 'XMLHttpRequest':
             # check if form is valid
             if form.is_valid():
-                cleaned_data = form.cleaned_data()
+                cleaned_data = form.cleaned_data
                 email = form.cleaned_data['email']
 
                 # check if applicant has register before
-                if ProgramConfig.objects.filter(
-                    Q(email=email) & Q(date_created__month=9) & Q(date_created__year=2024)
+                if ProgramSignUp.objects.filter(
+                    Q(email=email) & Q(date_created__month=current_timestamp.month) & Q(date_created__year=current_timestamp.year)
                 ).exists():
                     return JsonResponse({
                         'message': 'duplicate_error',
@@ -72,7 +72,7 @@ class ProgramView(View):
                     )
 
                     # create model instance
-                    ProgramSignUp.objects.create(**cleaned_data, program_config=program_config[0])
+                    ProgramSignUp.objects.create(**cleaned_data, program_settings=program_config[0])
 
                     return JsonResponse({
                         'message': 'success',
