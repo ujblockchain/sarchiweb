@@ -30,7 +30,7 @@ collectstatic:
 
 .PHONY:runserver
 runserver:
-	poetry run python -m core.manage runserver_plus
+	poetry run python -m core.manage runserver
 
 
 .PHONY:huey
