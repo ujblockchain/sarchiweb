@@ -6,6 +6,7 @@ from django.core import mail
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.template.loader import render_to_string
+from django.contrib.staticfiles import finders
 
 from .models import ProgramSignUp
 
@@ -13,7 +14,11 @@ from .models import ProgramSignUp
 @receiver(post_save, sender=ProgramSignUp)
 def auto_mail_sending(sender, instance, created, **kwargs):
     # avoid sending empty mails
-    if (created or instance.application_status == 'Selected' or instance.application_status == 'Rejected'):
+    if (
+        created
+        or instance.application_status == 'Selected'
+        or instance.application_status == 'Rejected'
+    ):
         # send email on registration complete
         sender_email = settings.DEFAULT_FROM_EMAIL
         recipient_email = [instance.email]
@@ -68,7 +73,7 @@ def auto_mail_sending(sender, instance, created, **kwargs):
                 reply_to=[config('ADMIN_REPLY_EMAIL')],
                 headers={
                     'X-PM-Message-Stream': 'outbound',
-                    'Message-ID': f'{randint(1, 1000)}'
+                    'Message-ID': f'{randint(1, 1000)}',
                 },
             )
 
@@ -76,7 +81,7 @@ def auto_mail_sending(sender, instance, created, **kwargs):
             msg.content_subtype = 'html'
 
             # attached file
-            program_flyer = f'{settings.PROJECT_DIR}/static/images/flyer.jpg'
+            program_flyer = finders.find('images/flyer.png')
             msg.attach_file(program_flyer)
 
             # send email
@@ -150,7 +155,7 @@ def auto_mail_sending(sender, instance, created, **kwargs):
                 reply_to=[config('ADMIN_REPLY_EMAIL')],
                 headers={
                     'X-PM-Message-Stream': 'outbound',
-                    'Message-ID': f'{randint(1, 1000)}'
+                    'Message-ID': f'{randint(1, 1000)}',
                 },
             )
 
@@ -159,7 +164,7 @@ def auto_mail_sending(sender, instance, created, **kwargs):
 
             # attached file
             if instance.application_status == 'Selected':
-                program_flyer = f'{settings.PROJECT_DIR}/static/images/flyer.jpg'
+                program_flyer = finders.find('images/flyer.png')
                 msg.attach_file(program_flyer)
 
             # send email
