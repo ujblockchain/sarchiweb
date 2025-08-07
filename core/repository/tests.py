@@ -1,9 +1,7 @@
-from datetime import datetime
-
 from decouple import config
 from django.db.models import signals
 from django.test import TestCase
-from django.utils.timezone import utc
+from django.utils import timezone
 from model_bakery import baker
 
 from .models import RepoInfo
@@ -13,7 +11,7 @@ class RepoTest(TestCase):
 
     def setUp(self):
         # init current time (timezone aware)
-        self.current_timestamp = datetime.now().replace(tzinfo=utc)
+        self.current_timestamp = timezone.now()
 
     @classmethod
     def setUpTestData(cls):

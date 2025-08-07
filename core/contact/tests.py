@@ -1,9 +1,7 @@
-from datetime import datetime
-
 from django.db.models import signals
 from django.test import TestCase
 from django.urls import reverse
-from django.utils.timezone import utc
+from django.utils import timezone
 from model_bakery import baker
 
 from .forms import UserMessageForm
@@ -14,7 +12,7 @@ class ContactTest(TestCase):
 
     def setUp(self):
         # init current time (timezone aware)
-        self.current_timestamp = datetime.now().replace(tzinfo=utc)
+        self.current_timestamp = timezone.now()
 
     @classmethod
     def setUpTestData(cls):
@@ -29,7 +27,7 @@ class ContactTest(TestCase):
             email='johndeo@ujblockchain.co.za',
             phone='+27111111111',
             message='Hello',
-            timestamp=datetime.now().replace(tzinfo=utc),
+            timestamp=timezone.now()
         )
 
     def tearDown(self):
@@ -70,7 +68,7 @@ class ContactFormTestClass(TestCase):
                 'name': 'John Deo',
                 'email': 'johndeo@ujblockchain.co.za',
                 'phone': '+27111111111',
-                'message': 'Hello'
+                'message': 'Hello',
             },
         )
 

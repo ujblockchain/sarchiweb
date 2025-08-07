@@ -1,10 +1,9 @@
 import ast
-from datetime import datetime
 
-from django.utils.timezone import utc
+from django.utils import timezone
 
 # init current time
-current_timestamp = datetime.now().replace(tzinfo=utc)
+current_timestamp = timezone.now()
 
 
 def dateformat(value):
