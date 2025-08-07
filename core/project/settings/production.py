@@ -53,3 +53,11 @@ RECAPTCHA_REQUIRED_SCORE = ENV.config('RECAPTCHA_REQUIRED_SCORE', cast=float)
 CORS_ALLOWED_ORIGINS = [
     'https://blockchain.uj.ac.za',
 ]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://blockchain.uj.ac.za',
+]
+
+CORS_ORIGIN_WHITELIST = [
+    'https://blockchain.uj.ac.za',
+]
