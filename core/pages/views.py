@@ -14,7 +14,9 @@ from .github_api import get_github_commits
 # init current time, timezone aware
 current_timestamp = datetime.now()
 
-
+class RView(TemplateView):
+    template_name = 'email/email.html'
+    
 class HomeView(TemplateView):
     template_name = 'pages/index.html'
 

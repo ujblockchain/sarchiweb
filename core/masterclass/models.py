@@ -19,7 +19,6 @@ class MasterclassConfig(EventBase):
 
 
 class Masterclass(TrainingBaseModel):
-    masterclass_settings = models.ForeignKey('MasterclassConfig', on_delete=models.CASCADE, null=True, blank=True)
     date_created = models.DateTimeField(auto_now_add=True)
     timestamp = models.DateTimeField(default=timezone.now)
 

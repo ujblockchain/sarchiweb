@@ -28,18 +28,20 @@ class BootcampView(View):
 
         # init context
         context = {
-            'form':
-                UserMessageForm(),
-            'training_form':
-                BootcampForm(),
-            'partners':
-                Partners.objects.filter(publish=True),
-            'newsletter_form':
-                NewsletterEmailForm(),
-            'registration_open':
-                (current_timestamp > bootcamp_settings[0].opening_date if bootcamp_settings.exists() else False),
-            'registration_closed':
-                (current_timestamp > bootcamp_settings[0].closing_date if bootcamp_settings.exists() else False),
+            'form': UserMessageForm(),
+            'training_form': BootcampForm(),
+            'partners': Partners.objects.filter(publish=True),
+            'newsletter_form': NewsletterEmailForm(),
+            'registration_open': (
+                current_timestamp > bootcamp_settings[0].opening_date
+                if bootcamp_settings.exists()
+                else False
+            ),
+            'registration_closed': (
+                current_timestamp > bootcamp_settings[0].closing_date
+                if bootcamp_settings.exists()
+                else False
+            ),
         }
 
         return render(request, template_name, context)
@@ -56,22 +58,21 @@ class BootcampView(View):
                 cleaned_data = form.cleaned_data
                 # update value
                 if cleaned_data['can_you_code'] == 'Can you code in HTML, CSS & Python':
-                    cleaned_data['can_you_code'] = ('No I can not code in HTML, CSS & Python')
+                    cleaned_data['can_you_code'] = (
+                        'No I can not code in HTML, CSS & Python'
+                    )
                 else:
                     cleaned_data['can_you_code'] = form.cleaned_data['can_you_code']
 
-                # get bootcamp settings
-                bootcamp_settings = BootcampConfig.objects.order_by('-date_created').filter(
-                    Q(closing_date__gte=current_timestamp)
-                )
-
                 # create model instance
-                BootcampSignup.objects.create(**cleaned_data, bootcamp_settings=bootcamp_settings[0])
+                BootcampSignup.objects.create(**cleaned_data)
 
-                return JsonResponse({
-                    'message': 'success',
-                    'status': 'Thank You. Your Application has been Submitted Successfully.',
-                })
+                return JsonResponse(
+                    {
+                        'message': 'success',
+                        'status': 'Thank You. Your Application has been Submitted Successfully.',
+                    }
+                )
 
             else:
                 return JsonResponse({'message': 'error', 'error': form.errors})

@@ -29,20 +29,22 @@ class MasterclassView(View):
 
         # init context
         context = {
-            'form':
-                UserMessageForm(),
-            'training_form':
-                MasterclassForm(),
-            'partners':
-                Partners.objects.filter(publish=True),
+            'form': UserMessageForm(),
+            'training_form': MasterclassForm(),
+            'partners': Partners.objects.filter(publish=True),
             # newsletter form
-            'newsletter_form':
-                NewsletterEmailForm(),
+            'newsletter_form': NewsletterEmailForm(),
             # bootcamp settings
-            'registration_open':
-                (current_timestamp > masterclass_config[0].opening_date if masterclass_config.exists() else False),
-            'registration_closed':
-                (current_timestamp > masterclass_config[0].closing_date if masterclass_config.exists() else False),
+            'registration_open': (
+                current_timestamp > masterclass_config[0].opening_date
+                if masterclass_config.exists()
+                else False
+            ),
+            'registration_closed': (
+                current_timestamp > masterclass_config[0].closing_date
+                if masterclass_config.exists()
+                else False
+            ),
         }
 
         return render(request, template_name, context)
@@ -57,18 +59,15 @@ class MasterclassView(View):
             if form.is_valid():
                 cleaned_data = form.cleaned_data
 
-                # get latest  bootcamp settings
-                masterclass_config = MasterclassConfig.objects.order_by('-date_created').filter(
-                    Q(closing_date__gte=current_timestamp.now())
-                )
-
                 # create model instance
-                Masterclass.objects.create(**cleaned_data, masterclass_settings=masterclass_config[0])
+                Masterclass.objects.create(**cleaned_data)
 
-                return JsonResponse({
-                    'message': 'success',
-                    'status': 'Thank You. Your Application has been Submitted Successfully.',
-                })
+                return JsonResponse(
+                    {
+                        'message': 'success',
+                        'status': 'Thank You. Your Application has been Submitted Successfully.',
+                    }
+                )
 
             else:
                 return JsonResponse({'message': 'error', 'error': form.errors})

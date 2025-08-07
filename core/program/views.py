@@ -22,24 +22,28 @@ class ProgramView(View):
         # set template
         template_name = 'forms/program-form.html'
         # get latest record
-        program_config = ProgramConfig.objects.order_by('-date_created').filter(Q(closing_date__gte=current_timestamp))
+        program_config = ProgramConfig.objects.order_by('-date_created').filter(
+            Q(closing_date__gte=current_timestamp)
+        )
 
         # init context
         context = {
-            'form':
-                UserMessageForm(),
-            'program_form':
-                ProgramForm(),
-            'partners':
-                Partners.objects.filter(publish=True),
+            'form': UserMessageForm(),
+            'program_form': ProgramForm(),
+            'partners': Partners.objects.filter(publish=True),
             # newsletter form
-            'newsletter_form':
-                NewsletterEmailForm(),
+            'newsletter_form': NewsletterEmailForm(),
             # program settings
-            'registration_open':
-                current_timestamp > program_config[0].opening_date if program_config.exists() else False,
-            'registration_closed':
-                current_timestamp > program_config[0].closing_date if program_config.exists() else False
+            'registration_open': (
+                current_timestamp > program_config[0].opening_date
+                if program_config.exists()
+                else False
+            ),
+            'registration_closed': (
+                current_timestamp > program_config[0].closing_date
+                if program_config.exists()
+                else False
+            ),
         }
 
         # render template
@@ -59,25 +63,27 @@ class ProgramView(View):
 
                 # check if applicant has register before
                 if ProgramSignUp.objects.filter(
-                    Q(email=email) & Q(date_created__month=current_timestamp.month) & Q(date_created__year=current_timestamp.year)
+                    Q(email=email)
+                    & Q(date_created__month=current_timestamp.month)
+                    & Q(date_created__year=current_timestamp.year)
                 ).exists():
-                    return JsonResponse({
-                        'message': 'duplicate_error',
-                        'error': 'You have already registered for this event!',
-                    })
-                else:
-                    # get program settings
-                    program_config = ProgramConfig.objects.order_by('-date_created').filter(
-                        Q(closing_date__gte=current_timestamp)
+                    return JsonResponse(
+                        {
+                            'message': 'duplicate_error',
+                            'error': 'You have already registered for this event!',
+                        }
                     )
+                else:
 
                     # create model instance
-                    ProgramSignUp.objects.create(**cleaned_data, program_settings=program_config[0])
+                    ProgramSignUp.objects.create(**cleaned_data)
 
-                    return JsonResponse({
-                        'message': 'success',
-                        'status': 'Thank You. Your Application has been Submitted Successfully.',
-                    })
+                    return JsonResponse(
+                        {
+                            'message': 'success',
+                            'status': 'Thank You. Your Application has been Submitted Successfully.',
+                        }
+                    )
 
             else:
                 return JsonResponse({'message': 'error', 'error': form.errors})

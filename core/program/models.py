@@ -47,13 +47,16 @@ class ProgramSignUp(models.Model):
     last_name = models.CharField(max_length=100)
     email = models.EmailField()
     gender = models.CharField(max_length=50, choices=gender, default='Female')
-    nationality = models.CharField(max_length=50, choices=nationality, default='South Africa')
+    nationality = models.CharField(
+        max_length=50, choices=nationality, default='South Africa'
+    )
     phone_number = models.CharField(max_length=30, default='')
-    organization = models.CharField(max_length=300, default='University of Johannesburg')
+    organization = models.CharField(
+        max_length=300, default='University of Johannesburg'
+    )
     expectation = models.TextField(max_length=800)
-    application_status = models.CharField(max_length=200, null=True, blank=True, choices=applicant_selection)
-    program_settings = models.ForeignKey(
-        'ProgramConfig', on_delete=models.CASCADE, null=True, blank=True, help_text='program settings'
+    application_status = models.CharField(
+        max_length=200, null=True, blank=True, choices=applicant_selection
     )
     date_created = models.DateTimeField(auto_now_add=True)
     timestamp = models.DateTimeField(default=timezone.now)
@@ -68,18 +71,26 @@ class ProgramSignUp(models.Model):
 
 
 class ProjectBuild(models.Model):
-    project_id = ShortUUIDField(length=16, max_length=40, alphabet='abcdefg1234', primary_key=True)
+    project_id = ShortUUIDField(
+        length=16, max_length=40, alphabet='abcdefg1234', primary_key=True
+    )
     title = models.CharField(max_length=200, help_text='project tile')
     slug = AutoSlugField(populate_from='title', unique_with=['date_created'])
     summary = models.TextField(max_length=500, help_text='about project')
     project_progress = models.IntegerField(help_text='project progress')
     project_commit_count = models.IntegerField(help_text='project commit count')
     distribution_count = models.IntegerField(help_text='project distribution')
-    total_distribution_count = models.IntegerField(help_text='total project distribution')
+    total_distribution_count = models.IntegerField(
+        help_text='total project distribution'
+    )
     lines_of_code = models.IntegerField(help_text='project lines of code')
     coding_hours = models.IntegerField(help_text='project coding hours')
-    distribution_section_stats = models.CharField(max_length=100, help_text='distribution section count')
-    distribution_section_stats_end = models.CharField(max_length=100, help_text='distribution end section count')
+    distribution_section_stats = models.CharField(
+        max_length=100, help_text='distribution section count'
+    )
+    distribution_section_stats_end = models.CharField(
+        max_length=100, help_text='distribution end section count'
+    )
     distribution_section_stats_end_summary = models.TextField(
         max_length=500, help_text='short summary on project phases'
     )
