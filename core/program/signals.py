@@ -7,7 +7,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.template.loader import render_to_string
 from django.contrib.staticfiles import finders
-import sentry_sdk
 
 from .models import ProgramSignUp
 
@@ -87,10 +86,7 @@ def auto_mail_sending(sender, instance, created, **kwargs):
             msg.attach_file(program_flyer)
 
             # send email
-            try:
-                msg.send(fail_silently=False)
-            except Exception as e:
-                sentry_sdk.capture_exception(e)
+            msg.send()
         else:
             # once model is saved, trigger signal
             if instance.application_status == 'Selected':
@@ -173,4 +169,4 @@ def auto_mail_sending(sender, instance, created, **kwargs):
                 msg.attach_file(program_flyer)
 
             # send email
-            msg.send(fail_silently=False)
+            msg.send()
