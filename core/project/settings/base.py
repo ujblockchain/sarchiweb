@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'reversion',
     'reversion_compare',
     'huey.contrib.djhuey',
+    'anymail',
     # app
     'core.account.apps.AccountConfig',
     'core.blog.apps.BlogConfig',
