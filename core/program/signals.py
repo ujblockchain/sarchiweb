@@ -29,6 +29,7 @@ def auto_mail_sending(sender, instance, created, **kwargs):
         email_message = ''
         email_link = ''
         email_link_title = ''
+        application_status= instance.application_status
 
         if created:
             # send email on registration complete
@@ -61,6 +62,7 @@ def auto_mail_sending(sender, instance, created, **kwargs):
                     'email_link': email_link,
                     'email_link_title': email_link_title,
                     'email_salutation': email_salutation,
+                    'application_status': application_status,
                 },
             )
 
@@ -145,6 +147,7 @@ def auto_mail_sending(sender, instance, created, **kwargs):
                     'email_link': email_link,
                     'email_link_title': email_link_title,
                     'email_salutation': email_salutation,
+                    'application_status': application_status,
                 },
             )
 
