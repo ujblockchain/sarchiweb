@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from django.utils import timezone
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
@@ -11,12 +9,14 @@ from core.partners.models import Partners
 from .models import Blog
 
 # init current time
-current_timestamp = datetime.now().replace(tzinfo=timezone.utc)
+current_timestamp = timezone.now()
 
 
 class PostListViews(ListView):
     model = Blog
-    queryset = Blog.objects.filter(publish=True, schedule_publish__lte=current_timestamp)
+    queryset = Blog.objects.filter(
+        publish=True, schedule_publish__lte=current_timestamp
+    )
     context_object_name = 'post'
     template_name = 'blog/blog-list.html'
     paginate_by = 4
@@ -32,7 +32,9 @@ class PostListViews(ListView):
 
 class PostDetailViews(DetailView):
     model = Blog
-    queryset = Blog.objects.filter(publish=True, schedule_publish__lte=current_timestamp)
+    queryset = Blog.objects.filter(
+        publish=True, schedule_publish__lte=current_timestamp
+    )
     context_object_name = 'post'
     template_name = 'blog/blog-detail.html'
 

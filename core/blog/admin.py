@@ -110,7 +110,7 @@ class BlogAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 
     @admin.display(description='Post Schedule')
     def schedule_post(self, obj):
-        if obj.schedule_publish > timezone.datetime.now().replace(tzinfo=timezone.utc):
+        if obj.schedule_publish > timezone.now():
             return format_html(
                 '<span style="color:white; background:#DD3438; font-size:14px; padding: 5px 8px; border:1px solid red; border-radius:10px;">*Yes</span>'  # noqa: E501
             )
