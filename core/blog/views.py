@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from django.utils.timezone import utc
+from django.utils import timezone
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 
@@ -11,7 +11,7 @@ from core.partners.models import Partners
 from .models import Blog
 
 # init current time
-current_timestamp = datetime.now().replace(tzinfo=utc)
+current_timestamp = datetime.now().replace(tzinfo=timezone.utc)
 
 
 class PostListViews(ListView):
