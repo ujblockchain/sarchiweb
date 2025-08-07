@@ -10,12 +10,9 @@ TEMPLATES = [
         'DIRS': [f'{BASE_DIR}/core/jinja2'],
         'APP_DIRS': True,
         'OPTIONS': {
-            'autoescape':
-                False,
-            'undefined':
-                jinja2.StrictUndefined,
-            'environment':
-                'core.project.settings.jinja.env.JinjaEnvironment',
+            'autoescape': False,
+            'undefined': jinja2.StrictUndefined,
+            'environment': 'core.project.settings.jinja.env.JinjaEnvironment',
             'extensions': [
                 'jinja2.ext.loopcontrols',
                 'jinja2.ext.do',
@@ -66,7 +63,8 @@ EMAIL_HOST_PASSWORD = ENV.config('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = ENV.config('DEFAULT_FROM_EMAIL')
 SERVER_EMAIL = ENV.config('SERVER_EMAIL')
 EMAIL_SUBJECT_PREFIX = ENV.config('EMAIL_SUBJECT_PREFIX')
-EMAIL_USE_TSL = ENV.config('EMAIL_USE_TSL', cast=bool)
+EMAIL_USE_TLS = ENV.config('EMAIL_USE_TLS', cast=bool)
+EMAIL_USE_SSL = ENV.config('EMAIL_USE_SSL', cast=bool)
 
 # Add reversion settings
 ADD_REVERSION_ADMIN = True
