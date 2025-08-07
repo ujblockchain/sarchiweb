@@ -159,7 +159,7 @@ def auto_mail_sending(sender, instance, created, **kwargs):
 
             # attached file
             if instance.application_status == 'Selected':
-                program_flyer = f'{settings.PROJECT_DIR}/static/images/flyer.png'
+                program_flyer = f'{settings.PROJECT_DIR}/static/images/flyer.jpg'
                 msg.attach_file(program_flyer)
 
             # send email
