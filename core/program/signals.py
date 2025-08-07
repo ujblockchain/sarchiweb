@@ -85,7 +85,7 @@ def auto_mail_sending(sender, instance, created, **kwargs):
             msg.attach_file(program_flyer)
 
             # send email
-            msg.send(fail_silently=True)
+            msg.send(fail_silently=False)
         else:
             # once model is saved, trigger signal
             if instance.application_status == 'Selected':
@@ -168,4 +168,4 @@ def auto_mail_sending(sender, instance, created, **kwargs):
                 msg.attach_file(program_flyer)
 
             # send email
-            msg.send(fail_silently=True)
+            msg.send(fail_silently=False)
