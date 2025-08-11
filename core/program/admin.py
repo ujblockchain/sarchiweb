@@ -9,17 +9,31 @@ from core.blog.admin import visibility_action
 from .models import ProgramConfig, ProgramSignUp, ProjectBuild
 
 
-@admin.display(description='Approve/Reject Selection')
-def status_action(modeladmin, request, querryset):
+@admin.display(description='Approve Selection')
+def status_action_selected(modeladmin, request, querryset):
+    if querryset.filter(application_status='Rejected'):
+        querryset.update(application_status='Selected')
+        messages.add_message(
+            request, messages.SUCCESS, 'form application selected successfully'
+        )
+    elif querryset.filter(application_status__isnull=True):
+        querryset.update(application_status='Selected')
+        messages.add_message(
+            request, messages.SUCCESS, 'form application selected successfully'
+        )
+
+
+@admin.display(description='Reject Selection')
+def status_action_rejected(modeladmin, request, querryset):
     if querryset.filter(application_status='Selected'):
         querryset.update(application_status='Rejected')
         messages.add_message(
             request, messages.SUCCESS, 'form application rejected successfully'
         )
-    elif querryset.filter(application_status='Rejected'):
+    elif querryset.filter(application_status__isnull=True):
         querryset.update(application_status='Selected')
         messages.add_message(
-            request, messages.SUCCESS, 'form application selected successfully'
+            request, messages.SUCCESS, 'form application rejected successfully'
         )
 
 
@@ -61,15 +75,36 @@ class ProgramConfigAdmin(admin.ModelAdmin):
 class ProgramSignupAdmin(ImportExportModelAdmin, CompareVersionAdmin):
     resource_class = ProgramResource
     list_display = [
-        'first_name', 'last_name', 'gender', 'email', 'phone_number', 'nationality', 'organization',
-        'application_status', 'timestamp'
+        'first_name',
+        'last_name',
+        'gender',
+        'email',
+        'phone_number',
+        'nationality',
+        'organization',
+        'application_status',
+        'timestamp',
     ]
-    list_display_links = ['first_name', 'last_name', 'email', 'organization', 'application_status']
+    list_display_links = [
+        'first_name',
+        'last_name',
+        'email',
+        'organization',
+        'application_status',
+    ]
     list_filter = ['application_status']
-    actions = [status_action]
+    actions = [status_action_selected, status_action_rejected]
     search_fields = [
-        'first_name', 'last_name', 'gender', 'email', 'nationality', 'expectation', 'phone_number', 'organization',
-        'application_status', 'timestamp'
+        'first_name',
+        'last_name',
+        'gender',
+        'email',
+        'nationality',
+        'expectation',
+        'phone_number',
+        'organization',
+        'application_status',
+        'timestamp',
     ]
     readonly_fields = [
         'info',
@@ -89,7 +124,14 @@ class ProgramSignupAdmin(ImportExportModelAdmin, CompareVersionAdmin):
             {
                 'classes': ['wide'],
                 'fields': [
-                    'first_name', 'last_name', 'gender', 'email', 'nationality', 'phone_number', 'organization', 'info'
+                    'first_name',
+                    'last_name',
+                    'gender',
+                    'email',
+                    'nationality',
+                    'phone_number',
+                    'organization',
+                    'info',
                 ],
             },
         ],
@@ -126,19 +168,43 @@ class ProgramSignupAdmin(ImportExportModelAdmin, CompareVersionAdmin):
 
 class ProjectAdmin(admin.ModelAdmin):
     list_display = [
-        'project_id', 'title', 'project_progress', 'project_commit_count', 'distribution_count',
-        'total_distribution_count', 'lines_of_code', 'coding_hours', 'project_start_time', 'project_end_time',
-        'last_update'
+        'project_id',
+        'title',
+        'project_progress',
+        'project_commit_count',
+        'distribution_count',
+        'total_distribution_count',
+        'lines_of_code',
+        'coding_hours',
+        'project_start_time',
+        'project_end_time',
+        'last_update',
     ]
     list_display_links = [
-        'project_id', 'title', 'project_progress', 'project_commit_count', 'distribution_count',
-        'total_distribution_count', 'lines_of_code', 'coding_hours', 'project_start_time', 'project_end_time'
+        'project_id',
+        'title',
+        'project_progress',
+        'project_commit_count',
+        'distribution_count',
+        'total_distribution_count',
+        'lines_of_code',
+        'coding_hours',
+        'project_start_time',
+        'project_end_time',
     ]
     list_filter = ['publish']
     search_fields = [
-        'project_id', 'title', 'project_progress', 'project_commit_count', 'distribution_count',
-        'total_distribution_count', 'lines_of_code', 'coding_hours', 'project_start_time', 'project_end_time',
-        'last_update'
+        'project_id',
+        'title',
+        'project_progress',
+        'project_commit_count',
+        'distribution_count',
+        'total_distribution_count',
+        'lines_of_code',
+        'coding_hours',
+        'project_start_time',
+        'project_end_time',
+        'last_update',
     ]
     readonly_fields = ['project_id', 'slug']
     list_per_page = 50
@@ -154,7 +220,13 @@ class ProjectAdmin(admin.ModelAdmin):
             'General Information',
             {
                 'classes': ['wide'],
-                'fields': ['project_id', 'title', 'project_progress', 'project_start_time', 'project_end_time'],
+                'fields': [
+                    'project_id',
+                    'title',
+                    'project_progress',
+                    'project_start_time',
+                    'project_end_time',
+                ],
             },
         ],
         [
@@ -162,8 +234,12 @@ class ProjectAdmin(admin.ModelAdmin):
             {
                 'classes': ['collapse', 'wide'],
                 'fields': [
-                    'summary', 'project_commit_count', 'distribution_count', 'total_distribution_count',
-                    'lines_of_code', 'coding_hours'
+                    'summary',
+                    'project_commit_count',
+                    'distribution_count',
+                    'total_distribution_count',
+                    'lines_of_code',
+                    'coding_hours',
                 ],
             },
         ],
@@ -172,8 +248,10 @@ class ProjectAdmin(admin.ModelAdmin):
             {
                 'classes': ['collapse', 'wide'],
                 'fields': [
-                    'distribution_section_stats', 'distribution_section_stats_end',
-                    'distribution_section_stats_end_summary', 'current_stage_section_end_time'
+                    'distribution_section_stats',
+                    'distribution_section_stats_end',
+                    'distribution_section_stats_end_summary',
+                    'current_stage_section_end_time',
                 ],
             },
         ],
