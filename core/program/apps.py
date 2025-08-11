@@ -5,5 +5,5 @@ class ProgramConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'core.program'
 
-    def ready(self):
-        import core.program.signals
+    # def ready(self):
+    #     import core.program.signals

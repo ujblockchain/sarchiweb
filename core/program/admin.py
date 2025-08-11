@@ -1,4 +1,4 @@
-from django.contrib import admin
+from django.contrib import admin, messages
 from django.utils.html import format_html
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
@@ -7,6 +7,20 @@ from reversion_compare.admin import CompareVersionAdmin
 from core.blog.admin import visibility_action
 
 from .models import ProgramConfig, ProgramSignUp, ProjectBuild
+
+
+@admin.display(description='Aprrove/Reject Selection')
+def status_action(modeladmin, request, querryset):
+    if querryset.filter(application_status='Selected'):
+        querryset.update(application_status='Rejected')
+        messages.add_message(
+            request, messages.SUCCESS, 'form application rejected successfully'
+        )
+    elif querryset.filter(application_status='Rejected'):
+        querryset.update(application_status='Selected')
+        messages.add_message(
+            request, messages.SUCCESS, 'form application selected successfully'
+        )
 
 
 class ProgramResource(resources.ModelResource):
@@ -52,6 +66,7 @@ class ProgramSignupAdmin(ImportExportModelAdmin, CompareVersionAdmin):
     ]
     list_display_links = ['first_name', 'last_name', 'email', 'organization', 'application_status']
     list_filter = ['application_status']
+    actions = ['status_action']
     search_fields = [
         'first_name', 'last_name', 'gender', 'email', 'nationality', 'expectation', 'phone_number', 'organization',
         'application_status', 'timestamp'
