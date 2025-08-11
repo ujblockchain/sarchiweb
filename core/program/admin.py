@@ -2,7 +2,7 @@ from django.contrib import admin, messages
 from django.utils.html import format_html
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
-from django.model import Q
+from django.db.models import Q
 from reversion_compare.admin import CompareVersionAdmin
 
 from core.blog.admin import visibility_action
