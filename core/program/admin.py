@@ -10,32 +10,6 @@ from core.blog.admin import visibility_action
 from .models import ProgramConfig, ProgramSignUp, ProjectBuild
 
 
-@admin.display(description='Approve Selection')
-def status_action_selected(modeladmin, request, queryset):
-    rejected_form_application = queryset.filter(
-        Q(application_status='Rejected') | Q(application_status__isnull=True)
-    )
-    for obj in rejected_form_application:
-        obj.application_status = 'Selected'
-        obj.save()
-    messages.add_message(
-        request, messages.SUCCESS, 'form application selected successfully'
-    )
-
-
-@admin.display(description='Reject Selection')
-def status_action_rejected(modeladmin, request, queryset):
-    selected_form_application = queryset.filter(
-        Q(application_status='Selected') | Q(application_status__isnull=True)
-    )
-    for obj in selected_form_application:
-        obj.application_status = 'Rejected'
-        obj.save()
-    messages.add_message(
-        request, messages.SUCCESS, 'form application rejected successfully'
-    )
-
-
 class ProgramResource(resources.ModelResource):
 
     class Meta:
@@ -92,7 +66,6 @@ class ProgramSignupAdmin(ImportExportModelAdmin, CompareVersionAdmin):
         'application_status',
     ]
     list_filter = ['application_status']
-    actions = [status_action_selected, status_action_rejected]
     search_fields = [
         'first_name',
         'last_name',
