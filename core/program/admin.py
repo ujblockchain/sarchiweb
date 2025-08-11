@@ -16,7 +16,7 @@ class ProgramResource(resources.ModelResource):
         skip_unchanged = True
         report_skipped = True
         exclude = ['id']
-        import_id_fields = ['id']
+        import_id_fields = ['email']
 
 
 class ProgramConfigAdmin(admin.ModelAdmin):
