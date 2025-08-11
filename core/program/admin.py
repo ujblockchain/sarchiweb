@@ -9,7 +9,7 @@ from core.blog.admin import visibility_action
 from .models import ProgramConfig, ProgramSignUp, ProjectBuild
 
 
-@admin.display(description='Aprrove/Reject Selection')
+@admin.display(description='Approve/Reject Selection')
 def status_action(modeladmin, request, querryset):
     if querryset.filter(application_status='Selected'):
         querryset.update(application_status='Rejected')
@@ -66,7 +66,7 @@ class ProgramSignupAdmin(ImportExportModelAdmin, CompareVersionAdmin):
     ]
     list_display_links = ['first_name', 'last_name', 'email', 'organization', 'application_status']
     list_filter = ['application_status']
-    actions = ['status_action]
+    actions = [status_action]
     search_fields = [
         'first_name', 'last_name', 'gender', 'email', 'nationality', 'expectation', 'phone_number', 'organization',
         'application_status', 'timestamp'
