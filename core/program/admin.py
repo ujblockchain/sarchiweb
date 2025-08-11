@@ -66,7 +66,7 @@ class ProgramSignupAdmin(ImportExportModelAdmin, CompareVersionAdmin):
     ]
     list_display_links = ['first_name', 'last_name', 'email', 'organization', 'application_status']
     list_filter = ['application_status']
-    actions = ['status_action']
+    actions = ['status_action]
     search_fields = [
         'first_name', 'last_name', 'gender', 'email', 'nationality', 'expectation', 'phone_number', 'organization',
         'application_status', 'timestamp'
