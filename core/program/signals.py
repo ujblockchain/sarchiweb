@@ -105,7 +105,7 @@ def auto_mail_sending(sender, instance, created, **kwargs):
                     since the year began. \n\n\
                     Kindly note that you have been selected to attend the Demo Day \
                     event. The event will be held at \
-                    <strong style="color: #ff6522 !important;">10 am</strong> on the \
+                    <strong style="color: #ff6522 !important;">9 am</strong> on the \
                     <strong style="color: #ff6522 !important;">15th of August 2025, at the \
                     Johannesburg Business School auditorium GLV1 behind the reception</strong>. \n\n\
                     Once again, thank you for applying for the UJ Blockchain Demo Day Event. \
