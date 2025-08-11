@@ -2,6 +2,7 @@ from django.contrib import admin, messages
 from django.utils.html import format_html
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
+from django.model import Q
 from reversion_compare.admin import CompareVersionAdmin
 
 from core.blog.admin import visibility_action
@@ -10,31 +11,29 @@ from .models import ProgramConfig, ProgramSignUp, ProjectBuild
 
 
 @admin.display(description='Approve Selection')
-def status_action_selected(modeladmin, request, querryset):
-    if querryset.filter(application_status='Rejected'):
-        querryset.update(application_status='Selected')
-        messages.add_message(
-            request, messages.SUCCESS, 'form application selected successfully'
-        )
-    elif querryset.filter(application_status__isnull=True):
-        querryset.update(application_status='Selected')
-        messages.add_message(
-            request, messages.SUCCESS, 'form application selected successfully'
-        )
+def status_action_selected(modeladmin, request, queryset):
+    rejected_form_application = queryset.filter(
+        Q(application_status='Rejected') | Q(application_status__isnull=True)
+    )
+    for obj in rejected_form_application:
+        obj.application_status = 'Selected'
+        obj.save()
+    messages.add_message(
+        request, messages.SUCCESS, 'form application selected successfully'
+    )
 
 
 @admin.display(description='Reject Selection')
-def status_action_rejected(modeladmin, request, querryset):
-    if querryset.filter(application_status='Selected'):
-        querryset.update(application_status='Rejected')
-        messages.add_message(
-            request, messages.SUCCESS, 'form application rejected successfully'
-        )
-    elif querryset.filter(application_status__isnull=True):
-        querryset.update(application_status='Selected')
-        messages.add_message(
-            request, messages.SUCCESS, 'form application rejected successfully'
-        )
+def status_action_rejected(modeladmin, request, queryset):
+    selected_form_application = queryset.filter(
+        Q(application_status='Selected') | Q(application_status__isnull=True)
+    )
+    for obj in selected_form_application:
+        obj.application_status = 'Rejected'
+        obj.save()
+    messages.add_message(
+        request, messages.SUCCESS, 'form application rejected successfully'
+    )
 
 
 class ProgramResource(resources.ModelResource):
