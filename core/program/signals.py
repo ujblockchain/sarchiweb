@@ -84,9 +84,9 @@ def auto_mail_sending(sender, instance, created, **kwargs):
             msg.content_subtype = 'html'
 
             # attached file
-            program_flyer = finders.find('images/flyer.jpg')
-            print(program_flyer)
-            msg.attach_file(program_flyer)
+            # program_flyer = finders.find('images/flyer.jpg')
+            # print(program_flyer)
+            # msg.attach_file(program_flyer)
 
             # send email
             msg.send(fail_silently=True)
@@ -169,9 +169,9 @@ def auto_mail_sending(sender, instance, created, **kwargs):
             msg.content_subtype = 'html'
 
             # attached file
-            if instance.application_status == 'Selected':
-                program_flyer = finders.find('images/flyer.jpg')
-                msg.attach_file(program_flyer)
+            # if instance.application_status == 'Selected':
+            #     program_flyer = finders.find('images/flyer.jpg')
+            #     msg.attach_file(program_flyer)
 
             # send email
             msg.send(fail_silently=True)
