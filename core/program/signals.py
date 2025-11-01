@@ -89,7 +89,7 @@ def auto_mail_sending(sender, instance, created, **kwargs):
             # msg.attach_file(program_flyer)
 
             # send email
-            msg.send(fail_silently=True)
+            # msg.send(fail_silently=True)
 
         else:
             # once model is saved, trigger signal
@@ -174,4 +174,4 @@ def auto_mail_sending(sender, instance, created, **kwargs):
             #     msg.attach_file(program_flyer)
 
             # send email
-            msg.send(fail_silently=True)
+            # msg.send(fail_silently=True)
