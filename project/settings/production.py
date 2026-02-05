@@ -1,16 +1,10 @@
-# Space check
 from project.settings import DEBUG, ENV, SECRET_KEY  # type: ignore
 
-# Secrete key
 SECRET_KEY = SECRET_KEY
-
-# Allowed Host
 ALLOWED_HOSTS = ENV.config('ALLOWED_HOSTS', cast=ENV.Csv())
-
-# Debug
 DEBUG = DEBUG
 
-# Database
+# database
 DATABASES = {
     'default': {
         'ENGINE': ENV.config('ENGINE'),
@@ -25,10 +19,7 @@ DATABASES = {
     }
 }
 
-# Cors
-CORS_ORIGIN_ALLOW_ALL = True
-
-# Security Settings In Production Environment
+# security settings in production environment
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = True
 SESSION_COOKIE_SECURE = True
@@ -44,20 +35,19 @@ SESSION_COOKIE_NAME = '__Host-sessionid'
 CSRF_COOKIE_NAME = '__Host-csrftoken'
 SERVER_EMAIL = ENV.config('SERVER_EMAIL')
 
-# Captcha settings
+# captcha settings
 RECAPTCHA_PUBLIC_KEY = ENV.config('RECAPTCHA_PUBLIC_KEY')
 RECAPTCHA_PRIVATE_KEY = ENV.config('RECAPTCHA_PRIVATE_KEY')
 RECAPTCHA_REQUIRED_SCORE = ENV.config('RECAPTCHA_REQUIRED_SCORE', cast=float)
 
-# Cors settings
+# cors settings
+CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOWED_ORIGINS = [
-    'https://blockchain.uj.ac.za',
+    'https://ujblockchain.co.za',
 ]
-
 CSRF_TRUSTED_ORIGINS = [
-    'https://blockchain.uj.ac.za',
+    'https://ujblockchain.co.za',
 ]
-
 CORS_ORIGIN_WHITELIST = [
-    'https://blockchain.uj.ac.za',
+    'https://ujblockchain.co.za',
 ]

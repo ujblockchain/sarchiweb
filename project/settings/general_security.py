@@ -1,12 +1,12 @@
 from project.settings import ADMIN_PATH, ENV
 
-# General security settings in all environment
+# general security settings in all environment
 X_FRAME_OPTIONS = 'DENY'
 CSRF_COOKIE_SAMESITE = 'Strict'
 SESSION_COOKIE_SAMESITE = 'Lax'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
-# Axes Settings
+# axes settings
 SILENCED_SYSTEM_CHECKS = ENV.config('SILENCED_SYSTEM_CHECKS', cast=ENV.Csv())
 AXES_FAILURE_LIMIT = ENV.config('AXES_FAILURE_LIMIT', cast=int)
 AXES_COOLOFF_TIME = ENV.config('AXES_COOLOFF_TIME', cast=int)
@@ -21,12 +21,12 @@ AXES_ENABLE_ACCESS_FAILURE_LOG = ENV.config('AXES_ENABLE_ACCESS_FAILURE_LOG', ca
 AXES_RESET_ON_SUCCESS = ENV.config('AXES_RESET_ON_SUCCESS', cast=bool)
 AXES_LOCKOUT_PARAMETERS = ENV.config('AXES_LOCKOUT_PARAMETERS', cast=ENV.Csv())
 
-# Captcha settings
+# captcha settings
 RECAPTCHA_PUBLIC_KEY = ENV.config('RECAPTCHA_PUBLIC_KEY')
 RECAPTCHA_PRIVATE_KEY = ENV.config('RECAPTCHA_PRIVATE_KEY')
 RECAPTCHA_REQUIRED_SCORE = ENV.config('RECAPTCHA_REQUIRED_SCORE', cast=float)
 
-# CSP default settings
+# csp default settings
 CSP_DEFAULT_SRC = ("'none'",)
 CSP_SCRIPT_SRC = (
     "'self'",
