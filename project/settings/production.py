@@ -12,7 +12,6 @@ DATABASES = {
         'HOST': env.get('HOST'),
         'USER': env.get('USER'),
         'PASSWORD': env.get('PASSWORD'),
-        'PORT': env.get('PORT', cast='int'),
         'OPTIONS': {
             'sslmode': 'require',
         },
