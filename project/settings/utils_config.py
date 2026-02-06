@@ -1,11 +1,12 @@
 import jinja2
 import sentry_sdk
-from project.settings import BASE_DIR, ENV, PROJECT_DIR
+from import_export.formats.base_formats import CSV, XLSX
+from project.settings import BASE_DIR, env
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.jinja2.Jinja2',
-        'DIRS': [f'{BASE_DIR}/core/jinja2'],
+        'DIRS': [f'{BASE_DIR}/jinja2'],
         'APP_DIRS': True,
         'OPTIONS': {
             'autoescape': False,
@@ -26,7 +27,7 @@ TEMPLATES = [
     },
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [f'{BASE_DIR}/core/templates'],
+        'DIRS': [f'{BASE_DIR}/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -41,32 +42,29 @@ TEMPLATES = [
 
 # static files (css, javascript, images)
 STATIC_URL = 'static/'
-STATIC_ROOT = f'{BASE_DIR}/core/static'
-STATICFILES_DIRS = [f'{PROJECT_DIR}/static']
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # media files
 MEDIA_URL = '/media/'
-MEDIA_ROOT = f'{BASE_DIR}/core/media'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # email settings
-EMAIL_BACKEND = ENV.config('EMAIL_BACKEND')
-EMAIL_PORT = ENV.config('EMAIL_PORT')
-EMAIL_HOST = ENV.config('EMAIL_HOST')
-EMAIL_HOST_USER = ENV.config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = ENV.config('EMAIL_HOST_PASSWORD')
-DEFAULT_FROM_EMAIL = ENV.config('DEFAULT_FROM_EMAIL')
-SERVER_EMAIL = ENV.config('SERVER_EMAIL')
-EMAIL_SUBJECT_PREFIX = ENV.config('EMAIL_SUBJECT_PREFIX')
-EMAIL_USE_TSL = ENV.config('EMAIL_USE_TSL')
+ANYMAIL = {
+    "MAILTRAP_API_TOKEN": env.get('MAILTRAP_API_TOKEN'),
+}
 
+EMAIL_BACKEND = env.get('EMAIL_BACKEND')
+DEFAULT_FROM_EMAIL = env.get('DEFAULT_FROM_EMAIL')
+SERVER_EMAIL = env.get('SERVER_EMAIL')
+EMAIL_SUBJECT_PREFIX = env.get('EMAIL_SUBJECT_PREFIX', default='UJBlockchain')
 
 # Sentry config
 sentry_sdk.init(
-    dsn=ENV.config('SENTRY_DNS'),
+    dsn=env.get('SENTRY_DNS'),
     # Set traces_sample_rate to 1.0 to capture 100%
     # of transactions for performance monitoring.
     traces_sample_rate=1.0,
@@ -75,3 +73,14 @@ sentry_sdk.init(
     # We recommend adjusting this value in production.
     profiles_sample_rate=1.0,
 )
+
+IMPORT_FORMATS = [CSV, XLSX]
+EXPORT_FORMATS = [CSV, XLSX]
+IMPORT_EXPORT_IMPORT_IGNORE_BLANK_LINES = env.get(
+    'IMPORT_EXPORT_IMPORT_IGNORE_BLANK_LINES', cast='bool'
+)
+IMPORT_EXPORT_ESCAPE_FORMULAE_ON_EXPORT = env.get(
+    'IMPORT_EXPORT_ESCAPE_FORMULAE_ON_EXPORT', cast='bool'
+)
+IMPORT_EXPORT_IMPORT_PERMISSION_CODE = env.get('IMPORT_EXPORT_IMPORT_PERMISSION_CODE')
+IMPORT_EXPORT_EXPORT_PERMISSION_CODE = env.get('IMPORT_EXPORT_EXPORT_PERMISSION_CODE')

@@ -1,26 +1,34 @@
-from project.settings import ADMIN_PATH
+from project.settings import env
 
-ALLOWED_HOSTS = ['blockchain.uj.ac.za']
-ADMIN_PATH = ADMIN_PATH
+ALLOWED_HOSTS = ['ujblockchain.co.za']
+ADMIN_PATH = env.get('ADMIN_PATH')
 
 INSTALLED_APPS = [
     # third party apps
-    'jazzmin',
+    'django_daisy',
     # django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.humanize',
     # third party apps
     'axes',
     'corsheaders',
     'django_recaptcha',
     'anymail',
+    'phonenumber_field',
     # app
     'contact.apps.ContactConfig',
+    'user.apps.UserConfig',
     # third party apps by location
+    'django_otp',
+    'django_otp.plugins.otp_totp',
+    'django_otp.plugins.otp_static',
     'django_prose_editor',
     'import_export',
     'django_cleanup.apps.CleanupConfig',
@@ -28,6 +36,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -37,7 +46,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'csp.middleware.CSPMiddleware',
     'project.settings.middleware.custom_csp.CustomCSPMiddleware',
-    'project.settings.middleware.remoteAddr.RemoteAddrMiddleware',
     'project.settings.middleware.current_request.RequestMiddleware',
     'django_auto_logout.middleware.auto_logout',
     'axes.middleware.AxesMiddleware',
@@ -82,3 +90,8 @@ AUTHENTICATION_BACKENDS = [
     'axes.backends.AxesStandaloneBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
+
+# site settings
+SITE_ID = 1
+# custom user
+AUTH_USER_MODEL = 'user.Users'
