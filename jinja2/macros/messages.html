@@ -1,0 +1,9 @@
+{% macro messageDisplay() %}
+    {% for msg in messages if messages %}
+        <div class="mb-6 md:mb-8 p-4 md:p-6">
+            <span class="text-xl md:text-xl font-bold text-uj-orange min-h-[3rem]">
+                {{ msg }}
+            </span>
+        </div>
+    {% endfor %}
+{% endmacro %}

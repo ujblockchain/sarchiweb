@@ -1,0 +1,12 @@
+{# handles error display for contact forms that uses django message #}
+{% macro contactFormErrorDisplay(error) %}
+    {% if 'reCAPTCHA' not in  error|striptags %}
+        <span class="text-uj-orange text-xs pr-4">{{ error|striptags }}</span>
+    {% elif 'reCAPTCHA' in  error|striptags %}
+        <div class="mb-6 md:mb-8 p-4 md:p-6">
+            <span class="text-xl md:text-xl font-bold text-uj-orange min-h-[3rem]">
+                {{ error|striptags }}
+            </span>
+        </div>
+    {% endif %}
+{% endmacro %}
