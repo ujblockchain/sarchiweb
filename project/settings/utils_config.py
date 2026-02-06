@@ -44,7 +44,7 @@ TEMPLATES = [
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [
-    PROJECT_DIR / 'static',
+    f'{PROJECT_DIR}/static',
 ]
 STORAGES = {
     "staticfiles": {
