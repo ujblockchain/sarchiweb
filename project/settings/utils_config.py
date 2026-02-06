@@ -1,7 +1,7 @@
 import jinja2
 import sentry_sdk
 from import_export.formats.base_formats import CSV, XLSX
-from project.settings import BASE_DIR, env
+from project.settings import BASE_DIR, env, PROJECT_DIR
 
 TEMPLATES = [
     {
@@ -43,7 +43,14 @@ TEMPLATES = [
 # static files (css, javascript, images)
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATICFILES_DIRS = [
+    PROJECT_DIR / 'static',
+]
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 # media files
 MEDIA_URL = '/media/'
