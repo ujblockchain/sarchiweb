@@ -1,18 +1,18 @@
-from project.settings import DEBUG, ENV, SECRET_KEY  # type: ignore
+from project.settings import env
 
-SECRET_KEY = SECRET_KEY
-ALLOWED_HOSTS = ENV.config('ALLOWED_HOSTS', cast=ENV.Csv())
-DEBUG = DEBUG
+SECRET_KEY = env.get('SECRET_KEY')
+ALLOWED_HOSTS = env.get('ALLOWED_HOSTS', cast="list")
+DEBUG = env.get('DEBUG')
 
 # database
 DATABASES = {
     'default': {
-        'ENGINE': ENV.config('ENGINE'),
-        'NAME': ENV.config('NAME'),
-        'HOST': ENV.config('HOST'),
-        'USER': ENV.config('USER'),
-        'PASSWORD': ENV.config('PASSWORD'),
-        'PORT': ENV.config('PORT'),
+        'ENGINE': env.get('ENGINE'),
+        'NAME': env.get('NAME'),
+        'HOST': env.get('HOST'),
+        'USER': env.get('USER'),
+        'PASSWORD': env.get('PASSWORD'),
+        'PORT': env.get('PORT', cast='int'),
         'OPTIONS': {
             'sslmode': 'require',
         },
@@ -33,12 +33,12 @@ SECURE_REFERRER_POLICY = 'same-origin'
 SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin'
 SESSION_COOKIE_NAME = '__Host-sessionid'
 CSRF_COOKIE_NAME = '__Host-csrftoken'
-SERVER_EMAIL = ENV.config('SERVER_EMAIL')
+SERVER_EMAIL = env.get('SERVER_EMAIL')
 
 # captcha settings
-RECAPTCHA_PUBLIC_KEY = ENV.config('RECAPTCHA_PUBLIC_KEY')
-RECAPTCHA_PRIVATE_KEY = ENV.config('RECAPTCHA_PRIVATE_KEY')
-RECAPTCHA_REQUIRED_SCORE = ENV.config('RECAPTCHA_REQUIRED_SCORE', cast=float)
+RECAPTCHA_PUBLIC_KEY = env.get('RECAPTCHA_PUBLIC_KEY')
+RECAPTCHA_PRIVATE_KEY = env.get('RECAPTCHA_PRIVATE_KEY')
+RECAPTCHA_REQUIRED_SCORE = env.get('RECAPTCHA_REQUIRED_SCORE', cast=float)
 
 # cors settings
 CORS_ORIGIN_ALLOW_ALL = True

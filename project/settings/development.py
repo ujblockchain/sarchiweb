@@ -1,19 +1,19 @@
-from project.settings import DEBUG, ENV, SECRET_KEY  # type: ignore
-from project.settings.base import INSTALLED_APPS, MIDDLEWARE  # type: ignore
+from project.settings import env
+from project.settings.base import INSTALLED_APPS, MIDDLEWARE
 
-SECRET_KEY = SECRET_KEY
-ALLOWED_HOSTS = ENV.config('ALLOWED_HOSTS', default='127.0.0.1', cast=ENV.Csv())
-DEBUG = DEBUG
+SECRET_KEY = env.get('SECRET_KEY')
+ALLOWED_HOSTS = env.get('ALLOWED_HOSTS', cast='list')
+DEBUG = env.get('DEBUG')
 
 # Database
 DATABASES = {
     'default': {
-        'ENGINE': ENV.config('ENGINE'),
-        'NAME': ENV.config('NAME'),
-        'HOST': ENV.config('HOST'),
-        'USER': ENV.config('USER'),
-        'PASSWORD': ENV.config('PASSWORD'),
-        'PORT': ENV.config('PORT'),
+        'ENGINE': env.get('ENGINE'),
+        'NAME': env.get('NAME'),
+        'HOST': env.get('HOST'),
+        'USER': env.get('USER'),
+        'PASSWORD': env.get('PASSWORD'),
+        'PORT': env.get('PORT'),
     }
 }
 
