@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Page Not Found | UJ Blockchain Research Chair</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="{{ static('tailwindConfig.js') }}"></script>
+    <link rel="stylesheet" href="{{ static('style.css') }}">
+</head>
+
+<body
+    class="bg-uj-dark text-slate-300 font-sans antialiased selection:bg-uj-orange selection:text-white overflow-x-hidden"
+    x-data="{ mobileMenuOpen: false }">
+
+    <div id="particles-container" class="fixed inset-0 z-0 pointer-events-none opacity-30"></div>
+
+    <div
+        class="fixed top-0 left-0 w-96 h-96 bg-uj-orange/10 rounded-full mix-blend-screen filter blur-[120px] animate-blob z-0">
+    </div>
+    <div class="fixed bottom-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full mix-blend-screen filter blur-[120px] animate-blob z-0"
+        style="animation-delay: 2s"></div>
+
+    <nav class="fixed w-full z-50 glass-nav py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-14">
+                <a href="/" class="flex-shrink-0 flex items-center gap-2 cursor-pointer group">
+                    <div
+                        class="w-10 h-10 bg-uj-orange rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-[0_0_15px_rgba(242,101,34,0.5)] group-hover:shadow-[0_0_25px_rgba(242,101,34,0.8)] transition-all">
+                        UJ</div>
+                    <span class="font-bold text-xl md:text-2xl text-white tracking-tight leading-none">Blockchain</span>
+                </a>
+                <a href="/"
+                    class="hidden md:block px-5 py-2 rounded-full bg-white/5 border border-white/10 text-white text-sm font-bold hover:bg-uj-orange hover:border-transparent transition-all">
+                    Back to Safety
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <section
+        class="relative min-h-screen flex flex-col items-center justify-start md:justify-center px-4 pt-28 md:pt-32 pb-12">
+
+        <div class="w-full max-w-lg mx-auto z-10 relative" x-data="lockoutTimer()" x-init="startTimer()">
+
+            <div
+                class="relative w-28 h-28 xs:w-32 xs:h-32 md:w-40 md:h-40 mx-auto mb-6 md:mb-8 flex items-center justify-center shrink-0 mt-4 md:mt-0">
+                <div class="absolute inset-0 border-4 border-slate-700 rounded-full box-border"></div>
+                <div class="absolute inset-0 border-t-4 border-uj-orange rounded-full animate-spin box-border"
+                    style="animation-duration: 2s;"></div>
+                <div class="absolute inset-2 xs:inset-4 border-b-4 border-red-500/50 rounded-full animate-spin box-border"
+                    style="animation-duration: 3s; animation-direction: reverse;"></div>
+
+                <div class="relative z-10 text-center animate-pulse">
+                    <i class="fas fa-user-lock text-3xl xs:text-4xl md:text-5xl text-white mb-1"></i>
+                </div>
+
+                <div class="absolute inset-0 rounded-full bg-red-500/5 blur-xl"></div>
+            </div>
+
+            <div class="text-center">
+                <h1 class="text-2xl xs:text-3xl md:text-4xl font-bold text-white mb-2 leading-tight">Security Lockout
+                </h1>
+
+                <div
+                    class="inline-flex items-center gap-2 px-3 py-1 bg-red-500/10 border border-red-500/30 rounded-full mb-6">
+                    <span class="w-1.5 h-1.5 xs:w-2 xs:h-2 rounded-full bg-red-500 animate-pulse"></span>
+                    <span class="text-red-400 text-[10px] xs:text-xs font-mono uppercase tracking-widest">Protocol 429
+                        Activated</span>
+                </div>
+
+                <p class="text-slate-400 mb-6 text-xs xs:text-sm md:text-base leading-relaxed px-2">
+                    Maximum authentication attempts exceeded. Access has been frozen for a mandatory cooldown period.
+                </p>
+
+                <div
+                    class="glass-card p-4 xs:p-6 rounded-2xl border-t-2 border-uj-orange mb-6 relative overflow-hidden group mx-auto w-full">
+                    <div class="absolute top-0 right-0 w-20 h-20 bg-uj-orange/10 blur-2xl rounded-full -mr-10 -mt-10">
+                    </div>
+
+                    <p class="text-slate-500 text-[10px] xs:text-xs uppercase font-bold tracking-widest mb-1 xs:mb-2">
+                        Cooldown Timer</p>
+
+                    <div class="font-mono text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-bold text-white tabular-nums tracking-tighter xs:tracking-tight"
+                        x-text="formatTime()">
+                        00:00:00
+                    </div>
+
+                    <div
+                        class="flex justify-center gap-8 xs:gap-12 mt-2 text-[10px] xs:text-xs text-slate-600 font-mono uppercase">
+                        <span>Hrs</span>
+                        <span>Mins</span>
+                        <span>Secs</span>
+                    </div>
+                </div>
+
+                <div class="space-y-3 xs:space-y-4">
+                    <button disabled
+                        class="w-full py-3 xs:py-3.5 rounded-xl bg-slate-800 text-slate-500 font-bold cursor-not-allowed border border-white/5 flex items-center justify-center gap-2 opacity-70 text-sm xs:text-base">
+                        <i class="fas fa-lock text-xs xs:text-sm"></i> Account Locked
+                    </button>
+
+                    <a href="/" class="block text-slate-400 hover:text-white text-xs xs:text-sm transition-colors py-2">
+                        <i class="fas fa-arrow-left mr-1"></i> Return to Homepage
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function lockoutTimer() {
+                return {
+                    timeLeft: 18000,
+                    startTimer() {
+                        const interval = setInterval(() => {
+                            if (this.timeLeft > 0) {
+                                this.timeLeft--;
+                            } else {
+                                clearInterval(interval);
+                            }
+                        }, 1000);
+                    },
+                    formatTime() {
+                        const hours = Math.floor(this.timeLeft / 3600);
+                        const minutes = Math.floor((this.timeLeft % 3600) / 60);
+                        const seconds = this.timeLeft % 60;
+                        return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                    }
+                }
+            }
+        </script>
+
+    </section>
+
+    <footer class="bg-black py-8 border-t border-white/10 text-center text-slate-600 text-xs md:text-sm relative z-10">
+        &copy; 2026 University of Johannesburg Blockchain Research Chair.
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.0.6/tsparticles.slim.bundle.min.js"></script>
+    <script>
+        (async () => {
+            await window.tsParticles.load("particles-container", {
+                background: { color: { value: "transparent" } },
+                fpsLimit: 60,
+                particles: {
+                    color: { value: ["#ffffff", "#F26522"] },
+                    links: { color: "#ffffff", distance: 150, enable: true, opacity: 0.1, width: 1 },
+                    move: { enable: true, speed: 0.6 },
+                    number: { density: { enable: true, area: 800 }, value: 40 },
+                    opacity: { value: 0.3 },
+                    shape: { type: "circle" },
+                    size: { value: { min: 1, max: 2 } },
+                },
+            });
+        })();
+    </script>
+</body>
+
+</html>
