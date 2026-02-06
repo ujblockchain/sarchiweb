@@ -1,44 +1,28 @@
 from django.contrib import messages
-from django.http import HttpResponseRedirect
-from django.views import View
+from django.shortcuts import redirect
 
-from .forms import UserMessageForm
-from .models import UserContact
+from .forms import ContactForm
 
 
-class ContactView(View):
+class ContactFormMixin:
+    def post(self, request, *args, **kwargs):
+        form = ContactForm(request.POST)
 
-    def post(self, request):
-        form = UserMessageForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Thank you! Your message has been sent.')
+            return redirect(f"{request.path}#contact")
+        else:
+            self._invalid_contact_form = form
+            return self.get(request, *args, **kwargs)
 
-        try:
-            # check if form is valid
-            if form.is_valid():
-                cleaned_data = form.cleaned_data
-                # remove captcha field
-                cleaned_data.pop('captcha', None)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
 
-                # init model instance
-                contact = UserContact(**cleaned_data)
+        if hasattr(self, '_invalid_contact_form'):
+            context['form'] = self._invalid_contact_form
+            del self._invalid_contact_form
+        else:
+            context['form'] = ContactForm()
 
-                # check if error exist in form
-                contact.clean_fields()
-
-                # save form
-                contact.save()
-
-                # sent success message
-                messages.success(request, 'Thank You. Your Message has been Submitted.', extra_tags='contact')
-
-                # redirect to form section
-                return HttpResponseRedirect('/#contact')
-            else:
-                # raise exception
-                raise Exception
-
-        except Exception:
-            # get the error and send as an error message
-            messages.error(request, {'form_error': form.errors}, extra_tags='contact')
-
-            # redirect to form section
-            return HttpResponseRedirect('/#contact')
+        return context

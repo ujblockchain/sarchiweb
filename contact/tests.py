@@ -1,99 +1,46 @@
-from django.db.models import signals
+import uuid
+
 from django.test import TestCase
 from django.urls import reverse
-from django.utils import timezone
 from model_bakery import baker
 
-from .forms import UserMessageForm
-from .models import UserContact
+from .models import Contact
 
 
-class ContactTest(TestCase):
-
+class ContactModelTest(TestCase):
     def setUp(self):
-        # init current time (timezone aware)
-        self.current_timestamp = timezone.now()
-
-    @classmethod
-    def setUpTestData(cls):
-        # disable signals
-        signals.post_save.receivers = []
-        signals.pre_save.receivers = []
-
-        # create model
-        cls.contact_email = baker.make(
-            UserContact,
-            name='John Deo',
-            email='johndeo@ujblockchain.co.za',
-            phone='+27111111111',
-            message='Hello',
-            timestamp=timezone.now()
+        full_uuid = str(uuid.uuid4()).replace('-', '')
+        self.expected_id = full_uuid[:16]
+        self.contact = baker.make(
+            Contact,
+            id=self.expected_id,
+            first_name='John',
+            last_name='Doe',
+            email='test@ujblockchain.co.za',
+            message='Hello, there!!!',
         )
+
+        self.contact_url = reverse('home')
 
     def tearDown(self):
-        # Clean up run after every test method.
-        self.contact_email.delete()
+        self.contact.delete()
 
-    def test_send_email(self):
-        # init model
-        model = self.contact_email
+    def test_id_field(self):
+        self.assertEqual(len(self.contact.id), 16)
+        self.assertTrue(self.contact.id.isalnum())
 
-        # update model
-        model.email = 'hello@ujblockchain.co.za'
-        model.save(update_fields=['email'])
+        new_full_uuid = str(uuid.uuid4()).replace('-', '')
+        new_expected_id = new_full_uuid[:16]
+        self.assertNotEqual(self.contact.id, new_expected_id)
 
-        self.assertEqual(model.name, 'John Deo')
-        self.assertEqual(model.email, 'hello@ujblockchain.co.za')
-        self.assertEqual(model.clean_fields(), None)
-        self.assertEqual(model.clean(), None)
-        self.assertNotEqual(model.timestamp, self.current_timestamp)
-        # check model filed max length
-        max_length = UserContact._meta.get_field('name').max_length
-        self.assertEqual(max_length, 100)
+    def test_message_creation(self):
+        self.assertEqual(self.contact.first_name, 'John')
+        self.assertEqual(self.contact.email, 'test@ujblockchain.co.za')
+        self.assertEqual(self.contact.message, 'Hello, there!!!')
+        self.assertIsNotNone(self.contact.date_received)
 
-
-class ContactFormTestClass(TestCase):
-
-    @classmethod
-    def setUpTestData(cls):
-        # disable signals
-        signals.post_save.receivers = []
-        signals.pre_save.receivers = []
-
-    def test_email_post_form(self):
-        # get response
-        response = self.client.post(
-            reverse('contact'),
-            {
-                'name': 'John Deo',
-                'email': 'johndeo@ujblockchain.co.za',
-                'phone': '+27111111111',
-                'message': 'Hello',
-            },
-        )
-
-        self.assertEqual(response.status_code, 302)
-        self.assertTrue(response.url.startswith('/#contact'))
-
-    def test_send_email_form(self):
-        form = UserMessageForm(
-            data={
-                'name': 'John Deo',
-                'email': 'johndeo@ujblockchain.co.za',
-                'phone': '+27111111111',
-                'message': 'Hello',
-                'captcha': '',
-            }
-        )
-
-        # remove captcha from test form
-        del form.fields['captcha']
-
-        self.assertTrue(form.fields['phone'])
-        self.assertFalse(form.errors)
-        self.assertTrue(form.is_valid())
-        self.assertTrue(form.fields['name'])
-        self.assertEqual(form.cleaned_data['name'], 'John Deo')
-        self.assertTrue(form.cleaned_data['email'] == 'johndeo@ujblockchain.co.za')
-        self.assertEqual(form.cleaned_data['message'], 'Hello')
-        self.assertEqual(form.fields['email'].help_text, '')
+    def test_testimony_details(self):
+        response = self.client.get(self.contact_url)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Contact')
+        self.assertTemplateUsed(response, 'pages/index.html')
