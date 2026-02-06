@@ -1,0 +1,48 @@
+<nav class="fixed w-full z-50 glass-nav transition-all duration-300" :class="{ 'py-4': !scrolled, 'py-3': scrolled }"
+    @scroll.window="scrolled = (window.pageYOffset > 20)">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-14">
+            <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer group" @click="window.scrollTo(0,0)">
+                <div
+                    class="w-8 h-8 xs:w-10 xs:h-10 bg-uj-orange rounded-xl flex items-center justify-center text-white font-bold text-sm xs:text-lg shadow-[0_0_15px_rgba(242,101,34,0.5)] group-hover:shadow-[0_0_25px_rgba(242,101,34,0.8)] transition-all">
+                    UJ</div>
+                <span
+                    class="font-bold text-lg xs:text-xl md:text-2xl text-white tracking-tight leading-none">Blockchain</span>
+            </div>
+
+            <div class="hidden lg:flex space-x-6 items-center">
+                <template x-for="item in navItems">
+                    <a :href="item.href"
+                        class="text-sm font-medium text-slate-300 hover:text-white hover:text-uj-orange transition-colors"
+                        x-text="item.name"></a>
+                </template>
+                <a href="#contact"
+                    class="px-5 py-2 rounded-full bg-uj-orange/10 border border-uj-orange/50 text-uj-orange text-sm font-bold hover:bg-uj-orange hover:text-white transition-all transform hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(242,101,34,0.4)]">
+                    Get in Touch
+                </a>
+            </div>
+
+            <div class="lg:hidden flex items-center">
+                <button @click="mobileMenuOpen = !mobileMenuOpen"
+                    class="text-slate-300 hover:text-white focus:outline-none p-2 rounded-md hover:bg-white/5">
+                    <i class="fas fa-bars text-xl xs:text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div x-show="mobileMenuOpen" x-transition
+        class="lg:hidden bg-uj-surface/95 border-b border-white/10 absolute w-full shadow-xl backdrop-blur-xl h-screen overflow-y-auto pb-20">
+        <div class="px-4 pt-4 pb-6 space-y-3">
+            <template x-for="item in navItems">
+                <a :href="item.href" @click="mobileMenuOpen = false"
+                    class="block px-4 py-3 rounded-xl text-lg font-medium text-slate-200 hover:text-white hover:bg-white/10 border border-transparent hover:border-white/5"
+                    x-text="item.name"></a>
+            </template>
+            <a href="#contact" @click="mobileMenuOpen = false"
+                class="block mt-6 px-4 py-3 text-center rounded-xl bg-uj-orange text-white font-bold shadow-lg">
+                Get in Touch
+            </a>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,113 @@
+{% from "macros/forms.html" import contactFormErrorDisplay with context %}
+{% from "macros/messages.html" import messageDisplay with context %}
+
+<section id="contact" class="bg-uj-dark py-16 md:py-24 border-t border-white/5 relative">
+    <div class="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-12 lg:gap-24 relative z-10">
+        <div class="flex flex-col h-full">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Let's Build Together</h2>
+            <p class="text-slate-400 mb-10 text-base md:text-lg">
+                Whether you're a student, researcher, or industry partner, we want to hear from you.
+            </p>
+
+            <div class="space-y-6 mb-10">
+                <div class="flex items-start gap-4">
+                    <div
+                        class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-uj-orange/10 flex items-center justify-center text-uj-orange border border-uj-orange/20 shrink-0">
+                        <i class="fas fa-map-marker-alt text-lg md:text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white text-sm md:text-base">Visit Lab</h4>
+                        <p class="text-slate-500 text-xs md:text-sm">University of Johannesburg, Auckland
+                            Park<br>Kingsway Campus,
+                            B-Ring 2 217</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                    <div
+                        class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-uj-orange/10 flex items-center justify-center text-uj-orange border border-uj-orange/20 shrink-0">
+                        <i class="fas fa-envelope text-lg md:text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white text-sm md:text-base">Email Us</h4>
+                        <p class="text-slate-500 text-xs md:text-sm">blockchain@uj.ac.za</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="map"
+                class="map-dark-filter shadow-2xl border border-white/10 h-[250px] md:h-[400px] w-full rounded-2xl overflow-hidden mb-8">
+            </div>
+
+            <div class="flex flex-wrap gap-3 md:gap-4 mt-auto">
+                <a href="https://www.linkedin.com/company/south-africa-swiss-bilateral-research-chair-in-blockchain-technology/"
+                    target="_blank"
+                    class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:bg-[#0077b5] hover:text-white hover:border-transparent transition-all"><i
+                        class="fab fa-linkedin-in text-lg md:text-xl"></i></a>
+                <a href="https://twitter.com/ujblockchain" target="_blank"
+                    class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:bg-[#1DA1F2] hover:text-white hover:border-transparent transition-all"><i
+                        class="fab fa-twitter text-lg md:text-xl"></i></a>
+                <a href="https://www.youtube.com/@ujblockchain" target="_blank"
+                    class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:bg-[#FF0000] hover:text-white hover:border-transparent transition-all"><i
+                        class="fab fa-youtube text-lg md:text-xl"></i></a>
+                <a href="https://github.com/ujblockchain" target="_blank"
+                    class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:bg-white hover:text-black hover:border-transparent transition-all"><i
+                        class="fab fa-github text-lg md:text-xl"></i></a>
+                <a href="https://www.instagram.com/ujblockchain" target="_blank"
+                    class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:bg-[#E1306C] hover:text-white hover:border-transparent transition-all"><i
+                        class="fab fa-instagram text-lg md:text-xl"></i></a>
+                <a href="https://www.facebook.com/sa.swiss.blockchain" target="_blank"
+                    class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:bg-[#1877F2] hover:text-white hover:border-transparent transition-all"><i
+                        class="fab fa-facebook-f text-lg md:text-xl"></i></a>
+            </div>
+        </div>
+
+        <div class="flex flex-col justify-end mt-10 lg:mt-0" x-data="typewriter()">
+            <div class="mb-6 md:mb-8 p-4 md:p-6 glass-card rounded-2xl border-l-4 border-uj-orange">
+                <p class="text-slate-400 text-xs md:text-sm uppercase tracking-widest font-bold mb-2">So, what do
+                    you want to
+                    build?</p>
+                <h3 class="text-xl md:text-3xl font-bold text-white min-h-[3rem] md:min-h-[4rem] leading-tight">
+                    We build <span class="text-uj-orange break-words" x-text="displayedText"></span><span
+                        class="animate-cursor">|</span> solutions.
+                </h3>
+            </div>
+
+            {{messageDisplay()}}
+            {% if form.captcha.errors %}{{ contactFormErrorDisplay(form.captcha.errors) }}{% endif %}
+            <div class="glass-card p-6 md:p-8 rounded-3xl h-fit">
+                <form class="space-y-4 md:space-y-6" method="post">
+                    {{ csrf_input }}
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                        <div>
+                            <label class="block text-xs md:text-sm font-bold text-slate-400 mb-2">First Name</label>
+                            {{ form.first_name }}
+                            {{ contactFormErrorDisplay(form.first_name.errors) }}
+                        </div>
+                        <div>
+                            <label class="block text-xs md:text-sm font-bold text-slate-400 mb-2">Last Name</label>
+                            {{ form.last_name }}
+                            {{ contactFormErrorDisplay(form.last_name.errors) }}
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs md:text-sm font-bold text-slate-400 mb-2">Email Address</label>
+                        {{ form.email }}
+                        {{ contactFormErrorDisplay(form.email.errors) }}
+                    </div>
+                    <div>
+                        <label class="block text-xs md:text-sm font-bold text-slate-400 mb-2">Message</label>
+                        {{ form.message }}
+                        {{ contactFormErrorDisplay(form.message.errors) }}
+                    </div>
+                    <div>
+                        <label>{{ form.captcha }}</label>
+                    </div>
+                    <button
+                        class="w-full py-4 bg-uj-orange text-white font-bold rounded-xl shadow-[0_0_25px_rgba(242,101,34,0.4)] hover:shadow-[0_0_40px_rgba(242,101,34,0.6)] hover:bg-orange-600 transition-all text-sm md:text-base">Send
+                        Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

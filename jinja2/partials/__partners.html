@@ -1,0 +1,17 @@
+<section id="partners" class="py-16 md:py-20 bg-black border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+        <p class="text-slate-500 uppercase tracking-widest text-[10px] md:text-xs mb-8 md:mb-10">Partnering With
+            Academic & Industry Leaders</p>
+        <div class="flex flex-wrap justify-center items-center gap-6 md:gap-16 opacity-70">
+            <template x-for="i in 5">
+                <div
+                    class="group w-32 h-16 md:w-48 md:h-24 flex items-center justify-center p-2 transition-all duration-300 hover:scale-105 cursor-pointer">
+
+                    <img :src="`/static/img/partnership_${i}.png`"
+                        class="max-w-full max-h-full object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 filter brightness-75 group-hover:brightness-100">
+
+                </div>
+            </template>
+        </div>
+    </div>
+</section>
