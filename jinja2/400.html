@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Page Not Found | UJ Blockchain Research Chair</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="{{ static('tailwindConfig.js') }}"></script>
+    <link rel="stylesheet" href="{{ static('style.css') }}">
+</head>
+
+<body class="bg-uj-dark text-slate-300 font-sans antialiased selection:bg-uj-orange selection:text-white overflow-x-hidden"
+    x-data="{ mobileMenuOpen: false }">
+
+    <div id="particles-container" class="fixed inset-0 z-0 pointer-events-none opacity-30"></div>
+    
+    <div class="fixed top-0 left-0 w-96 h-96 bg-uj-orange/10 rounded-full mix-blend-screen filter blur-[120px] animate-blob z-0"></div>
+    <div class="fixed bottom-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full mix-blend-screen filter blur-[120px] animate-blob z-0" style="animation-delay: 2s"></div>
+
+    <nav class="fixed w-full z-50 glass-nav py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-14">
+                <a href="/" class="flex-shrink-0 flex items-center gap-2 cursor-pointer group">
+                    <div class="w-10 h-10 bg-uj-orange rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-[0_0_15px_rgba(242,101,34,0.5)] group-hover:shadow-[0_0_25px_rgba(242,101,34,0.8)] transition-all">UJ</div>
+                    <span class="font-bold text-xl md:text-2xl text-white tracking-tight leading-none">Blockchain</span>
+                </a>
+                <a href="/" class="hidden md:block px-5 py-2 rounded-full bg-white/5 border border-white/10 text-white text-sm font-bold hover:bg-uj-orange hover:border-transparent transition-all">
+                    Back to Safety
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative min-h-screen flex items-center justify-center px-4 pt-20">
+        
+       <div class="text-center max-w-3xl mx-auto z-10">
+    <div class="mb-8">
+        <div class="text-[10rem] leading-none font-bold text-white/5 select-none absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 scale-150 pointer-events-none">
+            ?
+        </div>
+        <div class="relative z-10 w-24 h-24 mx-auto bg-uj-surface rounded-2xl border border-white/10 flex items-center justify-center shadow-2xl rotate-12">
+            <i class="fas fa-file-code text-4xl text-yellow-500"></i>
+            <div class="absolute -top-2 -right-2 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white font-bold text-xl border-2 border-uj-dark">!</div>
+        </div>
+    </div>
+    
+    <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-4 relative z-10">Invalid Transaction</h1>
+    
+    <p class="text-slate-400 text-base md:text-lg mb-8 max-w-xl mx-auto relative z-10">
+        The server could not understand the request due to invalid syntax. It looks like a malformed block header.
+    </p>
+
+    <div class="flex flex-col justify-center items-center gap-2 mb-10 relative z-10">
+        <div class="bg-black/50 p-4 rounded-lg border border-white/10 font-mono text-xs text-left w-full max-w-md text-slate-400">
+            <span class="text-red-400">Error:</span> 400 Bad Request<br>
+            <span class="text-purple-400">at:</span> ValidateTransaction()<br>
+            <span class="text-green-400">msg:</span> "Syntax invalid."
+        </div>
+    </div>
+
+    <a href="/" class="relative z-10 px-8 py-4 rounded-full bg-white text-uj-dark font-bold hover:bg-uj-orange hover:text-white transition-all inline-flex items-center gap-2">
+        Correct Your Path
+    </a>
+</div>
+        
+    </section>
+
+    <footer class="bg-black py-8 border-t border-white/10 text-center text-slate-600 text-xs md:text-sm relative z-10">
+        &copy; {% now "Y" %} University of Johannesburg Blockchain Research Chair.
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.0.6/tsparticles.slim.bundle.min.js"></script>
+    <script>
+        (async () => {
+            await window.tsParticles.load("particles-container", {
+                background: { color: { value: "transparent" } },
+                fpsLimit: 60,
+                particles: {
+                    color: { value: ["#ffffff", "#F26522"] },
+                    links: { color: "#ffffff", distance: 150, enable: true, opacity: 0.1, width: 1 },
+                    move: { enable: true, speed: 0.6 },
+                    number: { density: { enable: true, area: 800 }, value: 40 },
+                    opacity: { value: 0.3 },
+                    shape: { type: "circle" },
+                    size: { value: { min: 1, max: 2 } },
+                },
+            });
+        })();
+    </script>
+</body>
+</html>

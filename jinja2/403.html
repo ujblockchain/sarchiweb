@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Page Not Found | UJ Blockchain Research Chair</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="tailwindConfig.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body
+    class="bg-uj-dark text-slate-300 font-sans antialiased selection:bg-uj-orange selection:text-white overflow-x-hidden"
+    x-data="{ mobileMenuOpen: false }">
+
+    <div id="particles-container" class="fixed inset-0 z-0 pointer-events-none opacity-30"></div>
+
+    <div
+        class="fixed top-0 left-0 w-96 h-96 bg-uj-orange/10 rounded-full mix-blend-screen filter blur-[120px] animate-blob z-0">
+    </div>
+    <div class="fixed bottom-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full mix-blend-screen filter blur-[120px] animate-blob z-0"
+        style="animation-delay: 2s"></div>
+
+    <nav class="fixed w-full z-50 glass-nav py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-14">
+                <a href="/" class="flex-shrink-0 flex items-center gap-2 cursor-pointer group">
+                    <div
+                        class="w-10 h-10 bg-uj-orange rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-[0_0_15px_rgba(242,101,34,0.5)] group-hover:shadow-[0_0_25px_rgba(242,101,34,0.8)] transition-all">
+                        UJ</div>
+                    <span class="font-bold text-xl md:text-2xl text-white tracking-tight leading-none">Blockchain</span>
+                </a>
+                <a href="/"
+                    class="hidden md:block px-5 py-2 rounded-full bg-white/5 border border-white/10 text-white text-sm font-bold hover:bg-uj-orange hover:border-transparent transition-all">
+                    Back to Safety
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative min-h-screen flex items-center justify-center px-4 pt-20">
+
+        <div class="text-center max-w-3xl mx-auto z-10">
+            <div class="mb-10 relative flex justify-center">
+                <div class="relative">
+                    <i class="fas fa-shield-alt text-8xl md:text-9xl text-slate-800"></i>
+                    <i
+                        class="fas fa-lock absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-4xl text-uj-orange drop-shadow-[0_0_15px_rgba(242,101,34,0.8)]"></i>
+                </div>
+            </div>
+
+            <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-4">Access Denied</h1>
+            <h2 class="text-xl text-uj-orange font-mono mb-6">Error 403: Insufficient Gas</h2>
+
+            <p class="text-slate-400 text-base md:text-lg mb-10 max-w-xl mx-auto">
+                You do not have the required private key to view this block. This area is restricted to authorized nodes
+                only.
+            </p>
+
+            <div class="glass-card p-6 rounded-2xl max-w-md mx-auto mb-10 text-left border-l-4 border-uj-orange">
+                <p class="text-xs text-slate-500 uppercase font-bold mb-1">System Message:</p>
+                <p class="font-mono text-sm text-red-400">> User_ID: Guest</p>
+                <p class="font-mono text-sm text-red-400">> Permission: Read_Write = FALSE</p>
+            </div>
+
+            <a href="/"
+                class="px-8 py-4 rounded-full bg-uj-orange text-white font-bold hover:bg-orange-600 transition-all shadow-[0_0_20px_rgba(242,101,34,0.4)] inline-flex items-center gap-2">
+                <i class="fas fa-arrow-left"></i> Return to Public Chain
+            </a>
+        </div>
+
+    </section>
+
+    <footer class="bg-black py-8 border-t border-white/10 text-center text-slate-600 text-xs md:text-sm relative z-10">
+        &copy; {% now "Y" %} University of Johannesburg Blockchain Research Chair.
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.0.6/tsparticles.slim.bundle.min.js"></script>
+    <script>
+        (async () => {
+            await window.tsParticles.load("particles-container", {
+                background: { color: { value: "transparent" } },
+                fpsLimit: 60,
+                particles: {
+                    color: { value: ["#ffffff", "#F26522"] },
+                    links: { color: "#ffffff", distance: 150, enable: true, opacity: 0.1, width: 1 },
+                    move: { enable: true, speed: 0.6 },
+                    number: { density: { enable: true, area: 800 }, value: 40 },
+                    opacity: { value: 0.3 },
+                    shape: { type: "circle" },
+                    size: { value: { min: 1, max: 2 } },
+                },
+            });
+        })();
+    </script>
+</body>
+
+</html>
