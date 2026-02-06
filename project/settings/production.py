@@ -2,7 +2,7 @@ from project.settings import env
 
 SECRET_KEY = env.get('SECRET_KEY')
 ALLOWED_HOSTS = env.get('ALLOWED_HOSTS', cast="list")
-DEBUG = env.get('DEBUG')
+DEBUG = env.get('DEBUG', cast='bool')
 
 # database
 DATABASES = {
@@ -37,7 +37,7 @@ SERVER_EMAIL = env.get('SERVER_EMAIL')
 # captcha settings
 RECAPTCHA_PUBLIC_KEY = env.get('RECAPTCHA_PUBLIC_KEY')
 RECAPTCHA_PRIVATE_KEY = env.get('RECAPTCHA_PRIVATE_KEY')
-RECAPTCHA_REQUIRED_SCORE = env.get('RECAPTCHA_REQUIRED_SCORE', cast=float)
+RECAPTCHA_REQUIRED_SCORE = env.get('RECAPTCHA_REQUIRED_SCORE', cast='float')
 
 # cors settings
 CORS_ORIGIN_ALLOW_ALL = True
