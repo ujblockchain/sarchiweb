@@ -41,7 +41,7 @@ TEMPLATES = [
 ]
 
 # static files (css, javascript, images)
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [
     f'{PROJECT_DIR}/static',

@@ -1,4 +1,4 @@
-from django.contrib.staticfiles.storage import staticfiles_storage
+from django.templatetags.static import static
 from django.urls import reverse
 from jinja2 import Environment
 
@@ -10,7 +10,7 @@ def JinjaEnvironment(**options):
             'url': reverse,
             'trim_blocks': True,
             'Istrip_blocks': True,
-            'static': staticfiles_storage.url,
+            'static': static,
         }
     )
     # env.filters.update({})
