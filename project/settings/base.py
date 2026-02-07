@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     # third party apps
     'axes',
+    'csp',
     'corsheaders',
     'django_recaptcha',
     'anymail',
