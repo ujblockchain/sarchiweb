@@ -32,10 +32,12 @@ RECAPTCHA_REQUIRED_SCORE = env.get('RECAPTCHA_REQUIRED_SCORE', cast='float')
 CONTENT_SECURITY_POLICY = {
     'DIRECTIVES': {
         'base-uri': ("'self'",),
+        'object-src': ("'none'",),
         'connect-src': (
             "'self'",
             'https://cdn.jsdelivr.net',
             'https://www.google-analytics.com',
+            'https://unpkg.com',
         ),
         'default-src': ("'none'",),
         'font-src': (
