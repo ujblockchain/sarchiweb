@@ -1,5 +1,5 @@
 <figure align="center">
-  <img src="https://ujblockchain.co.za/static/img/logo.png" alt="UJ Blockchain Logo" width="220"/>
+  <img src="https://www.ujblockchain.co.za/static/img/logo.png" alt="UJ Blockchain Logo" width="220"/>
   <figcaption>South Africa-Switzerland Bilateral Research Chair in Blockchain Technology</figcaption>
 </figure>
 
