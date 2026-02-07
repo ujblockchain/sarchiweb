@@ -22,7 +22,6 @@ INSTALLED_APPS = [
     'corsheaders',
     'django_recaptcha',
     'anymail',
-    'phonenumber_field',
     # app
     'contact.apps.ContactConfig',
     'user.apps.UserConfig',
