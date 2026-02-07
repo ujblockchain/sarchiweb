@@ -15,7 +15,6 @@ django-import-export==4.4.0
 django-js-asset==3.1.2
 django-otp==1.7.0
 django-pgcrypto==3.1.0
-django-phonenumber-field==8.4.0 
 django-prose-editor==0.24.0
 django-recaptcha==4.1.0
 django-simple-history==3.11.0
@@ -26,7 +25,6 @@ Jinja2==3.1.6
 MarkupSafe==3.0.3
 model-bakery==1.23.2
 nh3==0.3.2
-phonenumberslite==9.0.23 
 pillow==12.1.0
 pre_commit==4.5.1
 psycopg==3.3.2
