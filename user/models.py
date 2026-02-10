@@ -4,11 +4,6 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from simple_history.models import HistoricalRecords
 
-user_roles = [
-    ('Followup', 'Followup'),
-    ('Outreach', 'Outreach'),
-]
-
 
 class UserManager(BaseUserManager):
     use_in_migrations = True
@@ -45,7 +40,6 @@ class UserManager(BaseUserManager):
 class Users(AbstractUser):
     id = models.AutoField(primary_key=True, editable=False)
     username = None
-    role = models.CharField(max_length=200, choices=user_roles, default='Followup')
     email = models.EmailField(_('email address'), unique=True)
     history = HistoricalRecords()
 

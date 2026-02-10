@@ -15,7 +15,7 @@ class CustomUserAdmin(UserAdmin, admin.ModelAdmin):
 	list_filter = ['is_active', 'is_staff', 'is_superuser']
 	date_hierarchy = 'date_joined'
 	readonly_fields = ['id', 'date_joined', 'last_login']
-	search_fields = ['first_name', 'last_name', 'email', 'role_access']
+	search_fields = ['first_name', 'last_name', 'email']
 	list_per_page = 100
 	ordering = ['-date_joined']
 
