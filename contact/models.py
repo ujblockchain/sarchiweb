@@ -1,6 +1,10 @@
 import uuid
 
-import pgcrypto
+from encrypted_fields.fields import (
+    EncryptedCharField,
+    EncryptedTextField,
+    EncryptedEmailField,
+)
 from django.db import models
 from django.utils import timezone
 from simple_history.models import HistoricalRecords
@@ -20,18 +24,10 @@ class Contact(models.Model):
         max_length=20,
         primary_key=True,
     )
-    first_name = pgcrypto.EncryptedCharField(max_length=100,
-                                             null=False,
-                                             blank=False)
-    last_name = pgcrypto.EncryptedCharField(max_length=100,
-                                            null=False,
-                                            blank=False)
-    email = pgcrypto.EncryptedEmailField(max_length=254,
-                                         null=False,
-                                         blank=False)
-    message = pgcrypto.EncryptedTextField(max_length=500,
-                                          null=False,
-                                          blank=False)
+    first_name = EncryptedCharField(max_length=100, null=False, blank=False)
+    last_name = EncryptedCharField(max_length=100, null=False, blank=False)
+    email = EncryptedEmailField(max_length=254, null=False, blank=False)
+    message = EncryptedTextField(max_length=500, null=False, blank=False)
     history = HistoricalRecords()
     date_received = models.DateTimeField(default=timezone.now)
 
