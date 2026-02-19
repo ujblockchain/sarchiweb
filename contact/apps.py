@@ -6,3 +6,4 @@ class ContactConfig(AppConfig):
     name = 'contact'
     icon = 'fas fa-envelope'
     hide = False
+    divider_title = 'Apps'

@@ -5,5 +5,5 @@ class UserConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'user'
     icon = 'fas fa-user-shield'
-    priority = 1
+    priority = 10
     hide = False
