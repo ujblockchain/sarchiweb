@@ -7,9 +7,8 @@ DEBUG = env.get('DEBUG', cast='bool')
 
 # database
 DATABASES = {
-    'default': dj_database_url.parse(env.get('DATABASE_URL'), engine=env.get('ENGINE'))
+    'default': dj_database_url.parse(env.get('DATABASE_URL'), engine=env.get('ENGINE')),
 }
-
 
 # security settings in production environment
 CSRF_COOKIE_SECURE = True
