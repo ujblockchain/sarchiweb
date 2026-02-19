@@ -1,3 +1,4 @@
+import dj_database_url
 from project.settings import env
 
 SECRET_KEY = env.get('SECRET_KEY')
@@ -6,17 +7,9 @@ DEBUG = env.get('DEBUG', cast='bool')
 
 # database
 DATABASES = {
-    'default': {
-        'ENGINE': env.get('ENGINE'),
-        'NAME': env.get('NAME'),
-        'HOST': env.get('HOST'),
-        'USER': env.get('USER'),
-        'PASSWORD': env.get('PASSWORD'),
-        'OPTIONS': {
-            'sslmode': 'require',
-        },
-    }
+    'default': dj_database_url.parse(env.get('DATABASE_URL'), engine=env.get('ENGINE'))
 }
+
 
 # security settings in production environment
 CSRF_COOKIE_SECURE = True
@@ -49,3 +42,24 @@ CSRF_TRUSTED_ORIGINS = [
 CORS_ORIGIN_WHITELIST = [
     'https://ujblockchain.co.za',
 ]
+
+
+STORAGES = {
+    "default": {
+        "BACKEND": "project.settings.storage.media.PublicMediaStorage",
+        "OPTIONS": {
+            "access_key": env.get('AWS_ACCESS_KEY_ID'),
+            "secret_key": env.get('AWS_SECRET_ACCESS_KEY'),
+            "bucket_name": env.get('AWS_STORAGE_BUCKET_NAME'),
+            "endpoint_url": env.get('AWS_S3_ENDPOINT_URL'),
+            "region_name": env.get('AWS_S3_REGION_NAME'),
+            "signature_version": env.get('AWS_S3_SIGNATURE_VERSION'),
+            "object_parameters": {"CacheControl": "max-age=864000"},
+            "default_acl": env.get('AWS_DEFAULT_ACL'),
+            "file_overwrite": False,
+        },
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
