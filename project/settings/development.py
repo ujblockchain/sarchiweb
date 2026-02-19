@@ -1,4 +1,4 @@
-from project.settings import env
+from project.settings import BASE_DIR, env
 from project.settings.base import INSTALLED_APPS, MIDDLEWARE
 
 SECRET_KEY = env.get('SECRET_KEY')
@@ -31,3 +31,18 @@ INTERNAL_IPS = ['127.0.0.1']
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:8000',
 ]
+
+
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
+
+
+# media files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
