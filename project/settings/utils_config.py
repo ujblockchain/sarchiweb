@@ -43,27 +43,13 @@ TEMPLATES = [
 # static files (css, javascript, images)
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_DIRS = [
-    f'{PROJECT_DIR}/static',
-]
-STORAGES = {
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    },
-}
-
-# media files
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+STATICFILES_DIRS = [f'{PROJECT_DIR}/static']
 
 # default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # email settings
-ANYMAIL = {
-    "MAILTRAP_API_TOKEN": env.get('MAILTRAP_API_TOKEN'),
-}
-
+ANYMAIL = {"MAILTRAP_API_TOKEN": env.get('MAILTRAP_API_TOKEN')}
 EMAIL_BACKEND = env.get('EMAIL_BACKEND')
 DEFAULT_FROM_EMAIL = env.get('DEFAULT_FROM_EMAIL')
 SERVER_EMAIL = env.get('SERVER_EMAIL')
