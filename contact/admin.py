@@ -11,7 +11,6 @@ class ContactsMessageAdmin(admin.ModelAdmin):
     date_hierarchy = 'date_received'
     list_per_page = 50
     actions_on_top = True
-    actions_on_bottom = True
     readonly_fields = [
         'first_name', 'last_name', 'email', 'message', 'date_received'
     ]
