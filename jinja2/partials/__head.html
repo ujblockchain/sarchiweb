@@ -28,7 +28,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ static('img/favicon/apple-touch-icon.png') }}" />
     <meta name="apple-mobile-web-app-title" content="UJ Blockchain" />
     <link rel="manifest" href="{{ static('img/favicon/site.webmanifest') }}" />
-    <title>UJ Blockchain Research Chair</title>
+    <title>{% block pageTitle %}UJ Blockchain Research Chair{% endblock pageTitle %}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
@@ -37,7 +37,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <script src="{{ static('tailwindConfig.js') }}"></script>
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -46,11 +45,16 @@
             "url": "https://www.ujblockchain.co.za", 
             "logo": "https://www.ujblockchain.co.za/sttaic/img/main-logo.png",
             "sameAs": [
-                "https://www.linkedin.com/company/south-africa-swiss-bilateral-research-chair-in-blockchain-technology/",
-                "https://twitter.com/ujblockchain",
-                "https://www.youtube.com/@ujblockchain"
+            "https://www.linkedin.com/company/south-africa-swiss-bilateral-research-chair-in-blockchain-technology/",
+            "https://twitter.com/ujblockchain",
+            "https://www.youtube.com/@ujblockchain"
             ]
         }
     </script>
-    <link rel="stylesheet" href="{{ static('style.css') }}">
+    {% block tailwindConfig %}
+        <script src="{{ static('tailwindConfig.js') }}"></script>
+    {% endblock tailwindConfig %}
+    {% block pageStyle %}
+        <link rel="stylesheet" href="{{ static('style.css') }}">
+    {% endblock pageStyle %}
 </head>
