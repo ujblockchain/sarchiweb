@@ -24,6 +24,8 @@ INSTALLED_APPS = [
     'anymail',
     # app
     'contact.apps.ContactConfig',
+    'community.apps.CommunityConfig',
+    'facilitator.apps.FacilitatorConfig',
     'user.apps.UserConfig',
     # third party apps by location
     'django_otp',
