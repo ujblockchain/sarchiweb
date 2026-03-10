@@ -3,26 +3,28 @@
 
 {% include "partials/__head.html" %}
 
-<body
-    class="bg-uj-dark text-slate-300 font-sans antialiased selection:bg-uj-orange selection:text-white overflow-x-hidden"
-    x-data="appData()" @keydown.escape.window="closeGallery(); closeModal()">
+{% block mainBodyContent %}
+    <body
+        class="bg-uj-dark text-slate-300 font-sans antialiased selection:bg-uj-orange selection:text-white overflow-x-hidden"
+        x-data="appData()" @keydown.escape.window="closeGallery(); closeModal()">
 
-    <div id="particles-container" class="fixed inset-0 z-0 pointer-events-none opacity-30"></div>
+        <div id="particles-container" class="fixed inset-0 z-0 pointer-events-none opacity-30"></div>
 
-    {% include "partials/__nav.html" %}
+        {% include "partials/__nav.html" %}
 
-    {% block bodyContent %}{% endblock bodyContent %}
+        {% block bodyContent %}{% endblock bodyContent %}
 
-    {% include "partials/__contact.html" %}
-    {% include "partials/__partners.html" %}
-    {% include "partials/__footer.html" %}
-    {% include "partials/__video-modal.html" %}
-    {% include "partials/__gallery-modal.html" %}
+        {% include "partials/__contact.html" %}
+        {% include "partials/__partners.html" %}
+        {% include "partials/__footer.html" %}
+        {% include "partials/__video-modal.html" %}
+        {% include "partials/__gallery-modal.html" %}
 
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.0.6/tsparticles.slim.bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="{{ static('main.js') }}"></script>
-</body>
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.0.6/tsparticles.slim.bundle.min.js"></script>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        <script src="{{ static('main.js') }}"></script>
+    </body>
+{% endblock mainBodyContent %}
 
 </html>
