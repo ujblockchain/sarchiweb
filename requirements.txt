@@ -1,3 +1,4 @@
+boto3==1.42.65
 cryptography==46.0.5 
 Django==6.0.3
 django-anymail==14.0
@@ -6,7 +7,6 @@ django-autoslug==1.9.9
 django-axes==8.3.1
 django-cockroachdb==6.0
 django-storages==1.14.6
-boto3==1.42.65
 dj-database-url==3.1.1
 django-fernet-encrypted-fields==0.3.1
 django-extensions==4.1
