@@ -16,6 +16,7 @@ class StudentApplicationForm(forms.ModelForm):
             'year_of_study',
             'ieee_membership',
             'saiee_membership',
+            'other_membership',
         ]
 
     def clean_email(self):

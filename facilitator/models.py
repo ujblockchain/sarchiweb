@@ -30,6 +30,7 @@ class StudentApplication(models.Model):
     year_of_study = models.IntegerField(choices=YEAR_CHOICES)
     ieee_membership = models.BooleanField(default=False)
     saiee_membership = models.BooleanField(default=False)
+    other_membership = models.CharField(max_length=300, default='')
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

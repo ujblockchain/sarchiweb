@@ -24,5 +24,6 @@ class StudentApplicationAdmin(admin.ModelAdmin):
         'year_of_study',
         'ieee_membership',
         'saiee_membership',
+        'other_membership',
         'created_at',
     ]
