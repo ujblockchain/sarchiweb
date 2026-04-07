@@ -13,6 +13,7 @@ class CummunityApplicationAdmin(ImportExportActionModelAdmin):
     readonly_fields = ['id', 'created_at']
     save_as = True
     save_as_continue = True
+    show_full_result_count = True
     save_on_top = True
     search_fields = ['first_name', 'last_name', 'faculty', 'department']
     fields = [

@@ -13,6 +13,7 @@ class StudentApplicationAdmin(ImportExportActionModelAdmin):
     actions_on_top = True
     readonly_fields = ['id', 'created_at']
     save_as = True
+    show_full_result_count = True
     save_as_continue = True
     search_fields = ['first_name', 'last_name', 'faculty', 'department']
     fields = [
