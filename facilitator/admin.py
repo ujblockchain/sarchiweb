@@ -1,9 +1,11 @@
 from django.contrib import admin
 from .models import StudentApplication
+from import_export.admin import ImportExportActionModelAdmin
+
 
 
 @admin.register(StudentApplication)
-class StudentApplicationAdmin(admin.ModelAdmin):
+class StudentApplicationAdmin(ImportExportActionModelAdmin):
     list_display = ['first_name', 'last_name', 'faculty', 'department', 'created_at']
     list_display_links = ['first_name', 'last_name', 'faculty', 'department']
     date_hierarchy = 'created_at'

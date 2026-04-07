@@ -1,9 +1,10 @@
 from django.contrib import admin
 from .models import CommunityRegistration
+from import_export.admin import ImportExportActionModelAdmin
 
 
 @admin.register(CommunityRegistration)
-class CummunityApplicationAdmin(admin.ModelAdmin):
+class CummunityApplicationAdmin(ImportExportActionModelAdmin):
     list_display = ['first_name', 'last_name', 'faculty', 'department', 'created_at']
     list_display_links = ['first_name', 'last_name', 'faculty', 'department']
     date_hierarchy = 'created_at'
