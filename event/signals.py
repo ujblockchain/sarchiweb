@@ -36,7 +36,7 @@ def auto_mail_sending(sender, instance, created, **kwargs):
                 "the <strong>UJ Blockchain x H.E.R DAO Training Program</strong>! and "
                 "we are excited to help you dive deeper into Web3.\n\n"
                 "Venue: <strong>Department of Electrical and Electronic Engineering Science, "
-                "Lab B2 219, University of Johannesburg, Auckland Park Campus</strong>."
+                "Lab B2 219, University of Johannesburg, Auckland Park Campus by 10 AM</strong>."
             )
 
             html_content = render_to_string(
