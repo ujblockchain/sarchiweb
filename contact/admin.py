@@ -9,9 +9,8 @@ from pgcrypto import (
 
 from .models import Contact
 
-admin.register(Contact)
 
-
+@admin.register(Contact)
 class ContactsMessageAdmin(admin.ModelAdmin):
     list_display = ['first_name', 'last_name', 'email', 'date_received']
     list_display_links = ['first_name', 'last_name', 'email', 'date_received']
