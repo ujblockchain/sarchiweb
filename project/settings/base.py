@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     # app
     'contact.apps.ContactConfig',
     'community.apps.CommunityConfig',
+    'event.apps.EventConfig',
     'facilitator.apps.FacilitatorConfig',
     'user.apps.UserConfig',
     # third party apps by location
