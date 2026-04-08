@@ -1,0 +1,475 @@
+{% extends 'base.html' %}
+
+{% block pageTitle %}Training Registration | UJ Blockchain x H.E.R DAO{% endblock pageTitle %}
+{% block tailwindConfig %}
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    'uj-orange': '#F26522',
+                    'uj-dark': '#0B1120',
+                    'uj-surface': '#151E2E',
+                    'her-dao': '#E84142'
+                },
+                fontFamily: {
+                    sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                }
+            }
+        }
+    }
+</script>
+{% endblock tailwindConfig %}
+{% block pageStyle %}
+<style>
+    html,
+    body {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .glass-card {
+        background: rgba(21, 30, 46, 0.6);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+    }
+
+    [x-cloak] {
+        display: none !important;
+    }
+
+    .check-wrapper {
+        animation: scaleIn 0.5s ease-out forwards;
+    }
+
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: rgba(11, 17, 32, 0.8);
+        border-radius: 8px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #F26522;
+        border-radius: 8px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #d95a1e;
+    }
+
+    @keyframes scaleIn {
+        0% {
+            transform: scale(0);
+            opacity: 0;
+        }
+
+        50% {
+            transform: scale(1.2);
+        }
+
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+</style>
+{% endblock pageStyle %}
+
+
+{% block mainBodyContent %}
+
+<body
+    class="bg-[#0F1623] text-slate-300 antialiased selection:bg-uj-orange selection:text-white min-h-screen flex flex-col relative w-full">
+
+    <div
+        class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-uj-orange via-her-dao to-uj-orange opacity-80 z-50">
+    </div>
+
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <div class="absolute -top-40 -right-40 w-96 h-96 bg-uj-orange/10 rounded-full blur-[120px]"></div>
+        <div class="absolute top-1/2 -left-40 w-96 h-96 bg-her-dao/5 rounded-full blur-[120px]"></div>
+    </div>
+
+    <nav class="w-full z-40 py-4 relative">
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap justify-between items-center h-auto min-h-[40px] gap-4">
+            <a href="/" class="flex items-center gap-2 group cursor-pointer">
+                <div
+                    class="w-8 h-8 bg-gradient-to-br from-uj-orange to-her-dao rounded-xl flex items-center justify-center text-white font-bold text-sm shadow-[0_0_15px_rgba(242,101,34,0.5)]">
+                    UJ</div>
+                <span class="font-bold text-lg text-white tracking-tight">Blockchain <span
+                        class="text-slate-500 font-medium text-sm mx-1">x</span> H.E.R DAO</span>
+            </a>
+            <a href="/"
+                class="text-sm font-medium text-slate-300 hover:text-white hover:text-uj-orange transition-colors">
+                <i class="fas fa-home mr-1"></i> Return Home
+            </a>
+        </div>
+    </nav>
+
+    <main class="flex-grow py-8 md:py-20 flex items-center relative z-10 w-full" x-data="studentForm()">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+
+                <!-- LEFT SIDE: INFO -->
+                <div class="lg:col-span-5 lg:sticky lg:top-10" data-aos="fade-up">
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1.5 mb-6 rounded-full bg-white/5 border border-white/10 text-slate-200 text-xs font-bold tracking-wide backdrop-blur-sm">
+                        <i class="fas fa-rocket text-uj-orange" :class="isRegistrationOpen ? 'animate-pulse' : ''"></i>
+                        <span x-text="isRegistrationOpen ? 'Applications Open' : 'Applications Closed'"></span>
+                    </div>
+
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-[1.1]">
+                        Join the <br>
+                        <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-uj-orange to-her-dao">Blockchain
+                            Training.</span>
+                    </h1>
+
+                    <p class="text-slate-400 mb-8 text-sm md:text-base leading-relaxed">
+                        Are you a UJ student passionate about Web3, Blockchain, and building the future? Apply for the
+                        <strong>UJ Blockchain & H.E.R DAO Training Program</strong>. Gain access to hands-on workshops,
+                        real-world development skills, industry networking, and a supportive Web3 ecosystem.
+                    </p>
+
+                    <div class="space-y-4 mb-8">
+                        <div
+                            class="flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-her-dao/30 transition-colors">
+                            <div
+                                class="w-10 h-10 rounded-xl bg-her-dao/10 flex items-center justify-center text-her-dao shrink-0 border border-her-dao/20">
+                                <i class="fas fa-gem text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-sm">Empowerment & Network</h4>
+                                <p class="text-slate-500 text-xs mt-1">Connect with the H.E.R DAO ecosystem and
+                                    inspiring
+                                    mentors.</p>
+                            </div>
+                        </div>
+
+                        <div
+                            class="flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-uj-orange/30 transition-colors">
+                            <div
+                                class="w-10 h-10 rounded-xl bg-uj-orange/10 flex items-center justify-center text-uj-orange shrink-0 border border-uj-orange/20">
+                                <i class="fas fa-laptop-code text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-sm">Learn & Build</h4>
+                                <p class="text-slate-500 text-xs mt-1">Participate in developer-focused workshops, from
+                                    basics to deploying your first smart contract.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 relative" data-aos="fade-up" data-aos-delay="100">
+
+                    <div
+                        class="glass-card rounded-[2rem] shadow-2xl relative border border-white/10 overflow-hidden h-auto min-h-[500px] flex flex-col">
+
+                        <div
+                            class="absolute -inset-1 bg-gradient-to-r from-uj-orange/20 to-transparent blur-2xl opacity-40 z-[-1] rounded-[2rem]">
+                        </div>
+
+                        <div x-show="!isRegistrationOpen" x-cloak
+                            class="p-8 md:p-12 w-full flex flex-col items-center justify-center text-center flex-grow min-h-[500px]">
+                            <div
+                                class="w-20 h-20 rounded-full bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 mb-6 shadow-[0_0_15px_rgba(239,68,68,0.2)]">
+                                <i class="fas fa-lock text-3xl"></i>
+                            </div>
+                            <h3 class="text-2xl md:text-4xl font-bold text-white mb-4">Applications Closed</h3>
+                            <p class="text-slate-400 max-w-md mx-auto leading-relaxed mb-8 text-sm md:text-base">
+                                Thank you for your interest! The current cohort intake for the UJ Blockchain x H.E.R DAO
+                                training is closed. Keep an eye on our platforms for future opportunities.
+                            </p>
+                        </div>
+
+                        <div x-show="isRegistrationOpen && (status === 'idle' || status === 'submitting')"
+                            x-transition:leave="transition ease-in duration-300"
+                            x-transition:leave-start="opacity-100 transform scale-100"
+                            x-transition:leave-end="opacity-0 transform scale-95"
+                            class="p-5 sm:p-8 md:p-10 w-full relative flex-grow">
+
+
+                            <div x-show="status === 'submitting'"
+                                class="absolute inset-0 bg-[#0F1623]/80 backdrop-blur-sm z-50 flex flex-col items-center justify-center rounded-[2rem]">
+                                <i class="fas fa-circle-notch fa-spin text-5xl text-uj-orange mb-4"></i>
+                                <span
+                                    class="text-white font-bold tracking-widest uppercase text-sm animate-pulse">Processing...</span>
+                            </div>
+
+                            <h3 class="text-xl md:text-2xl font-bold text-white mb-6 border-b border-white/10 pb-4">
+                                Training Application</h3>
+
+                            <form class="space-y-5" @submit.prevent="submitApplication">
+                                {{csrf_input}}
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+                                    <div>
+                                        <label
+                                            class="block text-xs font-bold text-slate-400 mb-2 uppercase tracking-wider">First
+                                            Name <span class="text-uj-orange">*</span></label>
+                                        <input type="text" name="first_name" required
+                                            class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white focus:border-uj-orange focus:ring-1 focus:ring-uj-orange outline-none transition-all placeholder-slate-600 text-sm"
+                                            placeholder="John">
+                                            <p x-show="errors.first_name" x-text="errors.first_name ? errors.first_name[0] : ''" class="text-red-500 text-xs mt-1 font-semibold" x-cloak></p>
+
+                                    </div>
+                                    <div>
+                                        <label
+                                            class="block text-xs font-bold text-slate-400 mb-2 uppercase tracking-wider">Last
+                                            Name <span class="text-uj-orange">*</span></label>
+                                        <input type="text" name="last_name" required
+                                            class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white focus:border-uj-orange focus:ring-1 focus:ring-uj-orange outline-none transition-all placeholder-slate-600 text-sm"
+                                            placeholder="Doe">
+                                            <p x-show="errors.last_name" x-text="errors.last_name ? errors.last_name[0] : ''" class="text-red-500 text-xs mt-1 font-semibold" x-cloak></p>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+                                    <div>
+                                        <label
+                                            class="block text-xs font-bold text-slate-400 mb-2 uppercase tracking-wider">Email
+                                            Address <span class="text-uj-orange">*</span></label>
+                                        <input type="email" name="email" required
+                                            class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white focus:border-uj-orange focus:ring-1 focus:ring-uj-orange outline-none transition-all placeholder-slate-600 text-sm"
+                                            placeholder="student@student.uj.ac.za">
+                                            <p x-show="errors.email" x-text="errors.email ? errors.email[0] : ''" class="text-red-500 text-xs mt-1 font-semibold" x-cloak></p>
+                                    </div>
+                                    <div>
+                                        <label
+                                            class="block text-xs font-bold text-slate-400 mb-2 uppercase tracking-wider">Phone
+                                            Number <span class="text-uj-orange">*</span></label>
+                                        <input type="tel" name="phone" required
+                                            class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white focus:border-uj-orange focus:ring-1 focus:ring-uj-orange outline-none transition-all placeholder-slate-600 text-sm"
+                                            placeholder="+27 00 000 0000">
+                                            <p x-show="errors.phone" x-text="errors.phone ? errors.phone[0] : ''" class="text-red-500 text-xs mt-1 font-semibold" x-cloak></p>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+                                    <div>
+                                        <label
+                                            class="block text-xs font-bold text-slate-400 mb-2 uppercase tracking-wider">School
+                                            / Faculty <span class="text-uj-orange">*</span></label>
+                                        <input type="text" name="faculty" required
+                                            class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white focus:border-uj-orange focus:ring-1 focus:ring-uj-orange outline-none transition-all placeholder-slate-600 text-sm"
+                                            placeholder="e.g. FEBE, CBE, Science">
+                                        <p x-show="errors.faculty" x-text="errors.faculty ? errors.faculty[0] : ''" class="text-red-500 text-xs mt-1 font-semibold" x-cloak></p>
+
+                                    </div>
+                                    <div>
+                                        <label
+                                            class="block text-xs font-bold text-slate-400 mb-2 uppercase tracking-wider">Department
+                                            <span class="text-uj-orange">*</span></label>
+                                        <input type="text" name="department" required
+                                            class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white focus:border-uj-orange focus:ring-1 focus:ring-uj-orange outline-none transition-all placeholder-slate-600 text-sm"
+                                            placeholder="e.g. Computer Science">
+                                        <p x-show="errors.department" x-text="errors.department ? errors.department[0] : ''" class="text-red-500 text-xs mt-1 font-semibold" x-cloak></p>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+                                    <div>
+                                        <label
+                                            class="block text-xs font-bold text-slate-400 mb-2 uppercase tracking-wider">Nationality
+                                            <span class="text-uj-orange">*</span></label>
+                                        <input type="text" name="nationality" required
+                                            class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white focus:border-uj-orange focus:ring-1 focus:ring-uj-orange outline-none transition-all placeholder-slate-600 text-sm"
+                                            placeholder="e.g. South African">
+                                        <p x-show="errors.nationality" x-text="errors.nationality ? errors.nationality[0] : ''" class="text-red-500 text-xs mt-1 font-semibold" x-cloak></p>
+                                    </div>
+                                    <div class="relative">
+                                        <label
+                                            class="block text-xs font-bold text-slate-400 mb-2 uppercase tracking-wider">Year
+                                            of Study <span class="text-uj-orange">*</span></label>
+                                        <select name="year_of_study" required
+                                            class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white focus:border-uj-orange focus:ring-1 focus:ring-uj-orange outline-none transition-all text-sm appearance-none cursor-pointer">
+                                            <option value="" disabled selected class="bg-uj-dark">Select Year</option>
+                                            <option value="1" class="bg-uj-dark text-white">1st Year</option>
+                                            <option value="2" class="bg-uj-dark text-white">2nd Year</option>
+                                            <option value="3" class="bg-uj-dark text-white">3rd Year</option>
+                                            <option value="4" class="bg-uj-dark text-white">4th Year / Advanced Diploma
+                                            </option>
+                                            <option value="postgrad" class="bg-uj-dark text-white">Postgraduate</option>
+                                        </select>
+                                        <div
+                                            class="absolute inset-y-0 right-0 top-[28px] flex items-center px-4 pointer-events-none text-slate-400">
+                                            <i class="fas fa-chevron-down text-xs"></i>
+                                        </div>
+                                        <p x-show="errors.year_of_study" x-text="errors.year_of_study ? errors.year_of_study[0] : ''" class="text-red-500 text-xs mt-1 font-semibold" x-cloak></p>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="flex items-start gap-3 p-4 rounded-xl bg-black/20 border border-white/5 mt-2">
+                                    <div class="flex items-center h-5 mt-0.5">
+                                        <input id="media_consent" name="media_consent" type="checkbox" required
+                                            class="w-4 h-4 rounded border-white/10 bg-black/40 accent-uj-orange cursor-pointer">
+                                        </div>
+                                        <label for="media_consent"
+                                        class="text-[11px] md:text-xs text-slate-400 leading-relaxed cursor-pointer">
+                                        <strong class="text-slate-200">DISCLAIMER:</strong> All events taking place in
+                                        this venue may be photographed and video recorded for marketing, social media
+                                        and media purposes. By attending this event, you grant the University of
+                                        Johannesburg permission to use and publish any recorded material. <span
+                                        class="text-uj-orange">*</span>
+                                    </label>
+                                </div>
+                                <p x-show="errors.media_consent" x-text="errors.media_consent ? errors.media_consent[0] : ''" class="text-red-500 text-xs mt-1 font-semibold" x-cloak></p>
+
+                                <button type="submit"
+                                    class="w-full py-3.5 md:py-4 bg-gradient-to-r from-uj-orange to-[#F24422] text-white font-bold rounded-xl shadow-[0_0_20px_rgba(242,101,34,0.3)] hover:shadow-[0_0_35px_rgba(242,101,34,0.6)] hover:-translate-y-0.5 transition-all duration-300 text-sm md:text-base flex justify-center items-center gap-2 mt-2">
+                                    Apply for Training <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </form>
+                        </div>
+
+                        <div x-show="isRegistrationOpen && status === 'success'" x-cloak
+                            x-transition:enter="transition ease-out duration-700 delay-300"
+                            x-transition:enter-start="opacity-0 transform translate-y-8"
+                            x-transition:enter-end="opacity-100 transform translate-y-0"
+                            class="absolute inset-0 bg-uj-surface/95 backdrop-blur-md z-[100] border-t border-uj-orange/30 overflow-y-auto flex flex-col custom-scrollbar">
+
+                            <div
+                                class="m-auto w-full flex flex-col items-center justify-center text-center p-6 md:p-12">
+
+                                <div class="check-wrapper relative mb-6 mt-4">
+                                    <div class="absolute inset-0 bg-green-500 rounded-full blur-xl opacity-40"></div>
+                                    <div
+                                        class="w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-green-400 to-emerald-600 flex items-center justify-center text-white relative z-10 border-4 border-white/10 shadow-2xl">
+                                        <i class="fas fa-check text-3xl md:text-4xl"></i>
+                                    </div>
+                                </div>
+
+                                <h2 class="text-2xl md:text-4xl font-bold text-white mb-4">Application Received!</h2>
+                                <p class="text-slate-400 text-sm md:text-base max-w-md mx-auto mb-8 leading-relaxed">
+                                    Thank you for applying to the UJ Blockchain x H.E.R DAO Training. We will review
+                                    your
+                                    details and you will receive an email shortly regarding your application status.
+                                </p>
+
+                                <div
+                                    class="w-full max-w-sm bg-black/40 border border-white/10 rounded-2xl p-5 mb-8 text-left shadow-inner">
+                                    <h4
+                                        class="text-white text-xs font-bold uppercase tracking-wider mb-5 border-b border-white/5 pb-2">
+                                        Application Timeline</h4>
+
+                                    <ul
+                                        class="space-y-5 relative before:absolute before:inset-0 before:ml-[11px] before:-translate-x-px before:h-full before:w-[2px] before:bg-gradient-to-b before:from-uj-orange before:via-white/10 before:to-transparent">
+                                        <li class="relative flex items-center justify-between group">
+                                            <div class="flex items-center gap-4 w-full">
+                                                <div
+                                                    class="w-6 h-6 rounded-full bg-uj-orange border-[3px] border-uj-surface flex items-center justify-center shrink-0 z-10 shadow-[0_0_10px_rgba(242,101,34,0.6)]">
+                                                </div>
+                                                <div class="flex-1">
+                                                    <div class="text-sm font-bold text-white leading-tight">Application
+                                                        Received</div>
+                                                    <div class="text-[10px] text-slate-400 mt-0.5">Today</div>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        <li class="relative flex items-center justify-between group">
+                                            <div class="flex items-center gap-4 w-full">
+                                                <div
+                                                    class="w-6 h-6 rounded-full bg-white/10 border-[3px] border-uj-surface flex items-center justify-center shrink-0 z-10">
+                                                </div>
+                                                <div class="flex-1">
+                                                    <div class="text-sm font-medium text-slate-400 leading-tight">Under
+                                                        Review</div>
+                                                    <div class="text-[10px] text-slate-500 mt-0.5">Shortly</div>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        <li class="relative flex items-center justify-between group">
+                                            <div class="flex items-center gap-4 w-full">
+                                                <div
+                                                    class="w-6 h-6 rounded-full bg-white/10 border-[3px] border-uj-surface flex items-center justify-center shrink-0 z-10">
+                                                </div>
+                                                <div class="flex-1">
+                                                    <div class="text-sm font-medium text-slate-400 leading-tight">
+                                                        Acceptance Decision</div>
+                                                    <div class="text-[10px] text-slate-500 mt-0.5">Via Email</div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="flex gap-4 mb-4">
+                                    <button @click="status = 'idle'"
+                                        class="px-8 py-3.5 rounded-xl bg-uj-orange text-white font-bold shadow-[0_0_15px_rgba(242,101,34,0.3)] hover:bg-orange-600 hover:-translate-y-0.5 transition-all text-sm md:text-base">
+                                        Return to Start
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('studentForm', () => ({
+
+                isRegistrationOpen: '{{ registration_open|lower }}' === 'true',
+                status: 'idle',
+                errors: {},
+
+                async submitApplication(e) {
+                    this.status = 'submitting';
+                    this.errors = {};
+
+                    const form = e.target;
+                    const formData = new FormData(form);
+
+                    const csrfElement = document.querySelector('[name=csrfmiddlewaretoken]');
+                    const csrfToken = csrfElement ? csrfElement.value : '';
+
+                    try {
+                        const response = await fetch(window.location.href, {
+                            method: 'POST',
+                            body: formData,
+                            headers: {
+                                'X-CSRFToken': csrfToken,
+                                'X-Requested-With': 'XMLHttpRequest'
+                            }
+                        });
+
+                        const data = await response.json();
+
+                        if (response.ok && data.success) {
+                            this.status = 'success';
+                            form.reset();
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                        } else {
+                            this.status = 'idle';
+                            this.errors = data.errors || {};
+                            window.scrollTo({ top: 100, behavior: 'smooth' });
+                        }
+                    } catch (error) {
+                        console.error("Submission error:", error);
+                        this.status = 'idle';
+                        alert('A network error occurred. Please try again.');
+                    }
+                }
+            }));
+        });
+    </script>
+</body>
+{% endblock mainBodyContent %}
