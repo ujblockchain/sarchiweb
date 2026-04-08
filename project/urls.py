@@ -14,6 +14,7 @@ urlpatterns = [
     path(f'{ADMIN_PATH}/login/', CustomAdminLoginView.as_view(), name='admin_login'),
     path(f'{ADMIN_PATH}/', admin.site.urls),
     path('community/', include('community.urls')),
+    path('event/', include('event.urls')),
     path('facilitator/', include('facilitator.urls')),
     path('', include('pages.urls')),
     path('favicon.ico', RedirectView.as_view(url='/static/img/favicon/favicon.ico')),
