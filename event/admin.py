@@ -31,7 +31,7 @@ class EventApplicationAdmin(ImportExportActionModelAdmin):
     list_display_links = ['first_name', 'last_name', 'faculty', 'department']
     list_filter = ['status']
     date_hierarchy = 'created_at'
-    list_per_page = 50
+    list_per_page = 10
     actions_on_top = True
     readonly_fields = ['id', 'created_at']
     save_as = True
@@ -57,10 +57,10 @@ class EventApplicationAdmin(ImportExportActionModelAdmin):
         # mark selected applications as selected
         count = 0
         for obj in queryset.iterator():
-            if obj.status != 'selected':
-                obj.status = 'selected'
-                obj.save(update_fields=['status'])
-                count += 1
+            # if obj.status != 'selected':
+            obj.status = 'selected'
+            obj.save(update_fields=['status'])
+            count += 1
 
         self.message_user(
             request,
