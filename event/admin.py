@@ -38,7 +38,7 @@ class EventApplicationAdmin(ImportExportActionModelAdmin):
     save_as_continue = True
     actions_on_top = True
     actions_on_bottom = True
-    search_fields = ['first_name', 'last_name', 'faculty', 'department', 'status']
+    search_fields = ['first_name', 'last_name', 'email', 'faculty', 'department', 'status']
     fields = [
         'first_name',
         'last_name',
@@ -57,10 +57,10 @@ class EventApplicationAdmin(ImportExportActionModelAdmin):
         # mark selected applications as selected
         count = 0
         for obj in queryset.iterator():
-            # if obj.status != 'selected':
-            obj.status = 'selected'
-            obj.save(update_fields=['status'])
-            count += 1
+            if obj.status != 'selected':
+                obj.status = 'selected'
+                obj.save(update_fields=['status'])
+                count += 1
 
         self.message_user(
             request,
