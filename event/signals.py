@@ -7,7 +7,7 @@ from django.template.loader import render_to_string
 
 
 from project.settings import env
-from .models import EventRegistration
+from .models import EventRegistration, FewsRegistration
 
 
 @receiver(post_save, sender=EventRegistration)
@@ -75,6 +75,54 @@ def auto_mail_sending(sender, instance, created, **kwargs):
     msg.content_subtype = 'html'
     if created or instance.status == 'selected':
         event_flyer = f'{settings.PROJECT_DIR}/static/img/event.jpeg'
+        msg.attach_file(event_flyer)
+
+    msg.send(fail_silently=True)
+
+
+@receiver(post_save, sender=FewsRegistration)
+def fews_mail_sending(sender, instance, created, **kwargs):
+
+    recipient_email = [instance.email]
+    sender_email = settings.DEFAULT_FROM_EMAIL
+    email_subject = None
+    html_content = None
+    context_var = {
+        'first_name': instance.first_name,
+    }
+
+    if created:
+        email_subject = "Application Received - UJ Blockchain x CCFEWS"
+        html_content = render_to_string('emails/fews_email_apply.html', context_var)
+
+    else:
+        if instance.status == 'selected':
+            email_subject = "You're Accepted! - UJ Blockchain x CCFEWS"
+            html_content = render_to_string(
+                'emails/fews_email_selected.html', context_var
+            )
+        elif instance.status == 'rejected':
+            email_subject = "Application Update - UJ Blockchain x CCFEWS"
+            html_content = render_to_string('emails/fews_email_reject.html', context_var)
+
+    if not html_content or not email_subject:
+        return
+
+    msg = mail.EmailMessage(
+        email_subject,
+        html_content,
+        sender_email,
+        recipient_email,
+        reply_to=[env.get('ADMIN_REPLY_EMAIL')],
+        headers={
+            'X-PM-Message-Stream': 'outbound',
+            'Message-ID': f'<{randint(1, 1000)}@ujblockchain.co.za>',
+        },
+    )
+
+    msg.content_subtype = 'html'
+    if created or instance.status == 'selected':
+        event_flyer = f'{settings.PROJECT_DIR}/static/img/fews.png'
         msg.attach_file(event_flyer)
 
     msg.send(fail_silently=True)
