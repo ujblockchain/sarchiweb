@@ -1,0 +1,476 @@
+{% extends 'base.html' %}
+
+{% block pageTitle %}Seminar Registration | UJ Blockchain x CCP-FEWS{% endblock pageTitle %}
+{% block tailwindConfig %}
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'uj-orange': '#D9581A',
+                        'fews-blue': '#0A2540',
+                        'fews-brown': '#4A2B1D',
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+{% endblock tailwindConfig %}
+{% block pageStyle %}
+    <style>
+        html,
+        body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-image: linear-gradient(rgba(10, 37, 64, 0.85), rgba(74, 43, 29, 0.85)), url('{{ static("img/solar_panels.avif")}}');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .glass-card {
+            background: rgba(10, 37, 64, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        [x-cloak] {
+            display: none !important;
+        }
+
+        .check-wrapper {
+            animation: scaleIn 0.5s ease-out forwards;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(10, 37, 64, 0.8);
+            border-radius: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #D9581A;
+            border-radius: 8px;
+        }
+
+        @keyframes scaleIn {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+{% endblock pageStyle %}
+{% block mainBodyContent %}
+    <body
+        class="text-slate-200 antialiased selection:bg-uj-orange selection:text-white min-h-screen flex flex-col relative w-full">
+
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-uj-orange via-yellow-500 to-uj-orange z-50">
+        </div>
+
+        <nav class="w-full z-40 py-4 border-b border-white/10 bg-black/20 backdrop-blur-md">
+            <div
+                class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap justify-between items-center h-auto min-h-[40px] gap-4">
+                <a href="/" class="flex items-center gap-3 group cursor-pointer">
+                    <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-lg p-1">
+                        <img src="{{ static('img/uj_logo.jpg') }}" alt="UJ Logo" class="w-full h-full object-contain">
+                    </div>
+                    <div class="flex flex-col">
+                        <span
+                            class="font-bold text-sm md:text-base text-white tracking-tight uppercase leading-tight">Centre
+                            for Cyber-Physical Food,<br>Energy and Water Systems</span>
+                    </div>
+                </a>
+                <a href="/"
+                    class="text-sm font-medium text-slate-300 hover:text-white hover:text-uj-orange transition-colors">
+                    <i class="fas fa-arrow-left mr-1"></i> Back to Main Site
+                </a>
+            </div>
+        </nav>
+
+        <main class="flex-grow py-8 md:py-16 flex items-center relative z-10 w-full" x-data="studentForm()">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+
+                    <div class="lg:col-span-6 lg:sticky lg:top-10" data-aos="fade-up">
+                        <div
+                            class="inline-flex items-center gap-2 px-3 py-1.5 mb-4 rounded-full bg-uj-orange/20 border border-uj-orange/30 text-white text-xs font-bold tracking-wide backdrop-blur-sm">
+                            <i class="fas fa-calendar-check text-uj-orange"
+                                :class="isRegistrationOpen ? 'animate-pulse' : ''"></i>
+                            <span x-text="isRegistrationOpen ? 'Seminar Registration Open' : 'Registration Closed'"></span>
+                        </div>
+
+                        <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-3 leading-[1.15]">
+                            Building Climate Resilience in Rural Communities.
+                        </h1>
+                        <h2 class="text-lg md:text-xl font-semibold text-uj-orange mb-6 leading-snug">
+                            A FEW Nexus Planning Perspective: Integrating Food, Energy, and Water Systems
+                        </h2>
+
+                        <p
+                            class="text-slate-300 mb-6 text-sm md:text-base leading-relaxed border-l-4 border-uj-orange pl-4 bg-black/20 py-2 pr-2 rounded-r">
+                            Rural communities face increasing climate risk across food, energy and water systems. This
+                            seminar explores integrated FEWS nexus approaches for resilience, planning and long-term
+                            sustainability.
+                        </p>
+
+                        <div class="space-y-3 mb-8 bg-black/30 p-4 rounded-xl border border-white/10 backdrop-blur-sm">
+                            <div class="flex items-center gap-3">
+                                <span
+                                    class="bg-uj-orange text-white font-bold px-2 py-1 rounded text-[10px] md:text-xs w-14 md:w-16 text-center uppercase tracking-wider shadow-md">Date</span>
+                                <span class="text-white font-medium text-sm md:text-base">17 April 2026</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span
+                                    class="bg-uj-orange text-white font-bold px-2 py-1 rounded text-[10px] md:text-xs w-14 md:w-16 text-center uppercase tracking-wider shadow-md">Time</span>
+                                <span class="text-white font-medium text-sm md:text-base">9:00am - 11:30am</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span
+                                    class="bg-uj-orange text-white font-bold px-2 py-1 rounded text-[10px] md:text-xs w-14 md:w-16 text-center uppercase tracking-wider shadow-md mt-0.5">Venue</span>
+                                <span class="text-slate-300 font-medium text-xs md:text-sm leading-relaxed">
+                                    Department of Electrical and Electronic Engineering Science,<br>
+                                    B2 Lab 219, Auckland Park Kingsway Campus
+                                </span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Distinguished
+                                Speakers</h3>
+                            <div class="grid sm:grid-cols-2 gap-4">
+
+                                <div class="flex gap-3 items-start p-3 rounded-xl bg-white/5 border border-white/5">
+                                    <div
+                                        class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white border-2 border-uj-orange flex items-center justify-center overflow-hidden shrink-0 shadow-md">
+                                        <img src="{{ static('img/prof_sylvester.png') }}" alt="Prof. Sylvester Mpandeli"
+                                            class="w-full h-full object-cover">
+                                    </div>
+                                    <div>
+                                        <h4 class="text-white font-bold text-sm">Prof. Sylvester Mpandeli</h4>
+                                        <p class="text-slate-400 text-[10px] leading-tight mt-1">Adjunct Professor, Univ of
+                                            Venda. VP, Int. Commission on Irrigation and Drainage</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex gap-3 items-start p-3 rounded-xl bg-white/5 border border-white/5">
+                                    <div
+                                        class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white border-2 border-uj-orange flex items-center justify-center overflow-hidden shrink-0 shadow-md">
+                                        <img src="{{ static('img/johnny.jpeg') }}" alt="Johnny Dladla"
+                                            class="w-full h-full object-cover object-top">
+                                    </div>
+                                    <div>
+                                        <h4 class="text-white font-bold text-sm">Johnny Dladla</h4>
+                                        <p class="text-slate-400 text-[10px] leading-tight mt-1">Founder, JMD Energy
+                                            Resources. Prof of Practice, Faculty of Engineering & Built Env, UJ</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-6 relative" data-aos="fade-up" data-aos-delay="100">
+
+                        <div
+                            class="glass-card rounded-[2rem] shadow-2xl relative overflow-hidden h-auto min-h-[500px] flex flex-col">
+
+                            <div x-show="!isRegistrationOpen" x-cloak
+                                class="p-8 md:p-12 w-full flex flex-col items-center justify-center text-center flex-grow min-h-[500px]">
+                                <div
+                                    class="w-20 h-20 rounded-full bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 mb-6">
+                                    <i class="fas fa-calendar-times text-3xl"></i>
+                                </div>
+                                <h3 class="text-2xl md:text-4xl font-bold text-white mb-4">Registration Closed</h3>
+                                <p class="text-slate-300 max-w-md mx-auto leading-relaxed mb-8 text-sm md:text-base">
+                                    Thank you for your interest! Registration for this seminar is currently closed. Stay
+                                    tuned to CCP-FEWS for future events.
+                                </p>
+                            </div>
+
+                            <div x-show="isRegistrationOpen && (status === 'idle' || status === 'submitting')"
+                                x-transition:leave="transition ease-in duration-300"
+                                x-transition:leave-start="opacity-100 transform scale-100"
+                                x-transition:leave-end="opacity-0 transform scale-95"
+                                class="p-6 sm:p-8 md:p-10 w-full relative flex-grow">
+
+                                <div x-show="status === 'submitting'"
+                                    class="absolute inset-0 bg-fews-blue/80 backdrop-blur-sm z-50 flex flex-col items-center justify-center rounded-[2rem]">
+                                    <i class="fas fa-circle-notch fa-spin text-5xl text-uj-orange mb-4"></i>
+                                    <span
+                                        class="text-white font-bold tracking-widest uppercase text-sm animate-pulse">Processing...</span>
+                                </div>
+
+                                <div class="flex justify-between items-center border-b border-white/10 pb-4 mb-6">
+                                    <h3 class="text-xl md:text-2xl font-bold text-white">Reserve Your Seat</h3>
+                                    <div
+                                        class="text-xs font-semibold bg-white/10 text-white px-3 py-1 rounded-full flex items-center gap-2">
+                                        <i class="fab fa-youtube text-red-500"></i> Live-stream available
+                                    </div>
+                                </div>
+
+                                <form class="space-y-5" @submit.prevent="submitApplication">
+                                     {{csrf_input}}
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+                                        <div>
+                                            <label
+                                                class="block text-xs font-bold text-slate-300 mb-2 uppercase tracking-wider">First
+                                                Name <span class="text-uj-orange">*</span></label>
+                                            <input type="text" name="first_name" required
+                                                class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white focus:border-uj-orange focus:ring-1 focus:ring-uj-orange outline-none transition-all placeholder-slate-500 text-sm"
+                                                placeholder="John">
+                                        </div>
+                                        <div>
+                                            <label
+                                                class="block text-xs font-bold text-slate-300 mb-2 uppercase tracking-wider">Last
+                                                Name <span class="text-uj-orange">*</span></label>
+                                            <input type="text" name="last_name" required
+                                                class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white focus:border-uj-orange focus:ring-1 focus:ring-uj-orange outline-none transition-all placeholder-slate-500 text-sm"
+                                                placeholder="Doe">
+                                        </div>
+                                    </div>
+
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+                                        <div>
+                                            <label
+                                                class="block text-xs font-bold text-slate-300 mb-2 uppercase tracking-wider">Email
+                                                Address <span class="text-uj-orange">*</span></label>
+                                            <input type="email" name="email" required
+                                                class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white focus:border-uj-orange focus:ring-1 focus:ring-uj-orange outline-none transition-all placeholder-slate-500 text-sm"
+                                                placeholder="name@institution.ac.za">
+                                            <p x-show="errors.first_name"
+                                                x-text="errors.first_name ? errors.first_name[0] : ''"
+                                                    class="text-red-500 text-xs mt-1 font-semibold" x-cloak></p>
+                                        </div>
+                                        <div>
+                                            <label
+                                                class="block text-xs font-bold text-slate-300 mb-2 uppercase tracking-wider">Phone
+                                                Number <span class="text-uj-orange">*</span></label>
+                                            <input type="tel" name="phone" required
+                                                class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white focus:border-uj-orange focus:ring-1 focus:ring-uj-orange outline-none transition-all placeholder-slate-500 text-sm"
+                                                placeholder="+27 00 000 0000">
+                                            <p x-show="errors.phone"
+                                                x-text="errors.phone ? errors.phone[0] : ''"
+                                                class="text-red-500 text-xs mt-1 font-semibold" x-cloak></p>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label
+                                            class="block text-xs font-bold text-slate-300 mb-2 uppercase tracking-wider">Institution
+                                            / Organization <span class="text-uj-orange">*</span></label>
+                                        <input type="text" name="organization" required
+                                            class="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/10 text-white focus:border-uj-orange focus:ring-1 focus:ring-uj-orange outline-none transition-all placeholder-slate-500 text-sm"
+                                            placeholder="e.g. University of Johannesburg">
+                                        <p x-show="errors.organization"
+                                            x-text="errors.organization ? errors.organization[0] : ''"
+                                            class="text-red-500 text-xs mt-1 font-semibold" x-cloak></p>
+                                    </div>
+
+                                    <div>
+                                        <label
+                                            class="block text-xs font-bold text-slate-300 mb-2 uppercase tracking-wider">How
+                                            will you attend? <span class="text-uj-orange">*</span></label>
+                                        <div class="grid grid-cols-2 gap-4">
+                                            <label
+                                                class="relative flex items-center justify-center gap-2 p-3 border border-white/10 rounded-xl cursor-pointer hover:bg-white/5 transition-colors has-[:checked]:bg-uj-orange/20 has-[:checked]:border-uj-orange">
+                                                <input type="radio" name="attendance_type" value="in-person"
+                                                    class="peer sr-only" required>
+                                                <i class="fas fa-users text-slate-400 peer-checked:text-uj-orange"></i>
+                                                <span
+                                                    class="text-sm font-medium text-slate-300 peer-checked:text-white">In-Person</span>
+                                            </label>
+                                            <label
+                                                class="relative flex items-center justify-center gap-2 p-3 border border-white/10 rounded-xl cursor-pointer hover:bg-white/5 transition-colors has-[:checked]:bg-uj-orange/20 has-[:checked]:border-uj-orange">
+                                                <input type="radio" name="attendance_type" value="online"
+                                                    class="peer sr-only">
+                                                <i class="fab fa-youtube text-slate-400 peer-checked:text-uj-orange"></i>
+                                                <span
+                                                    class="text-sm font-medium text-slate-300 peer-checked:text-white">YouTube
+                                                    Live</span>
+                                            </label>
+                                            <p x-show="errors.attendance_type"
+                                                x-text="errors.attendance_type ? errors.attendance_type[0] : ''"
+                                                class="text-red-500 text-xs mt-1 font-semibold" x-cloak></p>
+                                        </div>
+                                    </div>
+
+                                    <div
+                                        class="flex items-start gap-3 p-4 rounded-xl bg-black/30 border border-white/5 mt-2">
+                                        <div class="flex items-center h-5 mt-0.5">
+                                            <input id="media_consent" name="media_consent" type="checkbox" required
+                                                class="w-4 h-4 rounded border-white/10 bg-black/40 accent-uj-orange cursor-pointer">
+                                        </div>
+                                        <label for="media_consent"
+                                            class="text-[11px] md:text-xs text-slate-300 leading-relaxed cursor-pointer">
+                                            <strong class="text-white">DISCLAIMER:</strong> This event will be
+                                            live-streamed, photographed, and recorded for educational and marketing
+                                            purposes. By registering, you consent to the use of any recorded material by
+                                            CCP-FEWS. <span class="text-uj-orange">*</span>
+                                        </label>
+                                    </div>
+                                    <p x-show="errors.media_consent" x-text="errors.media_consent ? errors.media_consent[0] : ''" class="text-red-500 text-xs mt-1 font-semibold" x-cloak></p>
+
+                                    <button type="submit"
+                                        class="w-full py-3.5 md:py-4 bg-gradient-to-r from-uj-orange to-[#b34612] text-white font-bold rounded-xl shadow-[0_0_20px_rgba(217,88,26,0.3)] hover:shadow-[0_0_35px_rgba(217,88,26,0.5)] hover:-translate-y-0.5 transition-all duration-300 text-sm md:text-base flex justify-center items-center gap-2 mt-2">
+                                        Register Now <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                </form>
+                            </div>
+
+                            <div x-show="isRegistrationOpen && status === 'success'" x-cloak
+                                x-transition:enter="transition ease-out duration-700 delay-300"
+                                x-transition:enter-start="opacity-0 transform translate-y-8"
+                                x-transition:enter-end="opacity-100 transform translate-y-0"
+                                class="absolute inset-0 bg-fews-blue/95 backdrop-blur-md z-[100] border-t border-uj-orange/30 overflow-y-auto flex flex-col custom-scrollbar">
+
+                                <div
+                                    class="m-auto w-full flex flex-col items-center justify-center text-center p-6 md:p-12">
+
+                                    <div class="check-wrapper relative mb-6 mt-4">
+                                        <div class="absolute inset-0 bg-green-500 rounded-full blur-xl opacity-40"></div>
+                                        <div
+                                            class="w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-green-400 to-emerald-600 flex items-center justify-center text-white relative z-10 border-4 border-white/10 shadow-2xl">
+                                            <i class="fas fa-check text-3xl md:text-4xl"></i>
+                                        </div>
+                                    </div>
+
+                                    <h2 class="text-2xl md:text-4xl font-bold text-white mb-4">Registration Confirmed!</h2>
+                                    <p class="text-slate-300 text-sm md:text-base max-w-md mx-auto mb-8 leading-relaxed">
+                                        Thank you for registering for the CCP-FEWS Seminar. Your application will be reviewed shortly.
+                                    </p>
+
+                                    <div
+                                        class="w-full max-w-sm bg-black/40 border border-white/10 rounded-2xl p-5 mb-8 text-left shadow-inner">
+                                        <h4
+                                            class="text-white text-xs font-bold uppercase tracking-wider mb-5 border-b border-white/5 pb-2">
+                                            Next Steps</h4>
+
+                                        <ul
+                                            class="space-y-5 relative before:absolute before:inset-0 before:ml-[11px] before:-translate-x-px before:h-full before:w-[2px] before:bg-gradient-to-b before:from-uj-orange before:via-white/10 before:to-transparent">
+                                            <li class="relative flex items-center justify-between group">
+                                                <div class="flex items-center gap-4 w-full">
+                                                    <div
+                                                        class="w-6 h-6 rounded-full bg-uj-orange border-[3px] border-fews-blue flex items-center justify-center shrink-0 z-10 shadow-[0_0_10px_rgba(217,88,26,0.6)]">
+                                                    </div>
+                                                    <div class="flex-1">
+                                                        <div class="text-sm font-bold text-white leading-tight">Registration
+                                                            Secured</div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="relative flex items-center justify-between group">
+                                                <div class="flex items-center gap-4 w-full">
+                                                    <div
+                                                        class="w-6 h-6 rounded-full bg-white/10 border-[3px] border-fews-blue flex items-center justify-center shrink-0 z-10">
+                                                    </div>
+                                                    <div class="flex-1">
+                                                        <div class="text-sm font-medium text-slate-300 leading-tight">Check
+                                                            Your Email</div>
+                                                        <div class="text-[10px] text-slate-400 mt-0.5">For Event Selection</div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="relative flex items-center justify-between group">
+                                                <div class="flex items-center gap-4 w-full">
+                                                    <div
+                                                        class="w-6 h-6 rounded-full bg-white/10 border-[3px] border-fews-blue flex items-center justify-center shrink-0 z-10">
+                                                    </div>
+                                                    <div class="flex-1">
+                                                        <div class="text-sm font-medium text-slate-300 leading-tight">Attend
+                                                            Seminar</div>
+                                                        <div class="text-[10px] text-slate-400 mt-0.5">17 April 2026, 9:00am
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="flex gap-4 mb-4">
+                                        <button @click="status = 'idle'"
+                                            class="px-8 py-3.5 rounded-xl bg-white/10 text-white border border-white/20 font-bold hover:bg-white/20 hover:-translate-y-0.5 transition-all text-sm md:text-base">
+                                            Register Another Person
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+            AOS.init({ duration: 800, once: true });
+
+            document.addEventListener('alpine:init', () => {
+                Alpine.data('studentForm', () => ({
+
+                    isRegistrationOpen: '{{ registration_open|lower }}' === 'true',
+                    status: 'idle',
+                    errors: {},
+
+                    async submitApplication(e) {
+                        this.status = 'submitting';
+                        this.errors = {};
+
+                        const form = e.target;
+                        const formData = new FormData(form);
+                        const csrfElement = document.querySelector('[name=csrfmiddlewaretoken]');
+                        const csrfToken = csrfElement ? csrfElement.value : '';
+
+                        try {
+                            const response = await fetch(window.location.href, {
+                                method: 'POST',
+                                body: formData,
+                                headers: {
+                                    'X-CSRFToken': csrfToken,
+                                    'X-Requested-With': 'XMLHttpRequest'
+                                }
+                            });
+
+                            const data = await response.json();
+
+                            if (response.ok && data.success) {
+                                this.status = 'success';
+                                form.reset();
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                            } else {
+                                this.status = 'idle';
+                                this.errors = data.errors || {};
+                                window.scrollTo({ top: 100, behavior: 'smooth' });
+                            }
+                        } catch (error) {
+                            console.error("Submission error:", error);
+                            this.status = 'idle';
+                            alert('A network error occurred. Please try again.');
+                        }
+                    }
+                }));
+            });
+        </script>
+    </body>
+{% endblock mainBodyContent %}
