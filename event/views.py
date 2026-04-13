@@ -4,7 +4,7 @@ from django.views import View
 from django.utils import timezone
 from django.shortcuts import render
 from django.http import JsonResponse
-from .forms import EventRegistrationForm
+from .forms import EventRegistrationForm, FewsRegistrationForm
 
 
 class EventRegistrationView(View):
@@ -13,6 +13,37 @@ class EventRegistrationView(View):
 
     def get(self, request, *args, **kwargs):
         deadline = datetime.date(2026, 4, 10)
+        context = {
+            'registration_open': timezone.now().date() < deadline,
+        }
+        return render(request, self.template_name, context)
+
+    def post(self, request, *args, **kwargs):
+        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+            form = self.form_class(request.POST)
+
+            if form.is_valid():
+                form.cleaned_data.pop('media_consent', None)
+                form.save()
+                return JsonResponse(
+                    {'success': True, 'message': 'Application successful!'}
+                )
+            else:
+                return JsonResponse(
+                    {'success': False, 'errors': form.errors}, status=400
+                )
+
+        return JsonResponse(
+            {'success': False, 'error': 'Invalid request method.'}, status=400
+        )
+
+
+class FewsRegistrationView(View):
+    template_name = 'forms/fews.html'
+    form_class = FewsRegistrationForm
+
+    def get(self, request, *args, **kwargs):
+        deadline = datetime.date(2026, 4, 16)
         context = {
             'registration_open': timezone.now().date() < deadline,
         }
