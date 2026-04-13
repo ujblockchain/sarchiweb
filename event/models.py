@@ -15,6 +15,11 @@ STATUS_CHOICES = [
     ('rejected', 'Rejected'),
 ]
 
+ATTENDANCE_CHOICES = [
+    ('in-person', 'In-Person'),
+    ('online', 'YouTube Live'),
+]
+
 
 class EventRegistration(models.Model):
     id = models.CharField(
@@ -37,3 +42,32 @@ class EventRegistration(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} - {self.email}"
+
+
+class FewsRegistration(models.Model):
+
+    id = models.CharField(
+        default=generate_custom_id,
+        editable=False,
+        unique=True,
+        max_length=20,
+        primary_key=True,
+    )
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20, blank=True, null=True)
+    organization = models.CharField(
+        max_length=255, verbose_name="Institution / Organization"
+    )
+    attendance_type = models.CharField(max_length=20, choices=ATTENDANCE_CHOICES)
+    created_at = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES)
+
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name = "FEWS Registration"
+        verbose_name_plural = "FEWS Registrations"
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name} - {self.organization}"
