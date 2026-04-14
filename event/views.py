@@ -43,7 +43,7 @@ class FewsRegistrationView(View):
     form_class = FewsRegistrationForm
 
     def get(self, request, *args, **kwargs):
-        deadline = datetime.date(2026, 4, 16)
+        deadline = datetime.date(2026, 4, 17)
         context = {
             'registration_open': timezone.now().date() < deadline,
         }
