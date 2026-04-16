@@ -114,7 +114,7 @@ class FewsApplicationAdmin(ImportExportActionModelAdmin):
         'status_display',
     ]
     list_display_links = ['first_name', 'last_name', 'organization', 'attendance_type']
-    list_filter = ['status']
+    list_filter = ['status', 'attendance_type']
     date_hierarchy = 'created_at'
     list_per_page = 10
     actions_on_top = True
