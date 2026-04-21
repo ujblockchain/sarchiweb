@@ -1,26 +1,8 @@
 {% extends 'base.html' %}
 
 {% block pageTitle %}Community Registration | UJ Blockchain{% endblock pageTitle %}
-{% block tailwindConfig %}
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'uj-orange': '#F26522',
-                        'uj-dark': '#0B1120',
-                        'uj-surface': '#151E2E'
-                    },
-                    fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-{% endblock tailwindConfig %}
 {% block pageStyle %}
-    <style>
+    <style  nonce="{{ request.csp_nonce }}">
         html,
         body {
             max-width: 100%;
@@ -250,7 +232,7 @@
                                 x-transition:enter="transition ease-out duration-700 delay-300"
                                 x-transition:enter-start="opacity-0 transform translate-y-8"
                                 x-transition:enter-end="opacity-100 transform translate-y-0"
-                                class="absolute inset-0 bg-uj-surface/95 backdrop-blur-md z-[100] border-t border-uj-orange/30 overflow-y-auto flex flex-col custom-scrollbar">
+                                class="absolute inset-0 bg-uj-surface-secondary/95 backdrop-blur-md z-[100] border-t border-uj-orange/30 overflow-y-auto flex flex-col custom-scrollbar">
 
                                 <div class="m-auto w-full flex flex-col items-center justify-center text-center p-6 md:p-12">
 
@@ -272,7 +254,7 @@
                                         <ul class="space-y-5 relative before:absolute before:inset-0 before:ml-[11px] before:-translate-x-px before:h-full before:w-[2px] before:bg-gradient-to-b before:from-uj-orange before:via-white/10 before:to-transparent">
                                             <li class="relative flex items-center justify-between group">
                                                 <div class="flex items-center gap-4 w-full">
-                                                    <div class="w-6 h-6 rounded-full bg-uj-orange border-[3px] border-uj-surface flex items-center justify-center shrink-0 z-10 shadow-[0_0_10px_rgba(242,101,34,0.6)]"></div>
+                                                    <div class="w-6 h-6 rounded-full bg-uj-orange border-[3px] border-uj-surface-secondary flex items-center justify-center shrink-0 z-10 shadow-[0_0_10px_rgba(242,101,34,0.6)]"></div>
                                                     <div class="flex-1">
                                                         <div class="text-sm font-bold text-white leading-tight">Application Received</div>
                                                         <div class="text-[10px] text-slate-400 mt-0.5">Today</div>
@@ -282,7 +264,7 @@
 
                                             <li class="relative flex items-center justify-between group">
                                                 <div class="flex items-center gap-4 w-full">
-                                                    <div class="w-6 h-6 rounded-full bg-white/10 border-[3px] border-uj-surface flex items-center justify-center shrink-0 z-10"></div>
+                                                    <div class="w-6 h-6 rounded-full bg-white/10 border-[3px] border-uj-surface-secondary flex items-center justify-center shrink-0 z-10"></div>
                                                     <div class="flex-1">
                                                         <div class="text-sm font-medium text-slate-400 leading-tight">Welcome Email Sent</div>
                                                         <div class="text-[10px] text-slate-500 mt-0.5">Shortly</div>
@@ -292,7 +274,7 @@
 
                                             <li class="relative flex items-center justify-between group">
                                                 <div class="flex items-center gap-4 w-full">
-                                                    <div class="w-6 h-6 rounded-full bg-white/10 border-[3px] border-uj-surface flex items-center justify-center shrink-0 z-10"></div>
+                                                    <div class="w-6 h-6 rounded-full bg-white/10 border-[3px] border-uj-surface-secondary flex items-center justify-center shrink-0 z-10"></div>
                                                     <div class="flex-1">
                                                         <div class="text-sm font-medium text-slate-400 leading-tight">Community Onboarding</div>
                                                         <div class="text-[10px] text-slate-500 mt-0.5">To Be Announced</div>
@@ -316,8 +298,8 @@
             </div>
         </main>
 
-        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-        <script>
+        <script nonce="{{ request.csp_nonce }}" src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script  nonce="{{ request.csp_nonce }}">
             AOS.init({ duration: 800, once: true });
 
             document.addEventListener('alpine:init', () => {
