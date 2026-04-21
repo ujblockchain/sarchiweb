@@ -137,10 +137,10 @@ function appData() {
       { name: "Research", href: "#publications" },
     ],
     stats: [
-      { value: "850+", label: "Code Deployments" },
-      { value: "15+", label: "Apps" },
-      { value: "25+", label: "Papers" },
-      { value: "12+", label: "Trainings" },
+      { target: 850, current: 0, suffix: "+", label: "Code Deployments" },
+      { target: 15, current: 0, suffix: "+", label: "Apps" },
+      { target: 25, current: 0, suffix: "+", label: "Papers" },
+      { target: 12, current: 0, suffix: "+", label: "Trainings" },
     ],
     leadership: [
       {
@@ -185,7 +185,7 @@ function appData() {
         github: "https://github.com/JblIdeal",
         scholar: "https://scholar.google.com/citations?user=KJg18j0AAAAJ&hl=en",
       },
-       {
+      {
         name: "Oluwadamilola Esan",
         role: "Blockchain Researcher",
         image: "/static/img/esan.png",
@@ -205,11 +205,12 @@ function appData() {
         name: "Nazire Mathe",
         role: "Fullstack Developer",
         image: "/static/img/nazire.jpg",
-        linkedin: "https://www.linkedin.com/in/nazire-mathe-98674022b?trk=contact-info",
+        linkedin:
+          "https://www.linkedin.com/in/nazire-mathe-98674022b?trk=contact-info",
         github: "#",
         scholar: "#",
       },
-        {
+      {
         name: "Masibonge Shabalala",
         role: "Fullstack Developer",
         image: "/static/img/shabalala.png",
@@ -217,7 +218,7 @@ function appData() {
         github: "https://github.com/Masibonge05",
         scholar: "#",
       },
-        {
+      {
         name: "Fulufhelo Nageli",
         role: "Frontend Developer",
         image: "/static/img/fulu.jpg",
@@ -292,7 +293,8 @@ function appData() {
       {
         day: "12",
         month: "Dec",
-        title: "Understanding Artificial Intelligence for Water and Environmental ...",
+        title:
+          "Understanding Artificial Intelligence for Water and Environmental ...",
         type: "ECOWAS Regional Advisory Council on IWRM",
       },
       {
@@ -545,6 +547,26 @@ function appData() {
       this.activeGalleryIndex =
         (this.activeGalleryIndex - 1 + this.filteredGallery.length) %
         this.filteredGallery.length;
+    },
+
+    animateStats() {
+      this.stats.forEach((stat) => {
+        let start = 0;
+        const end = stat.target;
+        const duration = 2000;
+        const increment = end / (duration / 16);
+
+        const updateCount = () => {
+          start += increment;
+          if (start < end) {
+            stat.current = Math.floor(start);
+            requestAnimationFrame(updateCount);
+          } else {
+            stat.current = end;
+          }
+        };
+        updateCount();
+      });
     },
   };
 }
