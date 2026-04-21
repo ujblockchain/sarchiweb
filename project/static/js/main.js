@@ -529,7 +529,7 @@ function appData() {
       document.body.style.overflow = "auto";
     },
 
-    // Gallery Functions
+    // gallery functions
     openGallery(index) {
       this.activeGalleryIndex = index;
       this.isGalleryOpen = true;
