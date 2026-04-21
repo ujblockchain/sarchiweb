@@ -32,15 +32,14 @@
         <meta name="apple-mobile-web-app-title" content="UJ Blockchain" />
         <link rel="manifest" href="{{ static('img/favicon/site.webmanifest') }}" />
         <title>{% block pageTitle %}UJ Blockchain Research Chair{% endblock pageTitle %}</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-        <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+        <script nonce="{{ request.csp_nonce }}" src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
             rel="stylesheet">
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-        <script type="application/ld+json">
+        <script nonce="{{ request.csp_nonce }}"  defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        <script type="application/ld+json"  nonce="{{ request.csp_nonce }}">
             {
                 "@context": "https://schema.org",
                 "@type": "Organization",
@@ -54,11 +53,8 @@
                 ]
             }
         </script>
-        {% block tailwindConfig %}
-            <script src="{{ static('tailwindConfig.js') }}"></script>
-        {% endblock tailwindConfig %}
         {% block pageStyle %}
-            <link rel="stylesheet" href="{{ static('style.css') }}">
+            <link nonce="{{ request.csp_nonce }}" rel="stylesheet" href="{{ static('css/app.css') }}">
         {% endblock pageStyle %}
     </head>
 
@@ -79,10 +75,10 @@
             {% include "partials/__video-modal.html" %}
             {% include "partials/__gallery-modal.html" %}
 
-            <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.0.6/tsparticles.slim.bundle.min.js"></script>
-            <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-            <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-            <script src="{{ static('main.js') }}"></script>
+            <script nonce="{{ request.csp_nonce }}" src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.0.6/tsparticles.slim.bundle.min.js"></script>
+            <script nonce="{{ request.csp_nonce }}" src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+            <script nonce="{{ request.csp_nonce }}" src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+            <script nonce="{{ request.csp_nonce }}" src="{{ static('js/main.js') }}"></script>
         </body>
     {% endblock mainBodyContent %}
 
