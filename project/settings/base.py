@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'django_recaptcha',
     'anymail',
+    'django_tailwind_cli',
     # app
     'contact.apps.ContactConfig',
     'community.apps.CommunityConfig',
