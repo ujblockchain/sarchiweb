@@ -1,17 +1,29 @@
-tailwind.config = {
+module.exports = {
+  content: [
+    "./templates/**/*.html",
+    "./**/templates/**/*.html",
+    "./jinja2/**/*.html",
+    "./**/jinja2/**/*.html",
+    "./static/**/*.js",
+  ],
   theme: {
     extend: {
-      fontFamily: {
-        sans: ['"Plus Jakarta Sans"', "sans-serif"],
-      },
       colors: {
         uj: {
           orange: "#F26522",
+          "orange-secondary": "#D9581A",
           dark: "#0B1120",
           surface: "#151E2E",
+          "surface-secondary": "#151E2E",
           accent: "#1E293B",
           text: "#94A3B8",
         },
+        "fews-blue": "#0A2540",
+        "fews-brown": "#4A2B1D",
+        "her-dao": "#E84142",
+      },
+      fontFamily: {
+        sans: ['"Plus Jakarta Sans"', "sans-serif"],
       },
       animation: {
         blob: "blob 10s infinite",
@@ -40,4 +52,5 @@ tailwind.config = {
       },
     },
   },
+  plugins: [],
 };
