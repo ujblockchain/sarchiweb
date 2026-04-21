@@ -1,3 +1,4 @@
+from csp.constants import NONCE
 from project.settings import env
 
 ADMIN_PATH = env.get('ADMIN_PATH')
@@ -30,50 +31,50 @@ RECAPTCHA_PRIVATE_KEY = env.get('RECAPTCHA_PRIVATE_KEY')
 RECAPTCHA_REQUIRED_SCORE = env.get('RECAPTCHA_REQUIRED_SCORE', cast='float')
 
 # csp
+# generate the nonce for directives
+CSP_INCLUDE_NONCE_IN = ['script-src', 'style-src']
 CONTENT_SECURITY_POLICY = {
     'DIRECTIVES': {
-        'base-uri': ("'self'",),
-        'object-src': ("'none'",),
-        'connect-src': (
+        'base-uri': ["'self'"],
+        'object-src': ["'none'"],
+        'default-src': ["'none'"],
+        'form-action': ["'self'"],
+        'frame-ancestors': ["'none'"],
+        'manifest-src': ["'self'"],
+        'media-src': ["'self'"],
+        'report-uri': env.get('SENTRY_REPORT_URL'),
+        'connect-src': [
             "'self'",
             'https://cdn.jsdelivr.net',
             'https://www.google-analytics.com',
             'https://unpkg.com',
-        ),
-        'default-src': ("'none'",),
-        'font-src': (
+        ],
+        'font-src': [
             "'self'",
             'https://fonts.gstatic.com',
             'https://use.fontawesome.com',
             'https://cdnjs.cloudflare.com',
             'data:',
-        ),
-        'form-action': ("'self'",),
-        'frame-ancestors': ("'none'",),
-        'frame-src': (
+        ],
+        'frame-src': [
             "'self'",
             'https://www.google.com',
             'https://www.youtube.com',
             'https://youtube.com',
-        ),
-        'img-src': (
+        ],
+        'img-src': [
             "'self'",
             'https://cdn.jsdelivr.net',
             'https://www.googletagmanager.com',
             'data:',
             'https://*.tile.openstreetmap.org',
             'https://tile.openstreetmap.org',
-            'https://source.unsplash.com',
-            'https://images.unsplash.com',
             'https://unpkg.com',
-            'https://i.ytimg.com',
-        ),
-        'manifest-src': ("'self'",),
-        'media-src': ("'self'",),
-        'report-uri': env.get('SENTRY_REPORT_URL'),
-        'script-src': (
+        ],
+        'script-src': [
             "'self'",
-            'https://cdn.tailwindcss.com',
+            "'unsafe-inline'",
+            "'unsafe-eval'",
             'https://cdn.jsdelivr.net',
             'https://unpkg.com',
             'https://cdnjs.cloudflare.com',
@@ -81,21 +82,21 @@ CONTENT_SECURITY_POLICY = {
             'https://www.google.com',
             'https://www.gstatic.com',
             'https://ajax.googleapis.com',
-            "'unsafe-inline'",
-            "'unsafe-eval'",
-        ),
-        'style-src': (
+        ],
+        'style-src': [
             "'self'",
-            'https://cdn.tailwindcss.com',
+            "'unsafe-inline'",
             'https://fonts.googleapis.com',
             'https://unpkg.com',
             'https://cdnjs.cloudflare.com',
             'https://cdn.jsdelivr.net',
-            "'unsafe-inline'",
-        ),
-    }
+        ],
+    },
+    'EXCLUDE_URL_PREFIXES': (
+        f'/{ADMIN_PATH}/',
+        '/__debug__/',
+    ),
 }
-
 # logout inactivity
 AUTO_LOGOUT = {'IDLE_TIME': env.get('AUTO_LOGOUT_IDLE_TIME', cast='int')}
 
