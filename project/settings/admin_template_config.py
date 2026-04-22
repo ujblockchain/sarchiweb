@@ -4,7 +4,7 @@ DAISY_SETTINGS = {
     'INDEX_TITLE': 'Hi, welcome to your dashboard',
     'SITE_LOGO': '/static/img/logo.png',
     'EXTRA_STYLES': [
-        '/static/daisyui.css',
+        '/static/css/daisyui.css',
     ],
     'EXTRA_SCRIPTS': [],
     'LOAD_FULL_STYLES': True,
