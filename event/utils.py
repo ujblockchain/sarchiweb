@@ -1,3 +1,5 @@
+import os
+
 from django.conf import settings
 from django.core.mail import EmailMessage, make_msgid
 from django.template.loader import render_to_string
@@ -56,7 +58,9 @@ def send_single_status_email(instance, status):
     msg.content_subtype = 'html'
 
     if config.attachment and config.attachment.name:
-        msg.attach_file(config.attachment.path)
+        file_name = os.path.basename(config.attachment.name)
+        file_content = config.attachment.read()
+        msg.attach(file_name, file_content)
 
     msg.send(fail_silently=False)
 
@@ -93,6 +97,8 @@ def send_bulk_status_email(model_class, bcc_emails, status):
     msg.content_subtype = 'html'
 
     if config.attachment and config.attachment.name:
-        msg.attach_file(config.attachment.path)
+        file_name = os.path.basename(config.attachment.name)
+        file_content = config.attachment.read()
+        msg.attach(file_name, file_content)
 
     msg.send(fail_silently=False)
