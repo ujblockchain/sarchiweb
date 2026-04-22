@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'django_recaptcha',
     'anymail',
     'django_tailwind_cli',
+    'rangefilter',
     # app
     'contact.apps.ContactConfig',
     'community.apps.CommunityConfig',

@@ -1,6 +1,7 @@
 boto3==1.42.92
 cryptography==46.0.7
 Django==6.0.4
+django-admin-rangefilter==0.13.5
 django-anymail==15.0
 django-auto-logout==0.5.1
 django-autoslug==1.9.9

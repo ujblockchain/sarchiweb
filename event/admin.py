@@ -2,6 +2,7 @@ from django.contrib import admin
 from import_export import resources
 from import_export.admin import ImportExportActionModelAdmin
 from django.contrib import messages
+from rangefilter.filters import DateRangeFilterBuilder
 
 from event.utils import send_bulk_status_email, send_single_status_email
 from .models import EventEmailConfig, EventRegistration, FewsRegistration
@@ -156,8 +157,10 @@ class EventApplicationAdmin(StatusManagementMixin, ImportExportActionModelAdmin)
         'status_display',
     ]
     list_display_links = ['first_name', 'last_name', 'faculty', 'department']
-    list_filter = ['status']
-    date_hierarchy = 'created_at'
+    list_filter = (
+        'status',
+        ("created_at", DateRangeFilterBuilder()),
+    )
     list_per_page = 30
     search_fields = [
         'first_name',
@@ -199,8 +202,11 @@ class FewsApplicationAdmin(StatusManagementMixin, ImportExportActionModelAdmin):
         'status_display',
     ]
     list_display_links = ['first_name', 'last_name', 'organization', 'attendance_type']
-    list_filter = ['status', 'attendance_type']
-    date_hierarchy = 'created_at'
+    list_filter = (
+        'status',
+        'attendance_type',
+        ("created_at", DateRangeFilterBuilder()),
+    )
     list_per_page = 30
     search_fields = [
         'first_name',
