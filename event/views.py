@@ -1,9 +1,9 @@
-import datetime
-
 from django.views import View
 from django.utils import timezone
 from django.shortcuts import render
 from django.http import JsonResponse
+
+from event.models import EventEmailConfig
 from .forms import EventRegistrationForm, FewsRegistrationForm
 
 
@@ -12,9 +12,20 @@ class EventRegistrationView(View):
     form_class = EventRegistrationForm
 
     def get(self, request, *args, **kwargs):
-        deadline = datetime.date(2026, 4, 10)
+        deadline = (
+            EventEmailConfig.objects.filter(event_type__icontains='ujb')
+            .values_list('registration_end_time', flat=True)
+            .first()
+        )
+
+        if deadline:
+            is_open = timezone.now().date() < deadline.date()
+        else:
+            is_open = False
+
         context = {
-            'registration_open': timezone.now().date() < deadline,
+            'registration_open': is_open,
+            'form': self.form_class(),
         }
         return render(request, self.template_name, context)
 
@@ -43,9 +54,20 @@ class FewsRegistrationView(View):
     form_class = FewsRegistrationForm
 
     def get(self, request, *args, **kwargs):
-        deadline = datetime.date(2026, 4, 17)
+        deadline = (
+            EventEmailConfig.objects.filter(event_type__icontains='fews')
+            .values_list('registration_end_time', flat=True)
+            .first()
+        )
+
+        if deadline:
+            is_open = timezone.now().date() < deadline.date()
+        else:
+            is_open = False
+
         context = {
-            'registration_open': timezone.now().date() < deadline,
+            'registration_open': is_open,
+            'form': self.form_class(),
         }
         return render(request, self.template_name, context)
 
