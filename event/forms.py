@@ -1,4 +1,6 @@
+from datetime import timedelta
 from django import forms
+from django.utils import timezone
 from .models import EventRegistration, FewsRegistration
 
 
@@ -23,8 +25,14 @@ class EventRegistrationForm(forms.ModelForm):
     def clean_email(self):
         email = self.cleaned_data.get('email').lower()
 
-        if EventRegistration.objects.filter(email=email).exists():
-            raise forms.ValidationError("email already signed up.")
+        # calculate the exact time 5 days ago from right now
+        five_days_ago = timezone.now() - timedelta(days=5)
+
+        # check if the email exists and was created within the last 5 days
+        if EventRegistration.objects.filter(
+            email=email, created_at__gte=five_days_ago
+        ).exists():
+            raise forms.ValidationError("This email has already been registered.")
 
         return email
 
@@ -60,8 +68,12 @@ class FewsRegistrationForm(forms.ModelForm):
     def clean_email(self):
         email = self.cleaned_data.get('email').lower()
 
-        if FewsRegistration.objects.filter(email=email).exists():
-            raise forms.ValidationError("email already signed up.")
+        five_days_ago = timezone.now() - timedelta(days=5)
+
+        if EventRegistration.objects.filter(
+            email=email, created_at__gte=five_days_ago
+        ).exists():
+            raise forms.ValidationError("This email has already been registered.")
 
         return email
 
