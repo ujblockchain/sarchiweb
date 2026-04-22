@@ -1,14 +1,17 @@
 {% extends 'base.html' %}
 
 {% block pageTitle %}Seminar Registration | UJ Blockchain x CCP-FEWS{% endblock pageTitle %}
+
+
 {% block pageStyle %}
     {{super()}}
     <style  nonce="{{ request.csp_nonce }}">
         body {
-            background-image: linear-gradient(rgba(10, 37, 64, 0.85), rgba(74, 43, 29, 0.85)), url('{{ static("img/solar_panels.avif")}}');
+            background-image: linear-gradient(rgba(10, 37, 64, 0.85), rgba(74, 43, 29, 0.85)), url('{{ static("img/skye-studios.jpg")}}');
         }
     </style>
 {% endblock pageStyle %}
+
 {% block mainBodyContent %}
     <body
         class="text-slate-200 antialiased selection:bg-uj-orange-secondary selection:text-white min-h-screen flex flex-col relative w-full">
@@ -49,17 +52,17 @@
                         </div>
 
                         <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-3 leading-[1.15]">
-                            Building Climate Resilience in Rural Communities.
+                            Roadmap From Lab To Market
                         </h1>
                         <h2 class="text-lg md:text-xl font-semibold text-uj-orange-secondary mb-6 leading-snug">
-                            A FEW Nexus Planning Perspective: Integrating Food, Energy, and Water Systems
+                            Bridging the Gap Between Innovation and Commercial Success.
                         </h2>
 
                         <p
                             class="text-slate-300 mb-6 text-sm md:text-base leading-relaxed border-l-4 border-uj-orange-secondary pl-4 bg-black/20 py-2 pr-2 rounded-r">
-                            Rural communities face increasing climate risk across food, energy and water systems. This
-                            seminar explores integrated FEWS nexus approaches for resilience, planning and long-term
-                            sustainability.
+                            Join our experts as they deconstruct the journey from 
+                            academic research to industrial deployment, focusing on how to build trustworthy, 
+                            market-ready cyber-physical systems.
                         </p>
 
                         <div class="space-y-3 mb-8 bg-black/30 p-4 rounded-xl border border-white/10 backdrop-blur-sm">
@@ -87,33 +90,30 @@
                             <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Distinguished
                                 Speakers</h3>
                             <div class="grid sm:grid-cols-2 gap-4">
-
                                 <div class="flex gap-3 items-start p-3 rounded-xl bg-white/5 border border-white/5">
                                     <div
                                         class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white border-2 border-uj-orange-secondary flex items-center justify-center overflow-hidden shrink-0 shadow-md">
-                                        <img src="{{ static('img/prof_sylvester.png') }}" alt="Prof. Sylvester Mpandeli"
-                                            class="w-full h-full object-cover">
-                                    </div>
-                                    <div>
-                                        <h4 class="text-white font-bold text-sm">Prof. Sylvester Mpandeli</h4>
-                                        <p class="text-slate-400 text-[10px] leading-tight mt-1">Adjunct Professor, University of
-                                            Venda. VP, Int. Commission on Irrigation and Drainage.</p>
-                                    </div>
-                                </div>
-
-                                <div class="flex gap-3 items-start p-3 rounded-xl bg-white/5 border border-white/5">
-                                    <div
-                                        class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white border-2 border-uj-orange-secondary flex items-center justify-center overflow-hidden shrink-0 shadow-md">
-                                        <img src="{{ static('img/prof_johnny.jpg') }}" alt="Prof. Johnny Dladla"
+                                        <img src="{{ static('img/prof_mpekoa.jfif') }}" alt="Prof. Noluntu Mpekoa"
                                             class="w-full h-full object-cover object-top">
                                     </div>
                                     <div>
-                                        <h4 class="text-white font-bold text-sm">Prof. Johnny Dladla</h4>
-                                        <p class="text-slate-400 text-[10px] leading-tight mt-1">Founder, JMD Energy
-                                            Resources. Professor of Practice, University of Johannesburg.</p>
+                                        <h4 class="text-white font-bold text-sm">Prof. Noluntu Mpekoa</h4>
+                                        <p class="text-slate-400 text-[10px] leading-tight mt-1">Associate Professor, University of South Africa (UNISA).</p>
                                     </div>
                                 </div>
 
+                                <div class="flex gap-3 items-start p-3 rounded-xl bg-white/5 border border-white/5">
+                                    <div
+                                        class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white border-2 border-uj-orange-secondary flex items-center justify-center overflow-hidden shrink-0 shadow-md">
+                                        <img src="{{ static('img/dr_kim.png') }}" alt="Dr. Kim Lamont-Mbawuli"
+                                            class="w-full h-full object-cover">
+                                    </div>
+                                    <div>
+                                        <h4 class="text-white font-bold text-sm">Dr. Kim Lamont-Mbawuli </h4>
+                                        <p class="text-slate-400 text-[10px] leading-tight mt-1">
+                                            Deputy Director: Innovation and Technology Transfer Office (ITTO) Tshwane University of Technology.</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -254,7 +254,7 @@
                                             <strong class="text-white">DISCLAIMER:</strong> This event will be
                                             live-streamed, photographed, and recorded for educational and marketing
                                             purposes. By registering, you consent to the use of any recorded material by
-                                            CCP-FEWS. <span class="text-uj-orange-secondary">*</span>
+                                            the University. <span class="text-uj-orange-secondary">*</span>
                                         </label>
                                     </div>
                                     <p x-show="errors.media_consent" x-text="errors.media_consent ? errors.media_consent[0] : ''" class="text-red-500 text-xs mt-1 font-semibold" x-cloak></p>
