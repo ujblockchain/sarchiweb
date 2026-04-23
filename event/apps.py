@@ -6,5 +6,5 @@ class EventConfig(AppConfig):
     icon = 'fas fa-calendar'
     hide = False
 
-    def ready(self):
-        import event.signals
+    # def ready(self):
+    #     import event.signals
