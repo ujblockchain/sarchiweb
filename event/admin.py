@@ -44,7 +44,7 @@ class StatusManagementMixin:
     # selecting multiple records via bulk actions
     @admin.action(description="Mark as selected")
     def make_selected(self, request, queryset):
-        target_qs = queryset.exclude(status='selected')
+        target_qs = queryset.exclude(status='selec')
         bcc_emails = list(target_qs.values_list('email', flat=True))
 
         if bcc_emails:
