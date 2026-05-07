@@ -98,7 +98,7 @@ class EventRegistration(models.Model):
     nationality = models.CharField(max_length=100)
     year_of_study = models.CharField(max_length=20, choices=YEAR_CHOICES)
     created_at = models.DateTimeField(auto_now_add=True)
-    event_type = models.CharField(max_length=50, default='FEWS', null=True, blank=True, editable=False)
+    event_type = models.CharField(max_length=50, default='UJB', null=True, blank=True, editable=False)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES)
 
     def __str__(self):
@@ -123,7 +123,7 @@ class FewsRegistration(models.Model):
     )
     attendance_type = models.CharField(max_length=20, choices=ATTENDANCE_CHOICES)
     created_at = models.DateTimeField(auto_now_add=True)
-    event_type = models.CharField(max_length=50, default='UJB', null=True, blank=True, editable=False)
+    event_type = models.CharField(max_length=50, default='FEWS', null=True, blank=True, editable=False)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES)
 
     class Meta:
