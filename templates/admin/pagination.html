@@ -2,7 +2,7 @@
 {% load admin_list %}
 {% load i18n %}
 <nav class="paginator flex flex-wrap gap-2 justify-between sm:p-4 p-2">
-    <!-- Left section: Empty or could be used for a "Previous" button if desired -->
+    <!-- left section: previous / next -->
     <div class="">
     {% if pagination_required and cl.page_num > 1 %}
         <a href="{% get_page_link cl cl.page_num|add:'-1' %}"
@@ -12,9 +12,9 @@
         <a href="{% get_page_link cl cl.page_num|add:'1' %}"
            class="btn btn-sm btn-outline">{% trans "Next" %}</a>
     {% endif %}
-</div>
+    </div>
 
-    <!-- Center section: Pagination -->
+    <!-- center section: pagination -->
     <div class="join overflow-x-auto">
         {% if pagination_required %}
             {% for i in page_range %}
@@ -27,22 +27,25 @@
         {% endif %}
     </div>
 
-    <!-- Right section: Total results -->
     <div class="text-end">
         <span>
             {{ cl.result_count }} {% if cl.result_count == 1 %}{{ cl.opts.verbose_name }}{% else %}{{ cl.opts.verbose_name_plural }}{% endif %}
         </span>
-        {% if cl.full_result_count %}
-            <a class="badge" href="?
-                    {% if cl.is_popup %}{{ is_popup_var }}=1{% if cl.add_facets %}&{% endif %}{% endif %}
-                    {% if cl.add_facets %}{{ is_facets_var }}{% endif %}">
-                
-                    {% if cl.show_full_result_count %}
-                        {% blocktranslate with full_result_count=cl.full_result_count %}{{ full_result_count }} total
-                        {% endblocktranslate %}
-                    {% else %}
-                        {% translate "Show all" %}
-                    {% endif %}
+        
+        {% if cl.show_full_result_count and cl.full_result_count != cl.result_count %}
+            <a class="badge badge-ghost ml-1" href="?{% if cl.is_popup %}{{ is_popup_var }}=1{% if cl.add_facets %}&{% endif %}{% endif %}{% if cl.add_facets %}{{ is_facets_var }}{% endif %}">
+                {% blocktranslate with full_result_count=cl.full_result_count %}{{ full_result_count }} total{% endblocktranslate %}
+            </a>
+        {% endif %}
+
+        <!-- toggle show all or show paginated -->
+        {% if cl.show_all %}
+            <a class="badge badge-outline ml-2" href="?{% for key, value in cl.params.items %}{% if key != 'all' and key != 'p' %}{{ key }}={{ value|urlencode }}&{% endif %}{% endfor %}">
+                {% translate "Show paginated" %}
+            </a>
+        {% elif show_all_url %}
+            <a class="badge badge-outline ml-2" href="{{ show_all_url }}">
+                {% translate "Show all" %}
             </a>
         {% endif %}
     </div>
