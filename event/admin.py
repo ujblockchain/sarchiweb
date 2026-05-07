@@ -11,13 +11,13 @@ from .models import EventEmailConfig, EventRegistration, FewsRegistration
 class EventResource(resources.ModelResource):
     class Meta:
         model = EventRegistration
-        chunk_size = 100
+        chunk_size = 1500
 
 
 class FewsResource(resources.ModelResource):
     class Meta:
         model = FewsRegistration
-        chunk_size = 100
+        chunk_size = 1500
 
 
 class StatusManagementMixin:
