@@ -161,7 +161,8 @@ class EventApplicationAdmin(StatusManagementMixin, ImportExportActionModelAdmin)
         'status',
         ('created_at', DateRangeFilterBuilder()),
     )
-    list_per_page = 30
+    list_per_page = 20
+    list_max_show_all= 1000
     search_fields = [
         'first_name',
         'last_name',
