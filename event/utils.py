@@ -32,8 +32,8 @@ def send_single_status_email(instance, status):
     }
 
     # dynamically get the right subject and text fields
-    subject_text = getattr(config, f"{status}_subject")
-    message_content = getattr(config, f"{status}_message_text")
+    subject_text = getattr(config, f'{status}_subject')
+    message_content = getattr(config, f'{status}_message_text')
 
     # render template
     db_template = Template(message_content)
@@ -71,8 +71,8 @@ def send_bulk_status_email(model_class, bcc_emails, status):
         return
 
     # dynamically get the bulk text and subject
-    subject_text = getattr(config, f"{status}_subject")
-    bulk_message_content = getattr(config, f"{status}_bulk_message_text")
+    subject_text = getattr(config, f'{status}_subject')
+    bulk_message_content = getattr(config, f'{status}_bulk_message_text')
 
     db_template = Template(bulk_message_content)
     formatted_message = db_template.render(Context({}))
