@@ -24,8 +24,8 @@ class StatusManagementMixin:
 
     @admin.display(description='Status', ordering='status')
     def status_display(self, obj):
-        status_map = {'selected': "Selected", 'rejected': "Rejected"}
-        return status_map.get(obj.status, "Pending")
+        status_map = {'selected': 'Selected', 'rejected': 'Rejected'}
+        return status_map.get(obj.status, 'Pending')
 
     #  opening a single record and clicking save
     def save_model(self, request, obj, form, change):
@@ -37,12 +37,12 @@ class StatusManagementMixin:
             send_single_status_email(obj, obj.status)
             self.message_user(
                 request,
-                f"Status updated to {obj.status} and email sent to {obj.email}.",
+                f'Status updated to {obj.status} and email sent to {obj.email}.',
                 messages.SUCCESS,
             )
 
     # selecting multiple records via bulk actions
-    @admin.action(description="Mark as selected")
+    @admin.action(description='Mark as selected')
     def make_selected(self, request, queryset):
         target_qs = queryset.exclude(status='selected')
         bcc_emails = list(target_qs.values_list('email', flat=True))
@@ -52,15 +52,15 @@ class StatusManagementMixin:
             send_bulk_status_email(self.model, bcc_emails, status='selected')
             self.message_user(
                 request,
-                f"{updated} application(s) successfully marked as selected and emailed.",
+                f'{updated} application(s) successfully marked as selected and emailed.',
                 messages.SUCCESS,
             )
         else:
             self.message_user(
-                request, "No eligible applications to update.", messages.WARNING
+                request, 'No eligible applications to update.', messages.WARNING
             )
 
-    @admin.action(description="Mark as rejected")
+    @admin.action(description='Mark as rejected')
     def make_rejected(self, request, queryset):
         target_qs = queryset.exclude(status='rejected')
         bcc_emails = list(target_qs.values_list('email', flat=True))
@@ -70,12 +70,12 @@ class StatusManagementMixin:
             send_bulk_status_email(self.model, bcc_emails, status='rejected')
             self.message_user(
                 request,
-                f"{updated} application(s) successfully marked as rejected and emailed.",
+                f'{updated} application(s) successfully marked as rejected and emailed.',
                 messages.ERROR,
             )
         else:
             self.message_user(
-                request, "No eligible applications to update.", messages.WARNING
+                request, 'No eligible applications to update.', messages.WARNING
             )
 
 
@@ -159,7 +159,7 @@ class EventApplicationAdmin(StatusManagementMixin, ImportExportActionModelAdmin)
     list_display_links = ['first_name', 'last_name', 'faculty', 'department']
     list_filter = (
         'status',
-        ("created_at", DateRangeFilterBuilder()),
+        ('created_at', DateRangeFilterBuilder()),
     )
     list_per_page = 30
     search_fields = [
@@ -205,9 +205,9 @@ class FewsApplicationAdmin(StatusManagementMixin, ImportExportActionModelAdmin):
     list_filter = (
         'status',
         'attendance_type',
-        ("created_at", DateRangeFilterBuilder()),
+        ('created_at', DateRangeFilterBuilder()),
     )
-    list_per_page = 30
+    list_per_page = 20
     search_fields = [
         'first_name',
         'last_name',
