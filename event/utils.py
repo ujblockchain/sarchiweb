@@ -62,7 +62,7 @@ def send_single_status_email(instance, status):
         file_content = config.attachment.read()
         msg.attach(file_name, file_content)
 
-    msg.send(fail_silently=False)
+    msg.send(fail_silently=True)
 
 
 def send_bulk_status_email(model_class, bcc_emails, status):
@@ -101,4 +101,4 @@ def send_bulk_status_email(model_class, bcc_emails, status):
         file_content = config.attachment.read()
         msg.attach(file_name, file_content)
 
-    msg.send(fail_silently=False)
+    msg.send(fail_silently=True)
