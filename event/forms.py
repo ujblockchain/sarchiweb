@@ -48,7 +48,7 @@ class FewsRegistrationForm(forms.ModelForm):
             'email',
             'phone',
             'organization',
-            'attendance_type',
+            # 'attendance_type',
         ]
 
     def clean_phone(self):
