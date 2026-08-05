@@ -53,16 +53,19 @@ class EventRegistrationForm(forms.ModelForm):
     def clean_learning_path(self):
         learning_path = self.cleaned_data.get('learning_path')
 
-        if learning_path == 'Select Learning Session':
+        if learning_path != 'coding' and learning_path != 'drag_drop':
             raise forms.ValidationError('Select a valid Session.')
 
         return learning_path
 
     def clean_repository_link(self):
         learning_path = self.cleaned_data.get('learning_path')
-        repository_link = (self.cleaned_data.get('repository_link')).strip()
+        repository_link = self.cleaned_data.get('repository_link')
 
-        if learning_path == 'Coding Session' and repository_link == '':
+        if repository_link:
+            repository_link = repository_link.strip()
+
+        if repository_link is None and learning_path == 'coding':
             raise forms.ValidationError(
                 'Repository link is required for the Coding Session.'
             )
