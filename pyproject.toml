@@ -1,0 +1,3 @@
+[tool.ruff.format]
+# enforce single quotes for all strings
+quote-style = "single"
