@@ -1,10 +1,10 @@
-from django.contrib import admin
+from django.contrib import admin, messages
 from import_export import resources
 from import_export.admin import ImportExportActionModelAdmin
-from django.contrib import messages
 from rangefilter.filters import DateRangeFilterBuilder
 
 from event.utils import send_bulk_status_email, send_single_status_email
+
 from .models import EventEmailConfig, EventRegistration, FewsRegistration
 
 
@@ -21,7 +21,6 @@ class FewsResource(resources.ModelResource):
 
 
 class StatusManagementMixin:
-
     @admin.display(description='Status', ordering='status')
     def status_display(self, obj):
         status_map = {'selected': 'Selected', 'rejected': 'Rejected'}
@@ -81,103 +80,99 @@ class StatusManagementMixin:
 
 @admin.register(EventEmailConfig)
 class EventConfigAdmin(admin.ModelAdmin):
-    list_display = [
-        'event_type',
-        'group_link',
-        'created_at',
-    ]
-    list_display_links = ['event_type', 'group_link']
-    list_filter = ['event_type']
+    list_display = ('event_type', 'group_link', 'created_at')
+    list_display_links = ('event_type', 'group_link')
+    list_filter = ('event_type',)
     date_hierarchy = 'created_at'
     list_per_page = 10
-    search_fields = ['event_type']
-    readonly_fields = ['id', 'created_at']
+    search_fields = ('event_type',)
+    readonly_fields = ('id', 'created_at')
     save_as = True
 
-    fieldsets = [
-        [
+    fieldsets = (
+        (
             'Event Type',
-            {'fields': ['event_type']},
-        ],
-        [
+            {'fields': ('event_type',)},
+        ),
+        (
             'Email Template for Application',
             {
-                'classes': ['collasible', 'wide'],
-                'fields': [
+                'classes': ('collasible', 'wide'),
+                'fields': (
                     'applied_subject',
                     'applied_message_text',
-                ],
+                ),
             },
-        ],
-        [
+        ),
+        (
             'Email Template for Selection',
             {
-                'classes': ['collasible', 'wide'],
-                'fields': [
+                'classes': ('collasible', 'wide'),
+                'fields': (
                     'selected_subject',
                     'selected_message_text',
                     'selected_bulk_message_text',
-                ],
+                ),
             },
-        ],
-        [
+        ),
+        (
             'Email Template for Rejection',
             {
-                'classes': ['collasible', 'wide'],
-                'fields': [
+                'classes': ('collasible', 'wide'),
+                'fields': (
                     'rejected_subject',
                     'rejected_message_text',
                     'rejected_bulk_message_text',
-                ],
+                ),
             },
-        ],
-        [
+        ),
+        (
             'Other Details',
             {
-                'classes': ['collasible', 'wide'],
-                'fields': ['group_link', 'attachment', 'registration_end_time'],
+                'classes': ('collasible', 'wide'),
+                'fields': ('group_link', 'attachment', 'registration_end_time'),
             },
-        ],
-        [
+        ),
+        (
             'Important dates',
-            {'classes': ['collasible', 'wide'], 'fields': ['created_at']},
-        ],
-    ]
+            {'classes': ('collasible', 'wide'), 'fields': ('created_at',)},
+        ),
+    )
 
 
 @admin.register(EventRegistration)
 class EventApplicationAdmin(StatusManagementMixin, ImportExportActionModelAdmin):
-    resource_classes = [EventResource]
-    list_display = [
+    resource_classes = (EventResource,)
+    list_display = (
         'first_name',
         'last_name',
         'faculty',
         'department',
         'created_at',
         'status_display',
-    ]
-    list_display_links = ['first_name', 'last_name', 'faculty', 'department']
+    )
+    list_display_links = ('first_name', 'last_name', 'faculty', 'department')
     list_filter = (
         'status',
         ('created_at', DateRangeFilterBuilder()),
     )
     list_per_page = 20
-    list_max_show_all= 1000
-    search_fields = [
+    list_max_show_all = 1000
+    search_fields = (
         'first_name',
         'last_name',
         'email',
         'faculty',
         'department',
         'status',
-    ]
-    readonly_fields = ['id', 'created_at']
+    )
+    readonly_fields = ('id', 'created_at')
     save_as = True
     actions_on_top = True
     actions_on_bottom = True
-    actions = ['make_selected', 'make_rejected']
+    actions = ('make_selected', 'make_rejected')
 
-    fields = [
+    fields = (
         'first_name',
         'last_name',
         'email',
@@ -188,42 +183,42 @@ class EventApplicationAdmin(StatusManagementMixin, ImportExportActionModelAdmin)
         'year_of_study',
         'status',
         'created_at',
-    ]
+    )
 
 
 @admin.register(FewsRegistration)
 class FewsApplicationAdmin(StatusManagementMixin, ImportExportActionModelAdmin):
-    resource_classes = [FewsResource]
-    list_display = [
+    resource_classes = (FewsResource,)
+    list_display = (
         'first_name',
         'last_name',
         'organization',
         'attendance_type',
         'created_at',
         'status_display',
-    ]
-    list_display_links = ['first_name', 'last_name', 'organization', 'attendance_type']
+    )
+    list_display_links = ('first_name', 'last_name', 'organization', 'attendance_type')
     list_filter = (
         'status',
         'attendance_type',
         ('created_at', DateRangeFilterBuilder()),
     )
     list_per_page = 20
-    search_fields = [
+    search_fields = (
         'first_name',
         'last_name',
         'email',
         'organization',
         'attendance_type',
         'status',
-    ]
-    readonly_fields = ['id', 'created_at']
+    )
+    readonly_fields = ('id', 'created_at')
     save_as = True
     actions_on_top = True
     actions_on_bottom = True
-    actions = ['make_selected', 'make_rejected']
+    actions = ('make_selected', 'make_rejected')
 
-    fields = [
+    fields = (
         'first_name',
         'last_name',
         'email',
@@ -232,4 +227,4 @@ class FewsApplicationAdmin(StatusManagementMixin, ImportExportActionModelAdmin):
         'attendance_type',
         'status',
         'created_at',
-    ]
+    )

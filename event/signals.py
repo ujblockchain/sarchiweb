@@ -1,6 +1,8 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+
 from event.utils import send_single_status_email
+
 from .models import EventRegistration, FewsRegistration
 
 

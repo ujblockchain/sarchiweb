@@ -2,10 +2,12 @@ import os
 
 from django.conf import settings
 from django.core.mail import EmailMessage, make_msgid
+from django.template import Context, Template
 from django.template.loader import render_to_string
-from django.template import Template, Context
-from .models import EventEmailConfig
+
 from project.settings import env
+
+from .models import EventEmailConfig
 
 
 def get_db_email_config(model_class):
