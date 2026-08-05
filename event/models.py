@@ -16,6 +16,11 @@ STATUS_CHOICES = [
     ('rejected', 'Rejected'),
 ]
 
+LEARNING_PATH = [
+    ('coding', 'Coding'),
+    ('drag_drop', 'Drag & Drop'),
+]
+
 ATTENDANCE_CHOICES = [
     ('in-person', 'In-Person'),
     ('online', 'YouTube Live'),
@@ -32,15 +37,15 @@ class EventEmailConfig(models.Model):
     applied_subject = models.CharField(max_length=255, default='Application Received')
     applied_message_text = models.TextField(
         verbose_name='Applied Message (Single)',
-        help_text="Used when saving a single record. Use HTML like &lt;br&gt; or &lt;strong&gt;. \
-            Use variables like {{ first_name }}, {{ last_name }}, {{ organization }}.",
+        help_text='Used when saving a single record. Use HTML like &lt;br&gt; or &lt;strong&gt;. \
+            Use variables like {{ first_name }}, {{ last_name }}, {{ organization }}.',
     )
 
-    selected_subject = models.CharField(max_length=255, default="You are Selected")
+    selected_subject = models.CharField(max_length=255, default='You are Selected')
     selected_message_text = models.TextField(
         verbose_name='Selected Message (Single)',
-        help_text="Used when saving a single record. Use HTML like &lt;br&gt; or &lt;strong&gt;. \
-            Use variables like {{ first_name }}, {{ last_name }}, {{ organization }}.",
+        help_text='Used when saving a single record. Use HTML like &lt;br&gt; or &lt;strong&gt;. \
+            Use variables like {{ first_name }}, {{ last_name }}, {{ organization }}.',
     )
     selected_bulk_message_text = models.TextField(
         verbose_name='Selected Message (Bulk)',
@@ -50,8 +55,8 @@ class EventEmailConfig(models.Model):
     rejected_subject = models.CharField(max_length=255, default='Application Update')
     rejected_message_text = models.TextField(
         verbose_name='Rejected Message (Single)',
-        help_text="Used when saving a single record. Use HTML like &lt;br&gt; or &lt;strong&gt;. \
-            Use variables like {{ first_name }}, {{ last_name }}, {{ organization }}.",
+        help_text='Used when saving a single record. Use HTML like &lt;br&gt; or &lt;strong&gt;. \
+            Use variables like {{ first_name }}, {{ last_name }}, {{ organization }}.',
     )
     rejected_bulk_message_text = models.TextField(
         verbose_name='Rejected Message (Bulk)',
@@ -71,7 +76,6 @@ class EventEmailConfig(models.Model):
     )
     registration_end_time = models.DateTimeField(default=timezone.now)
     created_at = models.DateTimeField(auto_now_add=True)
-
 
     class Meta:
         verbose_name = 'Email Configuration'
@@ -96,17 +100,24 @@ class EventRegistration(models.Model):
     faculty = models.CharField(max_length=100)
     department = models.CharField(max_length=100, null=True, blank=True)
     nationality = models.CharField(max_length=100)
-    year_of_study = models.CharField(max_length=20, choices=YEAR_CHOICES, null=True, blank=True)
+    year_of_study = models.CharField(
+        max_length=20, choices=YEAR_CHOICES, null=True, blank=True
+    )
+    learning_path = models.CharField(
+        max_length=20, choices=LEARNING_PATH, default='coding'
+    )
+    repository_link = models.URLField(max_length=400, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    event_type = models.CharField(max_length=50, default='UJB', null=True, blank=True, editable=False)
+    event_type = models.CharField(
+        max_length=50, default='UJB', null=True, blank=True, editable=False
+    )
     status = models.CharField(max_length=20, choices=STATUS_CHOICES)
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name} - {self.email}"
+        return f'{self.first_name} {self.last_name} - {self.email}'
 
 
 class FewsRegistration(models.Model):
-
     id = models.CharField(
         default=generate_custom_id,
         editable=False,
@@ -121,13 +132,17 @@ class FewsRegistration(models.Model):
     organization = models.CharField(
         max_length=255, verbose_name='Institution / Organization'
     )
-    attendance_type = models.CharField(max_length=20, choices=ATTENDANCE_CHOICES, default='In-Person')
+    attendance_type = models.CharField(
+        max_length=20, choices=ATTENDANCE_CHOICES, default='In-Person'
+    )
     created_at = models.DateTimeField(auto_now_add=True)
-    event_type = models.CharField(max_length=50, default='FEWS', null=True, blank=True, editable=False)
+    event_type = models.CharField(
+        max_length=50, default='FEWS', null=True, blank=True, editable=False
+    )
     status = models.CharField(max_length=20, choices=STATUS_CHOICES)
 
     class Meta:
-        ordering = ['-created_at']
+        ordering = ['-created_at']  # noqa: RUF012
         verbose_name = 'FEWS Registration'
         verbose_name_plural = 'FEWS Registrations'
 
