@@ -1,6 +1,8 @@
 from datetime import timedelta
+
 from django import forms
 from django.utils import timezone
+
 from .models import EventRegistration, FewsRegistration
 
 
@@ -11,7 +13,7 @@ class EventRegistrationForm(forms.ModelForm):
 
     class Meta:
         model = EventRegistration
-        fields = [
+        fields = [  # noqa: RUF012
             'first_name',
             'last_name',
             'email',
@@ -20,19 +22,52 @@ class EventRegistrationForm(forms.ModelForm):
             'department',
             'nationality',
             'year_of_study',
+            'learning_path',
+            'repository_link',
         ]
 
     def clean_phone(self):
         phone = self.cleaned_data.get('phone')
-        cleaned_phone = phone.replace(" ", "").replace("+", "")
+        cleaned_phone = phone.replace(' ', '').replace('+', '')
 
         if not cleaned_phone.isdigit():
-            raise forms.ValidationError("Phone number must contain only numbers.")
+            raise forms.ValidationError('Phone number must contain only numbers.')
 
         if len(cleaned_phone) < 9:
-            raise forms.ValidationError("Phone number is too short.")
+            raise forms.ValidationError('Phone number is too short.')
 
         return phone
+
+    def clean_email(self):
+        user_email = self.cleaned_data.get('email')
+        five_days_ago = timezone.now() - timedelta(days=5)
+
+        # check if this email registered in the last 5 days
+        if EventRegistration.objects.filter(
+            email=user_email, created_at__gte=five_days_ago
+        ).exists():
+            raise forms.ValidationError('Already registered for the event.')
+
+        return user_email
+
+    def clean_learning_path(self):
+        learning_path = self.cleaned_data.get('learning_path')
+
+        if learning_path == 'Select Learning Session':
+            raise forms.ValidationError('Select a valid Session.')
+
+        return learning_path
+
+    def clean_repository_link(self):
+        learning_path = self.cleaned_data.get('learning_path')
+        repository_link = (self.cleaned_data.get('repository_link')).strip()
+
+        if learning_path == 'Coding Session' and repository_link == '':
+            raise forms.ValidationError(
+                'Repository link is required for the Coding Session.'
+            )
+
+        return repository_link
 
 
 class FewsRegistrationForm(forms.ModelForm):
@@ -42,7 +77,7 @@ class FewsRegistrationForm(forms.ModelForm):
 
     class Meta:
         model = FewsRegistration
-        fields = [
+        fields = [  # noqa: RUF012
             'first_name',
             'last_name',
             'email',
@@ -53,12 +88,12 @@ class FewsRegistrationForm(forms.ModelForm):
 
     def clean_phone(self):
         phone = self.cleaned_data.get('phone')
-        cleaned_phone = phone.replace(" ", "").replace("+", "")
+        cleaned_phone = phone.replace(' ', '').replace('+', '')
 
         if not cleaned_phone.isdigit():
-            raise forms.ValidationError("Phone number must contain only numbers.")
+            raise forms.ValidationError('Phone number must contain only numbers.')
 
         if len(cleaned_phone) < 9:
-            raise forms.ValidationError("Phone number is too short.")
+            raise forms.ValidationError('Phone number is too short.')
 
         return phone
