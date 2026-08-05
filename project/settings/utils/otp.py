@@ -2,8 +2,10 @@ from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.views import LoginView
 from django.shortcuts import redirect
-from django_otp import devices_for_user, match_token, login as otp_login
-from django_otp.plugins.otp_totp.models import TOTPDevice 
+from django_otp import devices_for_user, match_token
+from django_otp import login as otp_login
+from django_otp.plugins.otp_totp.models import TOTPDevice
+
 from project.settings import env
 
 ADMIN_PATH = env.get('ADMIN_PATH')

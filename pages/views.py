@@ -1,4 +1,5 @@
 from django.views.generic.base import TemplateView
+
 from contact.views import ContactFormMixin
 
 

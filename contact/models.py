@@ -1,12 +1,12 @@
 import uuid
 
-from encrypted_fields.fields import (
-    EncryptedCharField,
-    EncryptedTextField,
-    EncryptedEmailField,
-)
 from django.db import models
 from django.utils import timezone
+from encrypted_fields.fields import (
+    EncryptedCharField,
+    EncryptedEmailField,
+    EncryptedTextField,
+)
 from simple_history.models import HistoricalRecords
 
 
@@ -37,4 +37,4 @@ class Contact(models.Model):
     class Meta:
         verbose_name = 'Contact'
         verbose_name_plural = 'Contacts'
-        ordering = ['-date_received']
+        ordering = ('-date_received',)

@@ -9,4 +9,4 @@ class CommunityConfig(AppConfig):
     divider_title = 'Apps'
 
     def ready(self):
-        import community.signals
+        import community.signals  # noqa: F401

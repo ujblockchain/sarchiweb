@@ -11,7 +11,7 @@ class RequestMiddleware(MiddlewareMixin):
     in your project can access it, without it having to be passed to that code
     from the view.
     """
-    _requests = {}  # type: ignore
+    _requests = {}  # type: ignore  # noqa: RUF012
 
     def process_request(self, request):
         """

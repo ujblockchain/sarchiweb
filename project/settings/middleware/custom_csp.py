@@ -16,10 +16,7 @@ class CustomCSPMiddleware:
 
         # check if the response corresponds to a 404 error page
         if (
-            isinstance(response, HttpResponseServerError)
-            or isinstance(response, HttpResponseNotFound)
-            or isinstance(response, HttpResponseBadRequest)
-            or isinstance(response, HttpResponseForbidden)
+            isinstance(response, (HttpResponseServerError, HttpResponseNotFound, HttpResponseBadRequest, HttpResponseForbidden))
         ):
             response['Content-Security-Policy'] = (
                 "default-src 'self'; img-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' https://www.google.com https://www.googletagmanager.com https://www.gstatic.com; font-src 'self' https://fonts.gstatic.com https://use.fontawesome.com https://fonts.googleapis.com/ 'unsafe-inline';"

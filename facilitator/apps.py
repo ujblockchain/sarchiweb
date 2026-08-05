@@ -8,4 +8,4 @@ class FacilitatorConfig(AppConfig):
     hide = False
 
     def ready(self):
-        import facilitator.signals
+        import facilitator.signals  # noqa: F401

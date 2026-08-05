@@ -99,7 +99,7 @@ class ContactForm(forms.ModelForm):
 
     class Meta:
         model = Contact
-        fields = ['first_name', 'last_name', 'email', 'message', 'captcha']
+        fields = ('first_name', 'last_name', 'email', 'message', 'captcha')
 
     def clean_first_name(self):
         name = self.cleaned_data.get('first_name', '').strip()

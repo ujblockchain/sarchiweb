@@ -1,7 +1,8 @@
 from django.contrib import admin
 from import_export import resources
-from .models import StudentApplication
 from import_export.admin import ImportExportActionModelAdmin
+
+from .models import StudentApplication
 
 
 class StudentResource(resources.ModelResource):
@@ -18,17 +19,17 @@ class StudentResource(resources.ModelResource):
 
 @admin.register(StudentApplication)
 class StudentApplicationAdmin(ImportExportActionModelAdmin):
-    resource_classes = [StudentResource]
-    list_display = ['first_name', 'last_name', 'faculty', 'department', 'created_at']
-    list_display_links = ['first_name', 'last_name', 'faculty', 'department']
+    resource_classes = (StudentResource,)
+    list_display = ('first_name', 'last_name', 'faculty', 'department', 'created_at')
+    list_display_links = ('first_name', 'last_name', 'faculty', 'department')
     date_hierarchy = 'created_at'
     list_per_page = 50
     actions_on_top = True
-    readonly_fields = ['id', 'created_at']
+    readonly_fields = ('id', 'created_at')
     save_as = True
     save_as_continue = True
-    search_fields = ['first_name', 'last_name', 'faculty', 'department']
-    fields = [
+    search_fields = ('first_name', 'last_name', 'faculty', 'department')
+    fields = (
         'first_name',
         'last_name',
         'email',
@@ -41,4 +42,4 @@ class StudentApplicationAdmin(ImportExportActionModelAdmin):
         'saiee_membership',
         'other_membership',
         'created_at',
-    ]
+    )

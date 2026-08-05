@@ -1,11 +1,12 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import include, path
 from django.contrib.admin.models import LogEntry
+from django.urls import include, path
 from django.views.generic import RedirectView
-from project.settings.utils.otp import CustomAdminLoginView
+
 from project.settings import env
+from project.settings.utils.otp import CustomAdminLoginView
 
 ADMIN_PATH = env.get('ADMIN_PATH')
 

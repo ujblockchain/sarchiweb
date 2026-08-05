@@ -1,11 +1,12 @@
 from django import forms
+
 from .models import StudentApplication
 
 
 class StudentApplicationForm(forms.ModelForm):
     class Meta:
         model = StudentApplication
-        fields = [
+        fields = (
             'first_name',
             'last_name',
             'email',
@@ -17,13 +18,13 @@ class StudentApplicationForm(forms.ModelForm):
             'ieee_membership',
             'saiee_membership',
             'other_membership',
-        ]
+        )
 
     def clean_email(self):
         value = self.data.get('email')
 
         if StudentApplication.objects.filter(email=value).exists():
-            raise forms.ValidationError("email already signed up.")
+            raise forms.ValidationError('email already signed up.')
 
         return value
 
@@ -31,13 +32,13 @@ class StudentApplicationForm(forms.ModelForm):
         value = self.data.get('ieee_membership')
 
         if value != 'yes' and value != 'no':
-            raise forms.ValidationError("field is required")
-        return True if value == 'yes' else False
+            raise forms.ValidationError('field is required')
+        return True if value == 'yes' else False  # noqa: SIM210
 
     def clean_saiee_membership(self):
         value = self.data.get('saiee_membership')
 
         if value != 'yes' and value != 'no':
-            raise forms.ValidationError("field is required")
+            raise forms.ValidationError('field is required')
 
-        return True if value == 'yes' else False
+        return True if value == 'yes' else False  # noqa: SIM210

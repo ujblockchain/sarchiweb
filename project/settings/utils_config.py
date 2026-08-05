@@ -1,7 +1,8 @@
-import jinja2
 import sentry_sdk
 from import_export.formats.base_formats import CSV, XLSX
-from project.settings import BASE_DIR, env, PROJECT_DIR
+
+import jinja2
+from project.settings import BASE_DIR, PROJECT_DIR, env
 
 TEMPLATES = [
     {

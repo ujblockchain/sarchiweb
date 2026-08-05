@@ -1,4 +1,5 @@
 import dj_database_url
+
 from project.settings import env
 
 SECRET_KEY = env.get('SECRET_KEY')

@@ -46,7 +46,7 @@ class Users(AbstractUser):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS: list[str] = []
+    REQUIRED_FIELDS: list[str] = []  # noqa: RUF012
 
     def __str__(self):
         return self.email

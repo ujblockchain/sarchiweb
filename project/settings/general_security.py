@@ -1,4 +1,3 @@
-from csp.constants import NONCE
 from project.settings import env
 
 ADMIN_PATH = env.get('ADMIN_PATH')

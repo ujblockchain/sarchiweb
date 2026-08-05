@@ -1,8 +1,10 @@
 import datetime
-from django.views import View
-from django.utils import timezone
-from django.shortcuts import render
+
 from django.http import JsonResponse
+from django.shortcuts import render
+from django.utils import timezone
+from django.views import View
+
 from .forms import StudentApplicationForm
 
 

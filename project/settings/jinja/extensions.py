@@ -3,12 +3,13 @@ from datetime import datetime
 from django.conf import settings
 from django.template.defaultfilters import date
 from django.utils import timezone
-from jinja2 import lexer, nodes
 from jinja2.ext import Extension
+
+from jinja2 import lexer, nodes
 
 
 class DjangoNow(Extension):
-    tags = set(['now'])
+    tags = {'now'}  # noqa: RUF012
 
     def _now(self, date_format):
         tzinfo = timezone.get_current_timezone() if settings.USE_TZ else None
