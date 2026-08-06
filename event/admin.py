@@ -148,12 +148,14 @@ class EventApplicationAdmin(StatusManagementMixin, ImportExportActionModelAdmin)
         'last_name',
         'faculty',
         'department',
+        'learning_path',
         'created_at',
         'status_display',
     )
     list_display_links = ('first_name', 'last_name', 'faculty', 'department')
     list_filter = (
         'status',
+        'learning_path',
         ('created_at', DateRangeFilterBuilder()),
     )
     list_per_page = 20
@@ -164,6 +166,7 @@ class EventApplicationAdmin(StatusManagementMixin, ImportExportActionModelAdmin)
         'email',
         'faculty',
         'department',
+        'learning_path',
         'status',
     )
     readonly_fields = ('id', 'created_at')
@@ -181,6 +184,8 @@ class EventApplicationAdmin(StatusManagementMixin, ImportExportActionModelAdmin)
         'department',
         'nationality',
         'year_of_study',
+        'learning_path',
+        'repository_link',
         'status',
         'created_at',
     )
