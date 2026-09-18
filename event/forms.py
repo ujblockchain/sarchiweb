@@ -22,7 +22,6 @@ class EventRegistrationForm(forms.ModelForm):
             'department',
             'nationality',
             'year_of_study',
-            'learning_path',
             'repository_link',
         ]
 
