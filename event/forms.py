@@ -22,7 +22,6 @@ class EventRegistrationForm(forms.ModelForm):
             'department',
             'nationality',
             'year_of_study',
-            'repository_link',
         ]
 
     def clean_phone(self):
@@ -57,19 +56,19 @@ class EventRegistrationForm(forms.ModelForm):
 
     #     return learning_path
 
-    def clean_repository_link(self):
-        # learning_path = self.cleaned_data.get('learning_path')
-        repository_link = self.cleaned_data.get('repository_link')
+    # def clean_repository_link(self):
+    #     # learning_path = self.cleaned_data.get('learning_path')
+    #     repository_link = self.cleaned_data.get('repository_link')
 
-        if repository_link:
-            repository_link = repository_link.strip()
+    #     if repository_link:
+    #         repository_link = repository_link.strip()
 
-        if repository_link is None:
-            raise forms.ValidationError(
-                'Repository link is required.'
-            )
+    #     if repository_link is None:
+    #         raise forms.ValidationError(
+    #             'Repository link is required.'
+    #         )
 
-        return repository_link
+    #     return repository_link
 
 
 class FewsRegistrationForm(forms.ModelForm):
