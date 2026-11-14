@@ -8,6 +8,7 @@ document.addEventListener("alpine:init", () => {
       uvWin:
         'powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/0.13.7/install.ps1 | iex"',
       uvMac: "curl -LsSf https://astral.sh/uv/0.13.7/install.sh | sh",
+      clone: "git clone https://github.com/ujblockchain/community-voice-app.git\ncd community-voice-app",
       sync: "uv python install 3.12\nuv sync --locked",
       env: "cp .env.example .env",
       seed: "uv run python -m community_voice.auth.seed",
