@@ -81,6 +81,7 @@ CONTENT_SECURITY_POLICY = {
             'https://www.google.com',
             'https://www.gstatic.com',
             'https://ajax.googleapis.com',
+            "https://cdnjs.cloudflare.com",
         ],
         'style-src': [
             "'self'",
