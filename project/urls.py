@@ -14,6 +14,7 @@ ADMIN_PATH = env.get('ADMIN_PATH')
 urlpatterns = [
     path(f'{ADMIN_PATH}/login/', CustomAdminLoginView.as_view(), name='admin_login'),
     path(f'{ADMIN_PATH}/', admin.site.urls),
+    path('baciss/2026/', include('baciss.urls')),
     path('community/', include('community.urls')),
     path('event/', include('event.urls')),
     path('facilitator/', include('facilitator.urls')),
