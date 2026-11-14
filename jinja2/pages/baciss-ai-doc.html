@@ -1,0 +1,1005 @@
+{% extends "base.html" %}
+
+{% block pageTitle %}BACISS 2026 | AI Code Hub & Architecture{% endblock pageTitle %}
+
+{% block pageStyle %}
+    {{ super() if super is defined else '' }}
+    <link nonce="{{ request.csp_nonce }}" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+{% endblock pageStyle %}
+
+{% block mainBodyContent %}
+    <body class="bg-uj-dark text-slate-300 antialiased selection:bg-uj-orange selection:text-white min-h-screen flex flex-col relative overflow-x-hidden"
+        x-data="bacissPortal()" x-init="initHighlighting()">
+
+        <div class="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-uj-orange via-amber-500 to-red-500 opacity-90 z-50"></div>
+
+        <div id="particles-container" class="fixed inset-0 z-0 pointer-events-none opacity-25"></div>
+        <div class="fixed top-0 left-1/4 w-96 h-96 bg-uj-orange/10 rounded-full blur-[140px] pointer-events-none z-0"></div>
+        <div class="fixed bottom-10 right-10 w-96 h-96 bg-blue-600/10 rounded-full blur-[140px] pointer-events-none z-0"></div>
+
+        <header class="fixed top-0 w-full z-40 glass-nav">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-uj-orange rounded-xl flex items-center justify-center text-white font-black text-lg shadow-[0_0_15px_rgba(242,101,34,0.5)]">
+                        UJ
+                    </div>
+                    <div>
+                        <span class="font-extrabold text-white text-base sm:text-lg tracking-tight block leading-tight">
+                            BACISS <span class="text-uj-orange">2026</span>
+                        </span>
+                        <span class="text-[10px] font-mono tracking-wider text-slate-400 uppercase">
+                            South Africa - Switzerland Bilateral Research Chair in Blockchain Technology
+                        </span>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <a href="#system-guide"
+                        class="hidden md:inline-flex px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-slate-300 transition-all">
+                        <i class="fas fa-book-open text-uj-orange mr-1.5 mt-0.5"></i> Setup Guide
+                    </a>
+                    <a href="#code-explorer"
+                        class="hidden md:inline-flex px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-slate-300 transition-all">
+                        <i class="fas fa-code text-uj-orange mr-1.5 mt-0.5"></i> AI Notebooks
+                    </a>
+                    <a href="#partners"
+                        class="hidden sm:inline-flex px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-slate-300 transition-all">
+                        <i class="fas fa-handshake text-uj-orange mr-1.5 mt-0.5"></i> Partners
+                    </a>
+                    <a href="mailto:blockchain@uj.ac.za"
+                        class="px-3.5 py-1.5 rounded-xl bg-uj-orange hover:bg-orange-600 text-white font-bold text-xs shadow-[0_0_15px_rgba(242,101,34,0.3)] transition-all flex items-center gap-1.5">
+                        <i class="fas fa-envelope"></i> Contact Team
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <main class="flex-grow pt-20 pb-16 relative z-10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <section class="py-6 md:py-10 border-b border-white/10 mb-8">
+                    <div class="grid lg:grid-cols-12 gap-8 items-center">
+
+                        <div class="lg:col-span-8">
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-slate-300 mb-3">
+                                <span class="w-2 h-2 rounded-full bg-uj-orange animate-ping"></span>
+                                <span>University of Johannesburg & Lucerne University of Applied Sciences and Arts</span>
+                            </div>
+                            <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight mb-2">
+                                BACISS <span class="text-transparent bg-clip-text bg-gradient-to-r from-uj-orange to-amber-400">2026</span>
+                            </h1>
+                            <h2 class="text-lg md:text-xl font-bold text-slate-200 mb-2">
+                                Blockchain, AI and Cloud Innovation Startup School
+                            </h2>
+                            <p class="text-uj-orange font-medium text-xs sm:text-sm tracking-wide mb-3">
+                                "Building African Innovation for a Sustainable and Inclusive Future."
+                            </p>
+                            <p class="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-3xl">
+                                Community Voice is a multi-agent service delivery reporter enabling citizens to report local
+                                municipal issues in 5 official South African languages. Explore the end-to-end setup guide,
+                                multi-server runtime, locked dependencies, and complete notebook code below.
+                            </p>
+
+                            <div class="flex flex-wrap gap-2.5 mt-5">
+                                <a href="#system-guide"
+                                    class="px-3 py-1.5 rounded-lg bg-uj-orange/20 border border-uj-orange/40 hover:bg-uj-orange text-white text-xs font-bold transition-all">
+                                    <i class="fas fa-layer-group mr-1.5"></i> System Architecture & Setup
+                                </a>
+                                <a href="#running-servers"
+                                    class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/15 text-slate-300 text-xs font-bold transition-all">
+                                    <i class="fas fa-terminal mr-1.5 text-green-400"></i> Run the 3 Servers
+                                </a>
+                                <a href="#privacy-filter"
+                                    class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/15 text-slate-300 text-xs font-bold transition-all">
+                                    <i class="fas fa-shield-alt mr-1.5 text-blue-400"></i> Privacy Filter (Ollama)
+                                </a>
+                                <a href="#code-explorer"
+                                    class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/15 text-slate-300 text-xs font-bold transition-all">
+                                    <i class="fas fa-laptop-code mr-1.5 text-amber-400"></i> AI Notebooks (Phases 1-12)
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-4">
+                            <div class="glass-card rounded-2xl p-5 border-t-2 border-uj-orange relative overflow-hidden shadow-xl">
+                                <div class="flex items-center justify-between mb-4 border-b border-white/10 pb-2">
+                                    <span class="text-xs uppercase font-mono tracking-wider text-slate-400 font-bold">Event Details</span>
+                                    <span class="px-2 py-0.5 rounded text-[10px] bg-green-500/10 text-green-400 font-bold border border-green-500/20">100% Free Entry</span>
+                                </div>
+
+                                <div class="space-y-3 text-xs">
+                                    <div class="flex items-start gap-2.5 text-slate-300">
+                                        <i class="fas fa-calendar-day text-uj-orange mt-0.5 w-4"></i>
+                                        <div>
+                                            <div class="font-bold text-white">16 - 21 November 2026</div>
+                                            <div class="text-slate-400 text-[11px]">Daily: 09:00 - 16:00</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-start gap-2.5 text-slate-300">
+                                        <i class="fas fa-map-marked-alt text-uj-orange mt-0.5 w-4"></i>
+                                        <div>
+                                            <div class="font-bold text-white">B2 Lab 219, DEEES Building</div>
+                                            <div class="text-slate-400 text-[11px]">Kingsway Campus (APK campus), University of Johannesburg</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-start gap-2.5 text-slate-300">
+                                        <i class="fas fa-trophy text-amber-400 mt-0.5 w-4"></i>
+                                        <div>
+                                            <div class="font-bold text-white">Over R40,000+ in Cash Prizes</div>
+                                            <div class="text-slate-400 text-[11px]">Plus branded items from ecosystem partners</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <section id="system-guide" class="mb-14 scroll-mt-20">
+
+                    <div class="glass-card rounded-3xl p-6 sm:p-8 border border-white/10 mb-8 relative overflow-hidden">
+                        <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-uj-orange/15 border border-uj-orange/30 text-xs font-bold text-uj-orange uppercase tracking-wider">
+                                <i class="fas fa-bullhorn"></i> Core Application Guide
+                            </div>
+                            <span class="text-xs font-mono text-slate-400">Teaching Project • Fictional Sample Data</span>
+                        </div>
+
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-3">
+                            Service Delivery Reporter (Community Voice)
+                        </h2>
+                        <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+                            Citizens report local service problems (<strong>water, electricity, roads, sanitation, waste</strong>) by text, voice note, and an optional photo, in <strong>English, isiZulu, isiXhosa, Afrikaans, or Sesotho</strong>. AI agents triage the report, check the web for known outages, route it to a department, flag duplicates, and draft a reply. Citizens sign in to submit and follow their own reports. An admin reviews the report, then the reply. Nothing is ever sent externally without approval.
+                        </p>
+
+                        <div class="p-4 sm:p-5 rounded-2xl bg-black/50 border border-white/10 mb-6">
+                            <h4 class="text-xs uppercase font-mono font-bold tracking-wider text-uj-orange mb-3 flex items-center gap-2">
+                                <i class="fas fa-project-diagram"></i> How a report moves through the system
+                            </h4>
+                            <div class="flex flex-wrap items-center gap-2 text-xs font-mono">
+                                <span class="px-2.5 py-1 rounded bg-slate-800 text-amber-300 border border-slate-700">Privacy Filter (Local)</span>
+                                <i class="fas fa-arrow-right text-slate-500 text-[10px]"></i>
+                                <span class="px-2.5 py-1 rounded bg-slate-800 text-cyan-300 border border-slate-700">Triage (Lang/Cat/Urg)</span>
+                                <i class="fas fa-arrow-right text-slate-500 text-[10px]"></i>
+                                <span class="px-2.5 py-1 rounded bg-slate-800 text-blue-300 border border-slate-700">Routing (Municipality/Dept)</span>
+                                <i class="fas fa-arrow-right text-slate-500 text-[10px]"></i>
+                                <span class="px-2.5 py-1 rounded bg-slate-800 text-emerald-300 border border-slate-700">Context Check (Web Outages)</span>
+                                <i class="fas fa-arrow-right text-slate-500 text-[10px]"></i>
+                                <span class="px-2.5 py-1 rounded bg-slate-800 text-purple-300 border border-slate-700">Duplicate Check</span>
+                                <i class="fas fa-arrow-right text-slate-500 text-[10px]"></i>
+                                <span class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">Save to SQLite</span>
+                                <i class="fas fa-arrow-right text-slate-500 text-[10px]"></i>
+                                <span class="px-2.5 py-1 rounded bg-red-900/60 text-red-200 border border-red-500/40 font-bold">Human Review</span>
+                                <i class="fas fa-arrow-right text-slate-500 text-[10px]"></i>
+                                <span class="px-2.5 py-1 rounded bg-slate-800 text-pink-300 border border-slate-700">Drafter (Policy Reply)</span>
+                                <i class="fas fa-arrow-right text-slate-500 text-[10px]"></i>
+                                <span class="px-2.5 py-1 rounded bg-red-900/60 text-red-200 border border-red-500/40 font-bold">Draft Approval</span>
+                                <i class="fas fa-arrow-right text-slate-500 text-[10px]"></i>
+                                <span class="px-2.5 py-1 rounded bg-green-900/60 text-green-200 border border-green-500/40 font-bold">Citizen Conversation</span>
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <h3 class="text-sm uppercase font-mono font-bold tracking-wider text-slate-200 mb-3 flex items-center gap-2">
+                                <i class="fas fa-lock text-uj-orange"></i> The Exact Locked Versions
+                            </h3>
+                            <p class="text-xs text-slate-400 mb-3">
+                                This project is pinned and tested with these exact versions. Python dependencies originate
+                                from <code class="text-uj-orange font-mono">uv.lock</code> and JavaScript from <code class="text-uj-orange font-mono">package-lock.json</code>.
+                            </p>
+
+                            <div class="overflow-x-auto rounded-xl border border-white/10 bg-black/40">
+                                <table class="w-full text-left text-xs">
+                                    <thead class="border-b border-white/10 bg-white/5 font-mono uppercase text-slate-300">
+                                        <tr>
+                                            <th class="p-3">Tool / Library</th>
+                                            <th class="p-3">Version</th>
+                                            <th class="p-3">Where it is fixed</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-white/5 font-mono text-slate-300">
+                                        <tr>
+                                            <td class="p-3 font-bold text-white">uv</td>
+                                            <td class="p-3 text-amber-400">0.13.7</td>
+                                            <td class="p-3 text-slate-400">Install command in step 1</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-3 font-bold text-white">Python</td>
+                                            <td class="p-3 text-amber-400">3.12.16</td>
+                                            <td class="p-3 text-slate-400">.python-version (managed by uv 0.13.7)</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-3 font-bold text-white">Node.js, npm</td>
+                                            <td class="p-3 text-amber-400">24.22.1, 11.19.1</td>
+                                            <td class="p-3 text-slate-400">Local environment install</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-3 font-bold text-white">Ollama & Model</td>
+                                            <td class="p-3 text-amber-400">0.40.16 (model: llama3.2:3b)</td>
+                                            <td class="p-3 text-slate-400">ollama pull tag</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-3 font-bold text-white">Python Libraries</td>
+                                            <td class="p-3 text-emerald-400">langgraph 1.2.21, langchain 1.5.0, fastapi 0.162.5, pydantic 2.14.3, chromadb 1.5.9, fastmcp 3.4.11, streamlit 1.67.0</td>
+                                            <td class="p-3 text-slate-400">uv.lock (via uv sync --locked)</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-3 font-bold text-white">JavaScript Libraries</td>
+                                            <td class="p-3 text-emerald-400">Next.js 16.4.6, React 19.3.0, Tailwind CSS 4.3.3</td>
+                                            <td class="p-3 text-slate-400">frontend/package-lock.json (via npm ci)</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="mt-3 p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-[11px] text-amber-300 leading-relaxed">
+                                <strong>Two golden rules:</strong> Install with <code class="font-bold underline">uv sync --locked</code> and <code class="font-bold underline">npm ci</code>. Do not upgrade anything while following the course (<code class="text-slate-300">fastmcp</code> is intentionally held below version 4 for MCP compatibility).
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <h3 class="text-sm uppercase font-mono font-bold tracking-wider text-slate-200 mb-2 flex items-center gap-2">
+                                <i class="fas fa-wrench text-uj-orange"></i> Step-by-Step Setup
+                            </h3>
+
+                            <div class="p-4 rounded-xl bg-black/40 border border-white/5">
+                                <div class="text-xs font-bold text-white mb-1.5 flex items-center justify-between">
+                                    <span>1. Install uv (v0.13.7)</span>
+                                    <span class="text-[10px] text-slate-400 font-mono">Run once</span>
+                                </div>
+                                <div class="space-y-2">
+                                    <div>
+                                        <span class="text-[10px] text-slate-400 font-mono">Windows (PowerShell):</span>
+                                        <div class="relative mt-1">
+                                            <pre class="overflow-x-auto p-2.5 rounded-lg bg-black text-xs font-mono text-slate-300 border border-white/5">powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/0.13.7/install.ps1 | iex"</pre>
+                                            <button @click="copyText(commands.uvWin, 'setup-uv-win')"
+                                                class="absolute top-2 right-2 px-2.5 py-1 rounded bg-white/10 hover:bg-uj-orange text-xs text-slate-300 transition-all flex items-center gap-1">
+                                                <i :class="copiedTarget === 'setup-uv-win' ? 'fas fa-check text-green-400' : 'fas fa-copy'"></i>
+                                                <span x-text="copiedTarget === 'setup-uv-win' ? 'Copied!' : 'Copy'"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="text-[10px] text-slate-400 font-mono">macOS / Linux:</span>
+                                        <div class="relative mt-1">
+                                            <pre class="overflow-x-auto p-2.5 rounded-lg bg-black text-xs font-mono text-slate-300 border border-white/5">curl -LsSf https://astral.sh/uv/0.13.7/install.sh | sh</pre>
+                                            <button @click="copyText(commands.uvMac, 'setup-uv-mac')"
+                                                class="absolute top-2 right-2 px-2.5 py-1 rounded bg-white/10 hover:bg-uj-orange text-xs text-slate-300 transition-all flex items-center gap-1">
+                                                <i :class="copiedTarget === 'setup-uv-mac' ? 'fas fa-check text-green-400' : 'fas fa-copy'"></i>
+                                                <span x-text="copiedTarget === 'setup-uv-mac' ? 'Copied!' : 'Copy'"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-black/40 border border-white/5">
+                                <div class="text-xs font-bold text-white mb-1.5 flex items-center justify-between">
+                                    <span>2. Install Python 3.12 & Synced Libraries</span>
+                                    <span class="text-[10px] text-slate-400 font-mono">From project root</span>
+                                </div>
+                                <div class="relative">
+                                    <pre class="overflow-x-auto p-2.5 rounded-lg bg-black text-xs font-mono text-slate-300 border border-white/5">uv python install 3.12
+uv sync --locked</pre>
+                                    <button @click="copyText(commands.sync, 'setup-sync')"
+                                        class="absolute top-2 right-2 px-2.5 py-1 rounded bg-white/10 hover:bg-uj-orange text-xs text-slate-300 transition-all flex items-center gap-1">
+                                        <i :class="copiedTarget === 'setup-sync' ? 'fas fa-check text-green-400' : 'fas fa-copy'"></i>
+                                        <span x-text="copiedTarget === 'setup-sync' ? 'Copied!' : 'Copy'"></span>
+                                    </button>
+                                </div>
+                                <div class="mt-2 text-[11px] text-slate-400 font-mono">
+                                    Verify: <code class="text-amber-400">uv run python --version</code> and <code class="text-amber-400">uv pip list | grep -E "^(langgraph|langchain|fastapi|pydantic|chromadb|fastmcp|streamlit) "</code>
+                                </div>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-black/40 border border-white/5">
+                                <div class="text-xs font-bold text-white mb-2 flex items-center justify-between">
+                                    <span>3. Configure Environment Keys (.env)</span>
+                                    <button @click="copyText(commands.env, 'setup-env')"
+                                        class="px-2 py-0.5 rounded bg-white/10 hover:bg-uj-orange text-[11px] text-slate-300 transition-all flex items-center gap-1">
+                                        <i :class="copiedTarget === 'setup-env' ? 'fas fa-check text-green-400' : 'fas fa-copy'"></i>
+                                        <span x-text="copiedTarget === 'setup-env' ? 'Copied!' : 'Copy cp command'"></span>
+                                    </button>
+                                </div>
+                                <pre class="overflow-x-auto p-2.5 rounded-lg bg-black text-xs font-mono text-slate-300 border border-white/5 mb-3">cp .env.example .env</pre>
+
+                                <div class="overflow-x-auto rounded-lg border border-white/10 bg-black/60 mb-2">
+                                    <table class="w-full text-left text-xs font-mono">
+                                        <thead class="border-b border-white/10 text-slate-400 bg-white/5">
+                                            <tr>
+                                                <th class="p-2">Variable</th>
+                                                <th class="p-2">Used For</th>
+                                                <th class="p-2">Where to Get</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="divide-y divide-white/5 text-slate-300 text-[11px]">
+                                            <tr>
+                                                <td class="p-2 text-uj-orange font-bold">GEMINI_API_KEY</td>
+                                                <td class="p-2">Triage, drafting, voice transcription</td>
+                                                <td class="p-2 text-slate-400">aistudio.google.com</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="p-2 text-uj-orange font-bold">GROQ_API_KEY</td>
+                                                <td class="p-2">Routing, web check</td>
+                                                <td class="p-2 text-slate-400">console.groq.com/keys</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="p-2 text-uj-orange font-bold">TAVILY_API_KEY</td>
+                                                <td class="p-2">Live web outage search</td>
+                                                <td class="p-2 text-slate-400">app.tavily.com</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="p-2 text-uj-orange font-bold">JWT_SECRET</td>
+                                                <td class="p-2">Signing auth tokens</td>
+                                                <td class="p-2 text-slate-400">Generate with: openssl rand -hex 32</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <span class="text-[11px] text-slate-400">Optional: Uncomment LangSmith variables (<code>LANGSMITH_API_KEY</code>, <code>LANGSMITH_TRACING</code>, <code>LANGSMITH_PROJECT</code>) for cloud trace visualization.</span>
+                            </div>
+
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div class="p-4 rounded-xl bg-black/40 border border-white/5 relative">
+                                    <div class="text-xs font-bold text-white mb-1 flex items-center justify-between">
+                                        <span>4. Seed Default Test Accounts</span>
+                                        <button @click="copyText(commands.seed, 'setup-seed')"
+                                            class="px-2 py-0.5 rounded bg-white/10 hover:bg-uj-orange text-[10px] text-slate-300 transition-all flex items-center gap-1">
+                                            <i :class="copiedTarget === 'setup-seed' ? 'fas fa-check text-green-400' : 'fas fa-copy'"></i>
+                                            <span x-text="copiedTarget === 'setup-seed' ? 'Copied!' : 'Copy'"></span>
+                                        </button>
+                                    </div>
+                                    <pre class="p-2 rounded bg-black text-xs font-mono text-slate-300 border border-white/5">uv run python -m community_voice.auth.seed</pre>
+                                </div>
+
+                                <div class="p-4 rounded-xl bg-black/40 border border-white/5 relative">
+                                    <div class="text-xs font-bold text-white mb-1 flex items-center justify-between">
+                                        <span>5. Install Ollama Privacy Model</span>
+                                        <button @click="copyText(commands.ollama, 'setup-ollama')"
+                                            class="px-2 py-0.5 rounded bg-white/10 hover:bg-uj-orange text-[10px] text-slate-300 transition-all flex items-center gap-1">
+                                            <i :class="copiedTarget === 'setup-ollama' ? 'fas fa-check text-green-400' : 'fas fa-copy'"></i>
+                                            <span x-text="copiedTarget === 'setup-ollama' ? 'Copied!' : 'Copy'"></span>
+                                        </button>
+                                    </div>
+                                    <pre class="p-2 rounded bg-black text-xs font-mono text-slate-300 border border-white/5">ollama pull llama3.2:3b</pre>
+                                </div>
+
+                                <div class="p-4 rounded-xl bg-black/40 border border-white/5 relative">
+                                    <div class="text-xs font-bold text-white mb-1 flex items-center justify-between">
+                                        <span>6. Setup Frontend (Next.js)</span>
+                                        <button @click="copyText(commands.frontend, 'setup-frontend')"
+                                            class="px-2 py-0.5 rounded bg-white/10 hover:bg-uj-orange text-[10px] text-slate-300 transition-all flex items-center gap-1">
+                                            <i :class="copiedTarget === 'setup-frontend' ? 'fas fa-check text-green-400' : 'fas fa-copy'"></i>
+                                            <span x-text="copiedTarget === 'setup-frontend' ? 'Copied!' : 'Copy'"></span>
+                                        </button>
+                                    </div>
+                                    <pre class="p-2 rounded bg-black text-xs font-mono text-slate-300 border border-white/5">cd frontend && npm ci && cp .env.example .env.local && cd ..</pre>
+                                </div>
+
+                                <div class="p-4 rounded-xl bg-black/40 border border-white/5 relative">
+                                    <div class="text-xs font-bold text-white mb-1 flex items-center justify-between">
+                                        <span>7. Offline Test Suite Verification</span>
+                                        <button @click="copyText(commands.pytest, 'setup-pytest')"
+                                            class="px-2 py-0.5 rounded bg-white/10 hover:bg-uj-orange text-[10px] text-slate-300 transition-all flex items-center gap-1">
+                                            <i :class="copiedTarget === 'setup-pytest' ? 'fas fa-check text-green-400' : 'fas fa-copy'"></i>
+                                            <span x-text="copiedTarget === 'setup-pytest' ? 'Copied!' : 'Copy'"></span>
+                                        </button>
+                                    </div>
+                                    <pre class="p-2 rounded bg-black text-xs font-mono text-slate-300 border border-white/5">uv run pytest</pre>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div id="running-servers" class="grid lg:grid-cols-3 gap-5 mb-8 scroll-mt-20">
+
+                        <div class="glass-card rounded-2xl p-5 border-t-2 border-green-500 relative flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="px-2 py-0.5 rounded bg-green-500/20 text-green-400 font-mono font-bold text-[10px]">Terminal 1 • Brain</span>
+                                    <span class="text-xs font-mono text-slate-400">:8800</span>
+                                </div>
+                                <h3 class="text-base font-bold text-white mb-1">FastAPI Engine</h3>
+                                <p class="text-xs text-slate-400 mb-3">Core orchestration server. Start this first. Hosts the agent endpoints and SSE streaming.</p>
+                                <pre class="p-2.5 rounded bg-black text-xs font-mono text-slate-200 border border-white/10 overflow-x-auto">uv run uvicorn community_voice.api.main:app --port 8800</pre>
+                            </div>
+                            <div class="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono">
+                                <a href="http://127.0.0.1:8800/docs" target="_blank" class="text-uj-orange hover:underline">Swagger Docs (/docs) &rarr;</a>
+                                <button @click="copyText(commands.runApi, 'run-api')" class="px-2.5 py-1 rounded bg-white/5 hover:bg-uj-orange text-slate-300 text-xs flex items-center gap-1 transition-all">
+                                    <i :class="copiedTarget === 'run-api' ? 'fas fa-check text-green-400' : 'fas fa-copy'"></i>
+                                    <span x-text="copiedTarget === 'run-api' ? 'Copied!' : 'Copy'"></span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="glass-card rounded-2xl p-5 border-t-2 border-red-500 relative flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="px-2 py-0.5 rounded bg-red-500/20 text-red-400 font-mono font-bold text-[10px]">Terminal 2 • Simple UI</span>
+                                    <span class="text-xs font-mono text-slate-400">:8501</span>
+                                </div>
+                                <h3 class="text-base font-bold text-white mb-1">Streamlit App</h3>
+                                <p class="text-xs text-slate-400 mb-3">Fast inspection screen. Allows report submission, admin review queue, and messages.</p>
+                                <pre class="p-2.5 rounded bg-black text-xs font-mono text-slate-200 border border-white/10 overflow-x-auto">uv run streamlit run app/streamlit_app.py</pre>
+                            </div>
+                            <div class="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono">
+                                <a href="http://localhost:8501" target="_blank" class="text-uj-orange hover:underline">http://localhost:8501 &rarr;</a>
+                                <button @click="copyText(commands.runStreamlit, 'run-streamlit')" class="px-2.5 py-1 rounded bg-white/5 hover:bg-uj-orange text-slate-300 text-xs flex items-center gap-1 transition-all">
+                                    <i :class="copiedTarget === 'run-streamlit' ? 'fas fa-check text-green-400' : 'fas fa-copy'"></i>
+                                    <span x-text="copiedTarget === 'run-streamlit' ? 'Copied!' : 'Copy'"></span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="glass-card rounded-2xl p-5 border-t-2 border-cyan-500 relative flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-400 font-mono font-bold text-[10px]">Terminal 3 • Full Web</span>
+                                    <span class="text-xs font-mono text-slate-400">:3000</span>
+                                </div>
+                                <h3 class="text-base font-bold text-white mb-1">Next.js Web Portal</h3>
+                                <p class="text-xs text-slate-400 mb-3">Full citizen and admin portal built with React 19, Tailwind CSS 4, and shadcn/ui.</p>
+                                <pre class="p-2.5 rounded bg-black text-xs font-mono text-slate-200 border border-white/10 overflow-x-auto">cd frontend && npm run dev</pre>
+                            </div>
+                            <div class="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono">
+                                <a href="http://localhost:3000" target="_blank" class="text-uj-orange hover:underline">http://localhost:3000 &rarr;</a>
+                                <button @click="copyText(commands.runNext, 'run-next')" class="px-2.5 py-1 rounded bg-white/5 hover:bg-uj-orange text-slate-300 text-xs flex items-center gap-1 transition-all">
+                                    <i :class="copiedTarget === 'run-next' ? 'fas fa-check text-green-400' : 'fas fa-copy'"></i>
+                                    <span x-text="copiedTarget === 'run-next' ? 'Copied!' : 'Copy'"></span>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div id="privacy-filter" class="grid lg:grid-cols-12 gap-6 mb-8 scroll-mt-20">
+
+                        <div class="lg:col-span-7 glass-card rounded-2xl p-6 border border-white/10">
+                            <div class="flex items-center gap-2 text-xs font-bold text-uj-orange uppercase tracking-wider mb-2">
+                                <i class="fas fa-user-shield"></i> Local Privacy Filter (Ollama)
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-2">Pre-Cloud PII Scrubbing</h3>
+                            <p class="text-xs text-slate-300 leading-relaxed mb-3">
+                                Before any report reaches external cloud models, a local Ollama model removes personal data
+                                (names, street addresses, phone numbers, ID numbers, emails). Recognized place names (e.g.
+                                "Umlazi") are preserved for routing.
+                            </p>
+                            <ul class="space-y-1.5 text-xs text-slate-400 mb-4 list-disc list-inside">
+                                <li><strong>Fallback:</strong> If Ollama is offline, reports are stopped unless the citizen ticks consent.</li>
+                                <li><strong>CPU Weak Mode:</strong> Set <code class="text-uj-orange font-mono">PRIVACY_FILTER=false</code> in <code class="text-uj-orange font-mono">.env</code> to disable local LLM scrubbing (regex numbers/emails still strip).</li>
+                                <li><strong>Evaluation:</strong> Run <code class="text-amber-400 font-mono">uv run python -m evals.run_privacy_evals</code> to benchmark redaction accuracy.</li>
+                            </ul>
+                            <div class="p-3 rounded-xl bg-black/40 border border-white/5 flex items-center justify-between text-xs font-mono">
+                                <span class="text-slate-300">Check Ollama status:</span>
+                                <span class="text-green-400">curl http://localhost:11434</span>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-5 glass-card rounded-2xl p-6 border border-white/10 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center gap-2 text-xs font-bold text-amber-400 uppercase tracking-wider mb-2">
+                                    <i class="fas fa-users-cog"></i> Test Credentials (Seeded)
+                                </div>
+                                <h3 class="text-lg font-bold text-white mb-2">Pre-configured Logins</h3>
+                                <p class="text-xs text-slate-400 mb-3">Created via <code class="text-uj-orange font-mono">community_voice.auth.seed</code>. Public demo accounts:</p>
+
+                                <div class="space-y-2 text-xs font-mono">
+                                    <div class="p-2.5 rounded bg-black/50 border border-white/5 flex items-center justify-between">
+                                        <div>
+                                            <div class="text-white font-bold">Admin</div>
+                                            <div class="text-[11px] text-slate-400">admin@communityvoice.test</div>
+                                        </div>
+                                        <button @click="copyText(commands.adminEmail, 'acc-admin')"
+                                            class="px-2.5 py-1 rounded bg-white/10 hover:bg-uj-orange text-xs text-slate-300 flex items-center gap-1 transition-all">
+                                            <i :class="copiedTarget === 'acc-admin' ? 'fas fa-check text-green-400' : 'fas fa-copy'"></i>
+                                            <span x-text="copiedTarget === 'acc-admin' ? 'Copied!' : 'Copy'"></span>
+                                        </button>
+                                    </div>
+                                    <div class="p-2.5 rounded bg-black/50 border border-white/5 flex items-center justify-between">
+                                        <div>
+                                            <div class="text-white font-bold">Citizen 1</div>
+                                            <div class="text-[11px] text-slate-400">citizen1@communityvoice.test</div>
+                                        </div>
+                                        <button @click="copyText(commands.cit1Email, 'acc-cit1')"
+                                            class="px-2.5 py-1 rounded bg-white/10 hover:bg-uj-orange text-xs text-slate-300 flex items-center gap-1 transition-all">
+                                            <i :class="copiedTarget === 'acc-cit1' ? 'fas fa-check text-green-400' : 'fas fa-copy'"></i>
+                                            <span x-text="copiedTarget === 'acc-cit1' ? 'Copied!' : 'Copy'"></span>
+                                        </button>
+                                    </div>
+                                    <div class="p-2.5 rounded bg-black/50 border border-white/5 flex items-center justify-between">
+                                        <div>
+                                            <div class="text-white font-bold">Citizen 2</div>
+                                            <div class="text-[11px] text-slate-400">citizen2@communityvoice.test</div>
+                                        </div>
+                                        <button @click="copyText(commands.cit2Email, 'acc-cit2')"
+                                            class="px-2.5 py-1 rounded bg-white/10 hover:bg-uj-orange text-xs text-slate-300 flex items-center gap-1 transition-all">
+                                            <i :class="copiedTarget === 'acc-cit2' ? 'fas fa-check text-green-400' : 'fas fa-copy'"></i>
+                                            <span x-text="copiedTarget === 'acc-cit2' ? 'Copied!' : 'Copy'"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3 text-[11px] font-mono text-slate-500">
+                                Password for all: <code class="text-slate-300">AdminPass123</code> / <code class="text-slate-300">Citizen1Pass123</code>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="glass-card rounded-2xl border border-white/10 overflow-hidden shadow-2xl">
+
+                        <div class="px-4 py-3 bg-[#060913] border-b border-white/10 flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+                                <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+                                <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
+                                <span class="ml-2 text-xs font-mono text-slate-400 flex items-center gap-1.5">
+                                    <i class="fas fa-folder-tree text-uj-orange"></i> community-voice / project-structure
+                                </span>
+                            </div>
+
+                            <button @click="copyText(commands.tree, 'copy-tree')"
+                                class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-uj-orange text-slate-300 hover:text-white text-xs font-mono transition-all flex items-center gap-1.5 border border-white/10">
+                                <i :class="copiedTarget === 'copy-tree' ? 'fas fa-check text-green-400' : 'fas fa-copy'"></i>
+                                <span x-text="copiedTarget === 'copy-tree' ? 'Copied Tree!' : 'Copy Tree'"></span>
+                            </button>
+                        </div>
+
+                        <div class="p-5 sm:p-6 bg-[#040711] overflow-x-auto font-mono text-xs sm:text-[13px] leading-relaxed">
+
+                            <div class="mb-1 flex items-baseline gap-2">
+                                <i class="fas fa-folder-open text-cyan-400"></i>
+                                <span class="text-cyan-300 font-bold tracking-wide">src/community_voice/</span>
+                                <span class="text-slate-500">──</span>
+                                <span class="text-slate-200 font-medium">Core Application Backend</span>
+                                <span class="px-1.5 py-0.2 rounded bg-cyan-500/10 border border-cyan-500/30 text-[10px] text-cyan-400">Python 3.12</span>
+                            </div>
+
+                            <div class="pl-4 sm:pl-6 space-y-1 text-slate-400 border-l border-white/10 ml-2">
+
+                                <div class="flex items-baseline gap-2 hover:bg-white/[0.02] py-0.5 rounded px-1 transition-colors">
+                                    <span class="text-slate-600 select-none">├──</span>
+                                    <i class="fas fa-folder text-amber-400/90 text-[11px]"></i>
+                                    <span class="text-amber-300 font-semibold min-w-[110px]">core/</span>
+                                    <span class="text-slate-400">Configuration <code class="text-uj-orange font-bold">.env</code> and LangSmith tracing setup</span>
+                                </div>
+
+                                <div class="flex items-baseline gap-2 hover:bg-white/[0.02] py-0.5 rounded px-1 transition-colors">
+                                    <span class="text-slate-600 select-none">├──</span>
+                                    <i class="fas fa-folder text-amber-400/90 text-[11px]"></i>
+                                    <span class="text-amber-300 font-semibold min-w-[110px]">auth/</span>
+                                    <span class="text-slate-400">Password hashing, JWT tokens &amp; test account seed script</span>
+                                </div>
+
+                                <div class="flex items-baseline gap-2 hover:bg-white/[0.02] py-0.5 rounded px-1 transition-colors">
+                                    <span class="text-slate-600 select-none">├──</span>
+                                    <i class="fas fa-folder text-amber-400/90 text-[11px]"></i>
+                                    <span class="text-amber-300 font-semibold min-w-[110px]">schemas/</span>
+                                    <span class="text-slate-400">Pydantic models: data contracts passed between workflow steps</span>
+                                    <span class="px-1.5 py-0.2 rounded bg-pink-500/10 border border-pink-500/30 text-[10px] text-pink-400">Pydantic</span>
+                                </div>
+
+                                <div class="flex items-baseline gap-2 hover:bg-white/[0.02] py-0.5 rounded px-1 transition-colors">
+                                    <span class="text-slate-600 select-none">├──</span>
+                                    <i class="fas fa-folder text-amber-400/90 text-[11px]"></i>
+                                    <span class="text-amber-300 font-semibold min-w-[110px]">llm/</span>
+                                    <span class="text-slate-400">Model router selecting Gemini, Groq, or local Ollama per agent</span>
+                                </div>
+
+                                <div class="flex items-baseline gap-2 hover:bg-white/[0.02] py-0.5 rounded px-1 transition-colors">
+                                    <span class="text-slate-600 select-none">├──</span>
+                                    <i class="fas fa-folder text-amber-400/90 text-[11px]"></i>
+                                    <span class="text-amber-300 font-semibold min-w-[110px]">privacy/</span>
+                                    <span class="text-slate-400">Local privacy filter removing personal PII before cloud dispatch</span>
+                                    <span class="px-1.5 py-0.2 rounded bg-yellow-500/10 border border-yellow-500/30 text-[10px] text-yellow-300">Ollama Llama3.2</span>
+                                </div>
+
+                                <div class="flex items-baseline gap-2 hover:bg-white/[0.02] py-0.5 rounded px-1 transition-colors">
+                                    <span class="text-slate-600 select-none">├──</span>
+                                    <i class="fas fa-folder text-amber-400/90 text-[11px]"></i>
+                                    <span class="text-amber-300 font-semibold min-w-[110px]">agents/</span>
+                                    <span class="text-slate-400">Triage, routing, context check, drafter, and chat assistant agents</span>
+                                </div>
+
+                                <div class="flex items-baseline gap-2 hover:bg-white/[0.02] py-0.5 rounded px-1 transition-colors">
+                                    <span class="text-slate-600 select-none">├──</span>
+                                    <i class="fas fa-folder text-amber-400/90 text-[11px]"></i>
+                                    <span class="text-amber-300 font-semibold min-w-[110px]">tools/</span>
+                                    <span class="text-slate-400">Callable agent tools: directory lookup, policy search, web search</span>
+                                </div>
+
+                                <div class="flex items-baseline gap-2 hover:bg-white/[0.02] py-0.5 rounded px-1 transition-colors">
+                                    <span class="text-slate-600 select-none">├──</span>
+                                    <i class="fas fa-folder text-amber-400/90 text-[11px]"></i>
+                                    <span class="text-amber-300 font-semibold min-w-[110px]">rag/</span>
+                                    <span class="text-slate-400">ChromaDB semantic search indexes for policies &amp; past reports</span>
+                                    <span class="px-1.5 py-0.2 rounded bg-purple-500/10 border border-purple-500/30 text-[10px] text-purple-300">ChromaDB</span>
+                                </div>
+
+                                <div class="flex items-baseline gap-2 hover:bg-white/[0.02] py-0.5 rounded px-1 transition-colors">
+                                    <span class="text-slate-600 select-none">├──</span>
+                                    <i class="fas fa-folder text-amber-400/90 text-[11px]"></i>
+                                    <span class="text-amber-300 font-semibold min-w-[110px]">graph/</span>
+                                    <span class="text-slate-400">LangGraph workflow state machine, checkpoints, interrupts &amp; memory</span>
+                                    <span class="px-1.5 py-0.2 rounded bg-uj-orange/20 border border-uj-orange/40 text-[10px] text-uj-orange">LangGraph</span>
+                                </div>
+
+                                <div class="flex items-baseline gap-2 hover:bg-white/[0.02] py-0.5 rounded px-1 transition-colors">
+                                    <span class="text-slate-600 select-none">├──</span>
+                                    <i class="fas fa-folder text-amber-400/90 text-[11px]"></i>
+                                    <span class="text-amber-300 font-semibold min-w-[110px]">db/</span>
+                                    <span class="text-slate-400">SQLite repository layer for reports, reviews, drafts, and users</span>
+                                    <span class="px-1.5 py-0.2 rounded bg-blue-500/10 border border-blue-500/30 text-[10px] text-blue-300">SQLite</span>
+                                </div>
+
+                                <div class="flex items-baseline gap-2 hover:bg-white/[0.02] py-0.5 rounded px-1 transition-colors">
+                                    <span class="text-slate-600 select-none">├──</span>
+                                    <i class="fas fa-folder text-amber-400/90 text-[11px]"></i>
+                                    <span class="text-amber-300 font-semibold min-w-[110px]">media/</span>
+                                    <span class="text-slate-400">Voice-note audio transcription (Gemini) &amp; photo EXIF sanitization</span>
+                                </div>
+
+                                <div class="flex items-baseline gap-2 hover:bg-white/[0.02] py-0.5 rounded px-1 transition-colors">
+                                    <span class="text-slate-600 select-none">├──</span>
+                                    <i class="fas fa-folder text-amber-400/90 text-[11px]"></i>
+                                    <span class="text-amber-300 font-semibold min-w-[110px]">api/</span>
+                                    <span class="text-slate-400">FastAPI REST endpoints and Server-Sent Events (SSE) streaming</span>
+                                    <span class="px-1.5 py-0.2 rounded bg-emerald-500/10 border border-emerald-500/30 text-[10px] text-emerald-400">FastAPI</span>
+                                </div>
+
+                                <div class="flex items-baseline gap-2 hover:bg-white/[0.02] py-0.5 rounded px-1 transition-colors">
+                                    <span class="text-slate-600 select-none">└──</span>
+                                    <i class="fas fa-folder text-amber-400/90 text-[11px]"></i>
+                                    <span class="text-amber-300 font-semibold min-w-[110px]">mcp_server/</span>
+                                    <span class="text-slate-400">Directory lookup tools exposed via Model Context Protocol (MCP)</span>
+                                    <span class="px-1.5 py-0.2 rounded bg-slate-700/50 text-[10px] text-slate-300">MCP FastMCP</span>
+                                </div>
+
+                            </div>
+
+                            <div class="mt-3 space-y-1.5 pt-2 border-t border-white/5">
+
+                                <div class="flex items-baseline gap-2 hover:bg-white/[0.02] py-0.5 rounded px-1 transition-colors">
+                                    <i class="fas fa-folder text-red-400"></i>
+                                    <span class="text-red-300 font-bold min-w-[130px]">app/</span>
+                                    <span class="text-slate-500">──</span>
+                                    <span class="text-slate-300">Streamlit screens: sign in, submit report, messages, review queue, dashboard</span>
+                                    <span class="px-1.5 py-0.2 rounded bg-red-500/10 border border-red-500/30 text-[10px] text-red-400">Streamlit</span>
+                                </div>
+
+                                <div class="flex items-baseline gap-2 hover:bg-white/[0.02] py-0.5 rounded px-1 transition-colors">
+                                    <i class="fas fa-folder text-sky-400"></i>
+                                    <span class="text-sky-300 font-bold min-w-[130px]">frontend/</span>
+                                    <span class="text-slate-500">──</span>
+                                    <span class="text-slate-300">Next.js full web application (TypeScript, React 19, Tailwind CSS 4, shadcn/ui)</span>
+                                    <span class="px-1.5 py-0.2 rounded bg-sky-500/10 border border-sky-500/30 text-[10px] text-sky-300">Next.js 16</span>
+                                </div>
+
+                                <div class="flex items-baseline gap-2 hover:bg-white/[0.02] py-0.5 rounded px-1 transition-colors">
+                                    <i class="fas fa-folder text-emerald-400"></i>
+                                    <span class="text-emerald-300 font-bold min-w-[130px]">data/</span>
+                                    <span class="text-slate-500">──</span>
+                                    <span class="text-slate-300"><code class="text-emerald-400">knowledge_base/</code>, <code class="text-emerald-400">sample_reports/</code> (multilingual MP3 audio), <code class="text-emerald-400">evals/</code></span>
+                                </div>
+
+                                <div class="flex items-baseline gap-2 hover:bg-white/[0.02] py-0.5 rounded px-1 transition-colors">
+                                    <i class="fas fa-folder text-purple-400"></i>
+                                    <span class="text-purple-300 font-bold min-w-[130px]">evals/</span>
+                                    <span class="text-slate-500">──</span>
+                                    <span class="text-slate-300">Evaluation scoring harnesses and saved baseline regression metrics</span>
+                                </div>
+
+                                <div class="flex items-baseline gap-2 hover:bg-white/[0.02] py-0.5 rounded px-1 transition-colors">
+                                    <i class="fas fa-folder text-uj-orange"></i>
+                                    <span class="text-uj-orange font-bold min-w-[130px]">notebooks/</span>
+                                    <span class="text-slate-500">──</span>
+                                    <span class="text-slate-300">Step-by-step interactive Jupyter phases (01 to 12)</span>
+                                    <span class="px-1.5 py-0.2 rounded bg-uj-orange/15 border border-uj-orange/30 text-[10px] text-uj-orange">11 Phases</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="px-4 py-2 bg-black/60 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-slate-500">
+                            <span><i class="fas fa-circle-check text-green-400 mr-1.5"></i>All paths relative to project root</span>
+                            <span>uv.lock &amp; package-lock.json locked</span>
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <div id="code-explorer" class="grid lg:grid-cols-12 gap-6 items-start mb-16 scroll-mt-20">
+
+                    <aside class="lg:col-span-4 space-y-3">
+                        <div class="flex items-center justify-between px-1">
+                            <h3 class="text-xs uppercase font-mono tracking-wider font-bold text-slate-400">
+                                AI Notebook Modules (<span x-text="modules.length"></span>)
+                            </h3>
+                            <span class="text-[11px] text-uj-orange font-semibold">Select Phase</span>
+                        </div>
+
+                        <div class="space-y-2 max-h-[720px] overflow-y-auto pr-1">
+                            <template x-for="mod in modules" :key="mod.id">
+                                <button @click="selectModule(mod.id)"
+                                    class="w-full text-left p-3.5 rounded-xl border transition-all flex items-start gap-3 group relative overflow-hidden"
+                                    :class="activeModuleId === mod.id 
+                                            ? 'bg-uj-orange/15 border-uj-orange text-white shadow-[0_0_15px_rgba(242,101,34,0.2)]' 
+                                            : 'glass-card border-white/5 hover:border-white/20 text-slate-400 hover:text-slate-200'">
+                                    <div class="w-8 h-8 rounded-lg flex items-center justify-center font-mono font-bold text-xs shrink-0 mt-0.5 transition-colors"
+                                        :class="activeModuleId === mod.id ? 'bg-uj-orange text-white' : 'bg-black/50 text-slate-400 group-hover:text-white'">
+                                        <span x-text="mod.phase"></span>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <h4 class="font-bold text-xs sm:text-sm truncate"
+                                            :class="activeModuleId === mod.id ? 'text-white' : 'text-slate-200'"
+                                            x-text="mod.title"></h4>
+                                        <p class="text-[11px] text-slate-500 line-clamp-1 mt-0.5" x-text="mod.desc"></p>
+                                        <div class="flex items-center gap-2 mt-1.5 text-[10px] text-slate-400 font-mono">
+                                            <span><i class="fas fa-code text-uj-orange mr-1"></i><span
+                                                    x-text="mod.steps.length"></span> code cells</span>
+                                            <span>•</span>
+                                            <span class="truncate" x-text="mod.file"></span>
+                                        </div>
+                                    </div>
+                                </button>
+                            </template>
+                        </div>
+
+                        <div class="p-4 rounded-xl glass-card border border-white/5 text-xs">
+                            <div class="font-bold text-white flex items-center gap-2 mb-1">
+                                <i class="fas fa-laptop-code text-uj-orange"></i> Technical Mentorship
+                            </div>
+                            <p class="text-slate-400 text-[11px] mb-2 leading-relaxed">
+                                Questions about running LangGraph or setting up local embeddings? The UJ Blockchain team is
+                                available to assist you.
+                            </p>
+                            <a href="mailto:blockchain@uj.ac.za"
+                                class="text-uj-orange font-bold hover:underline text-[11px]">
+                                blockchain@uj.ac.za &rarr;
+                            </a>
+                        </div>
+                    </aside>
+
+                    <section class="lg:col-span-8">
+                        <div class="glass-card rounded-2xl border border-white/10 overflow-hidden shadow-2xl flex flex-col">
+
+                            <div class="p-4 bg-black/50 border-b border-white/10 flex flex-wrap items-center justify-between gap-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="px-2.5 py-1 rounded-md bg-uj-orange/20 border border-uj-orange/40 text-uj-orange font-mono text-xs font-bold"
+                                        x-text="'Phase ' + currentModule.phase">
+                                    </div>
+                                    <div>
+                                        <h2 class="text-base sm:text-lg font-bold text-white tracking-tight"
+                                            x-text="currentModule.title"></h2>
+                                        <span class="text-xs text-slate-400 font-mono" x-text="currentModule.file"></span>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center gap-2">
+                                    <div class="bg-black/40 p-1 rounded-xl border border-white/10 flex text-xs">
+                                        <button @click="switchTab('steps')"
+                                            class="px-3 py-1 rounded-lg transition-all font-semibold"
+                                            :class="activeTab === 'steps' ? 'bg-uj-orange text-white' : 'text-slate-400 hover:text-white'">
+                                            <i class="fas fa-layer-group mr-1"></i> Notebook Cells
+                                        </button>
+                                        <button @click="switchTab('full')"
+                                            class="px-3 py-1 rounded-lg transition-all font-semibold"
+                                            :class="activeTab === 'full' ? 'bg-uj-orange text-white' : 'text-slate-400 hover:text-white'">
+                                            <i class="fas fa-file-code mr-1"></i> Complete File
+                                        </button>
+                                    </div>
+
+                                    <button @click="copyText(getFullCode(currentModule), 'full')"
+                                        class="px-3.5 py-1.5 rounded-xl bg-white/10 hover:bg-uj-orange text-white text-xs font-bold flex items-center gap-1.5 transition-all">
+                                        <i :class="copiedTarget === 'full' ? 'fas fa-check text-green-400' : 'fas fa-copy'"></i>
+                                        <span x-text="copiedTarget === 'full' ? 'Copied Full Script!' : 'Copy Entire Notebook'"></span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="p-4 bg-uj-surface/60 border-b border-white/5 text-xs text-slate-300 space-y-2">
+                                <div>
+                                    <span class="font-bold text-uj-orange uppercase tracking-wider text-[10px] block">Concept</span>
+                                    <p class="text-slate-300 mt-0.5 leading-relaxed" x-text="currentModule.concept"></p>
+                                </div>
+                                <div x-show="currentModule.agent">
+                                    <span class="font-bold text-amber-400 uppercase tracking-wider text-[10px] block">Agent Architecture</span>
+                                    <p class="text-slate-300 mt-0.5 leading-relaxed" x-text="currentModule.agent"></p>
+                                </div>
+                            </div>
+
+                            <div x-show="activeTab === 'steps'" class="p-4 sm:p-6 space-y-6 bg-[#070D18]/70 max-h-[700px] overflow-y-auto">
+                                <template x-for="(step, sIndex) in currentModule.steps" :key="sIndex">
+                                    <div class="rounded-xl border border-white/10 bg-uj-surface/50 overflow-hidden shadow-lg transition-all hover:border-white/20">
+
+                                        <div class="p-3.5 bg-black/40 border-b border-white/5 flex items-center justify-between flex-wrap gap-2">
+                                            <div class="flex items-center gap-2.5">
+                                                <span class="w-6 h-6 rounded-md bg-uj-orange text-white font-mono text-xs font-bold flex items-center justify-center shrink-0"
+                                                    x-text="step.stepNumber"></span>
+                                                <h3 class="text-xs sm:text-sm font-bold text-white tracking-wide" x-text="step.title"></h3>
+                                            </div>
+
+                                            <button @click="copyText(step.code, 'step-' + sIndex)"
+                                                class="px-3 py-1 rounded-lg bg-white/5 hover:bg-uj-orange text-slate-300 hover:text-white text-xs font-mono transition-all flex items-center gap-1.5 border border-white/10">
+                                                <i :class="copiedTarget === ('step-' + sIndex) ? 'fas fa-check text-green-400' : 'fas fa-copy'"></i>
+                                                <span x-text="copiedTarget === ('step-' + sIndex) ? 'Copied!' : 'Copy Cell'"></span>
+                                            </button>
+                                        </div>
+
+                                        <div class="px-4 py-2.5 text-xs text-slate-300 bg-black/20 border-b border-white/5 leading-relaxed"
+                                            x-text="step.explanation">
+                                        </div>
+
+                                        <div class="p-3 bg-[#050811] overflow-x-auto">
+                                            <pre><code class="language-python" x-text="step.code"></code></pre>
+                                        </div>
+
+                                    </div>
+                                </template>
+
+                                <div class="p-4 rounded-xl bg-black/40 border border-white/10">
+                                    <h4 class="font-bold text-white text-xs uppercase tracking-wider mb-2 flex items-center gap-2 text-uj-orange">
+                                        <i class="fas fa-eye"></i> What to notice in this phase
+                                    </h4>
+                                    <ul class="space-y-1.5 text-xs text-slate-300 list-disc list-inside">
+                                        <template x-for="item in currentModule.whatToNotice" :key="item">
+                                            <li x-text="item"></li>
+                                        </template>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div x-show="activeTab === 'full'" x-cloak class="p-4 sm:p-6 bg-[#050811] overflow-x-auto max-h-[700px] overflow-y-auto">
+                                <pre><code class="language-python" x-text="getFullCode(currentModule)"></code></pre>
+                            </div>
+
+                            <div class="p-3 bg-black/60 border-t border-white/10 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+                                <span>Python 3.12 • LangGraph • LangChain Community Voice</span>
+                                <span x-text="currentModule.steps.length + ' Notebook Cells'"></span>
+                            </div>
+
+                        </div>
+                    </section>
+
+                </div>
+
+                <section id="partners" class="pt-8 border-t border-white/10">
+                    <div class="text-center mb-10">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-uj-orange uppercase tracking-wider mb-2">
+                            Official Sponsors & Partners
+                        </div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">BACISS 2026 Ecosystem Partners</h2>
+                        <p class="text-slate-400 text-xs sm:text-sm max-w-xl mx-auto mt-1">
+                            Industry leaders, national research foundations, and venture builders supporting student and researcher innovation.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+
+                        <div class="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group hover:border-uj-orange/40 transition-all">
+                            <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-uj-orange text-xl mb-2 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-atom"></i>
+                            </div>
+                            <span class="font-bold text-white text-xs">NRF</span>
+                            <span class="text-[10px] text-slate-400">National Research Foundation</span>
+                        </div>
+
+                        <div class="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group hover:border-uj-orange/40 transition-all">
+                            <div class="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-400 text-xl mb-2 group-hover:scale-110 transition-transform">
+                                <i class="fab fa-bitcoin"></i>
+                            </div>
+                            <span class="font-bold text-white text-xs">BINANCE</span>
+                            <span class="text-[10px] text-slate-400">Global Web3 Exchange</span>
+                        </div>
+
+                        <div class="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group hover:border-uj-orange/40 transition-all">
+                            <div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 text-xl mb-2 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-microscope"></i>
+                            </div>
+                            <span class="font-bold text-white text-xs">CSIR</span>
+                            <span class="text-[10px] text-slate-400">Scientific & Industrial Research</span>
+                        </div>
+
+                        <div class="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group hover:border-uj-orange/40 transition-all">
+                            <div class="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center text-red-400 text-xl mb-2 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <span class="font-bold text-white text-xs">SAIEE</span>
+                            <span class="text-[10px] text-slate-400">SA Institute of Electrical Eng.</span>
+                        </div>
+
+                        <div class="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group hover:border-uj-orange/40 transition-all">
+                            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400 text-xl mb-2 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <span class="font-bold text-white text-xs">IEEE</span>
+                            <span class="text-[10px] text-slate-400">South Africa Section</span>
+                        </div>
+
+                        <div class="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group hover:border-uj-orange/40 transition-all">
+                            <div class="w-12 h-12 rounded-xl bg-red-600/10 flex items-center justify-center text-red-500 text-xl mb-2 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-layer-group"></i>
+                            </div>
+                            <span class="font-bold text-white text-xs">Team 1</span>
+                            <span class="text-[10px] text-slate-400">Avalanche Ecosystem</span>
+                        </div>
+
+                        <div class="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group hover:border-uj-orange/40 transition-all">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 text-xl mb-2 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <span class="font-bold text-white text-xs">Built to Scale</span>
+                            <span class="text-[10px] text-slate-400">Scale Acceleration</span>
+                        </div>
+
+                        <div class="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group hover:border-uj-orange/40 transition-all">
+                            <div class="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center text-green-400 text-xl mb-2 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                            <span class="font-bold text-white text-xs">eFama</span>
+                            <span class="text-[10px] text-slate-400">Agritech & Inclusion</span>
+                        </div>
+
+                        <div class="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group hover:border-uj-orange/40 transition-all">
+                            <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 text-xl mb-2 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                            <span class="font-bold text-white text-xs">JPM Monarch</span>
+                            <span class="text-[10px] text-slate-400">Strategic Advisory</span>
+                        </div>
+
+                        <div class="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group hover:border-uj-orange/40 transition-all">
+                            <div class="w-12 h-12 rounded-xl bg-pink-500/10 flex items-center justify-center text-pink-400 text-xl mb-2 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <span class="font-bold text-white text-xs">22 on Sloane</span>
+                            <span class="text-[10px] text-slate-400">Largest Startup Campus</span>
+                        </div>
+
+                        <div class="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group hover:border-uj-orange/40 transition-all">
+                            <div class="w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 text-xl mb-2 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-university"></i>
+                            </div>
+                            <span class="font-bold text-white text-xs">HSLU</span>
+                            <span class="text-[10px] text-slate-400">Lucerne Univ. Switzerland</span>
+                        </div>
+
+                        <div class="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group hover:border-uj-orange/40 transition-all">
+                            <div class="w-12 h-12 rounded-xl bg-uj-orange/10 flex items-center justify-center text-uj-orange text-xl mb-2 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <span class="font-bold text-white text-xs">Univ. of Johannesburg</span>
+                            <span class="text-[10px] text-slate-400">SARChI Bilateral Chair</span>
+                        </div>
+
+                    </div>
+                </section>
+
+            </div>
+        </main>
+
+        <footer class="bg-black/90 py-8 border-t border-white/10 text-center text-slate-500 text-xs relative z-10">
+            <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 bg-uj-orange rounded-full"></span>
+                    <span class="text-slate-300 font-bold">BACISS 2026</span> - South Africa - Switzerland Bilateral Research Chair in Blockchain Technology
+                </div>
+                <div class="text-[11px] text-slate-400">
+                    Department of Electrical and Electronic Engineering Science, Kingsway Campus, University of Johannesburg.
+                </div>
+            </div>
+        </footer>
+
+        <script nonce="{{ request.csp_nonce }}" src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.0.6/tsparticles.slim.bundle.min.js"></script>
+        <script nonce="{{ request.csp_nonce }}" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script nonce="{{ request.csp_nonce }}" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+        <script nonce="{{ request.csp_nonce }}" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+        <script nonce="{{ request.csp_nonce }}" src="{{ static('js/baciss-ai-docs.js') }}"></script>
+    </body>
+{% endblock mainBodyContent %}
