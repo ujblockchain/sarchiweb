@@ -3,747 +3,917 @@
 {% block pageTitle %}BACISS 2026 | Attendee Portal & Resource Hub{% endblock pageTitle %}
 
 {% block pageStyle %}
-    {{ super() if super is defined else '' }}
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <style nonce="{{ request.csp_nonce }}">
-        .qr-card-glow:hover {
-            box-shadow: 0 0 25px rgba(242, 101, 34, 0.25);
-            border-color: rgba(242, 101, 34, 0.4);
-        }
-        #venue-map {
-            width: 100%;
-            height: 420px;
-            min-height: 400px;
-            border-radius: 1.25rem;
-            z-index: 10;
-            background: #0b1120;
-        }
-        .dark-map-tiles {
-            filter: brightness(0.65) invert(1) contrast(3.2) hue-rotate(200deg) saturate(0.25) brightness(0.75);
-        }
-    </style>
+{{ super() if super is defined else '' }}
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<style nonce="{{ request.csp_nonce }}">
+    .qr-card-glow:hover {
+        box-shadow: 0 0 25px rgba(242, 101, 34, 0.25);
+        border-color: rgba(242, 101, 34, 0.4);
+    }
+
+    #venue-map {
+        width: 100%;
+        height: 420px;
+        min-height: 400px;
+        border-radius: 1.25rem;
+        z-index: 10;
+        background: #0b1120;
+    }
+
+    .dark-map-tiles {
+        filter: brightness(0.65) invert(1) contrast(3.2) hue-rotate(200deg) saturate(0.25) brightness(0.75);
+    }
+</style>
 {% endblock pageStyle %}
 
 {% block mainBodyContent %}
-    <body class="bg-uj-dark text-slate-300 antialiased selection:bg-uj-orange selection:text-white min-h-screen flex flex-col relative overflow-x-hidden w-full max-w-full"
-        x-data="bacissPortal()" x-init="init()">
 
-        <div class="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-uj-orange via-amber-500 to-red-500 opacity-90 z-50"></div>
+<body
+    class="bg-uj-dark text-slate-300 antialiased selection:bg-uj-orange selection:text-white min-h-screen flex flex-col relative overflow-x-hidden w-full max-w-full"
+    x-data="bacissPortal()" x-init="init()">
 
-        <div id="particles-container" class="fixed inset-0 z-0 pointer-events-none opacity-25"></div>
-        <div class="fixed top-0 left-1/4 w-72 sm:w-96 h-72 sm:h-96 bg-uj-orange/10 rounded-full blur-[100px] sm:blur-[140px] pointer-events-none z-0"></div>
-        <div class="fixed bottom-10 right-0 sm:right-10 w-72 sm:w-96 h-72 sm:h-96 bg-blue-600/10 rounded-full blur-[100px] sm:blur-[140px] pointer-events-none z-0"></div>
+    <div class="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-uj-orange via-amber-500 to-red-500 opacity-90 z-50">
+    </div>
 
-        <header class="fixed top-0 w-full z-40 glass-nav">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3">
-                <div class="flex items-center gap-3 min-w-0">
-                    <div class="w-10 h-10 bg-uj-orange rounded-xl flex items-center justify-center text-white font-black text-lg shrink-0 shadow-[0_0_15px_rgba(242,101,34,0.5)]">
-                        UJ
-                    </div>
-                    <div class="min-w-0">
-                        <span class="font-extrabold text-white text-base sm:text-lg tracking-tight block leading-tight truncate">
-                            BACISS <span class="text-uj-orange">2026</span>
-                        </span>
-                        <span class="text-[10px] font-mono tracking-wider text-slate-400 uppercase hidden sm:block truncate">
-                            South Africa - Switzerland Bilateral Research Chair in Blockchain Technology
-                        </span>
-                    </div>
+    <div id="particles-container" class="fixed inset-0 z-0 pointer-events-none opacity-25"></div>
+    <div
+        class="fixed top-0 left-1/4 w-72 sm:w-96 h-72 sm:h-96 bg-uj-orange/10 rounded-full blur-[100px] sm:blur-[140px] pointer-events-none z-0">
+    </div>
+    <div
+        class="fixed bottom-10 right-0 sm:right-10 w-72 sm:w-96 h-72 sm:h-96 bg-blue-600/10 rounded-full blur-[100px] sm:blur-[140px] pointer-events-none z-0">
+    </div>
+
+    <header class="fixed top-0 w-full z-40 glass-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3">
+            <div class="flex items-center gap-3 min-w-0">
+                <div
+                    class="w-10 h-10 bg-uj-orange rounded-xl flex items-center justify-center text-white font-black text-lg shrink-0 shadow-[0_0_15px_rgba(242,101,34,0.5)]">
+                    UJ
                 </div>
-
-                <div class="flex items-center gap-2 sm:gap-3 shrink-0">
-                    <a href="#quick-access"
-                        class="hidden md:inline-flex px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-slate-300 transition-all">
-                        <i class="fas fa-qrcode text-uj-orange mr-1.5 mt-0.5"></i> QR &amp; Links
-                    </a>
-                    <a href="#about-baciss"
-                        class="hidden md:inline-flex px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-slate-300 transition-all">
-                        <i class="fas fa-info-circle text-uj-orange mr-1.5 mt-0.5"></i> About BACISS
-                    </a>
-                    <a href="#venue-directions"
-                        class="hidden sm:inline-flex px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-slate-300 transition-all">
-                        <i class="fas fa-map-marked-alt text-uj-orange mr-1.5 mt-0.5"></i> Venue Map
-                    </a>
-                    <a href="mailto:blockchain@uj.ac.za"
-                        class="px-3 sm:px-3.5 py-1.5 rounded-xl bg-uj-orange hover:bg-orange-600 text-white font-bold text-xs shadow-[0_0_15px_rgba(242,101,34,0.3)] transition-all flex items-center gap-1.5 whitespace-nowrap">
-                        <i class="fas fa-headset"></i> <span>Support Desk</span>
-                    </a>
+                <div class="min-w-0">
+                    <span
+                        class="font-extrabold text-white text-base sm:text-lg tracking-tight block leading-tight truncate">
+                        BACISS <span class="text-uj-orange">2026</span>
+                    </span>
+                    <span
+                        class="text-[10px] font-mono tracking-wider text-slate-400 uppercase hidden sm:block truncate">
+                        South Africa - Switzerland Bilateral Research Chair in Blockchain Technology
+                    </span>
                 </div>
             </div>
-        </header>
 
-        <main class="flex-grow pt-20 pb-16 relative z-10 w-full">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+                <a href="#quick-access"
+                    class="hidden md:inline-flex px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-slate-300 transition-all">
+                    <i class="fas fa-qrcode text-uj-orange mr-1.5 mt-0.5"></i> QR &amp; Links
+                </a>
+                <a href="#about-baciss"
+                    class="hidden md:inline-flex px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-slate-300 transition-all">
+                    <i class="fas fa-info-circle text-uj-orange mr-1.5 mt-0.5"></i> About BACISS
+                </a>
+                <a href="#venue-directions"
+                    class="hidden sm:inline-flex px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-slate-300 transition-all">
+                    <i class="fas fa-map-marked-alt text-uj-orange mr-1.5 mt-0.5"></i> Venue Map
+                </a>
+                <a href="mailto:blockchain@uj.ac.za"
+                    class="px-3 sm:px-3.5 py-1.5 rounded-xl bg-uj-orange hover:bg-orange-600 text-white font-bold text-xs shadow-[0_0_15px_rgba(242,101,34,0.3)] transition-all flex items-center gap-1.5 whitespace-nowrap">
+                    <i class="fas fa-headset"></i> <span>Support Desk</span>
+                </a>
+            </div>
+        </div>
+    </header>
 
-                <section class="py-6 md:py-10 border-b border-white/10 mb-10">
-                    <div class="grid lg:grid-cols-12 gap-8 items-center">
-                        <div class="lg:col-span-8 min-w-0">
-                            <div class="inline-flex max-w-full items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] sm:text-xs font-bold text-slate-300 mb-3 truncate">
-                                <span class="w-2 h-2 rounded-full bg-uj-orange shrink-0 animate-ping"></span>
-                                <span class="truncate">University of Johannesburg &amp; Lucerne University of Applied Sciences and Arts</span>
-                            </div>
-                            <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight mb-2">
-                                BACISS <span class="text-transparent bg-clip-text bg-gradient-to-r from-uj-orange to-amber-400">2026</span>
-                            </h1>
-                            <h2 class="text-lg md:text-xl font-bold text-slate-200 mb-2">
-                                Blockchain, AI and Cloud Innovation Startup School
-                            </h2>
-                            <p class="text-uj-orange font-medium text-xs sm:text-sm tracking-wide mb-3">
-                                "Building African Innovation for a Sustainable and Inclusive Future."
-                            </p>
-                            <p class="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-3xl mb-6">
-                                Welcome to the official BACISS 2026 digital portal. An immersive, hands-on innovation program designed to empower students, researchers, and entrepreneurs to build, innovate, and scale technology-driven ventures. Access all live lectures, resource repositories, support channels, and Wi-Fi credentials below.
-                            </p>
+    <main class="flex-grow pt-20 pb-16 relative z-10 w-full">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
 
-                            <div class="flex flex-wrap gap-2.5">
-                                <a href="#quick-access"
-                                    class="px-3.5 py-2 rounded-xl bg-uj-orange hover:bg-orange-600 text-white text-xs font-bold transition-all shadow-[0_0_15px_rgba(242,101,34,0.3)] flex items-center gap-2">
-                                    <i class="fas fa-qrcode"></i> Access All Links &amp; QRs
-                                </a>
-                                <a href="#wifi-access"
-                                    class="px-3.5 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-slate-200 text-xs font-bold transition-all flex items-center gap-2">
-                                    <i class="fas fa-wifi text-emerald-400"></i> Lab Wi-Fi Access
-                                </a>
-                                <a href="#venue-directions"
-                                    class="px-3.5 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-slate-200 text-xs font-bold transition-all flex items-center gap-2">
-                                    <i class="fas fa-location-arrow text-amber-400"></i> Map &amp; Directions
-                                </a>
-                                <a href="#about-baciss"
-                                    class="px-3.5 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-slate-200 text-xs font-bold transition-all flex items-center gap-2">
-                                    <i class="fas fa-star text-cyan-400"></i> Why Attend?
-                                </a>
-                            </div>
+            <section class="py-6 md:py-10 border-b border-white/10 mb-10">
+                <div class="grid lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-8 min-w-0">
+                        <div
+                            class="inline-flex max-w-full items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] sm:text-xs font-bold text-slate-300 mb-3 truncate">
+                            <span class="w-2 h-2 rounded-full bg-uj-orange shrink-0 animate-ping"></span>
+                            <span class="truncate">University of Johannesburg &amp; Lucerne University of Applied
+                                Sciences and Arts</span>
                         </div>
+                        <h1
+                            class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight mb-2">
+                            BACISS <span
+                                class="text-transparent bg-clip-text bg-gradient-to-r from-uj-orange to-amber-400">2026</span>
+                        </h1>
+                        <h2 class="text-lg md:text-xl font-bold text-slate-200 mb-2">
+                            Blockchain, AI and Cloud Innovation Startup School
+                        </h2>
+                        <p class="text-uj-orange font-medium text-xs sm:text-sm tracking-wide mb-3">
+                            "Building African Innovation for a Sustainable and Inclusive Future."
+                        </p>
+                        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-3xl mb-6">
+                            Welcome to the official BACISS 2026 digital portal. An immersive, hands-on innovation
+                            program designed to empower students, researchers, and entrepreneurs to build, innovate, and
+                            scale technology driven ventures. Access all live lectures, resource repositories, support
+                            channels, and Wi-Fi credentials below.
+                        </p>
 
-                        <div class="lg:col-span-4 min-w-0 w-full">
-                            <div class="glass-card rounded-2xl p-5 border-t-2 border-uj-orange relative overflow-hidden shadow-xl">
-                                <div class="flex items-center justify-between mb-4 border-b border-white/10 pb-2">
-                                    <span class="text-xs uppercase font-mono tracking-wider text-slate-400 font-bold">Event Schedule</span>
-                                    <span class="px-2 py-0.5 rounded text-[10px] bg-green-500/10 text-green-400 font-bold border border-green-500/20 whitespace-nowrap">100% Free Entry</span>
-                                </div>
-
-                                <div class="space-y-3 text-xs">
-                                    <div class="p-3 rounded-xl bg-black/30 border border-white/5 flex items-start gap-3">
-                                        <div class="w-8 h-8 rounded-lg bg-uj-orange/15 border border-uj-orange/30 flex items-center justify-center shrink-0 mt-0.5">
-                                            <i class="fas fa-calendar-day text-uj-orange text-xs"></i>
-                                        </div>
-                                        <div class="min-w-0">
-                                            <div class="font-bold text-white text-xs">16 - 21 November 2026</div>
-                                            <div class="text-slate-400 text-[11px] mt-0.5">Daily: 09:00 - 16:00 SAST</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="p-3 rounded-xl bg-black/30 border border-white/5 flex items-start gap-3">
-                                        <div class="w-8 h-8 rounded-lg bg-uj-orange/15 border border-uj-orange/30 flex items-center justify-center shrink-0 mt-0.5">
-                                            <i class="fas fa-map-marked-alt text-uj-orange text-xs"></i>
-                                        </div>
-                                        <div class="min-w-0">
-                                            <div class="font-bold text-white text-xs">Lab 219, DEEES Building</div>
-                                            <div class="text-slate-400 text-[11px] mt-0.5 leading-snug">Dept of Electrical &amp; Electronic Engineering Science, Kingsway Campus (APK), UJ</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="p-3 rounded-xl bg-black/30 border border-white/5 flex items-start gap-3">
-                                        <div class="w-8 h-8 rounded-lg bg-amber-500/15 border border-amber-500/30 flex items-center justify-center shrink-0 mt-0.5">
-                                            <i class="fas fa-trophy text-amber-400 text-xs"></i>
-                                        </div>
-                                        <div class="min-w-0">
-                                            <div class="font-bold text-white text-xs">R40,000+ in Cash Prizes</div>
-                                            <div class="text-slate-400 text-[11px] mt-0.5 leading-snug">Plus branded swag &amp; gift items from ecosystem partners</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="p-3 rounded-xl bg-black/30 border border-white/5 flex items-start gap-3">
-                                        <div class="w-8 h-8 rounded-lg bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center shrink-0 mt-0.5">
-                                            <i class="fas fa-laptop text-cyan-400 text-xs"></i>
-                                        </div>
-                                        <div class="min-w-0">
-                                            <div class="font-bold text-white text-xs">What You Need to Bring</div>
-                                            <div class="text-slate-400 text-[11px] mt-0.5 leading-snug">A laptop, a notebook, a pen, and your curiosity!</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="quick-access" class="mb-14 scroll-mt-20">
-                    <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
-                        <div>
-                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-uj-orange/15 border border-uj-orange/30 text-xs font-bold text-uj-orange uppercase tracking-wider mb-1">
-                                <i class="fas fa-bolt"></i> Live Event Quick Links
-                            </div>
-                            <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Join Lectures, Access Materials &amp; Get Support</h2>
-                        </div>
-                        <span class="text-xs font-mono text-slate-400">Scan QR codes with any phone camera or tap direct links</span>
-                    </div>
-
-                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-
-                        <div class="glass-card rounded-2xl p-5 border border-white/10 flex flex-col justify-between qr-card-glow transition-all">
-                            <div>
-                                <div class="flex items-center justify-between mb-3">
-                                    <span class="px-2.5 py-1 rounded-lg bg-blue-500/20 text-blue-400 font-mono font-bold text-[11px] flex items-center gap-1.5">
-                                        <i class="fab fa-microsoft"></i> MS Teams
-                                    </span>
-                                    <span class="text-[10px] text-slate-400 uppercase font-mono tracking-wider">Live Stream</span>
-                                </div>
-
-                                <div class="bg-black/60 rounded-xl p-3 border border-white/5 flex flex-col items-center justify-center mb-4">
-                                    <canvas id="qr-lecture-canvas" class="w-36 h-36 rounded-lg bg-white p-2 shadow-md"></canvas>
-                                    <span class="text-[10px] font-mono text-slate-400 mt-2">Scan for Live Lecture Stream</span>
-                                </div>
-
-                                <h3 class="text-base font-bold text-white mb-1">Lecture Teams Channel</h3>
-                                <p class="text-xs text-slate-400 leading-relaxed mb-4">
-                                    Follow live screen share, lectures, and workshop presentations.
-                                </p>
-                            </div>
-
-                            <div class="pt-3 border-t border-white/10 space-y-2">
-                                <a :href="links.lectureTeams" target="_blank"
-                                    class="w-full py-2 px-3 rounded-xl bg-blue-600/20 hover:bg-blue-600 border border-blue-500/40 text-blue-300 hover:text-white font-bold text-xs flex items-center justify-center gap-2 transition-all">
-                                    <span>Open Lecture Channel</span>
-                                    <i class="fas fa-external-link-alt text-[10px]"></i>
-                                </a>
-                                <button @click="copyText(links.lectureTeams, 'copy-lecture-teams')"
-                                    class="w-full py-1.5 px-3 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-slate-200 text-xs font-mono flex items-center justify-center gap-1.5 transition-all">
-                                    <i :class="copiedTarget === 'copy-lecture-teams' ? 'fas fa-check text-green-400' : 'fas fa-copy'"></i>
-                                    <span x-text="copiedTarget === 'copy-lecture-teams' ? 'Link Copied!' : 'Copy Meeting Link'"></span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="glass-card rounded-2xl p-5 border border-white/10 flex flex-col justify-between qr-card-glow transition-all">
-                            <div>
-                                <div class="flex items-center justify-between mb-3">
-                                    <span class="px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-400 font-mono font-bold text-[11px] flex items-center gap-1.5">
-                                        <i class="fab fa-google-drive"></i> Google Drive
-                                    </span>
-                                    <span class="text-[10px] text-slate-400 uppercase font-mono tracking-wider">Resources</span>
-                                </div>
-
-                                <div class="bg-black/60 rounded-xl p-3 border border-white/5 flex flex-col items-center justify-center mb-4">
-                                    <canvas id="qr-drive-canvas" class="w-36 h-36 rounded-lg bg-white p-2 shadow-md"></canvas>
-                                    <span class="text-[10px] font-mono text-slate-400 mt-2">Scan for Course Drive</span>
-                                </div>
-
-                                <h3 class="text-base font-bold text-white mb-1">Resource Drive</h3>
-                                <p class="text-xs text-slate-400 leading-relaxed mb-4">
-                                    Download presentation slide decks, starter codebases, datasets, API keys guide, and project pitch templates.
-                                </p>
-                            </div>
-
-                            <div class="pt-3 border-t border-white/10 space-y-2">
-                                <a :href="links.googleDrive" target="_blank"
-                                    class="w-full py-2 px-3 rounded-xl bg-emerald-600/20 hover:bg-emerald-600 border border-emerald-500/40 text-emerald-300 hover:text-white font-bold text-xs flex items-center justify-center gap-2 transition-all">
-                                    <span>Access Google Drive</span>
-                                    <i class="fas fa-folder-open text-[10px]"></i>
-                                </a>
-                                <button @click="copyText(links.googleDrive, 'copy-drive')"
-                                    class="w-full py-1.5 px-3 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-slate-200 text-xs font-mono flex items-center justify-center gap-1.5 transition-all">
-                                    <i :class="copiedTarget === 'copy-drive' ? 'fas fa-check text-green-400' : 'fas fa-copy'"></i>
-                                    <span x-text="copiedTarget === 'copy-drive' ? 'Link Copied!' : 'Copy Drive URL'"></span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="glass-card rounded-2xl p-5 border border-white/10 flex flex-col justify-between qr-card-glow transition-all">
-                            <div>
-                                <div class="flex items-center justify-between mb-3">
-                                    <span class="px-2.5 py-1 rounded-lg bg-purple-500/20 text-purple-400 font-mono font-bold text-[11px] flex items-center gap-1.5">
-                                        <i class="fas fa-comments"></i> 24/7 Helpdesk
-                                    </span>
-                                    <span class="text-[10px] text-slate-400 uppercase font-mono tracking-wider">Online Support</span>
-                                </div>
-
-                                <div class="bg-black/60 rounded-xl p-3 border border-white/5 flex flex-col items-center justify-center mb-4">
-                                    <canvas id="qr-support-canvas" class="w-36 h-36 rounded-lg bg-white p-2 shadow-md"></canvas>
-                                    <span class="text-[10px] font-mono text-slate-400 mt-2">Scan for Real-Time Help</span>
-                                </div>
-
-                                <h3 class="text-base font-bold text-white mb-1">Teams Support Desk</h3>
-                                <p class="text-xs text-slate-400 leading-relaxed mb-4">
-                                    Stuck on code, smart contracts, or AI tooling? Connect directly with ground facilitators and mentors.
-                                </p>
-                            </div>
-
-                            <div class="pt-3 border-t border-white/10 space-y-2">
-                                <a :href="links.supportTeams" target="_blank"
-                                    class="w-full py-2 px-3 rounded-xl bg-purple-600/20 hover:bg-purple-600 border border-purple-500/40 text-purple-300 hover:text-white font-bold text-xs flex items-center justify-center gap-2 transition-all">
-                                    <span>Join Support Channel</span>
-                                    <i class="fas fa-headset text-[10px]"></i>
-                                </a>
-                                <button @click="copyText(links.supportTeams, 'copy-support-teams')"
-                                    class="w-full py-1.5 px-3 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-slate-200 text-xs font-mono flex items-center justify-center gap-1.5 transition-all">
-                                    <i :class="copiedTarget === 'copy-support-teams' ? 'fas fa-check text-green-400' : 'fas fa-copy'"></i>
-                                    <span x-text="copiedTarget === 'copy-support-teams' ? 'Link Copied!' : 'Copy Channel URL'"></span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="glass-card rounded-2xl p-5 border border-white/10 flex flex-col justify-between qr-card-glow transition-all">
-                            <div>
-                                <div class="flex items-center justify-between mb-3">
-                                    <span class="px-2.5 py-1 rounded-lg bg-uj-orange/20 text-uj-orange font-mono font-bold text-[11px] flex items-center gap-1.5">
-                                        <i class="fas fa-envelope"></i> UJ Team
-                                    </span>
-                                    <span class="text-[10px] text-slate-400 uppercase font-mono tracking-wider">Inquiries</span>
-                                </div>
-
-                                <div class="bg-black/60 rounded-xl p-3 border border-white/5 flex flex-col items-center justify-center mb-4">
-                                    <canvas id="qr-email-canvas" class="w-36 h-36 rounded-lg bg-white p-2 shadow-md"></canvas>
-                                    <span class="text-[10px] font-mono text-slate-400 mt-2">Scan to Email Us Directly</span>
-                                </div>
-
-                                <h3 class="text-base font-bold text-white mb-1">Email Support</h3>
-                                <p class="text-xs text-slate-400 leading-relaxed mb-4">
-                                    Direct inquiries about BACISS 2026 and follow-up startup mentorship.
-                                </p>
-                            </div>
-
-                            <div class="pt-3 border-t border-white/10 space-y-2">
-                                <a href="mailto:blockchain@uj.ac.za"
-                                    class="w-full py-2 px-3 rounded-xl bg-uj-orange/20 hover:bg-uj-orange border border-uj-orange/40 text-uj-orange hover:text-white font-bold text-xs flex items-center justify-center gap-2 transition-all">
-                                    <span>blockchain@uj.ac.za</span>
-                                    <i class="fas fa-paper-plane text-[10px]"></i>
-                                </a>
-                                <button @click="copyText('blockchain@uj.ac.za', 'copy-email')"
-                                    class="w-full py-1.5 px-3 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-slate-200 text-xs font-mono flex items-center justify-center gap-1.5 transition-all">
-                                    <i :class="copiedTarget === 'copy-email' ? 'fas fa-check text-green-400' : 'fas fa-copy'"></i>
-                                    <span x-text="copiedTarget === 'copy-email' ? 'Email Copied!' : 'Copy Email Address'"></span>
-                                </button>
-                            </div>
-                        </div>
-
-                    </div>
-                </section>
-
-                <section id="wifi-access" class="mb-14 scroll-mt-20">
-                    <div class="glass-card rounded-3xl p-6 sm:p-8 border border-white/10 relative overflow-hidden">
-                        <div class="absolute top-0 right-0 w-80 h-80 bg-emerald-500/10 rounded-full blur-[90px] pointer-events-none"></div>
-
-                        <div class="grid lg:grid-cols-12 gap-8 items-center">
-                            <div class="lg:col-span-7">
-                                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-xs font-bold text-emerald-400 uppercase tracking-wider mb-3">
-                                    <i class="fas fa-wifi"></i> Seamless Lab Connectivity
-                                </div>
-                                <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-3">
-                                    Connect to Lab 219 High-Speed Wi-Fi
-                                </h2>
-                                <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-6">
-                                    Scan the QR code with your smartphone camera to connect automatically without typing passwords, or copy the network credentials below for your laptop or development device.
-                                </p>
-
-                                <div class="space-y-3">
-                                    <div class="p-3.5 rounded-xl bg-black/50 border border-white/10 flex items-center justify-between gap-3">
-                                        <div class="min-w-0">
-                                            <span class="text-[10px] font-mono uppercase text-slate-400 block">Network Name (SSID)</span>
-                                            <span class="text-sm font-bold font-mono text-white truncate block" x-text="wifi.ssid"></span>
-                                        </div>
-                                        <button @click="copyText(wifi.ssid, 'copy-ssid')"
-                                            class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-uj-orange text-xs text-slate-200 transition-all flex items-center gap-1.5 shrink-0">
-                                            <i :class="copiedTarget === 'copy-ssid' ? 'fas fa-check text-green-400' : 'fas fa-copy'"></i>
-                                            <span x-text="copiedTarget === 'copy-ssid' ? 'Copied!' : 'Copy SSID'"></span>
-                                        </button>
-                                    </div>
-
-                                    <div class="p-3.5 rounded-xl bg-black/50 border border-white/10 flex items-center justify-between gap-3">
-                                        <div class="min-w-0">
-                                            <span class="text-[10px] font-mono uppercase text-slate-400 block">Network Password</span>
-                                            <span class="text-sm font-bold font-mono text-emerald-400 tracking-wider truncate block" x-text="wifi.password"></span>
-                                        </div>
-                                        <button @click="copyText(wifi.password, 'copy-pass')"
-                                            class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-uj-orange text-xs text-slate-200 transition-all flex items-center gap-1.5 shrink-0">
-                                            <i :class="copiedTarget === 'copy-pass' ? 'fas fa-check text-green-400' : 'fas fa-copy'"></i>
-                                            <span x-text="copiedTarget === 'copy-pass' ? 'Copied!' : 'Copy Password'"></span>
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <div class="mt-4 flex items-center gap-2 text-[11px] text-slate-400">
-                                    <i class="fas fa-circle-info text-amber-400"></i>
-                                    <span>Eduroam is also active across the entire Kingsway Campus for registered university students and staff.</span>
-                                </div>
-                            </div>
-
-                            <div class="lg:col-span-5 flex flex-col items-center justify-center text-center">
-                                <div class="p-4 rounded-2xl bg-black/70 border border-white/15 shadow-2xl relative">
-                                    <div class="absolute -top-3 -right-3 px-2 py-0.5 rounded-full bg-emerald-500 text-black text-[10px] font-black uppercase tracking-wider">
-                                        Instant Join
-                                    </div>
-                                    <canvas id="qr-wifi-canvas" class="w-48 h-48 sm:w-56 sm:h-56 rounded-xl bg-white p-2.5 shadow-inner"></canvas>
-                                    <span class="text-xs font-mono font-bold text-slate-300 mt-3 block">Point camera to connect instantly</span>
-                                    <span class="text-[10px] text-slate-500 font-mono">Compatible with iOS &amp; Android</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="venue-directions" class="mb-14 scroll-mt-20">
-                    <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
-                        <div>
-                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-xs font-bold text-amber-400 uppercase tracking-wider mb-1">
-                                <i class="fas fa-compass"></i> Campus Navigation
-                            </div>
-                            <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Event Venue &amp; Navigation Map</h2>
-                        </div>
-                        <a href="https://maps.google.com/?q=-26.18247,28.00016" target="_blank"
-                            class="px-3.5 py-1.5 rounded-xl bg-white/5 hover:bg-uj-orange text-slate-200 text-xs font-bold transition-all border border-white/10 flex items-center gap-1.5">
-                            <i class="fas fa-location-arrow"></i> Open in Google Maps
-                        </a>
-                    </div>
-
-                    <div class="grid lg:grid-cols-12 gap-6 items-stretch">
-                        <div class="lg:col-span-5 glass-card rounded-2xl p-6 border border-white/10 flex flex-col justify-between">
-                            <div>
-                                <h3 class="text-lg font-bold text-white mb-2 flex items-center gap-2">
-                                    <i class="fas fa-building text-uj-orange"></i> Lab 219, DEEES Building
-                                </h3>
-                                <p class="text-xs text-slate-300 mb-5 leading-relaxed">
-                                    Department of Electrical and Electronic Engineering Science (DEEES), Faculty of Engineering and the Built Environment (FEBE), University of Johannesburg.
-                                </p>
-
-                                <div class="space-y-4 text-xs mb-6">
-                                    <div class="p-4 rounded-xl bg-black/40 border border-white/5 transition-all hover:border-white/15">
-                                        <div class="font-bold text-white text-xs sm:text-sm flex items-center gap-2 mb-1.5">
-                                            <i class="fas fa-door-open text-amber-400 text-xs"></i>
-                                            <span>Main Campus Entry</span>
-                                        </div>
-                                        <p class="text-xs text-slate-300 leading-relaxed pl-5">
-                                            Enter via <strong class="text-white">Gate 1</strong> (Kingsway Ave) or <strong class="text-white">Gate 2 (Ditton Ave)</strong>. Protection Service will direct you towards the DEEES Building / B2 Engineering Laboratories.
-                                        </p>
-                                    </div>
-
-                                    <div class="p-4 rounded-xl bg-black/40 border border-white/5 transition-all hover:border-white/15">
-                                        <div class="font-bold text-white text-xs sm:text-sm flex items-center gap-2 mb-1.5">
-                                            <i class="fas fa-square-parking text-blue-400 text-xs"></i>
-                                            <span>Parking Availability</span>
-                                        </div>
-                                        <p class="text-xs text-slate-300 leading-relaxed pl-5">
-                                            Designated visitor parking is accessible near the Engineering Complex. Please inform security at the gate that you are attending BACISS 2026.
-                                        </p>
-                                    </div>
-
-                                    <div class="p-4 rounded-xl bg-black/40 border border-white/5 transition-all hover:border-white/15">
-                                        <div class="font-bold text-white text-xs sm:text-sm flex items-center gap-2 mb-1.5">
-                                            <i class="fas fa-clock text-emerald-400 text-xs"></i>
-                                            <span>Arrival Window</span>
-                                        </div>
-                                        <p class="text-xs text-slate-300 leading-relaxed pl-5">
-                                            Doors open at <strong class="text-white">08:30 AM</strong> each morning. Build sessions and guest lectures begin promptly at <strong class="text-white">09:00 AM</strong>.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-slate-400">
-                                <span>GPS: -26.18247, 28.00016</span>
-                                <span class="text-uj-orange font-bold">APK Campus</span>
-                            </div>
-                        </div>
-
-                        <div class="lg:col-span-7 glass-card rounded-2xl p-3 border border-white/10 flex flex-col justify-center min-h-[400px]">
-                            <div id="venue-map"></div>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="about-baciss" class="mb-14 scroll-mt-20">
-                    <div class="glass-card rounded-3xl p-6 sm:p-10 border border-white/10 relative overflow-hidden">
-                        <div class="max-w-3xl mx-auto text-center mb-10">
-                            <div class="inline-flex items-center justify-center gap-2 px-3 py-1 rounded-full bg-uj-orange/15 border border-uj-orange/30 text-xs font-bold text-uj-orange uppercase tracking-wider mb-3">
-                                <i class="fas fa-rocket"></i> About the Innovation Program
-                            </div>
-                            <h2 class="text-xl sm:text-2xl md:text-3xl font-extrabold text-white tracking-tight mb-3">
-                                Why You Should Not Miss BACISS 2026
-                            </h2>
-                            <p class="text-slate-300 text-xs sm:text-sm md:text-base leading-relaxed mx-auto max-w-2xl">
-                                <strong>BACISS (Blockchain · AI · Cloud · Innovation · Startup School)</strong> is an immersive, hands-on innovation program designed to empower students, researchers, and entrepreneurs to build, innovate, and scale technology driven ventures. Here is why BACISS is an unmissable experience:
-                            </p>
-                        </div>
-
-                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-                            <div class="p-5 rounded-2xl bg-black/40 border border-white/5 hover:border-uj-orange/30 transition-all flex flex-col justify-between">
-                                <div>
-                                    <div class="w-10 h-10 rounded-xl bg-uj-orange/15 border border-uj-orange/30 flex items-center justify-center text-uj-orange text-lg mb-3">
-                                        <i class="fas fa-handshake"></i>
-                                    </div>
-                                    <h3 class="text-sm font-bold text-white mb-2">Learning from Industry Partners</h3>
-                                    <p class="text-xs text-slate-400 leading-relaxed">
-                                        BACISS is packed with industry partners who will be teaching, offering support, and serving as panel judges. These include Binance, Avalanche Team 1, IEEE South Africa, Built to Scale, JPM Monarch, eFama, 22 on Sloane, and many more.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="p-5 rounded-2xl bg-black/40 border border-white/5 hover:border-uj-orange/30 transition-all flex flex-col justify-between">
-                                <div>
-                                    <div class="w-10 h-10 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 text-lg mb-3">
-                                        <i class="fas fa-trophy"></i>
-                                    </div>
-                                    <h3 class="text-sm font-bold text-white mb-2">Lots of Cash Prizes to Win</h3>
-                                    <p class="text-xs text-slate-400 leading-relaxed">
-                                        BACISS 2026 comes with increased cash prizes of <strong>over R40k+</strong> plus branded gift items from our ecosystem partners. You are not just learning and building, you also get the opportunity to win exciting prizes.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="p-5 rounded-2xl bg-black/40 border border-white/5 hover:border-uj-orange/30 transition-all flex flex-col justify-between">
-                                <div>
-                                    <div class="w-10 h-10 rounded-xl bg-purple-500/15 border border-purple-500/30 flex items-center justify-center text-purple-400 text-lg mb-3">
-                                        <i class="fas fa-chalkboard-teacher"></i>
-                                    </div>
-                                    <h3 class="text-sm font-bold text-white mb-2">Mentorship During and After BACISS</h3>
-                                    <p class="text-xs text-slate-400 leading-relaxed">
-                                        We want you to learn and use that knowledge to build. We will be there all the way, from your first idea during the build sessions to deployment and feature additions, even after BACISS ends. We offer technical support to help bring your startup to life.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="p-5 rounded-2xl bg-black/40 border border-white/5 hover:border-uj-orange/30 transition-all flex flex-col justify-between">
-                                <div>
-                                    <div class="w-10 h-10 rounded-xl bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center text-cyan-400 text-lg mb-3">
-                                        <i class="fas fa-users"></i>
-                                    </div>
-                                    <h3 class="text-sm font-bold text-white mb-2">Everyone Can Learn</h3>
-                                    <p class="text-xs text-slate-400 leading-relaxed">
-                                        Whether you are a UJ student or not, in sport science, accounting, engineering, or in a non-science field, you can learn at BACISS. Whether you’re a beginner or a pro, an enthusiast or simply passionate about tech, you can learn. It is teachable and it is learnable.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="p-5 rounded-2xl bg-black/40 border border-white/5 hover:border-uj-orange/30 transition-all flex flex-col justify-between">
-                                <div>
-                                    <div class="w-10 h-10 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-lg mb-3">
-                                        <i class="fas fa-ticket-alt"></i>
-                                    </div>
-                                    <h3 class="text-sm font-bold text-white mb-2">100% Free, Truly Free</h3>
-                                    <p class="text-xs text-slate-400 leading-relaxed">
-                                        It is free to attend and free to learn. All you simply need is a laptop, a notebook, and a pen to learn. No hidden registration fees or paywalled resources.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="p-5 rounded-2xl bg-black/40 border border-white/5 hover:border-uj-orange/30 transition-all flex flex-col justify-between">
-                                <div>
-                                    <div class="w-10 h-10 rounded-xl bg-blue-500/15 border border-blue-500/30 flex items-center justify-center text-blue-400 text-lg mb-3">
-                                        <i class="fas fa-headset"></i>
-                                    </div>
-                                    <h3 class="text-sm font-bold text-white mb-2">A Team Ready to Offer Support</h3>
-                                    <p class="text-xs text-slate-400 leading-relaxed">
-                                        Throughout BACISS and beyond, the UJ Blockchain team will be on hand to offer technical support to bring your idea to life. We have facilitators on ground to help you, and even after BACISS you can still reach our team via email for technical support.
-                                    </p>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="mt-8 p-5 rounded-2xl bg-uj-surface/60 border border-uj-orange/30 flex flex-col sm:flex-row items-center justify-between gap-4">
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-full bg-uj-orange flex items-center justify-center text-white font-bold shrink-0">
-                                    <i class="fas fa-cube"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-sm font-bold text-white">Building the future, one block at a time.</h4>
-                                    <p class="text-xs text-slate-400">Warm regards from the UJ Blockchain Team • blockchain.uj.ac.za</p>
-                                </div>
-                            </div>
-                            <a href="mailto:blockchain@uj.ac.za"
-                                class="px-4 py-2 rounded-xl bg-uj-orange hover:bg-orange-600 text-white font-bold text-xs shadow-md transition-all shrink-0">
-                                Contact Facilitators
+                        <div class="flex flex-wrap gap-2.5">
+                            <a href="#quick-access"
+                                class="px-3.5 py-2 rounded-xl bg-uj-orange hover:bg-orange-600 text-white text-xs font-bold transition-all shadow-[0_0_15px_rgba(242,101,34,0.3)] flex items-center gap-2">
+                                <i class="fas fa-qrcode"></i> Access All Links &amp; QRs
+                            </a>
+                            <a href="#wifi-access"
+                                class="px-3.5 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-slate-200 text-xs font-bold transition-all flex items-center gap-2">
+                                <i class="fas fa-wifi text-emerald-400"></i> Lab Wi-Fi Access
+                            </a>
+                            <a href="#venue-directions"
+                                class="px-3.5 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-slate-200 text-xs font-bold transition-all flex items-center gap-2">
+                                <i class="fas fa-location-arrow text-amber-400"></i> Map &amp; Directions
+                            </a>
+                            <a href="#about-baciss"
+                                class="px-3.5 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-slate-200 text-xs font-bold transition-all flex items-center gap-2">
+                                <i class="fas fa-star text-cyan-400"></i> Why Attend?
                             </a>
                         </div>
                     </div>
-                </section>
 
-                <section class="mb-14">
-                    <div class="text-center mb-8">
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-uj-orange uppercase tracking-wider mb-2">
-                            Curriculum Pillars
+                    <div class="lg:col-span-4 min-w-0 w-full">
+                        <div
+                            class="glass-card rounded-2xl p-5 border-t-2 border-uj-orange relative overflow-hidden shadow-xl">
+                            <div class="flex items-center justify-between mb-4 border-b border-white/10 pb-2">
+                                <span class="text-xs uppercase font-mono tracking-wider text-slate-400 font-bold">Event
+                                    Schedule</span>
+                                <span
+                                    class="px-2 py-0.5 rounded text-[10px] bg-green-500/10 text-green-400 font-bold border border-green-500/20 whitespace-nowrap">100%
+                                    Free Entry</span>
+                            </div>
+
+                            <div class="space-y-3 text-xs">
+                                <div class="p-3 rounded-xl bg-black/30 border border-white/5 flex items-start gap-3">
+                                    <div
+                                        class="w-8 h-8 rounded-lg bg-uj-orange/15 border border-uj-orange/30 flex items-center justify-center shrink-0 mt-0.5">
+                                        <i class="fas fa-calendar-day text-uj-orange text-xs"></i>
+                                    </div>
+                                    <div class="min-w-0">
+                                        <div class="font-bold text-white text-xs">16 - 21 November 2026</div>
+                                        <div class="text-slate-400 text-[11px] mt-0.5">Daily: 09:00 - 16:00 SAST</div>
+                                    </div>
+                                </div>
+
+                                <div class="p-3 rounded-xl bg-black/30 border border-white/5 flex items-start gap-3">
+                                    <div
+                                        class="w-8 h-8 rounded-lg bg-uj-orange/15 border border-uj-orange/30 flex items-center justify-center shrink-0 mt-0.5">
+                                        <i class="fas fa-map-marked-alt text-uj-orange text-xs"></i>
+                                    </div>
+                                    <div class="min-w-0">
+                                        <div class="font-bold text-white text-xs">Lab 219, DEEES Building</div>
+                                        <div class="text-slate-400 text-[11px] mt-0.5 leading-snug">Dept of Electrical
+                                            &amp; Electronic Engineering Science, Kingsway Campus (APK), UJ</div>
+                                    </div>
+                                </div>
+
+                                <div class="p-3 rounded-xl bg-black/30 border border-white/5 flex items-start gap-3">
+                                    <div
+                                        class="w-8 h-8 rounded-lg bg-amber-500/15 border border-amber-500/30 flex items-center justify-center shrink-0 mt-0.5">
+                                        <i class="fas fa-trophy text-amber-400 text-xs"></i>
+                                    </div>
+                                    <div class="min-w-0">
+                                        <div class="font-bold text-white text-xs">R40,000+ in Cash Prizes</div>
+                                        <div class="text-slate-400 text-[11px] mt-0.5 leading-snug">Plus branded swag
+                                            &amp; gift items from ecosystem partners</div>
+                                    </div>
+                                </div>
+
+                                <div class="p-3 rounded-xl bg-black/30 border border-white/5 flex items-start gap-3">
+                                    <div
+                                        class="w-8 h-8 rounded-lg bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center shrink-0 mt-0.5">
+                                        <i class="fas fa-laptop text-cyan-400 text-xs"></i>
+                                    </div>
+                                    <div class="min-w-0">
+                                        <div class="font-bold text-white text-xs">What You Need to Bring</div>
+                                        <div class="text-slate-400 text-[11px] mt-0.5 leading-snug">A laptop, a
+                                            notebook, a pen, and your curiosity!</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Themes &amp; Practical Activities</h2>
-                        <p class="text-slate-400 text-xs sm:text-sm max-w-xl mx-auto mt-1">
-                            A holistic track taking you from decentralized technology fundamentals to a polished startup pitch.
+                    </div>
+                </div>
+            </section>
+
+            <section id="quick-access" class="mb-14 scroll-mt-20">
+                <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+                    <div>
+                        <div
+                            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-uj-orange/15 border border-uj-orange/30 text-xs font-bold text-uj-orange uppercase tracking-wider mb-1">
+                            <i class="fas fa-bolt"></i> Live Event Quick Links
+                        </div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Join Lectures, Access Materials &amp;
+                            Get Support</h2>
+                    </div>
+                    <span class="text-xs font-mono text-slate-400">Scan QR codes with any phone camera or tap direct
+                        links</span>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                    <div
+                        class="glass-card rounded-2xl p-5 border border-white/10 flex flex-col justify-between qr-card-glow transition-all">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span
+                                    class="px-2.5 py-1 rounded-lg bg-blue-500/20 text-blue-400 font-mono font-bold text-[11px] flex items-center gap-1.5">
+                                    <i class="fab fa-microsoft"></i> MS Teams
+                                </span>
+                                <span class="text-[10px] text-slate-400 uppercase font-mono tracking-wider">Live
+                                    Stream</span>
+                            </div>
+
+                            <div
+                                class="bg-black/60 rounded-xl p-3 border border-white/5 flex flex-col items-center justify-center mb-4">
+                                <canvas id="qr-lecture-canvas"
+                                    class="w-36 h-36 rounded-lg bg-white p-2 shadow-md"></canvas>
+                                <span class="text-[10px] font-mono text-slate-400 mt-2">Scan for Live Lecture
+                                    Stream</span>
+                            </div>
+
+                            <h3 class="text-base font-bold text-white mb-1">Lecture Teams Channel</h3>
+                            <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                                Follow live screen share, lectures, and workshop presentations.
+                            </p>
+                        </div>
+
+                        <div class="pt-3 border-t border-white/10 space-y-2">
+                            <a :href="links.lectureTeams" target="_blank"
+                                class="w-full py-2 px-3 rounded-xl bg-blue-600/20 hover:bg-blue-600 border border-blue-500/40 text-blue-300 hover:text-white font-bold text-xs flex items-center justify-center gap-2 transition-all">
+                                <span>Open Lecture Channel</span>
+                                <i class="fas fa-external-link-alt text-[10px]"></i>
+                            </a>
+                            <button @click="copyText(links.lectureTeams, 'copy-lecture-teams')"
+                                class="w-full py-1.5 px-3 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-slate-200 text-xs font-mono flex items-center justify-center gap-1.5 transition-all">
+                                <i
+                                    :class="copiedTarget === 'copy-lecture-teams' ? 'fas fa-check text-green-400' : 'fas fa-copy'"></i>
+                                <span
+                                    x-text="copiedTarget === 'copy-lecture-teams' ? 'Link Copied!' : 'Copy Meeting Link'"></span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div
+                        class="glass-card rounded-2xl p-5 border border-white/10 flex flex-col justify-between qr-card-glow transition-all">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span
+                                    class="px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-400 font-mono font-bold text-[11px] flex items-center gap-1.5">
+                                    <i class="fab fa-google-drive"></i> Google Drive
+                                </span>
+                                <span
+                                    class="text-[10px] text-slate-400 uppercase font-mono tracking-wider">Resources</span>
+                            </div>
+
+                            <div
+                                class="bg-black/60 rounded-xl p-3 border border-white/5 flex flex-col items-center justify-center mb-4">
+                                <canvas id="qr-drive-canvas"
+                                    class="w-36 h-36 rounded-lg bg-white p-2 shadow-md"></canvas>
+                                <span class="text-[10px] font-mono text-slate-400 mt-2">Scan for Course Drive</span>
+                            </div>
+
+                            <h3 class="text-base font-bold text-white mb-1">Resource Drive</h3>
+                            <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                                Download presentation slide decks, starter codebases, datasets, API keys guide, and
+                                project pitch templates.
+                            </p>
+                        </div>
+
+                        <div class="pt-3 border-t border-white/10 space-y-2">
+                            <a :href="links.googleDrive" target="_blank"
+                                class="w-full py-2 px-3 rounded-xl bg-emerald-600/20 hover:bg-emerald-600 border border-emerald-500/40 text-emerald-300 hover:text-white font-bold text-xs flex items-center justify-center gap-2 transition-all">
+                                <span>Access Google Drive</span>
+                                <i class="fas fa-folder-open text-[10px]"></i>
+                            </a>
+                            <button @click="copyText(links.googleDrive, 'copy-drive')"
+                                class="w-full py-1.5 px-3 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-slate-200 text-xs font-mono flex items-center justify-center gap-1.5 transition-all">
+                                <i
+                                    :class="copiedTarget === 'copy-drive' ? 'fas fa-check text-green-400' : 'fas fa-copy'"></i>
+                                <span x-text="copiedTarget === 'copy-drive' ? 'Link Copied!' : 'Copy Drive URL'"></span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div
+                        class="glass-card rounded-2xl p-5 border border-white/10 flex flex-col justify-between qr-card-glow transition-all">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span
+                                    class="px-2.5 py-1 rounded-lg bg-purple-500/20 text-purple-400 font-mono font-bold text-[11px] flex items-center gap-1.5">
+                                    <i class="fas fa-comments"></i> Online Support Helpdesk
+                                </span>
+                                <span class="text-[10px] text-slate-400 uppercase font-mono tracking-wider">Online
+                                    Support</span>
+                            </div>
+
+                            <div
+                                class="bg-black/60 rounded-xl p-3 border border-white/5 flex flex-col items-center justify-center mb-4">
+                                <canvas id="qr-support-canvas"
+                                    class="w-36 h-36 rounded-lg bg-white p-2 shadow-md"></canvas>
+                                <span class="text-[10px] font-mono text-slate-400 mt-2">Scan for Real-Time Help</span>
+                            </div>
+
+                            <h3 class="text-base font-bold text-white mb-1">Teams Support Desk</h3>
+                            <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                                Stuck on code, smart contracts, or AI tooling? Connect directly with ground facilitators
+                                and mentors.
+                            </p>
+                        </div>
+
+                        <div class="pt-3 border-t border-white/10 space-y-2">
+                            <a :href="links.supportTeams" target="_blank"
+                                class="w-full py-2 px-3 rounded-xl bg-purple-600/20 hover:bg-purple-600 border border-purple-500/40 text-purple-300 hover:text-white font-bold text-xs flex items-center justify-center gap-2 transition-all">
+                                <span>Join Support Channel</span>
+                                <i class="fas fa-headset text-[10px]"></i>
+                            </a>
+                            <button @click="copyText(links.supportTeams, 'copy-support-teams')"
+                                class="w-full py-1.5 px-3 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-slate-200 text-xs font-mono flex items-center justify-center gap-1.5 transition-all">
+                                <i
+                                    :class="copiedTarget === 'copy-support-teams' ? 'fas fa-check text-green-400' : 'fas fa-copy'"></i>
+                                <span
+                                    x-text="copiedTarget === 'copy-support-teams' ? 'Link Copied!' : 'Copy Channel URL'"></span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div
+                        class="glass-card rounded-2xl p-5 border border-white/10 flex flex-col justify-between qr-card-glow transition-all">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span
+                                    class="px-2.5 py-1 rounded-lg bg-uj-orange/20 text-uj-orange font-mono font-bold text-[11px] flex items-center gap-1.5">
+                                    <i class="fas fa-envelope"></i> UJ Team
+                                </span>
+                                <span
+                                    class="text-[10px] text-slate-400 uppercase font-mono tracking-wider">Inquiries</span>
+                            </div>
+
+                            <div
+                                class="bg-black/60 rounded-xl p-3 border border-white/5 flex flex-col items-center justify-center mb-4">
+                                <canvas id="qr-email-canvas"
+                                    class="w-36 h-36 rounded-lg bg-white p-2 shadow-md"></canvas>
+                                <span class="text-[10px] font-mono text-slate-400 mt-2">Scan to Email Us Directly</span>
+                            </div>
+
+                            <h3 class="text-base font-bold text-white mb-1">Email Support</h3>
+                            <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                                Direct inquiries about BACISS 2026 and follow-up startup mentorship.
+                            </p>
+                        </div>
+
+                        <div class="pt-3 border-t border-white/10 space-y-2">
+                            <a href="mailto:blockchain@uj.ac.za"
+                                class="w-full py-2 px-3 rounded-xl bg-uj-orange/20 hover:bg-uj-orange border border-uj-orange/40 text-uj-orange hover:text-white font-bold text-xs flex items-center justify-center gap-2 transition-all">
+                                <span>blockchain@uj.ac.za</span>
+                                <i class="fas fa-paper-plane text-[10px]"></i>
+                            </a>
+                            <button @click="copyText('blockchain@uj.ac.za', 'copy-email')"
+                                class="w-full py-1.5 px-3 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-slate-200 text-xs font-mono flex items-center justify-center gap-1.5 transition-all">
+                                <i
+                                    :class="copiedTarget === 'copy-email' ? 'fas fa-check text-green-400' : 'fas fa-copy'"></i>
+                                <span
+                                    x-text="copiedTarget === 'copy-email' ? 'Email Copied!' : 'Copy Email Address'"></span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="wifi-access" class="mb-14 scroll-mt-20">
+                <div class="glass-card rounded-3xl p-6 sm:p-8 border border-white/10 relative overflow-hidden">
+                    <div
+                        class="absolute top-0 right-0 w-80 h-80 bg-emerald-500/10 rounded-full blur-[90px] pointer-events-none">
+                    </div>
+
+                    <div class="grid lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-7">
+                            <div
+                                class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-xs font-bold text-emerald-400 uppercase tracking-wider mb-3">
+                                <i class="fas fa-wifi"></i> Seamless Lab Connectivity
+                            </div>
+                            <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-3">
+                                Connect to Lab 219 High-Speed Wi-Fi
+                            </h2>
+                            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-6">
+                                Scan the QR code with your smartphone camera to connect automatically without typing
+                                passwords, or copy the network credentials below for your laptop or development device.
+                            </p>
+
+                            <div class="space-y-3">
+                                <div
+                                    class="p-3.5 rounded-xl bg-black/50 border border-white/10 flex items-center justify-between gap-3">
+                                    <div class="min-w-0">
+                                        <span class="text-[10px] font-mono uppercase text-slate-400 block">Network Name
+                                            (SSID)</span>
+                                        <span class="text-sm font-bold font-mono text-white truncate block"
+                                            x-text="wifi.ssid"></span>
+                                    </div>
+                                    <button @click="copyText(wifi.ssid, 'copy-ssid')"
+                                        class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-uj-orange text-xs text-slate-200 transition-all flex items-center gap-1.5 shrink-0">
+                                        <i
+                                            :class="copiedTarget === 'copy-ssid' ? 'fas fa-check text-green-400' : 'fas fa-copy'"></i>
+                                        <span x-text="copiedTarget === 'copy-ssid' ? 'Copied!' : 'Copy SSID'"></span>
+                                    </button>
+                                </div>
+
+                                <div
+                                    class="p-3.5 rounded-xl bg-black/50 border border-white/10 flex items-center justify-between gap-3">
+                                    <div class="min-w-0">
+                                        <span class="text-[10px] font-mono uppercase text-slate-400 block">Network
+                                            Password</span>
+                                        <span
+                                            class="text-sm font-bold font-mono text-emerald-400 tracking-wider truncate block"
+                                            x-text="wifi.password"></span>
+                                    </div>
+                                    <button @click="copyText(wifi.password, 'copy-pass')"
+                                        class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-uj-orange text-xs text-slate-200 transition-all flex items-center gap-1.5 shrink-0">
+                                        <i
+                                            :class="copiedTarget === 'copy-pass' ? 'fas fa-check text-green-400' : 'fas fa-copy'"></i>
+                                        <span
+                                            x-text="copiedTarget === 'copy-pass' ? 'Copied!' : 'Copy Password'"></span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="mt-4 flex items-center gap-2 text-[11px] text-slate-400">
+                                <i class="fas fa-circle-info text-amber-400"></i>
+                                <span>Eduroam is also active across the entire Kingsway Campus for registered university
+                                    students and staff.</span>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-5 flex flex-col items-center justify-center text-center">
+                            <div class="p-4 rounded-2xl bg-black/70 border border-white/15 shadow-2xl relative">
+                                <div
+                                    class="absolute -top-3 -right-3 px-2 py-0.5 rounded-full bg-emerald-500 text-black text-[10px] font-black uppercase tracking-wider">
+                                    Instant Join
+                                </div>
+                                <canvas id="qr-wifi-canvas"
+                                    class="w-48 h-48 sm:w-56 sm:h-56 rounded-xl bg-white p-2.5 shadow-inner"></canvas>
+                                <span class="text-xs font-mono font-bold text-slate-300 mt-3 block">Point camera to
+                                    connect instantly</span>
+                                <span class="text-[10px] text-slate-500 font-mono">Compatible with iOS &amp;
+                                    Android</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="venue-directions" class="mb-14 scroll-mt-20">
+                <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+                    <div>
+                        <div
+                            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-xs font-bold text-amber-400 uppercase tracking-wider mb-1">
+                            <i class="fas fa-compass"></i> Campus Navigation
+                        </div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Event Venue &amp; Navigation Map</h2>
+                    </div>
+                    <a href="https://maps.google.com/?q=-26.18247,28.00016" target="_blank"
+                        class="px-3.5 py-1.5 rounded-xl bg-white/5 hover:bg-uj-orange text-slate-200 text-xs font-bold transition-all border border-white/10 flex items-center gap-1.5">
+                        <i class="fas fa-location-arrow"></i> Open in Google Maps
+                    </a>
+                </div>
+
+                <div class="grid lg:grid-cols-12 gap-6 items-stretch">
+                    <div
+                        class="lg:col-span-5 glass-card rounded-2xl p-6 border border-white/10 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-2 flex items-center gap-2">
+                                <i class="fas fa-building text-uj-orange"></i> Lab 219, DEEES Building
+                            </h3>
+                            <p class="text-xs text-slate-300 mb-5 leading-relaxed">
+                                Department of Electrical and Electronic Engineering Science (DEEES), Faculty of
+                                Engineering and the Built Environment (FEBE), University of Johannesburg.
+                            </p>
+
+                            <div class="space-y-4 text-xs mb-6">
+                                <div
+                                    class="p-4 rounded-xl bg-black/40 border border-white/5 transition-all hover:border-white/15">
+                                    <div class="font-bold text-white text-xs sm:text-sm flex items-center gap-2 mb-1.5">
+                                        <i class="fas fa-door-open text-amber-400 text-xs"></i>
+                                        <span>Main Campus Entry</span>
+                                    </div>
+                                    <p class="text-xs text-slate-300 leading-relaxed pl-5">
+                                        Enter via <strong class="text-white">Gate 1</strong> (Kingsway Ave) or <strong
+                                            class="text-white">Gate 2 (Ditton Ave)</strong>. Protection Service will
+                                        direct you towards the DEEES Building / B2 Engineering Laboratories.
+                                    </p>
+                                </div>
+
+                                <div
+                                    class="p-4 rounded-xl bg-black/40 border border-white/5 transition-all hover:border-white/15">
+                                    <div class="font-bold text-white text-xs sm:text-sm flex items-center gap-2 mb-1.5">
+                                        <i class="fas fa-square-parking text-blue-400 text-xs"></i>
+                                        <span>Parking Availability</span>
+                                    </div>
+                                    <p class="text-xs text-slate-300 leading-relaxed pl-5">
+                                        Designated visitor parking is accessible near the Engineering Complex. Please
+                                        inform security at the gate that you are attending BACISS 2026.
+                                    </p>
+                                </div>
+
+                                <div
+                                    class="p-4 rounded-xl bg-black/40 border border-white/5 transition-all hover:border-white/15">
+                                    <div class="font-bold text-white text-xs sm:text-sm flex items-center gap-2 mb-1.5">
+                                        <i class="fas fa-clock text-emerald-400 text-xs"></i>
+                                        <span>Arrival Window</span>
+                                    </div>
+                                    <p class="text-xs text-slate-300 leading-relaxed pl-5">
+                                        Doors open at <strong class="text-white">08:30 AM</strong> each morning. Build
+                                        sessions and guest lectures begin promptly at <strong class="text-white">09:00
+                                            AM</strong>.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-slate-400">
+                            <span>GPS: -26.18247, 28.00016</span>
+                            <span class="text-uj-orange font-bold">APK Campus</span>
+                        </div>
+                    </div>
+
+                    <div
+                        class="lg:col-span-7 glass-card rounded-2xl p-3 border border-white/10 flex flex-col justify-center min-h-[400px]">
+                        <div id="venue-map"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about-baciss" class="mb-14 scroll-mt-20">
+                <div class="glass-card rounded-3xl p-6 sm:p-10 border border-white/10 relative overflow-hidden">
+                    <div class="max-w-3xl mx-auto text-center mb-10">
+                        <div
+                            class="inline-flex items-center justify-center gap-2 px-3 py-1 rounded-full bg-uj-orange/15 border border-uj-orange/30 text-xs font-bold text-uj-orange uppercase tracking-wider mb-3">
+                            <i class="fas fa-rocket"></i> About the Innovation Program
+                        </div>
+                        <h2 class="text-xl sm:text-2xl md:text-3xl font-extrabold text-white tracking-tight mb-3">
+                            Why You Should Not Miss BACISS 2026
+                        </h2>
+                        <p class="text-slate-300 text-xs sm:text-sm md:text-base leading-relaxed mx-auto max-w-2xl">
+                            <strong>BACISS (Blockchain · AI · Cloud · Innovation · Startup School)</strong> is an
+                            immersive, hands-on innovation program designed to empower students, researchers, and
+                            entrepreneurs to build, innovate, and scale technology driven ventures. Here is why BACISS
+                            is an unmissable experience:
                         </p>
                     </div>
 
-                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-                        <div class="glass-card p-4 rounded-xl text-center flex flex-col items-center justify-center group hover:border-uj-orange/40 transition-all">
-                            <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-xl mb-2 group-hover:scale-110 transition-transform">
-                                <i class="fas fa-cubes"></i>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                        <div
+                            class="p-5 rounded-2xl bg-black/40 border border-white/5 hover:border-uj-orange/30 transition-all flex flex-col justify-between">
+                            <div>
+                                <div
+                                    class="w-10 h-10 rounded-xl bg-uj-orange/15 border border-uj-orange/30 flex items-center justify-center text-uj-orange text-lg mb-3">
+                                    <i class="fas fa-handshake"></i>
+                                </div>
+                                <h3 class="text-sm font-bold text-white mb-2">Learning from Industry Partners</h3>
+                                <p class="text-xs text-slate-400 leading-relaxed">
+                                    BACISS is packed with industry partners who will be teaching, offering support, and
+                                    serving as panel judges. These include Binance, Avalanche Team 1, IEEE South Africa,
+                                    Built to Scale, JPM Monarch, eFama, 22 on Sloane, and many more.
+                                </p>
                             </div>
-                            <span class="text-xs font-bold text-white">Blockchain Technology</span>
                         </div>
 
-                        <div class="glass-card p-4 rounded-xl text-center flex flex-col items-center justify-center group hover:border-uj-orange/40 transition-all">
-                            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl mb-2 group-hover:scale-110 transition-transform">
-                                <i class="fas fa-cloud"></i>
+                        <div
+                            class="p-5 rounded-2xl bg-black/40 border border-white/5 hover:border-uj-orange/30 transition-all flex flex-col justify-between">
+                            <div>
+                                <div
+                                    class="w-10 h-10 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 text-lg mb-3">
+                                    <i class="fas fa-trophy"></i>
+                                </div>
+                                <h3 class="text-sm font-bold text-white mb-2">Lots of Cash Prizes to Win</h3>
+                                <p class="text-xs text-slate-400 leading-relaxed">
+                                    BACISS 2026 comes with increased cash prizes of <strong>over R40k+</strong> plus
+                                    branded gift items from our ecosystem partners. You are not just learning and
+                                    building, you also get the opportunity to win exciting prizes.
+                                </p>
                             </div>
-                            <span class="text-xs font-bold text-white">Cloud &amp; Collab Tools</span>
                         </div>
 
-                        <div class="glass-card p-4 rounded-xl text-center flex flex-col items-center justify-center group hover:border-uj-orange/40 transition-all">
-                            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl mb-2 group-hover:scale-110 transition-transform">
-                                <i class="fas fa-brain"></i>
+                        <div
+                            class="p-5 rounded-2xl bg-black/40 border border-white/5 hover:border-uj-orange/30 transition-all flex flex-col justify-between">
+                            <div>
+                                <div
+                                    class="w-10 h-10 rounded-xl bg-purple-500/15 border border-purple-500/30 flex items-center justify-center text-purple-400 text-lg mb-3">
+                                    <i class="fas fa-chalkboard-teacher"></i>
+                                </div>
+                                <h3 class="text-sm font-bold text-white mb-2">Mentorship During and After BACISS</h3>
+                                <p class="text-xs text-slate-400 leading-relaxed">
+                                    We want you to learn and use that knowledge to build. We will be there all the way,
+                                    from your first idea during the build sessions to deployment and feature additions,
+                                    even after BACISS ends. We offer technical support to help bring your startup to
+                                    life.
+                                </p>
                             </div>
-                            <span class="text-xs font-bold text-white">Artificial Intelligence</span>
                         </div>
 
-                        <div class="glass-card p-4 rounded-xl text-center flex flex-col items-center justify-center group hover:border-uj-orange/40 transition-all">
-                            <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-2 group-hover:scale-110 transition-transform">
-                                <i class="fas fa-lightbulb"></i>
+                        <div
+                            class="p-5 rounded-2xl bg-black/40 border border-white/5 hover:border-uj-orange/30 transition-all flex flex-col justify-between">
+                            <div>
+                                <div
+                                    class="w-10 h-10 rounded-xl bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center text-cyan-400 text-lg mb-3">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <h3 class="text-sm font-bold text-white mb-2">Everyone Can Learn</h3>
+                                <p class="text-xs text-slate-400 leading-relaxed">
+                                    Whether you are a UJ student or not, in sport science, accounting, engineering, or
+                                    in a non-science field, you can learn at BACISS. Whether you’re a beginner or a pro,
+                                    an enthusiast or simply passionate about tech, you can learn. It is teachable and it
+                                    is learnable.
+                                </p>
                             </div>
-                            <span class="text-xs font-bold text-white">Design Thinking</span>
                         </div>
 
-                        <div class="glass-card p-4 rounded-xl text-center flex flex-col items-center justify-center group hover:border-uj-orange/40 transition-all">
-                            <div class="w-12 h-12 rounded-xl bg-uj-orange/10 text-uj-orange flex items-center justify-center text-xl mb-2 group-hover:scale-110 transition-transform">
-                                <i class="fas fa-cogs"></i>
+                        <div
+                            class="p-5 rounded-2xl bg-black/40 border border-white/5 hover:border-uj-orange/30 transition-all flex flex-col justify-between">
+                            <div>
+                                <div
+                                    class="w-10 h-10 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-lg mb-3">
+                                    <i class="fas fa-ticket-alt"></i>
+                                </div>
+                                <h3 class="text-sm font-bold text-white mb-2">100% Free, Truly Free</h3>
+                                <p class="text-xs text-slate-400 leading-relaxed">
+                                    It is free to attend and free to learn. All you simply need is a laptop, a notebook,
+                                    and a pen to learn. No hidden registration fees or paywalled resources.
+                                </p>
                             </div>
-                            <span class="text-xs font-bold text-white">Venture Design</span>
                         </div>
 
-                        <div class="glass-card p-4 rounded-xl text-center flex flex-col items-center justify-center group hover:border-uj-orange/40 transition-all">
-                            <div class="w-12 h-12 rounded-xl bg-red-500/10 text-red-400 flex items-center justify-center text-xl mb-2 group-hover:scale-110 transition-transform">
-                                <i class="fas fa-rocket"></i>
+                        <div
+                            class="p-5 rounded-2xl bg-black/40 border border-white/5 hover:border-uj-orange/30 transition-all flex flex-col justify-between">
+                            <div>
+                                <div
+                                    class="w-10 h-10 rounded-xl bg-blue-500/15 border border-blue-500/30 flex items-center justify-center text-blue-400 text-lg mb-3">
+                                    <i class="fas fa-headset"></i>
+                                </div>
+                                <h3 class="text-sm font-bold text-white mb-2">A Team Ready to Offer Support</h3>
+                                <p class="text-xs text-slate-400 leading-relaxed">
+                                    Throughout BACISS and beyond, the UJ Blockchain team will be on hand to offer
+                                    technical support to bring your idea to life. We have facilitators on ground to help
+                                    you, and even after BACISS you can still reach our team via email for technical
+                                    support.
+                                </p>
                             </div>
-                            <span class="text-xs font-bold text-white">Startup Pitch Prep</span>
                         </div>
+
                     </div>
-                </section>
 
-                <section id="partners" class="pt-8 border-t border-white/10">
-                    <div class="text-center mb-8">
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-uj-orange uppercase tracking-wider mb-2">
-                            Official Sponsors &amp; Partners
+                    <div
+                        class="mt-8 p-5 rounded-2xl bg-uj-surface/60 border border-uj-orange/30 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-10 h-10 rounded-full bg-uj-orange flex items-center justify-center text-white font-bold shrink-0">
+                                <i class="fas fa-cube"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-white">Building the future, one block at a time.</h4>
+                                <p class="text-xs text-slate-400">Warm regards from the UJ Blockchain Team •
+                                    blockchain.uj.ac.za</p>
+                            </div>
                         </div>
-                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">BACISS 2026 Ecosystem Partners</h2>
-                        <p class="text-slate-400 text-xs sm:text-sm max-w-xl mx-auto mt-1">
-                            Supported by leading global Web3 protocols, venture platforms, national research organizations, and academic institutions.
-                        </p>
+                        <a href="mailto:blockchain@uj.ac.za"
+                            class="px-4 py-2 rounded-xl bg-uj-orange hover:bg-orange-600 text-white font-bold text-xs shadow-md transition-all shrink-0">
+                            Contact Facilitators
+                        </a>
                     </div>
-
-                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                        <div class="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group hover:border-uj-orange/40 transition-all">
-                            <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-uj-orange text-xl mb-2 group-hover:scale-110 transition-transform">
-                                <i class="fas fa-atom"></i>
-                            </div>
-                            <span class="font-bold text-white text-xs">NRF</span>
-                            <span class="text-[10px] text-slate-400">National Research Foundation</span>
-                        </div>
-
-                        <div class="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group hover:border-uj-orange/40 transition-all">
-                            <div class="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-400 text-xl mb-2 group-hover:scale-110 transition-transform">
-                                <i class="fab fa-bitcoin"></i>
-                            </div>
-                            <span class="font-bold text-white text-xs">BINANCE</span>
-                            <span class="text-[10px] text-slate-400">Global Web3 Exchange</span>
-                        </div>
-
-                        <div class="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group hover:border-uj-orange/40 transition-all">
-                            <div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 text-xl mb-2 group-hover:scale-110 transition-transform">
-                                <i class="fas fa-microscope"></i>
-                            </div>
-                            <span class="font-bold text-white text-xs">CSIR</span>
-                            <span class="text-[10px] text-slate-400">Scientific &amp; Industrial Research</span>
-                        </div>
-
-                        <div class="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group hover:border-uj-orange/40 transition-all">
-                            <div class="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center text-red-400 text-xl mb-2 group-hover:scale-110 transition-transform">
-                                <i class="fas fa-bolt"></i>
-                            </div>
-                            <span class="font-bold text-white text-xs">SAIEE</span>
-                            <span class="text-[10px] text-slate-400">SA Institute of Electrical Eng.</span>
-                        </div>
-
-                        <div class="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group hover:border-uj-orange/40 transition-all">
-                            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400 text-xl mb-2 group-hover:scale-110 transition-transform">
-                                <i class="fas fa-network-wired"></i>
-                            </div>
-                            <span class="font-bold text-white text-xs">IEEE</span>
-                            <span class="text-[10px] text-slate-400">South Africa Section</span>
-                        </div>
-
-                        <div class="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group hover:border-uj-orange/40 transition-all">
-                            <div class="w-12 h-12 rounded-xl bg-red-600/10 flex items-center justify-center text-red-500 text-xl mb-2 group-hover:scale-110 transition-transform">
-                                <i class="fas fa-layer-group"></i>
-                            </div>
-                            <span class="font-bold text-white text-xs">Team 1</span>
-                            <span class="text-[10px] text-slate-400">Avalanche Ecosystem</span>
-                        </div>
-
-                        <div class="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group hover:border-uj-orange/40 transition-all">
-                            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 text-xl mb-2 group-hover:scale-110 transition-transform">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <span class="font-bold text-white text-xs">Built to Scale</span>
-                            <span class="text-[10px] text-slate-400">Scale Acceleration</span>
-                        </div>
-
-                        <div class="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group hover:border-uj-orange/40 transition-all">
-                            <div class="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center text-green-400 text-xl mb-2 group-hover:scale-110 transition-transform">
-                                <i class="fas fa-seedling"></i>
-                            </div>
-                            <span class="font-bold text-white text-xs">eFama</span>
-                            <span class="text-[10px] text-slate-400">Agritech &amp; Inclusion</span>
-                        </div>
-
-                        <div class="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group hover:border-uj-orange/40 transition-all">
-                            <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 text-xl mb-2 group-hover:scale-110 transition-transform">
-                                <i class="fas fa-crown"></i>
-                            </div>
-                            <span class="font-bold text-white text-xs">JPM Monarch</span>
-                            <span class="text-[10px] text-slate-400">Strategic Advisory</span>
-                        </div>
-
-                        <div class="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group hover:border-uj-orange/40 transition-all">
-                            <div class="w-12 h-12 rounded-xl bg-pink-500/10 flex items-center justify-center text-pink-400 text-xl mb-2 group-hover:scale-110 transition-transform">
-                                <i class="fas fa-building"></i>
-                            </div>
-                            <span class="font-bold text-white text-xs">22 on Sloane</span>
-                            <span class="text-[10px] text-slate-400">Largest Startup Campus</span>
-                        </div>
-
-                        <div class="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group hover:border-uj-orange/40 transition-all">
-                            <div class="w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 text-xl mb-2 group-hover:scale-110 transition-transform">
-                                <i class="fas fa-university"></i>
-                            </div>
-                            <span class="font-bold text-white text-xs">HSLU</span>
-                            <span class="text-[10px] text-slate-400">Lucerne Univ. Switzerland</span>
-                        </div>
-
-                        <div class="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group hover:border-uj-orange/40 transition-all">
-                            <div class="w-12 h-12 rounded-xl bg-uj-orange/10 flex items-center justify-center text-uj-orange text-xl mb-2 group-hover:scale-110 transition-transform">
-                                <i class="fas fa-graduation-cap"></i>
-                            </div>
-                            <span class="font-bold text-white text-xs">Univ. of Johannesburg</span>
-                            <span class="text-[10px] text-slate-400">SARChI Bilateral Chair</span>
-                        </div>
-                    </div>
-                </section>
-
-            </div>
-        </main>
-
-        <footer class="bg-black/90 py-8 border-t border-white/10 text-center text-slate-500 text-xs relative z-10 w-full">
-            <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div class="flex items-center gap-2">
-                    <span class="w-2.5 h-2.5 bg-uj-orange rounded-full shrink-0"></span>
-                    <span class="text-slate-300 font-bold">BACISS 2026</span> - South Africa - Switzerland Bilateral Research Chair in Blockchain Technology
                 </div>
-                <div class="text-[11px] text-slate-400">
-                    Lab 219, DEEES Building, Auckland Park Kingsway Campus, University of Johannesburg.
-                </div>
-            </div>
-        </footer>
+            </section>
 
-        <script nonce="{{ request.csp_nonce }}" src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-        <script nonce="{{ request.csp_nonce }}" src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
-        <script nonce="{{ request.csp_nonce }}" src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.0.6/tsparticles.slim.bundle.min.js"></script>
-        <script nonce="{{ request.csp_nonce }}" src="{{ static('js/baciss-support.js') }}"></script>
-    </body>
-    </body>
+            <section class="mb-14">
+                <div class="text-center mb-8">
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-uj-orange uppercase tracking-wider mb-2">
+                        Curriculum Pillars
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Themes &amp; Practical Activities</h2>
+                    <p class="text-slate-400 text-xs sm:text-sm max-w-xl mx-auto mt-1">
+                        A holistic track taking you from decentralized technology fundamentals to a polished startup
+                        pitch.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+                    <div
+                        class="glass-card p-4 rounded-xl text-center flex flex-col items-center justify-center group hover:border-uj-orange/40 transition-all">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-xl mb-2 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-cubes"></i>
+                        </div>
+                        <span class="text-xs font-bold text-white">Blockchain Technology</span>
+                    </div>
+
+                    <div
+                        class="glass-card p-4 rounded-xl text-center flex flex-col items-center justify-center group hover:border-uj-orange/40 transition-all">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl mb-2 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <span class="text-xs font-bold text-white">Cloud &amp; Collab Tools</span>
+                    </div>
+
+                    <div
+                        class="glass-card p-4 rounded-xl text-center flex flex-col items-center justify-center group hover:border-uj-orange/40 transition-all">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl mb-2 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <span class="text-xs font-bold text-white">Artificial Intelligence</span>
+                    </div>
+
+                    <div
+                        class="glass-card p-4 rounded-xl text-center flex flex-col items-center justify-center group hover:border-uj-orange/40 transition-all">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-2 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <span class="text-xs font-bold text-white">Design Thinking</span>
+                    </div>
+
+                    <div
+                        class="glass-card p-4 rounded-xl text-center flex flex-col items-center justify-center group hover:border-uj-orange/40 transition-all">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-uj-orange/10 text-uj-orange flex items-center justify-center text-xl mb-2 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <span class="text-xs font-bold text-white">Venture Design</span>
+                    </div>
+
+                    <div
+                        class="glass-card p-4 rounded-xl text-center flex flex-col items-center justify-center group hover:border-uj-orange/40 transition-all">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-red-500/10 text-red-400 flex items-center justify-center text-xl mb-2 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <span class="text-xs font-bold text-white">Startup Pitch Prep</span>
+                    </div>
+                </div>
+            </section>
+
+            <section id="partners" class="pt-8 border-t border-white/10">
+                <div class="text-center mb-8">
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-uj-orange uppercase tracking-wider mb-2">
+                        Official Sponsors &amp; Partners
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white">BACISS 2026 Ecosystem Partners</h2>
+                    <p class="text-slate-400 text-xs sm:text-sm max-w-xl mx-auto mt-1">
+                        Supported by leading global Web3 protocols, venture platforms, national research organizations,
+                        and academic institutions.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                    <div
+                        class="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group hover:border-uj-orange/40 transition-all">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-uj-orange text-xl mb-2 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-atom"></i>
+                        </div>
+                        <span class="font-bold text-white text-xs">NRF</span>
+                        <span class="text-[10px] text-slate-400">National Research Foundation</span>
+                    </div>
+
+                    <div
+                        class="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group hover:border-uj-orange/40 transition-all">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-400 text-xl mb-2 group-hover:scale-110 transition-transform">
+                            <i class="fab fa-bitcoin"></i>
+                        </div>
+                        <span class="font-bold text-white text-xs">BINANCE</span>
+                        <span class="text-[10px] text-slate-400">Global Web3 Exchange</span>
+                    </div>
+
+                    <div
+                        class="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group hover:border-uj-orange/40 transition-all">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 text-xl mb-2 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-microscope"></i>
+                        </div>
+                        <span class="font-bold text-white text-xs">CSIR</span>
+                        <span class="text-[10px] text-slate-400">Scientific &amp; Industrial Research</span>
+                    </div>
+
+                    <div
+                        class="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group hover:border-uj-orange/40 transition-all">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center text-red-400 text-xl mb-2 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <span class="font-bold text-white text-xs">SAIEE</span>
+                        <span class="text-[10px] text-slate-400">SA Institute of Electrical Eng.</span>
+                    </div>
+
+                    <div
+                        class="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group hover:border-uj-orange/40 transition-all">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400 text-xl mb-2 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <span class="font-bold text-white text-xs">IEEE</span>
+                        <span class="text-[10px] text-slate-400">South Africa Section</span>
+                    </div>
+
+                    <div
+                        class="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group hover:border-uj-orange/40 transition-all">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-red-600/10 flex items-center justify-center text-red-500 text-xl mb-2 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-layer-group"></i>
+                        </div>
+                        <span class="font-bold text-white text-xs">Team 1</span>
+                        <span class="text-[10px] text-slate-400">Avalanche Ecosystem</span>
+                    </div>
+
+                    <div
+                        class="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group hover:border-uj-orange/40 transition-all">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 text-xl mb-2 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <span class="font-bold text-white text-xs">Built to Scale</span>
+                        <span class="text-[10px] text-slate-400">Scale Acceleration</span>
+                    </div>
+
+                    <div
+                        class="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group hover:border-uj-orange/40 transition-all">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center text-green-400 text-xl mb-2 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <span class="font-bold text-white text-xs">eFama</span>
+                        <span class="text-[10px] text-slate-400">Agritech &amp; Inclusion</span>
+                    </div>
+
+                    <div
+                        class="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group hover:border-uj-orange/40 transition-all">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 text-xl mb-2 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <span class="font-bold text-white text-xs">JPM Monarch</span>
+                        <span class="text-[10px] text-slate-400">Strategic Advisory</span>
+                    </div>
+
+                    <div
+                        class="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group hover:border-uj-orange/40 transition-all">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-pink-500/10 flex items-center justify-center text-pink-400 text-xl mb-2 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <span class="font-bold text-white text-xs">22 on Sloane</span>
+                        <span class="text-[10px] text-slate-400">Largest Startup Campus</span>
+                    </div>
+
+                    <div
+                        class="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group hover:border-uj-orange/40 transition-all">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 text-xl mb-2 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <span class="font-bold text-white text-xs">HSLU</span>
+                        <span class="text-[10px] text-slate-400">Lucerne Univ. Switzerland</span>
+                    </div>
+
+                    <div
+                        class="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group hover:border-uj-orange/40 transition-all">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-uj-orange/10 flex items-center justify-center text-uj-orange text-xl mb-2 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <span class="font-bold text-white text-xs">Univ. of Johannesburg</span>
+                        <span class="text-[10px] text-slate-400">SARChI Bilateral Chair</span>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="bg-black/90 py-8 border-t border-white/10 text-center text-slate-500 text-xs relative z-10 w-full">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 bg-uj-orange rounded-full shrink-0"></span>
+                <span class="text-slate-300 font-bold">BACISS 2026</span> - South Africa - Switzerland Bilateral
+                Research Chair in Blockchain Technology
+            </div>
+            <div class="text-[11px] text-slate-400">
+                Lab 219, DEEES Building, Auckland Park Kingsway Campus, University of Johannesburg.
+            </div>
+        </div>
+    </footer>
+
+    <script nonce="{{ request.csp_nonce }}" src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script nonce="{{ request.csp_nonce }}" src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+    <script nonce="{{ request.csp_nonce }}"
+        src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.0.6/tsparticles.slim.bundle.min.js"></script>
+    <script nonce="{{ request.csp_nonce }}" src="{{ static('js/baciss-support.js') }}"></script>
+</body>
+</body>
 {% endblock mainBodyContent %}
