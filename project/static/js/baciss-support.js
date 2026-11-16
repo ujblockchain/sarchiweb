@@ -13,8 +13,8 @@ window.bacissPortal = function () {
     },
 
     wifi: {
-      ssid: "UJ_BACISS_GUEST",
-      password: "UJBlockchain2026!",
+      ssid: "BACISS 2026",
+      password: "BACISS26@UJ!",
     },
 
     init() {
