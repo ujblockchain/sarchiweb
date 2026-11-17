@@ -7,3 +7,11 @@ class BacissAIView(TemplateView):
 
 class BacissSupportView(TemplateView):
     template_name = 'pages/baciss-support.html'
+
+
+class BacissDOCloudView(TemplateView):
+    template_name = 'pages/baciss-cloud-do-doc.html'
+
+
+class BacissNFCloudView(TemplateView):
+    template_name = 'pages/baciss-cloud-nf-doc.html'
