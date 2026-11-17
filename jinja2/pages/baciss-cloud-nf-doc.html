@@ -1,0 +1,555 @@
+{% extends "base.html" %}
+
+{% block pageTitle %}BACISS 2026 | Northflank CI/CD Deployment Guide{% endblock pageTitle %}
+
+{% block pageStyle %}
+    {{ super() if super is defined else '' }}
+    <link nonce="{{ request.csp_nonce }}" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <style nonce="{{ request.csp_nonce }}">
+        pre[class*="language-"] {
+            max-width: 100% !important;
+            overflow-x: auto !important;
+            white-space: pre !important;
+            word-break: normal !important;
+            word-wrap: normal !important;
+        }
+
+        /* Themed custom scrollbars */
+        .custom-scroll {
+            overflow-y: scroll !important;
+            scrollbar-width: thin !important;
+            scrollbar-color: #f26522 rgba(15, 23, 42, 0.8) !important;
+        }
+        .custom-scroll::-webkit-scrollbar {
+            width: 7px !important;
+            height: 7px !important;
+            display: block !important;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: rgba(11, 17, 32, 0.85) !important;
+            border-radius: 9999px !important;
+            border: 1px solid rgba(255, 255, 255, 0.05) !important;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #f26522 !important;
+            border-radius: 9999px !important;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background: #ff7e42 !important;
+        }
+
+        /* Spacious typography & formatted text styling */
+        .step-prose {
+            font-size: 0.8125rem; /* 13px */
+            line-height: 1.75;
+            color: #cbd5e1;
+        }
+        .step-prose p {
+            margin-bottom: 0.9rem;
+            line-height: 1.75;
+        }
+        .step-prose p:last-child {
+            margin-bottom: 0;
+        }
+        .step-prose ul {
+            list-style-type: disc;
+            padding-left: 1.35rem;
+            margin-top: 0.5rem;
+            margin-bottom: 0.9rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem; /* Spacious gap between bullet points */
+        }
+        .step-prose ol {
+            list-style-type: decimal;
+            padding-left: 1.35rem;
+            margin-top: 0.5rem;
+            margin-bottom: 0.9rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem; /* Spacious gap between numbered steps */
+        }
+        .step-prose li {
+            line-height: 1.75;
+            padding-left: 0.25rem;
+        }
+        .step-prose li > ul,
+        .step-prose li > ol {
+            margin-top: 0.5rem;
+            margin-bottom: 0.25rem;
+            gap: 0.5rem;
+        }
+        .step-prose code {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            background: rgba(255, 255, 255, 0.08);
+            color: #fbd38d;
+            padding: 0.18rem 0.45rem;
+            margin: 0 0.2rem;
+            border-radius: 0.35rem;
+            font-size: 0.85em;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: inline-block;
+            line-height: 1.3;
+        }
+        .step-prose strong {
+            color: #ffffff;
+            font-weight: 700;
+        }
+    </style>
+{% endblock pageStyle %}
+
+{% block mainBodyContent %}
+    <body class="bg-uj-dark text-slate-300 antialiased selection:bg-uj-orange selection:text-white min-h-screen flex flex-col relative overflow-x-hidden w-full max-w-full"
+        x-data="deployPortal()" x-init="initHighlighting()">
+
+        <div class="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-uj-orange via-amber-500 to-red-500 opacity-90 z-50"></div>
+
+        <div id="particles-container" class="fixed inset-0 z-0 pointer-events-none opacity-25"></div>
+        <div class="fixed top-0 left-1/4 w-72 sm:w-96 h-72 sm:h-96 bg-uj-orange/10 rounded-full blur-[100px] sm:blur-[140px] pointer-events-none z-0"></div>
+        <div class="fixed bottom-10 right-0 sm:right-10 w-72 sm:w-96 h-72 sm:h-96 bg-blue-600/10 rounded-full blur-[100px] sm:blur-[140px] pointer-events-none z-0"></div>
+
+        <header class="fixed top-0 w-full z-40 glass-nav">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3">
+                <div class="flex items-center gap-3 min-w-0">
+                    <div class="w-10 h-10 bg-uj-orange rounded-xl flex items-center justify-center text-white font-black text-lg shrink-0 shadow-[0_0_15px_rgba(242,101,34,0.5)]">
+                        UJ
+                    </div>
+                    <div class="min-w-0">
+                        <span class="font-extrabold text-white text-base sm:text-lg tracking-tight block leading-tight truncate">
+                            Community Voice <span class="text-uj-orange">Northflank Ops</span>
+                        </span>
+                        <span class="text-[10px] font-mono tracking-wider text-slate-400 uppercase hidden sm:block truncate">
+                            Automated Git CI/CD &bull; Microservices &bull; Persistent Storage
+                        </span>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+                    <a href="#architecture"
+                        class="hidden md:inline-flex px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-slate-300 transition-all">
+                        <i class="fas fa-network-wired text-uj-orange mr-1.5 mt-0.5"></i> Architecture
+                    </a>
+                    <a href="#guide-sections"
+                        class="hidden md:inline-flex px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-slate-300 transition-all">
+                        <i class="fas fa-list-check text-uj-orange mr-1.5 mt-0.5"></i> 6 Phases
+                    </a>
+                    <a href="https://github.com/ujblockchain/community-voice-app" target="_blank"
+                        class="px-3 sm:px-3.5 py-1.5 rounded-xl bg-uj-orange hover:bg-orange-600 text-white font-bold text-xs shadow-[0_0_15px_rgba(242,101,34,0.3)] transition-all flex items-center gap-1.5 whitespace-nowrap">
+                        <i class="fab fa-github"></i> <span>Repository</span>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <main class="flex-grow pt-20 pb-16 relative z-10 w-full overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+
+                <section class="py-6 md:py-8 border-b border-white/10 mb-8">
+                    <div class="grid lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-8 min-w-0">
+
+                            <div class="inline-flex max-w-full items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-[11px] sm:text-xs font-bold text-emerald-300 mb-3.5 shadow-[0_0_15px_rgba(16,185,129,0.15)]">
+                                <span class="relative flex h-2.5 w-2.5 shrink-0">
+                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.9)]"></span>
+                                </span>
+                                <span class="truncate tracking-wide">CI/CD Runbook &bull; Automated Containerized Microservices</span>
+                            </div>
+
+                            <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight mb-2">
+                                Northflank CI/CD <span class="text-transparent bg-clip-text bg-gradient-to-r from-uj-orange to-amber-400">Deployment</span>
+                            </h1>
+                            <h2 class="text-lg md:text-xl font-bold text-slate-200 mb-2">
+                                Community Voice Multi-Agent Service Delivery Reporter
+                            </h2>
+                            <p class="text-uj-orange font-medium text-xs sm:text-sm tracking-wide mb-3">
+                                Docker Layer Caching &bull; 6 GB Persistent Volume &bull; Build Arguments &bull; Zero-Downtime Rollouts
+                            </p>
+                            <p class="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-3xl">
+                                Complete production setup for deploying Community Voice to Northflank with automated Git CI/CD.
+                                Covers multi-stage Docker builds with layer caching, persistent SSD volumes at <code class="text-slate-300">/app/data</code>,
+                                Next.js build-time argument injection, container database seeding, and CORS domain whitelisting.
+                            </p>
+                        </div>
+
+                        <div class="lg:col-span-4 min-w-0 w-full">
+                            <div class="glass-card rounded-2xl p-5 border border-white/10 relative overflow-hidden shadow-2xl bg-gradient-to-b from-white/[0.04] to-black/60">
+                                
+                                <div class="flex items-center justify-between pb-3.5 mb-3.5 border-b border-white/10">
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-2 h-2 rounded-full bg-uj-orange"></span>
+                                        <span class="text-xs uppercase font-mono tracking-wider text-slate-300 font-bold">Platform Profile</span>
+                                    </div>
+                                    <span class="px-2.5 py-1 rounded-md text-[10px] font-mono font-bold bg-blue-500/15 text-blue-400 border border-blue-500/30 whitespace-nowrap shadow-[0_0_10px_rgba(59,130,246,0.15)]">
+                                        Northflank PaaS
+                                    </span>
+                                </div>
+
+                                <div class="space-y-2.5">
+                                    <div class="p-3 rounded-xl bg-black/40 border border-white/5 flex items-start gap-3 transition-colors hover:border-uj-orange/30">
+                                        <div class="w-8 h-8 rounded-lg bg-uj-orange/15 border border-uj-orange/30 flex items-center justify-center text-uj-orange shrink-0 mt-0.5">
+                                            <i class="fas fa-location-dot text-xs"></i>
+                                        </div>
+                                        <div class="min-w-0 flex-1">
+                                            <div class="font-bold text-white text-xs leading-snug">Project: community-voice</div>
+                                            <div class="text-slate-400 text-[11px] mt-0.5">
+                                                Region: <span class="text-slate-300 font-mono">Europe - West (London)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="p-3 rounded-xl bg-black/40 border border-white/5 flex items-start gap-3 transition-colors hover:border-amber-500/30">
+                                        <div class="w-8 h-8 rounded-lg bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 shrink-0 mt-0.5">
+                                            <i class="fas fa-hard-drive text-xs"></i>
+                                        </div>
+                                        <div class="min-w-0 flex-1">
+                                            <div class="font-bold text-white text-xs leading-snug">Persistent Volume: 6 GB</div>
+                                            <div class="text-slate-400 text-[11px] mt-0.5 leading-relaxed">
+                                                Mount: <code class="px-1.5 py-0.5 rounded bg-white/10 font-mono text-[10px] text-amber-300 border border-white/10">/app/data</code> (survives redeploys)
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="p-3 rounded-xl bg-black/40 border border-white/5 flex items-start gap-3 transition-colors hover:border-emerald-500/30">
+                                        <div class="w-8 h-8 rounded-lg bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0 mt-0.5">
+                                            <i class="fas fa-code-branch text-xs"></i>
+                                        </div>
+                                        <div class="min-w-0 flex-1">
+                                            <div class="font-bold text-white text-xs leading-snug">Automated Git CI/CD</div>
+                                            <div class="text-slate-400 text-[11px] mt-0.5 leading-relaxed">
+                                                Branch <code class="px-1.5 py-0.5 rounded bg-white/10 font-mono text-[10px] text-emerald-300 border border-white/10">main</code> triggers rolling zero-downtime builds
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="architecture" class="mb-10 scroll-mt-20">
+                    <div class="glass-card rounded-2xl p-5 sm:p-7 border border-white/10 relative overflow-hidden shadow-2xl bg-gradient-to-b from-white/[0.03] to-black/70">
+                        
+                        <div class="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-white/10">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-8 h-8 rounded-lg bg-uj-orange/15 border border-uj-orange/30 flex items-center justify-center text-uj-orange">
+                                    <i class="fas fa-network-wired text-sm"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-sm sm:text-base font-bold text-white tracking-tight">Northflank Cloud Topology</h3>
+                                    <p class="text-[11px] text-slate-400 font-mono">Automated Webhook &bull; Ingress HTTPS &bull; Persistent Volume</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-mono text-slate-300">
+                                    <i class="fab fa-github text-slate-400 mr-1"></i> Git CI/CD
+                                </span>
+                                <span class="px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-mono text-slate-300">
+                                    <i class="fas fa-database text-amber-400 mr-1"></i> 6GB SSD Mounted
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="flex flex-col items-center">
+                                <div class="px-5 py-2.5 rounded-xl bg-black/60 border border-white/10 flex items-center gap-3 shadow-lg">
+                                    <div class="w-7 h-7 rounded-lg bg-purple-500/15 border border-purple-500/30 flex items-center justify-center text-purple-400 text-xs">
+                                        <i class="fab fa-github"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs font-bold text-white">GitHub: <code class="text-purple-300">ujblockchain/community-voice-app</code></div>
+                                        <div class="text-[10px] text-slate-400 font-mono">Git Push to <code>main</code> triggers Northflank Webhook</div>
+                                    </div>
+                                </div>
+
+                                <div class="flex flex-col items-center my-1 text-slate-500">
+                                    <div class="w-px h-5 bg-gradient-to-b from-purple-400 to-uj-orange"></div>
+                                    <span class="px-2 py-0.5 my-1 rounded bg-white/5 border border-white/10 font-mono text-[10px] text-amber-300">
+                                        Automated Docker CI/CD Build & Rolling Deploy
+                                    </span>
+                                    <i class="fas fa-chevron-down text-xs text-uj-orange -mt-1"></i>
+                                </div>
+                            </div>
+
+                            <div class="max-w-2xl mx-auto rounded-xl p-4 bg-black/50 border-2 border-uj-orange/40 relative shadow-[0_0_20px_rgba(242,101,34,0.15)]">
+                                <div class="flex flex-wrap items-center justify-between gap-2 mb-2 pb-2 border-b border-white/10">
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                                        <span class="font-bold text-xs text-white">Northflank Ingress Router (TLS/SSL)</span>
+                                        <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-uj-orange/20 text-uj-orange font-bold">Automatic HTTPS</span>
+                                    </div>
+                                    <span class="text-[10px] font-mono text-slate-400">Project: community-voice</span>
+                                </div>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] font-mono text-slate-300">
+                                    <div class="p-2 rounded bg-black/40 border border-white/5 flex items-center gap-2">
+                                        <i class="fas fa-globe text-cyan-400 text-xs"></i>
+                                        <span>Frontend Ingress &bull; Port 3000</span>
+                                    </div>
+                                    <div class="p-2 rounded bg-black/40 border border-white/5 flex items-center gap-2">
+                                        <i class="fas fa-server text-emerald-400 text-xs"></i>
+                                        <span>Backend Ingress &bull; Port 8800</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid sm:grid-cols-2 gap-4 max-w-3xl mx-auto pt-2">
+                                
+                                <div class="p-4 rounded-xl bg-black/50 border border-emerald-500/30 relative flex flex-col justify-between hover:border-emerald-500/50 transition-colors">
+                                    <div>
+                                        <div class="flex items-center justify-between mb-2 pb-2 border-b border-white/10">
+                                            <div class="flex items-center gap-2">
+                                                <div class="w-6 h-6 rounded bg-emerald-500/20 flex items-center justify-center text-emerald-400 text-xs">
+                                                    <i class="fas fa-server"></i>
+                                                </div>
+                                                <span class="font-bold text-white text-xs">community-voice-api</span>
+                                            </div>
+                                            <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+                                                Port 8800
+                                            </span>
+                                        </div>
+
+                                        <p class="text-[11px] text-slate-300 mb-2 leading-relaxed">
+                                            FastAPI &bull; Python 3.12-slim &bull; ffmpeg &bull; Astral uv
+                                        </p>
+
+                                        <div class="p-2.5 rounded-lg bg-amber-500/10 border border-amber-500/20 text-[10px] font-mono text-amber-300 mb-2">
+                                            <i class="fas fa-hard-drive mr-1"></i> Mounted: <code>/app/data</code> (6 GB SSD Volume)
+                                        </div>
+
+                                        <div class="space-y-1 text-[10px] font-mono text-slate-400">
+                                            <div>&bull; SQLite: <code>app.db</code>, <code>checkpoints.db</code></div>
+                                            <div>&bull; ChromaDB Vector Embeddings</div>
+                                            <div>&bull; Citizen Uploaded Photos</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-3 pt-2 border-t border-white/5 text-[10px] font-mono text-slate-500 flex items-center justify-between">
+                                        <span>Docs: <code class="text-slate-300">/docs</code></span>
+                                        <span class="text-emerald-400">Health: <code class="text-slate-300">/health</code></span>
+                                    </div>
+                                </div>
+
+                                <div class="p-4 rounded-xl bg-black/50 border border-cyan-500/30 relative flex flex-col justify-between hover:border-cyan-500/50 transition-colors">
+                                    <div>
+                                        <div class="flex items-center justify-between mb-2 pb-2 border-b border-white/10">
+                                            <div class="flex items-center gap-2">
+                                                <div class="w-6 h-6 rounded bg-cyan-500/20 flex items-center justify-center text-cyan-400 text-xs">
+                                                    <i class="fab fa-react"></i>
+                                                </div>
+                                                <span class="font-bold text-white text-xs">community-voice-frontend</span>
+                                            </div>
+                                            <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-cyan-500/15 text-cyan-400 border border-cyan-500/30">
+                                                Port 3000
+                                            </span>
+                                        </div>
+
+                                        <p class="text-[11px] text-slate-300 mb-2 leading-relaxed">
+                                            Next.js 16 &bull; React 19 &bull; Tailwind CSS 4 &bull; Node 22-slim
+                                        </p>
+
+                                        <div class="p-2.5 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-[10px] font-mono text-cyan-300 mb-2">
+                                            <i class="fas fa-wrench mr-1"></i> Build Arg: <code>NEXT_PUBLIC_API_URL</code>
+                                        </div>
+
+                                        <div class="space-y-1 text-[10px] font-mono text-slate-400">
+                                            <div>&bull; Production Ahead-Of-Time build</div>
+                                            <div>&bull; Client components fetch from API URL</div>
+                                            <div>&bull; Zero trailing slash / No <code>/api</code></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-3 pt-2 border-t border-white/5 text-[10px] font-mono text-slate-500 flex items-center justify-between">
+                                        <span>Mode: <code class="text-slate-300">production</code></span>
+                                        <span class="text-cyan-400">Ingress: <code class="text-slate-300">:3000</code></span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <div id="guide-sections" class="grid lg:grid-cols-12 gap-6 items-stretch mb-16 scroll-mt-20">
+
+                    <aside class="lg:col-span-4 h-[740px] max-h-[calc(100vh-8rem)] flex flex-col glass-card rounded-2xl border border-white/10 p-3 overflow-hidden">
+                        <div class="flex items-center justify-between px-2 pb-2.5 border-b border-white/10 shrink-0">
+                            <h3 class="text-xs uppercase font-mono tracking-wider font-bold text-slate-200 flex items-center gap-2">
+                                <i class="fas fa-layer-group text-uj-orange"></i> Deployment Phases
+                            </h3>
+                            <span class="text-[11px] font-mono px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-slate-300 font-bold">
+                                6 Total
+                            </span>
+                        </div>
+
+                        <div class="flex-1 overflow-y-auto pr-1.5 pt-2 space-y-2 custom-scroll">
+                            <template x-for="(ph, idx) in phases" :key="ph.id">
+                                <div class="rounded-xl border transition-all overflow-hidden"
+                                    :class="activePhaseId === ph.id ? (ph.theme.activeBorder + ' ' + ph.theme.cardBg) : 'border-white/5 bg-white/[0.02] hover:border-white/20'">
+                                    
+                                    <button @click="selectPhase(ph.id)"
+                                        class="w-full text-left p-2.5 sm:p-3 flex items-start gap-3 transition-colors group">
+                                        <div class="w-7 h-7 rounded-lg flex items-center justify-center font-mono font-bold text-xs shrink-0 mt-0.5 transition-colors border"
+                                            :class="activePhaseId === ph.id ? ph.theme.badgeActive : ph.theme.badge">
+                                            <span x-text="ph.number"></span>
+                                        </div>
+                                        <div class="flex-1 min-w-0">
+                                            <div class="flex items-center justify-between gap-1">
+                                                <h4 class="font-bold text-xs sm:text-[13px] truncate"
+                                                    :class="activePhaseId === ph.id ? ph.theme.text : 'text-slate-200'"
+                                                    x-text="ph.title"></h4>
+                                                <i class="fas text-[9px] text-slate-400 transition-transform duration-200 shrink-0"
+                                                    :class="activePhaseId === ph.id ? ('fa-chevron-down ' + ph.theme.text + ' rotate-180') : 'fa-chevron-right'"></i>
+                                            </div>
+                                            <p class="text-[11px] text-slate-400 line-clamp-1 mt-0.5" x-text="ph.desc"></p>
+                                        </div>
+                                    </button>
+
+                                    <div x-show="activePhaseId === ph.id" class="px-2.5 pb-2 pt-0.5 space-y-1 border-t border-white/5 bg-black/50">
+                                        <template x-for="(pt, pIdx) in ph.parts" :key="pt.id">
+                                            <button @click="selectPart(ph.id, pt.id)"
+                                                class="w-full text-left px-2.5 py-1.5 rounded-lg text-xs font-mono transition-all flex items-center justify-between gap-2"
+                                                :class="activePartId === pt.id 
+                                                        ? (ph.theme.partActive + ' font-bold shadow-md') 
+                                                        : 'text-slate-400 hover:text-slate-200 hover:bg-white/5'">
+                                                <span class="truncate flex items-center gap-2">
+                                                    <span class="w-1.5 h-1.5 rounded-full shrink-0"
+                                                        :class="activePartId === pt.id ? 'bg-white' : ph.theme.bullet"></span>
+                                                    <span x-text="pt.shortTitle || ('Part ' + pt.letter)"></span>
+                                                </span>
+                                                <span class="text-[10px] opacity-80 uppercase tracking-wider font-bold" x-text="'[' + pt.letter + ']'"></span>
+                                            </button>
+                                        </template>
+                                    </div>
+
+                                </div>
+                            </template>
+                        </div>
+                    </aside>
+
+                    <section class="lg:col-span-8 h-[740px] max-h-[calc(100vh-8rem)] flex flex-col glass-card rounded-2xl border border-white/10 overflow-hidden shadow-2xl">
+
+                        <div class="p-4 bg-black/60 border-b border-white/10 flex flex-wrap items-center justify-between gap-3 shrink-0">
+                            <div class="flex items-center gap-2.5 min-w-0">
+                                <div class="px-2.5 py-1 rounded-md border font-mono text-xs font-bold shrink-0"
+                                    :class="currentPhase.theme.badgeActive"
+                                    x-text="'Phase ' + currentPhase.number + ' &bull; Part ' + currentPart.letter">
+                                </div>
+                                <div class="min-w-0">
+                                    <h2 class="text-sm sm:text-base font-bold text-white tracking-tight truncate"
+                                        x-text="currentPart.title"></h2>
+                                    <span class="text-[11px] text-slate-400 font-mono truncate block" x-text="currentPhase.target"></span>
+                                </div>
+                            </div>
+
+                            <button @click="copyAllPartCommands(currentPart)"
+                                class="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-uj-orange text-white text-xs font-bold flex items-center gap-1.5 transition-all shrink-0">
+                                <i :class="copiedTarget === ('part-all-' + currentPart.id) ? 'fas fa-check text-green-400' : 'fas fa-copy'"></i>
+                                <span x-text="copiedTarget === ('part-all-' + currentPart.id) ? 'Copied Part!' : 'Copy Code'"></span>
+                            </button>
+                        </div>
+
+                        <div class="px-4 py-2 bg-uj-surface/90 border-b border-white/10 flex items-center gap-2 overflow-x-auto shrink-0 custom-scroll">
+                            <span class="text-[10px] font-mono text-slate-400 shrink-0 uppercase tracking-wider font-bold">Sub-Parts:</span>
+                            <template x-for="pt in currentPhase.parts" :key="pt.id">
+                                <button @click="selectPart(currentPhase.id, pt.id)"
+                                    class="px-2.5 py-1 rounded-lg text-xs font-mono font-medium transition-all shrink-0 flex items-center gap-1.5 border"
+                                    :class="activePartId === pt.id 
+                                            ? (currentPhase.theme.partActive + ' font-bold') 
+                                            : 'bg-white/5 hover:bg-white/10 text-slate-300 border-white/5'">
+                                    <span class="text-[10px] opacity-75 font-bold" x-text="'Part ' + pt.letter + ':'"></span>
+                                    <span x-text="pt.tabName || pt.shortTitle"></span>
+                                </button>
+                            </template>
+                        </div>
+
+                        <div x-show="currentPart.why || currentPhase.why" 
+                            class="p-4 sm:p-5 bg-uj-surface/70 border-b border-white/10 text-xs text-slate-300 shrink-0 min-w-0"
+                            :class="'border-l-4 ' + currentPhase.theme.borderLeft">
+                            <div class="flex items-center gap-2 mb-2.5">
+                                <span class="w-2 h-2 rounded-full inline-block" :class="currentPhase.theme.bullet"></span>
+                                <span class="font-bold uppercase tracking-wider text-[11px]" :class="currentPhase.theme.text">Why It Is Done</span>
+                            </div>
+                            <div class="step-prose leading-relaxed" x-html="currentPart.why || currentPhase.why"></div>
+                        </div>
+
+                        <div class="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4 bg-[#070D18]/70 pr-2 custom-scroll min-w-0">
+                            <template x-for="(step, sIdx) in currentPart.steps" :key="sIdx">
+                                <div class="rounded-xl border border-white/10 bg-uj-surface/50 overflow-hidden shadow-lg transition-all hover:border-white/20 min-w-0">
+
+                                    <div class="p-3 bg-black/40 border-b border-white/5 flex items-center justify-between flex-wrap gap-2">
+                                        <div class="flex items-center gap-2.5 min-w-0">
+                                            <span class="px-2 py-0.5 rounded-md font-mono text-[11px] font-bold border"
+                                                :class="currentPhase.theme.badge"
+                                                x-text="'Step ' + (sIdx + 1)"></span>
+                                            <h3 class="text-xs sm:text-sm font-bold text-white tracking-wide truncate" x-text="step.heading"></h3>
+                                        </div>
+
+                                        <button @click="copyText(step.code, 'cmd-' + currentPart.id + '-' + sIdx)"
+                                            class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-uj-orange text-slate-300 hover:text-white text-xs font-mono transition-all flex items-center gap-1.5 border border-white/10 shrink-0">
+                                            <i :class="copiedTarget === ('cmd-' + currentPart.id + '-' + sIdx) ? 'fas fa-check text-green-400' : 'fas fa-copy'"></i>
+                                            <span x-text="copiedTarget === ('cmd-' + currentPart.id + '-' + sIdx) ? 'Copied!' : 'Copy'"></span>
+                                        </button>
+                                    </div>
+
+                                    <div x-show="step.note" class="px-4 py-2.5 text-xs text-slate-300 bg-black/20 border-b border-white/5 step-prose"
+                                        x-html="step.note">
+                                    </div>
+
+                                    <div class="p-3 bg-[#050811] overflow-x-auto min-w-0">
+                                        <pre class="overflow-x-auto"><code :class="'language-' + (step.lang || 'bash')" x-text="step.code"></code></pre>
+                                    </div>
+
+                                    <div x-show="step.subWhy" class="px-4 py-2.5 text-xs text-amber-200/90 bg-amber-500/10 border-t border-amber-500/20 step-prose"
+                                        x-html="step.subWhy">
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+
+                        <div class="p-3 bg-black/70 border-t border-white/10 flex items-center justify-between gap-3 text-xs shrink-0">
+                            <button @click="goToPrevPart()"
+                                :disabled="isFirstPart()"
+                                class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/15 disabled:opacity-30 disabled:cursor-not-allowed border border-white/10 text-slate-300 transition-all flex items-center gap-2">
+                                <i class="fas fa-arrow-left"></i> Previous Part
+                            </button>
+
+                            <span class="text-[11px] font-mono text-slate-400 text-center hidden sm:block truncate px-2"
+                                x-text="'Phase ' + currentPhase.number + ' &bull; ' + currentPart.title"></span>
+
+                            <button @click="goToNextPart()"
+                                :disabled="isLastPart()"
+                                class="px-3.5 py-1.5 rounded-lg bg-uj-orange hover:bg-orange-600 disabled:opacity-30 disabled:cursor-not-allowed text-white font-bold transition-all flex items-center gap-2 shadow-[0_0_10px_rgba(242,101,34,0.3)]">
+                                Next Part <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+
+                    </section>
+
+                </div>
+
+            </div>
+        </main>
+
+        <footer class="bg-black/90 py-8 border-t border-white/10 text-center text-slate-500 text-xs relative z-10 w-full">
+            <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 bg-uj-orange rounded-full shrink-0"></span>
+                    <span class="text-slate-300 font-bold">Community Voice Production Infrastructure</span> &bull; UJ Blockchain Research Chair
+                </div>
+                <div class="text-[11px] text-slate-400">
+                    Department of Electrical and Electronic Engineering Science, Kingsway Campus, University of Johannesburg.
+                </div>
+            </div>
+        </footer>
+
+        <script nonce="{{ request.csp_nonce }}" src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.0.6/tsparticles.slim.bundle.min.js"></script>
+        <script nonce="{{ request.csp_nonce }}" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script nonce="{{ request.csp_nonce }}" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+        <script nonce="{{ request.csp_nonce }}" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-docker.min.js"></script>
+        <script nonce="{{ request.csp_nonce }}" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+        <script nonce="{{ request.csp_nonce }}" src="{{ static('js/baciss-cloud-nf-docs.js') }}"></script>
+    </body>
+{% endblock mainBodyContent %}
