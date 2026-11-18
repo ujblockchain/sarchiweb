@@ -15,3 +15,7 @@ class BacissDOCloudView(TemplateView):
 
 class BacissNFCloudView(TemplateView):
     template_name = 'pages/baciss-cloud-nf-doc.html'
+
+
+class BacissAzureCloudView(TemplateView):
+    template_name = 'pages/baciss-cloud-azure-doc.html'
