@@ -13,7 +13,7 @@ class StudentRegistrationView(View):
     form_class = StudentApplicationForm
 
     def get(self, request, *args, **kwargs):
-        deadline = datetime.date(2026, 3, 31)
+        deadline = datetime.date(2027, 3, 31)
         context = {
             'registration_open': timezone.now().date() < deadline,
         }
