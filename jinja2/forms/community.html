@@ -2,6 +2,7 @@
 
 {% block pageTitle %}Community Registration | UJ Blockchain{% endblock pageTitle %}
 {% block pageStyle %}
+    {{super()}}
     <style  nonce="{{ request.csp_nonce }}">
         html,
         body {
